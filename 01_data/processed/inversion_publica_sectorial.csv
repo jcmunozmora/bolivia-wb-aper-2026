@@ -1,0 +1,596 @@
+sector,year,inv_pub_usd_mm
+TOTAL,1990,315
+TOTAL,1991,420
+TOTAL,1992,532
+TOTAL,1993,481
+TOTAL,1994,557
+TOTAL,1995,673
+TOTAL,1996,735
+TOTAL,1997,714
+TOTAL,1998,505
+TOTAL,1999,531
+TOTAL,2000,583
+TOTAL,2001,639
+TOTAL,2002,585
+TOTAL,2003,500
+TOTAL,2004,602
+TOTAL,2005,629
+TOTAL,2006,879
+TOTAL,2007,1005
+PRODUCTIVOS,1990,162
+PRODUCTIVOS,1991,226
+PRODUCTIVOS,1992,249
+PRODUCTIVOS,1993,173
+PRODUCTIVOS,1994,168
+PRODUCTIVOS,1995,160
+PRODUCTIVOS,1996,133
+PRODUCTIVOS,1997,104
+PRODUCTIVOS,1998,78
+PRODUCTIVOS,1999,64
+PRODUCTIVOS,2000,75
+PRODUCTIVOS,2001,83
+PRODUCTIVOS,2002,76
+PRODUCTIVOS,2003,62
+PRODUCTIVOS,2004,73
+PRODUCTIVOS,2005,92
+PRODUCTIVOS,2006,142
+PRODUCTIVOS,2007,192
+Agropecuario,1990,35
+Agropecuario,1991,51
+Agropecuario,1992,55
+Agropecuario,1993,38
+Agropecuario,1994,14
+Agropecuario,1995,19
+Agropecuario,1996,21
+Agropecuario,1997,33
+Agropecuario,1998,53
+Agropecuario,1999,42
+Agropecuario,2000,53
+Agropecuario,2001,59
+Agropecuario,2002,54
+Agropecuario,2003,41
+Agropecuario,2004,49
+Agropecuario,2005,57
+Agropecuario,2006,76
+Agropecuario,2007,83
+Hidrocarburos,1990,101
+Hidrocarburos,1991,118
+Hidrocarburos,1992,117
+Hidrocarburos,1993,95
+Hidrocarburos,1994,111
+Hidrocarburos,1995,74
+Hidrocarburos,1996,67
+Hidrocarburos,1997,35
+Hidrocarburos,1998,2
+Hidrocarburos,1999,3
+Hidrocarburos,2000,0
+Hidrocarburos,2001,0
+Hidrocarburos,2002,0
+Hidrocarburos,2003,0
+Hidrocarburos,2004,0
+Hidrocarburos,2005,4
+Hidrocarburos,2006,7
+Hidrocarburos,2007,8
+Energía,1990,24
+Energía,1991,52
+Energía,1992,70
+Energía,1993,35
+Energía,1994,36
+Energía,1995,58
+Energía,1996,38
+Energía,1997,24
+Energía,1998,15
+Energía,1999,12
+Energía,2000,13
+Energía,2001,16
+Energía,2002,13
+Energía,2003,13
+Energía,2004,18
+Energía,2005,20
+Energía,2006,44
+Energía,2007,70
+Industria y Turismo,1990,1
+Industria y Turismo,1991,2
+Industria y Turismo,1992,3
+Industria y Turismo,1993,1
+Industria y Turismo,1994,1
+Industria y Turismo,1995,1
+Industria y Turismo,1996,1
+Industria y Turismo,1997,7
+Industria y Turismo,1998,4
+Industria y Turismo,1999,4
+Industria y Turismo,2000,6
+Industria y Turismo,2001,6
+Industria y Turismo,2002,7
+Industria y Turismo,2003,5
+Industria y Turismo,2004,4
+Industria y Turismo,2005,7
+Industria y Turismo,2006,11
+Industria y Turismo,2007,20
+Minero,1990,2
+Minero,1991,4
+Minero,1992,4
+Minero,1993,4
+Minero,1994,6
+Minero,1995,8
+Minero,1996,6
+Minero,1997,5
+Minero,1998,4
+Minero,1999,4
+Minero,2000,3
+Minero,2001,2
+Minero,2002,3
+Minero,2003,3
+Minero,2004,1
+Minero,2005,3
+Minero,2006,3
+Minero,2007,11
+INFRAESTRUCTURA,1990,91
+INFRAESTRUCTURA,1991,125
+INFRAESTRUCTURA,1992,190
+INFRAESTRUCTURA,1993,215
+INFRAESTRUCTURA,1994,220
+INFRAESTRUCTURA,1995,230
+INFRAESTRUCTURA,1996,252
+INFRAESTRUCTURA,1997,234
+INFRAESTRUCTURA,1998,162
+INFRAESTRUCTURA,1999,166
+INFRAESTRUCTURA,2000,190
+INFRAESTRUCTURA,2001,214
+INFRAESTRUCTURA,2002,209
+INFRAESTRUCTURA,2003,214
+INFRAESTRUCTURA,2004,279
+INFRAESTRUCTURA,2005,306
+INFRAESTRUCTURA,2006,437
+INFRAESTRUCTURA,2007,481
+Comunicaciones,1990,21
+Comunicaciones,1991,7
+Comunicaciones,1992,15
+Comunicaciones,1993,33
+Comunicaciones,1994,7
+Comunicaciones,1995,7
+Comunicaciones,1996,0
+Comunicaciones,1997,0
+Comunicaciones,1998,0
+Comunicaciones,1999,0
+Comunicaciones,2000,0
+Comunicaciones,2001,0
+Comunicaciones,2002,0
+Comunicaciones,2003,0
+Comunicaciones,2004,0
+Comunicaciones,2005,0
+Comunicaciones,2006,1
+Comunicaciones,2007,1
+Recursos Hídricos,1990,3
+Recursos Hídricos,1991,5
+Recursos Hídricos,1992,5
+Recursos Hídricos,1993,5
+Recursos Hídricos,1994,6
+Recursos Hídricos,1995,14
+Recursos Hídricos,1996,10
+Recursos Hídricos,1997,10
+Recursos Hídricos,1998,9
+Recursos Hídricos,1999,6
+Recursos Hídricos,2000,8
+Recursos Hídricos,2001,12
+Recursos Hídricos,2002,18
+Recursos Hídricos,2003,11
+Recursos Hídricos,2004,14
+Recursos Hídricos,2005,17
+Recursos Hídricos,2006,27
+Recursos Hídricos,2007,30
+Transportes,1990,67
+Transportes,1991,113
+Transportes,1992,170
+Transportes,1993,177
+Transportes,1994,206
+Transportes,1995,209
+Transportes,1996,242
+Transportes,1997,223
+Transportes,1998,153
+Transportes,1999,160
+Transportes,2000,182
+Transportes,2001,202
+Transportes,2002,190
+Transportes,2003,203
+Transportes,2004,264
+Transportes,2005,289
+Transportes,2006,409
+Transportes,2007,450
+SOCIALES,1990,58
+SOCIALES,1991,37
+SOCIALES,1992,85
+SOCIALES,1993,85
+SOCIALES,1994,140
+SOCIALES,1995,237
+SOCIALES,1996,298
+SOCIALES,1997,319
+SOCIALES,1998,245
+SOCIALES,1999,265
+SOCIALES,2000,285
+SOCIALES,2001,295
+SOCIALES,2002,251
+SOCIALES,2003,187
+SOCIALES,2004,221
+SOCIALES,2005,194
+SOCIALES,2006,263
+SOCIALES,2007,284
+Educación y Cultura,1990,0
+Educación y Cultura,1991,2
+Educación y Cultura,1992,8
+Educación y Cultura,1993,8
+Educación y Cultura,1994,17
+Educación y Cultura,1995,48
+Educación y Cultura,1996,79
+Educación y Cultura,1997,99
+Educación y Cultura,1998,64
+Educación y Cultura,1999,76
+Educación y Cultura,2000,84
+Educación y Cultura,2001,107
+Educación y Cultura,2002,96
+Educación y Cultura,2003,66
+Educación y Cultura,2004,54
+Educación y Cultura,2005,42
+Educación y Cultura,2006,75
+Educación y Cultura,2007,78
+"Salud, Seguridad Social y Deportes",1990,15
+"Salud, Seguridad Social y Deportes",1991,11
+"Salud, Seguridad Social y Deportes",1992,22
+"Salud, Seguridad Social y Deportes",1993,22
+"Salud, Seguridad Social y Deportes",1994,27
+"Salud, Seguridad Social y Deportes",1995,33
+"Salud, Seguridad Social y Deportes",1996,38
+"Salud, Seguridad Social y Deportes",1997,40
+"Salud, Seguridad Social y Deportes",1998,35
+"Salud, Seguridad Social y Deportes",1999,41
+"Salud, Seguridad Social y Deportes",2000,61
+"Salud, Seguridad Social y Deportes",2001,49
+"Salud, Seguridad Social y Deportes",2002,53
+"Salud, Seguridad Social y Deportes",2003,37
+"Salud, Seguridad Social y Deportes",2004,45
+"Salud, Seguridad Social y Deportes",2005,40
+"Salud, Seguridad Social y Deportes",2006,61
+"Salud, Seguridad Social y Deportes",2007,63
+Saneamiento Básico,1990,38
+Saneamiento Básico,1991,14
+Saneamiento Básico,1992,34
+Saneamiento Básico,1993,35
+Saneamiento Básico,1994,44
+Saneamiento Básico,1995,59
+Saneamiento Básico,1996,105
+Saneamiento Básico,1997,104
+Saneamiento Básico,1998,82
+Saneamiento Básico,1999,99
+Saneamiento Básico,2000,91
+Saneamiento Básico,2001,74
+Saneamiento Básico,2002,45
+Saneamiento Básico,2003,34
+Saneamiento Básico,2004,67
+Saneamiento Básico,2005,51
+Saneamiento Básico,2006,56
+Saneamiento Básico,2007,61
+Urbanismo y Vivienda,1990,4
+Urbanismo y Vivienda,1991,11
+Urbanismo y Vivienda,1992,21
+Urbanismo y Vivienda,1993,19
+Urbanismo y Vivienda,1994,52
+Urbanismo y Vivienda,1995,98
+Urbanismo y Vivienda,1996,76
+Urbanismo y Vivienda,1997,75
+Urbanismo y Vivienda,1998,64
+Urbanismo y Vivienda,1999,48
+Urbanismo y Vivienda,2000,50
+Urbanismo y Vivienda,2001,64
+Urbanismo y Vivienda,2002,57
+Urbanismo y Vivienda,2003,51
+Urbanismo y Vivienda,2004,54
+Urbanismo y Vivienda,2005,60
+Urbanismo y Vivienda,2006,70
+Urbanismo y Vivienda,2007,83
+MULTISECTORIALES,1990,4
+MULTISECTORIALES,1991,32
+MULTISECTORIALES,1992,8
+MULTISECTORIALES,1993,8
+MULTISECTORIALES,1994,30
+MULTISECTORIALES,1995,46
+MULTISECTORIALES,1996,52
+MULTISECTORIALES,1997,57
+MULTISECTORIALES,1998,20
+MULTISECTORIALES,1999,36
+MULTISECTORIALES,2000,34
+MULTISECTORIALES,2001,47
+MULTISECTORIALES,2002,48
+MULTISECTORIALES,2003,36
+MULTISECTORIALES,2004,29
+MULTISECTORIALES,2005,38
+MULTISECTORIALES,2006,37
+MULTISECTORIALES,2007,48
+TOTAL,2008,1351
+TOTAL,2009,1439
+TOTAL,2010,1521
+TOTAL,2011,2182
+TOTAL,2012,2897
+TOTAL,2013,3781
+TOTAL,2014,4507
+TOTAL,2015,4892
+TOTAL,2016,5065
+TOTAL,2017,4772
+TOTAL,2018,4458
+TOTAL,2019,3769
+TOTAL,2020,1784
+TOTAL,2021,2646
+TOTAL,2022,2634
+TOTAL,2023,2658
+TOTAL,2024,2430
+PRODUCTIVOS,2008,227
+PRODUCTIVOS,2009,267
+PRODUCTIVOS,2010,303
+PRODUCTIVOS,2011,658
+PRODUCTIVOS,2012,933
+PRODUCTIVOS,2013,1190
+PRODUCTIVOS,2014,1363
+PRODUCTIVOS,2015,1709
+PRODUCTIVOS,2016,1866
+PRODUCTIVOS,2017,1720
+PRODUCTIVOS,2018,1420
+PRODUCTIVOS,2019,1107
+PRODUCTIVOS,2020,474
+PRODUCTIVOS,2021,863
+PRODUCTIVOS,2022,938
+PRODUCTIVOS,2023,1131
+PRODUCTIVOS,2024,936
+Agropecuario,2008,82
+Agropecuario,2009,90
+Agropecuario,2010,84
+Agropecuario,2011,135
+Agropecuario,2012,180
+Agropecuario,2013,223
+Agropecuario,2014,275
+Agropecuario,2015,320
+Agropecuario,2016,236
+Agropecuario,2017,227
+Agropecuario,2018,274
+Agropecuario,2019,247
+Agropecuario,2020,134
+Agropecuario,2021,182
+Agropecuario,2022,188
+Agropecuario,2023,244
+Agropecuario,2024,261
+Hidrocarburos,2008,13
+Hidrocarburos,2009,31
+Hidrocarburos,2010,109
+Hidrocarburos,2011,308
+Hidrocarburos,2012,488
+Hidrocarburos,2013,578
+Hidrocarburos,2014,646
+Hidrocarburos,2015,678
+Hidrocarburos,2016,530
+Hidrocarburos,2017,341
+Hidrocarburos,2018,162
+Hidrocarburos,2019,134
+Hidrocarburos,2020,87
+Hidrocarburos,2021,106
+Hidrocarburos,2022,150
+Hidrocarburos,2023,296
+Hidrocarburos,2024,160
+Energía,2008,80
+Energía,2009,83
+Energía,2010,71
+Energía,2011,107
+Energía,2012,123
+Energía,2013,173
+Energía,2014,214
+Energía,2015,312
+Energía,2016,875
+Energía,2017,823
+Energía,2018,602
+Energía,2019,445
+Energía,2020,160
+Energía,2021,349
+Energía,2022,249
+Energía,2023,235
+Energía,2024,204
+Industria y Turismo,2008,18
+Industria y Turismo,2009,15
+Industria y Turismo,2010,12
+Industria y Turismo,2011,19
+Industria y Turismo,2012,70
+Industria y Turismo,2013,101
+Industria y Turismo,2014,119
+Industria y Turismo,2015,208
+Industria y Turismo,2016,127
+Industria y Turismo,2017,213
+Industria y Turismo,2018,191
+Industria y Turismo,2019,124
+Industria y Turismo,2020,35
+Industria y Turismo,2021,44
+Industria y Turismo,2022,119
+Industria y Turismo,2023,225
+Industria y Turismo,2024,232
+Minero,2008,34
+Minero,2009,48
+Minero,2010,28
+Minero,2011,89
+Minero,2012,71
+Minero,2013,114
+Minero,2014,108
+Minero,2015,190
+Minero,2016,98
+Minero,2017,115
+Minero,2018,191
+Minero,2019,156
+Minero,2020,58
+Minero,2021,181
+Minero,2022,233
+Minero,2023,131
+Minero,2024,78
+INFRAESTRUCTURA,2008,570
+INFRAESTRUCTURA,2009,612
+INFRAESTRUCTURA,2010,654
+INFRAESTRUCTURA,2011,853
+INFRAESTRUCTURA,2012,1035
+INFRAESTRUCTURA,2013,1329
+INFRAESTRUCTURA,2014,1440
+INFRAESTRUCTURA,2015,1696
+INFRAESTRUCTURA,2016,1822
+INFRAESTRUCTURA,2017,1628
+INFRAESTRUCTURA,2018,1518
+INFRAESTRUCTURA,2019,1307
+INFRAESTRUCTURA,2020,517
+INFRAESTRUCTURA,2021,881
+INFRAESTRUCTURA,2022,843
+INFRAESTRUCTURA,2023,673
+INFRAESTRUCTURA,2024,609
+Comunicaciones,2008,47
+Comunicaciones,2009,37
+Comunicaciones,2010,9
+Comunicaciones,2011,85
+Comunicaciones,2012,82
+Comunicaciones,2013,138
+Comunicaciones,2014,34
+Comunicaciones,2015,20
+Comunicaciones,2016,83
+Comunicaciones,2017,99
+Comunicaciones,2018,91
+Comunicaciones,2019,88
+Comunicaciones,2020,25
+Comunicaciones,2021,35
+Comunicaciones,2022,69
+Comunicaciones,2023,53
+Comunicaciones,2024,21
+Recursos Hídricos,2008,33
+Recursos Hídricos,2009,38
+Recursos Hídricos,2010,44
+Recursos Hídricos,2011,45
+Recursos Hídricos,2012,56
+Recursos Hídricos,2013,108
+Recursos Hídricos,2014,95
+Recursos Hídricos,2015,68
+Recursos Hídricos,2016,47
+Recursos Hídricos,2017,22
+Recursos Hídricos,2018,23
+Recursos Hídricos,2019,43
+Recursos Hídricos,2020,29
+Recursos Hídricos,2021,32
+Recursos Hídricos,2022,43
+Recursos Hídricos,2023,30
+Recursos Hídricos,2024,16
+Transportes,2008,490
+Transportes,2009,537
+Transportes,2010,601
+Transportes,2011,722
+Transportes,2012,897
+Transportes,2013,1083
+Transportes,2014,1310
+Transportes,2015,1609
+Transportes,2016,1692
+Transportes,2017,1507
+Transportes,2018,1404
+Transportes,2019,1175
+Transportes,2020,463
+Transportes,2021,813
+Transportes,2022,731
+Transportes,2023,589
+Transportes,2024,572
+SOCIALES,2008,427
+SOCIALES,2009,475
+SOCIALES,2010,472
+SOCIALES,2011,566
+SOCIALES,2012,743
+SOCIALES,2013,1084
+SOCIALES,2014,1448
+SOCIALES,2015,1341
+SOCIALES,2016,1192
+SOCIALES,2017,1194
+SOCIALES,2018,1278
+SOCIALES,2019,1171
+SOCIALES,2020,711
+SOCIALES,2021,791
+SOCIALES,2022,760
+SOCIALES,2023,735
+SOCIALES,2024,773
+Educación y Cultura,2008,124
+Educación y Cultura,2009,151
+Educación y Cultura,2010,177
+Educación y Cultura,2011,170
+Educación y Cultura,2012,233
+Educación y Cultura,2013,326
+Educación y Cultura,2014,455
+Educación y Cultura,2015,394
+Educación y Cultura,2016,332
+Educación y Cultura,2017,349
+Educación y Cultura,2018,329
+Educación y Cultura,2019,251
+Educación y Cultura,2020,103
+Educación y Cultura,2021,129
+Educación y Cultura,2022,101
+Educación y Cultura,2023,164
+Educación y Cultura,2024,194
+"Salud, Seguridad Social y Deportes",2008,80
+"Salud, Seguridad Social y Deportes",2009,91
+"Salud, Seguridad Social y Deportes",2010,72
+"Salud, Seguridad Social y Deportes",2011,80
+"Salud, Seguridad Social y Deportes",2012,93
+"Salud, Seguridad Social y Deportes",2013,151
+"Salud, Seguridad Social y Deportes",2014,158
+"Salud, Seguridad Social y Deportes",2015,357
+"Salud, Seguridad Social y Deportes",2016,336
+"Salud, Seguridad Social y Deportes",2017,306
+"Salud, Seguridad Social y Deportes",2018,395
+"Salud, Seguridad Social y Deportes",2019,375
+"Salud, Seguridad Social y Deportes",2020,266
+"Salud, Seguridad Social y Deportes",2021,313
+"Salud, Seguridad Social y Deportes",2022,284
+"Salud, Seguridad Social y Deportes",2023,181
+"Salud, Seguridad Social y Deportes",2024,162
+Saneamiento Básico,2008,50
+Saneamiento Básico,2009,79
+Saneamiento Básico,2010,79
+Saneamiento Básico,2011,120
+Saneamiento Básico,2012,157
+Saneamiento Básico,2013,202
+Saneamiento Básico,2014,255
+Saneamiento Básico,2015,230
+Saneamiento Básico,2016,185
+Saneamiento Básico,2017,244
+Saneamiento Básico,2018,274
+Saneamiento Básico,2019,255
+Saneamiento Básico,2020,160
+Saneamiento Básico,2021,183
+Saneamiento Básico,2022,183
+Saneamiento Básico,2023,144
+Saneamiento Básico,2024,124
+Urbanismo y Vivienda,2008,173
+Urbanismo y Vivienda,2009,153
+Urbanismo y Vivienda,2010,144
+Urbanismo y Vivienda,2011,196
+Urbanismo y Vivienda,2012,260
+Urbanismo y Vivienda,2013,405
+Urbanismo y Vivienda,2014,580
+Urbanismo y Vivienda,2015,361
+Urbanismo y Vivienda,2016,338
+Urbanismo y Vivienda,2017,295
+Urbanismo y Vivienda,2018,280
+Urbanismo y Vivienda,2019,290
+Urbanismo y Vivienda,2020,181
+Urbanismo y Vivienda,2021,166
+Urbanismo y Vivienda,2022,192
+Urbanismo y Vivienda,2023,245
+Urbanismo y Vivienda,2024,292
+MULTISECTORIALES,2008,127
+MULTISECTORIALES,2009,85
+MULTISECTORIALES,2010,93
+MULTISECTORIALES,2011,104
+MULTISECTORIALES,2012,187
+MULTISECTORIALES,2013,178
+MULTISECTORIALES,2014,257
+MULTISECTORIALES,2015,146
+MULTISECTORIALES,2016,185
+MULTISECTORIALES,2017,230
+MULTISECTORIALES,2018,241
+MULTISECTORIALES,2019,185
+MULTISECTORIALES,2020,82
+MULTISECTORIALES,2021,111
+MULTISECTORIALES,2022,92
+MULTISECTORIALES,2023,119
+MULTISECTORIALES,2024,113
