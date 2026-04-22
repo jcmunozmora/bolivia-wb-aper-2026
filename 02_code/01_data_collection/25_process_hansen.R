@@ -1,151 +1,191 @@
 # Procesa Hansen Global Forest Change v1.11 para Bolivia
 # =============================================================================
-# Input: 4 tiles GFC (10S/20S × 60W/70W) × 2 layers (treecover2000, lossyear)
-# Total: 2.3 GB raw rasters
+# EJECUTAR con el R de miniforge (NO el renv del proyecto, que no tiene
+# terra/sf/data.table y tarda 300s escaneando dependencias):
 #
-# Output:
-#   - hansen_dept_annual_deforestation.rds: 9 depts × 24 años (2001-2024)
-#   - hansen_muni_annual_deforestation.rds: 339 munis × 24 años
-#   - hansen_dept_treecover_2000.rds: baseline forest cover 2000
+#   cd "/Users/jcmunoz/Library/CloudStorage/OneDrive-UniversidadEAFIT/Projects/2026_WB_Bolivia"
+#   RENV_CONFIG_AUTOLOADER_ENABLED=FALSE \
+#   R_PROFILE_USER=/dev/null \
+#   /Users/jcmunoz/miniforge3/envs/ds/bin/Rscript \
+#       02_code/01_data_collection/25_process_hansen.R 2>&1 | tee /tmp/hansen_log.txt
+#
+# Estrategia memory-safe:
+#   - Procesa tile por tile (nunca mosaic completo)
+#   - Fuerza escritura a disco de cada raster intermedio (filename = tempfile)
+#   - Agrega 30m → 300m (factor 10) antes de cualquier extract
+#   - Limpia tempfiles de terra después de cada tile
+#   - memfrac = 0.3 → nunca usa más de 30% RAM
+#
+# Tiempo estimado: ~20-30 min (4 tiles × 23 años).
+# Heartbeat: imprime una línea por año con timestamp + uso de RAM.
 # =============================================================================
 
-library(terra)
-library(sf)
-library(data.table)
+# Bloquea renv (si lo activa el .Rprofile)
+Sys.setenv(RENV_CONFIG_AUTOLOADER_ENABLED = "FALSE")
 
-root     <- "/Users/jcmunoz/Library/CloudStorage/OneDrive-UniversidadEAFIT/Projects/2026_WB_Bolivia"
+t_global <- Sys.time()
+hb <- function(msg) {
+  rss_mb <- tryCatch({
+    pid <- Sys.getpid()
+    as.numeric(system(sprintf("ps -o rss= -p %d", pid), intern = TRUE)) / 1024
+  }, error = function(e) NA_real_)
+  cat(sprintf("[%s | %.1fm | RAM %.0f MB] %s\n",
+              format(Sys.time(), "%H:%M:%S"),
+              as.numeric(difftime(Sys.time(), t_global, units = "mins")),
+              rss_mb, msg))
+  flush.console()
+}
+
+hb("iniciando — cargando librerías")
+suppressPackageStartupMessages({
+  library(terra)
+  library(sf)
+  library(data.table)
+})
+hb(sprintf("terra %s · sf %s · data.table %s",
+           packageVersion("terra"), packageVersion("sf"), packageVersion("data.table")))
+
+# ── Config terra: OOM-safe ───────────────────────────────────────────────────
+terra_tmp <- "/tmp/terra_hansen"
+dir.create(terra_tmp, showWarnings = FALSE)
+terraOptions(memfrac = 0.3, tempdir = terra_tmp, todisk = TRUE, progress = 0)
+hb(sprintf("terra: memfrac=0.3 | todisk=TRUE | tempdir=%s", terra_tmp))
+
+root       <- "/Users/jcmunoz/Library/CloudStorage/OneDrive-UniversidadEAFIT/Projects/2026_WB_Bolivia"
 hansen_dir <- file.path(root, "01_data/raw/hansen")
-proc_dir <- file.path(root, "01_data/processed")
+proc_dir   <- file.path(root, "01_data/processed")
 
-# Cargar shapefiles
+hb("leyendo shapefiles ADM1 y ADM3")
 adm1 <- st_read(file.path(root, "01_data/external/bolivia_adm1_departments.gpkg"),
                 quiet = TRUE)
 adm3 <- st_read(file.path(root, "01_data/external/bolivia_adm3_municipalities.gpkg"),
                 quiet = TRUE)
 adm1_vect <- terra::vect(adm1)
 adm3_vect <- terra::vect(adm3)
+hb(sprintf("ADM1: %d depts · ADM3: %d munis", nrow(adm1), nrow(adm3)))
 
-cat("ADM1 (depts):", nrow(adm1), "| ADM3 (munis):", nrow(adm3), "\n\n")
+TILES <- c("10S_060W", "10S_070W", "20S_060W", "20S_070W")
+AGG   <- 10       # 30m × 10 = 300m
+YEARS <- 1:23     # 2001-2023
+bol_ext <- ext(adm1_vect)
 
-# ─── 1. Mosaic tiles ──────────────────────────────────────────────────────────
-cat("=== Mosaicando tiles Hansen (treecover2000 + lossyear) ===\n")
+dept_rows <- list(); muni_rows <- list()
+fa2000_dept_tiles <- list(); fa2000_muni_tiles <- list()
+tile_tmp <- function() tempfile(tmpdir = terra_tmp, fileext = ".tif")
 
-# Function to mosaic 4 tiles
-mosaic_tiles <- function(layer) {
-  tiles <- c("10S_060W", "10S_070W", "20S_060W", "20S_070W")
-  rasters <- lapply(tiles, function(t) {
-    f <- file.path(hansen_dir, sprintf("Hansen_GFC-2023-v1.11_%s_%s.tif", layer, t))
-    if (!file.exists(f)) return(NULL)
-    terra::rast(f)
-  })
-  rasters <- rasters[!sapply(rasters, is.null)]
-  if (length(rasters) == 0) return(NULL)
-  if (length(rasters) == 1) return(rasters[[1]])
-  do.call(terra::mosaic, c(rasters, fun = "min"))
+# Tamaño total tempdir en MB
+tmp_mb <- function() {
+  f <- list.files(terra_tmp, full.names = TRUE, recursive = TRUE)
+  if (length(f) == 0) return(0)
+  round(sum(file.info(f)$size, na.rm = TRUE) / 1024^2, 0)
 }
 
-cat("  Mosaicando treecover2000...\n")
-tc <- mosaic_tiles("treecover2000")
-cat("  Dim:", dim(tc), "| res:", terra::res(tc), "\n")
-cat("  Mosaicando lossyear...\n")
-ly <- mosaic_tiles("lossyear")
-cat("  Dim:", dim(ly), "| res:", terra::res(ly), "\n\n")
+for (tile in TILES) {
+  t_tile <- Sys.time()
+  hb(sprintf("=== TILE %s INICIO ===", tile))
 
-# ─── 2. Crop to Bolivia bounding box (speedup) ───────────────────────────────
-cat("=== Cropping a Bolivia ===\n")
-bolivia_bbox <- terra::ext(adm1_vect)
-tc_bol <- terra::crop(tc, bolivia_bbox)
-ly_bol <- terra::crop(ly, bolivia_bbox)
-cat("  TC Bolivia:", dim(tc_bol), "\n")
-cat("  LY Bolivia:", dim(ly_bol), "\n\n")
+  tc_f <- file.path(hansen_dir,
+                    sprintf("Hansen_GFC-2023-v1.11_treecover2000_%s.tif", tile))
+  ly_f <- file.path(hansen_dir,
+                    sprintf("Hansen_GFC-2023-v1.11_lossyear_%s.tif", tile))
+  if (!file.exists(tc_f) || !file.exists(ly_f)) {
+    hb(sprintf("  [%s] ficheros faltantes — SKIP", tile)); next
+  }
 
-# ─── 3. Calcular área por pixel ──────────────────────────────────────────────
-# A 30m resolution, cada pixel ≈ 0.09 ha (30×30/10000)
-# Pero en coordenadas geográficas (WGS84), el área varía con la latitud
-# Para simplicidad usamos cellSize() de terra
-cat("=== Calculando área por píxel (ha) ===\n")
-area_ras <- terra::cellSize(tc_bol, unit = "ha")
-cat("  Area raster OK\n\n")
+  hb(sprintf("  abriendo rasters (file sizes: tc=%.0fMB, ly=%.0fMB)",
+             file.info(tc_f)$size/1e6, file.info(ly_f)$size/1e6))
+  tc <- rast(tc_f); ly <- rast(ly_f)
+  inter <- intersect(ext(tc), bol_ext)
+  if (is.null(inter)) { hb(sprintf("  [%s] fuera de Bolivia — SKIP", tile)); next }
 
-# ─── 4. Baseline treecover 2000 por depto/muni ───────────────────────────────
-# Un pixel se considera "forest" si tree cover ≥ 30% (umbral Hansen estándar)
-cat("=== Forest cover 2000 (threshold ≥30%) ===\n")
-forest_2000 <- tc_bol >= 30
-forest_area_2000 <- forest_2000 * area_ras
+  hb(sprintf("  crop a Bolivia bbox… (origen %d × %d)", nrow(tc), ncol(tc)))
+  tc <- crop(tc, inter, filename = tile_tmp(), overwrite = TRUE)
+  ly <- crop(ly, inter, filename = tile_tmp(), overwrite = TRUE)
+  hb(sprintf("  crop OK → %d × %d @30m (%.1fM pixeles · temp %d MB)",
+             nrow(tc), ncol(tc),
+             (as.numeric(nrow(tc)) * ncol(tc)) / 1e6, tmp_mb()))
 
-cat("  Extrayendo area forestal 2000 por depto...\n")
-fa2000_dept <- terra::extract(forest_area_2000, adm1_vect, fun = sum, na.rm = TRUE)
-fa2000_dept_dt <- data.table(
-  dept = adm1$shapeName,
-  forest_area_2000_ha = fa2000_dept[[2]]
-)
-print(fa2000_dept_dt[order(-forest_area_2000_ha)])
+  hb("  cellSize → ha por pixel")
+  area_30 <- cellSize(tc, unit = "ha", filename = tile_tmp(), overwrite = TRUE)
 
-cat("\n  Extrayendo area forestal 2000 por muni...\n")
-fa2000_muni <- terra::extract(forest_area_2000, adm3_vect, fun = sum, na.rm = TRUE)
-fa2000_muni_dt <- data.table(
-  municipio = adm3$shapeName,
-  forest_area_2000_ha = fa2000_muni[[2]]
-)
+  hb("  forest_2000 = (tc >= 30)")
+  forest_2000 <- lapp(tc, fun = function(x) as.integer(x >= 30),
+                      filename = tile_tmp(), overwrite = TRUE)
 
-# ─── 5. Deforestation por año (lossyear) ──────────────────────────────────────
-# lossyear value 1-24 representa 2001-2024
-# Pérdida ocurre solo en pixels que eran forest en 2000
-cat("\n=== Procesando deforestación anual 2001-2024 ===\n")
+  hb("  forest area 2000 a 300m (aggregate sum)")
+  fa_30 <- lapp(sds(forest_2000, area_30), fun = function(f, a) f * a,
+                filename = tile_tmp(), overwrite = TRUE)
+  fa_300 <- aggregate(fa_30, fact = AGG, fun = "sum", na.rm = TRUE,
+                      filename = tile_tmp(), overwrite = TRUE)
 
-dept_defor_list <- list()
-muni_defor_list <- list()
+  hb("  extract forest 2000 por depto + muni")
+  e_d <- terra::extract(fa_300, adm1_vect, fun = sum, na.rm = TRUE)
+  e_m <- terra::extract(fa_300, adm3_vect, fun = sum, na.rm = TRUE)
+  fa2000_dept_tiles[[tile]] <- data.table(dept = adm1$shapeName, forest_ha = e_d[[2]])
+  fa2000_muni_tiles[[tile]] <- data.table(municipio = adm3$shapeName, forest_ha = e_m[[2]])
+  hb(sprintf("  ✓ baseline 2000 OK · temp %d MB", tmp_mb()))
 
-for (yr_code in 1:23) {  # 1-23 = 2001-2023 (v1.11 llega a 2023)
-  cat(sprintf("  Año %d (código %d)...", 2000 + yr_code, yr_code))
-  # Deforestación ese año: lossyear == yr_code AND forest_2000
-  defor_mask <- (ly_bol == yr_code) & forest_2000
-  defor_area <- defor_mask * area_ras
+  # Deforestación año por año (heartbeat por cada año)
+  for (yr_code in YEARS) {
+    defor_30 <- lapp(sds(ly, forest_2000, area_30),
+                     fun = function(l, f, a) (l == yr_code) * f * a,
+                     filename = tile_tmp(), overwrite = TRUE)
+    defor_300 <- aggregate(defor_30, fact = AGG, fun = "sum", na.rm = TRUE,
+                           filename = tile_tmp(), overwrite = TRUE)
+    d_d <- terra::extract(defor_300, adm1_vect, fun = sum, na.rm = TRUE)
+    d_m <- terra::extract(defor_300, adm3_vect, fun = sum, na.rm = TRUE)
 
-  # Agregado departamental
-  d_ext <- terra::extract(defor_area, adm1_vect, fun = sum, na.rm = TRUE)
-  dept_defor_list[[as.character(2000 + yr_code)]] <- data.table(
-    dept = adm1$shapeName, year = 2000 + yr_code,
-    defor_ha = d_ext[[2]]
-  )
+    dept_rows[[length(dept_rows) + 1L]] <- data.table(
+      dept = adm1$shapeName, year = 2000 + yr_code,
+      tile = tile, defor_ha = d_d[[2]])
+    muni_rows[[length(muni_rows) + 1L]] <- data.table(
+      municipio = adm3$shapeName, year = 2000 + yr_code,
+      tile = tile, defor_ha = d_m[[2]])
 
-  # Agregado municipal (más lento)
-  m_ext <- terra::extract(defor_area, adm3_vect, fun = sum, na.rm = TRUE)
-  muni_defor_list[[as.character(2000 + yr_code)]] <- data.table(
-    municipio = adm3$shapeName, year = 2000 + yr_code,
-    defor_ha = m_ext[[2]]
-  )
-  cat(" ok\n")
+    total_yr <- sum(d_d[[2]], na.rm = TRUE)
+    hb(sprintf("  [%s] año %d ok · %.1fk ha deforestadas en este tile · temp %d MB",
+               tile, 2000 + yr_code, total_yr/1e3, tmp_mb()))
+
+    rm(defor_30, defor_300); gc(verbose = FALSE)
+  }
+
+  rm(tc, ly, area_30, forest_2000, fa_30, fa_300); gc(verbose = FALSE)
+  unlink(list.files(terra_tmp, pattern = "\\.tif$", full.names = TRUE))
+  dt <- as.numeric(difftime(Sys.time(), t_tile, units = "mins"))
+  hb(sprintf("  === TILE %s FIN · %.1f min · temp limpiado ===", tile, dt))
 }
 
-dept_defor <- rbindlist(dept_defor_list)
-muni_defor <- rbindlist(muni_defor_list)
+hb("=== CONSOLIDANDO RESULTADOS ===")
+dept_all <- rbindlist(dept_rows)[, .(defor_ha = sum(defor_ha, na.rm = TRUE)),
+                                 by = .(dept, year)]
+muni_all <- rbindlist(muni_rows)[, .(defor_ha = sum(defor_ha, na.rm = TRUE)),
+                                 by = .(municipio, year)]
+fa2000_dept <- rbindlist(fa2000_dept_tiles)[,
+  .(forest_area_2000_ha = sum(forest_ha, na.rm = TRUE)), by = dept]
+fa2000_muni <- rbindlist(fa2000_muni_tiles)[,
+  .(forest_area_2000_ha = sum(forest_ha, na.rm = TRUE)), by = municipio]
 
-# Merge baseline
-dept_defor <- merge(dept_defor, fa2000_dept_dt, by = "dept", all.x = TRUE)
-muni_defor <- merge(muni_defor, fa2000_muni_dt, by = "municipio", all.x = TRUE)
+dept_all <- merge(dept_all, fa2000_dept, by = "dept", all.x = TRUE)
+muni_all <- merge(muni_all, fa2000_muni, by = "municipio", all.x = TRUE)
+dept_all[, defor_pct_2000 := 100 * defor_ha / pmax(1, forest_area_2000_ha)]
+muni_all[, defor_pct_2000 := 100 * defor_ha / pmax(1, forest_area_2000_ha)]
 
-# Calcular % anual sobre bosque 2000
-dept_defor[, defor_pct_2000 := 100 * defor_ha / pmax(1, forest_area_2000_ha)]
-muni_defor[, defor_pct_2000 := 100 * defor_ha / pmax(1, forest_area_2000_ha)]
+dept_cum <- dept_all[, .(defor_total_ha = sum(defor_ha, na.rm = TRUE),
+                         forest_2000_ha = first(forest_area_2000_ha)),
+                     by = dept][,
+  defor_pct_forest_2000 := 100 * defor_total_ha / pmax(1, forest_2000_ha)]
 
-cat("\n=== Resumen deforestación acumulada 2001-2023 por depto ===\n")
-dept_cum <- dept_defor[, .(
-  defor_total_ha = sum(defor_ha, na.rm = TRUE),
-  forest_2000_ha = first(forest_area_2000_ha)
-), by = dept][, defor_pct_forest_2000 := 100 * defor_total_ha / pmax(1, forest_2000_ha)]
+cat("\n── Deforestación acumulada 2001-2023 por depto ──\n")
 print(dept_cum[order(-defor_total_ha)])
 
-# Save
-saveRDS(dept_defor, file.path(proc_dir, "hansen_dept_annual_deforestation.rds"))
-saveRDS(muni_defor, file.path(proc_dir, "hansen_muni_annual_deforestation.rds"))
-saveRDS(fa2000_dept_dt, file.path(proc_dir, "hansen_dept_treecover_2000.rds"))
-saveRDS(fa2000_muni_dt, file.path(proc_dir, "hansen_muni_treecover_2000.rds"))
-saveRDS(dept_cum, file.path(proc_dir, "hansen_dept_cumulative.rds"))
-fwrite(dept_defor, file.path(proc_dir, "hansen_dept_annual_deforestation.csv"))
-fwrite(muni_defor, file.path(proc_dir, "hansen_muni_annual_deforestation.csv"))
+saveRDS(dept_all,    file.path(proc_dir, "hansen_dept_annual_deforestation.rds"))
+saveRDS(muni_all,    file.path(proc_dir, "hansen_muni_annual_deforestation.rds"))
+saveRDS(fa2000_dept, file.path(proc_dir, "hansen_dept_treecover_2000.rds"))
+saveRDS(fa2000_muni, file.path(proc_dir, "hansen_muni_treecover_2000.rds"))
+saveRDS(dept_cum,    file.path(proc_dir, "hansen_dept_cumulative.rds"))
+fwrite(dept_all,     file.path(proc_dir, "hansen_dept_annual_deforestation.csv"))
+fwrite(muni_all,     file.path(proc_dir, "hansen_muni_annual_deforestation.csv"))
 
-cat("\n✓ Archivos guardados en processed/\n")
-cat("  hansen_dept_annual_deforestation.rds (9 × 23 años = 207 filas)\n")
-cat("  hansen_muni_annual_deforestation.rds (339 × 23 años = 7,797 filas)\n")
-cat("  hansen_dept_cumulative.rds (9 depts resumen)\n")
+hb(sprintf("GUARDADO: dept %d filas · muni %d filas", nrow(dept_all), nrow(muni_all)))
+unlink(terra_tmp, recursive = TRUE)
+hb("TEMP LIMPIADO · FIN")
