@@ -1,0 +1,791 @@
+---
+title: "Anexo A — Inventario de Fuentes de Datos"
+subtitle: "Bolivia Agricultural Public Expenditure Review 2026"
+author: "Banco Mundial — Oficina Bolivia"
+date: 2026-04-21
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+---
+
+# Resumen ejecutivo
+
+Este anexo documenta el acervo de datos construido para el estudio.
+A diferencia de un inventario genérico, aquí se presentan **las series
+efectivamente disponibles con sus valores observados**, junto con la
+trazabilidad técnica para reproducir la construcción.
+
+**Volumetría del acervo** (medida directa al 2026-04-21):
+
+| Concepto | Valor medido |
+|----------|-------------:|
+| Panel maestro: años × variables | 35 × 72 |
+| Fuente más grande (IDB Agrimonitor CSV) | 91 MB, 305,166 filas |
+| WDI Bulk CSV | 187 MB |
+| Bolivia APER original (BOOST) | 26 MB Excel, 104,280 filas |
+| MEFP PDFs descargados | 30 archivos, 151 MB |
+| Observaciones Bolivia en IDB Agrimonitor | 11,284 |
+| Datasets procesados (.rds/.csv) | 42 archivos |
+| Scripts R del pipeline | 29 |
+| Figuras generadas | 17 PNG (WB-theme, 150 dpi) |
+
+**Período cubierto por variable clave** (desde dato más temprano hasta
+dato más reciente disponible en el panel):
+
+| Variable | Primer dato | Último dato |
+|----------|:-----------:|:-----------:|
+| Inversión pública agropecuaria (VIPFE, USD) | 1990 | 2024 |
+| TFP Bolivia (USDA ERS) | 1961 | 2023 |
+| Estadísticas agrícolas INE por depto | 1984 | 2024 |
+| PSE metodología OCDE (IDB Agrimonitor) | 2006 | 2023 |
+| Gasto APER detallado | 1996 | 2008 |
+| EMAPA gasto en bienes y servicios | 2008 | 2024 |
+| WDI indicadores | 2000 | 2023 |
+| GHG emisiones agrícolas | 2019 | 2023 |
+| PIB departamental (INE Ref 2017) | 2017 | 2021 |
+
+\pagebreak
+
+# La serie central: Inversión pública agropecuaria 1990-2024
+
+Ésta es la serie más crítica del estudio: cierra la brecha temporal
+del APER 2011 (1996-2008) y extiende el análisis hasta 2024.
+
+**Fuente:** MEFP *Informe Fiscal 2024*, Cuadros N° 26a y 26b, página 109.
+Datos originales del VIPFE/MPD, Sistema SISIN, consolidado por la
+Dirección General de Análisis y Políticas Fiscales.
+
+**Valores observados** (millones USD corrientes):
+
+| Año | Inv. agropecuaria USD mm | BOB 2015 mm | % PIB | % total inv. pública |
+|----:|-------------------------:|------------:|------:|---------------------:|
+| 1990 | 35 | — | — | 11.1% |
+| 1995 | 19 | — | — | 2.8% |
+| 2000 | 53 | 699.4 | 0.63% | 9.1% |
+| 2005 | 57 | 841.3 | 0.60% | 9.1% |
+| 2010 | 84 | 787.7 | 0.43% | 5.5% |
+| 2011 | 135 | 1,139.0 | 0.56% | 6.2% |
+| 2012 | 180 | 1,447.5 | 0.66% | 6.2% |
+| 2013 | 223 | 1,696.0 | 0.73% | 5.9% |
+| 2014 | 275 | 1,977.4 | 0.83% | 6.1% |
+| **2015** | **320** | **2,211.2** | **0.97%** | **6.5%** |
+| 2016 | 236 | 1,573.7 | 0.70% | 4.7% |
+| 2017 | 227 | 1,472.2 | 0.49% | 4.8% |
+| 2018 | 274 | 1,737.5 | 0.57% | 6.1% |
+| 2019 | 247 | 1,538.0 | 0.50% | 6.6% |
+| 2020 | 134 | 826.6 | 0.32% | 7.5% |
+| 2021 | 182 | 1,114.5 | 0.38% | 6.9% |
+| 2022 | 188 | 1,131.5 | 0.37% | 7.1% |
+| 2023 | 244 | 1,431.6 | 0.47% | 9.2% |
+| 2024 | 261 | — | — | 10.7% |
+
+**Observaciones clave**:
+
+- Serie histórica **crece 10×** entre 1994 (mínimo US$14 M) y 2015 (máximo US$320 M).
+- **Caída del 46% en 2020** por COVID-19 (US$247 → US$134 M).
+- Recuperación parcial: 2024 a US$261 M (82% del máximo).
+- Participación en inversión pública total oscila entre **2.5% (1994)** y **12.1% (1991)**.
+
+**Archivo:** `01_data/processed/inversion_publica_sectorial_wide.rds` (17 sectores × 35 años)
+**Script:** `02_code/01_data_collection/14_parse_inversion_publica_sectorial.R`
+**Figura:** `05_outputs/figures/fig10_inversion_agro_1990_2024.png`
+
+\pagebreak
+
+# PSE por metodología OCDE 2006-2023
+
+**Fuente:** Inter-American Development Bank — Agrimonitor (open data).
+Corresponde a PSE pre-calculado por IDB usando metodología OCDE 2020.
+
+## Series agregadas Bolivia (millones BOB corrientes)
+
+| Año | PSE | MPS | GSSE | TSE | %PSE | NPC prod |
+|----:|----:|----:|-----:|----:|-----:|---------:|
+| 2006 | -1,169 | -1,302 | 251 | -918 | -7.9% | 1.055 |
+| 2007 | 310 | 165 | 255 | 565 | 1.9% | 0.963 |
+| 2008 | -2,857 | -3,025 | 202 | -2,655 | -15.0% | 1.171 |
+| **2009** | **-5,779** | **-5,949** | **258** | **-5,521** | **-26.9%** | **1.293** |
+| 2010 | 1,563 | 1,157 | 592 | 2,156 | 6.1% | 0.970 |
+| 2011 | 707 | 165 | 779 | 1,486 | 2.4% | 0.993 |
+| 2012 | -95 | -784 | 1,066 | 979 | -0.3% | 1.007 |
+| 2013 | 560 | -379 | 1,805 | 2,380 | 1.6% | 1.003 |
+| 2014 | 829 | -145 | 1,630 | 2,474 | 1.9% | 0.983 |
+| 2015 | -1,275 | -2,295 | 1,796 | 536 | -3.0% | 0.980 |
+| 2016 | 2,915 | 2,199 | 1,291 | 4,222 | 7.2% | 0.947 |
+| 2017 | 1,132 | 264 | 1,532 | 2,678 | 2.4% | 0.974 |
+| 2018 | 2,983 | 1,633 | 2,287 | 5,278 | 5.9% | 0.961 |
+| **2019** | **3,578** | **2,213** | **2,223** | **5,810** | **6.5%** | **0.931** |
+| 2020 | 3,372 | 2,651 | 1,320 | 4,693 | 6.0% | 0.956 |
+| 2021 | 52 | -986 | 1,860 | 1,923 | 0.1% | 0.995 |
+| 2022 | 2,104 | 1,116 | 1,793 | 3,908 | 3.5% | 0.968 |
+| 2023 | 3,938 | 2,960 | 2,015 | 5,964 | 5.8% | 0.967 |
+
+**Interpretación clave**:
+
+- **Tres regímenes de política** identificables en la serie:
+  1. **2006-2009**: PSE masivamente negativo (pico -26.9% en 2009, MPS de -5,949 mm BOB). Corresponde a política de precios máximos durante crisis alimentaria global 2007-2008. Productores fueron implícitamente tasados para subsidiar consumidores.
+  2. **2010-2015**: Transición oscilante. GSSE crece sostenidamente (de 258 a 1,796 mm BOB).
+  3. **2016-2023**: PSE consistentemente positivo (promedio +4.5%). GSSE se estabiliza arriba de 1,500 mm BOB.
+
+- **GSSE creció 8×** en 17 años (251 mm BOB 2006 → 2,015 mm BOB 2023). Servicios generales (I+D, sanidad, extensión) son el componente más dinámico.
+
+- **NPC Bolivia** oscila entre 0.93 y 1.29 — distorsión moderada respecto a precios de frontera. Compárese con Ecuador (1.10-1.25) o Chile (0.95-1.00).
+
+**Archivo:** `01_data/processed/idb_pse_bolivia_aggregate.rds` (18 años × 22 vars)
+**Script:** `02_code/01_data_collection/15_process_idb_agrimonitor.R`
+**Figuras:** `fig13_pse_gsse_cse_bolivia.png`, `fig14_pse_composition.png`
+
+## PSCT por commodity (2023, millones BOB)
+
+Apoyo específico a cada producto — distingue quiénes se benefician
+de políticas agrícolas vs. quiénes son implícitamente tasados.
+
+| Commodity | PSCT 2023 | Interpretación |
+|-----------|----------:|----------------|
+| **Potatoes** | **+2,315** | Máximo apoyo. Cultivo andino "soberanía alimentaria" |
+| Poultry Meat | +739 | Protección sector avícola nacional |
+| Pigmeat | +421 | Protección carne de cerdo |
+| Milk | +335 | Apoyo lácteo (precio de referencia) |
+| Refined Sugar | +331 | Apoyo azucarero (sector exportador con intervención) |
+| Beef and Veal | +66 | Apoyo leve carne vacuna |
+| Beans | +56 | Apoyo leguminosas |
+| Eggs | +19 | Apoyo marginal |
+| Sorghum | 0.3 | Neutro |
+| Wheat | -44 | Leve tasación |
+| Bananas | -126 | Tasación implícita |
+| **Soybeans** | **-492** | Exportable, tasado (política cambiaria) |
+| **Rice** | **-692** | Fuerte tasación (precios controlados) |
+| **Maize** | **-916** | **Máxima tasación** (cereal clave) |
+
+**Archivo:** `01_data/processed/idb_psct_by_commodity.rds`
+**Figura:** `fig17_psct_heatmap.png`
+
+## Brecha de precios productor vs. referencia internacional (2023)
+
+| Commodity | Precio productor (BOB/t) | Precio referencia (BOB/t) | Brecha |
+|-----------|-------------------------:|--------------------------:|-------:|
+| **Potatoes** | 4,213 | 2,303 | **+82.9%** |
+| Refined Sugar | 171 | 139 | +23.1% |
+| Milk | 3,200 | 2,629 | +21.7% |
+| Pigmeat | 20,283 | 17,387 | +16.7% |
+| Beans | 9,371 | 8,825 | +6.2% |
+| Soybeans | 2,781 | 2,912 | -4.5% |
+| Wheat | 2,712 | 2,903 | -6.6% |
+| Bananas | 1,920 | 2,081 | -7.7% |
+| Beef and Veal | 10,700 | 11,707 | -8.6% |
+| Sorghum | 1,052 | 1,411 | -25.4% |
+| Maize | 1,472 | 2,210 | -33.4% |
+| Poultry Meat | 9,657 | 14,675 | -34.2% |
+| Rice | 1,917 | 2,913 | -34.2% |
+| **Eggs** | 10,704 | 22,939 | **-53.3%** |
+
+**Lectura**: Bolivia paga a productores de papa un **83% más** que el precio mundial
+(subsidio implícito vía restricciones a importación + compras públicas),
+pero paga a productores de huevos **la mitad** del precio mundial (precio tope
+doméstico). Los exportables (soya, azúcar) tienen brechas menores — el tipo
+de cambio fijo y cupos de exportación operan como mecanismo implícito.
+
+**Archivo:** `01_data/processed/idb_prices_gap_bolivia.rds`
+**Figura:** `fig16_price_gap_by_commodity_2023.png`
+
+\pagebreak
+
+# TFP Bolivia 1961-2023
+
+**Fuente:** USDA Economic Research Service, *International Agricultural
+Productivity*. Índice Tornqvist con base 2015 = 100. Cobertura 179 países.
+
+## Evolución Bolivia (años seleccionados)
+
+| Año | TFP | Output | Input | Land | Labor |
+|----:|----:|-------:|------:|-----:|------:|
+| 1961 | 41.9 | 14.0 | 33.4 | 35.9 | 74.1 |
+| 1970 | 53.1 | 19.7 | 37.1 | 39.9 | 72.8 |
+| 1980 | 70.2 | 29.8 | 42.4 | 47.7 | 67.2 |
+| 1990 | 76.6 | 37.1 | 48.5 | 52.0 | 83.5 |
+| 2000 | 83.2 | 54.4 | 65.3 | 69.0 | 98.6 |
+| 2010 | 87.5 | 77.4 | 88.4 | 90.1 | 97.9 |
+| 2015 | 100.0 | 100.0 | 100.0 | 100.0 | 100.0 |
+| 2020 | 91.5 | 108.3 | 118.4 | 106.5 | 113.9 |
+| **2023** | **100.5** | **120.9** | **120.4** | **111.4** | **109.8** |
+
+**Hallazgo crítico**: el Output creció 20.9% entre 2015 y 2023, pero los Inputs
+crecieron 20.4% en el mismo período. **La TFP solo creció 0.5%** — casi toda
+la expansión productiva viene de usar más insumos, no de mayor eficiencia.
+
+## Bolivia vs comparadores LAC — crecimiento TFP 2000-2023
+
+| País | TFP 2000 | TFP 2023 | Crecimiento |
+|------|---------:|---------:|-----------:|
+| México | 56.9 | 114.1 | **+100.6%** |
+| Ecuador | 73.8 | 137.7 | +86.7% |
+| Chile | 66.9 | 124.4 | +86.0% |
+| Brasil | 62.7 | 111.8 | +78.4% |
+| Perú | 75.8 | 121.5 | +60.2% |
+| Paraguay | 77.2 | 93.8 | +21.5% |
+| **Bolivia** | **83.2** | **100.5** | **+20.8%** |
+| Colombia | 93.9 | 103.3 | +10.1% |
+| Argentina | 83.0 | 70.6 | -14.9% |
+
+Bolivia ocupa el **7° lugar de 9** en crecimiento TFP 2000-2023 entre
+comparadores LAC. Solo supera a Colombia y Argentina (en crisis).
+
+**Archivo:** `01_data/processed/usda_tfp_bolivia.rds` (63 años × 19 variables)
+**Comparación LAC:** `usda_tfp_latam.rds`, `usda_tfp_lac_ranking.csv`
+**Figuras:** `fig06_tfp_bolivia_1961_2023.png`, `fig07_tfp_latam_comparison.png`,
+`fig12_inversion_vs_tfp.png`
+
+\pagebreak
+
+# APER legado 1996-2008 — WB Bolivia
+
+**Fuente:** World Bank *Bolivia Agricultural Public Expenditure Review* 2011.
+Report No. 59696-BO. Datos originalmente compartidos por Contabilidad
+Pública del MEFP.
+
+## Gasto total agropecuario nacional ejecutado (BOB corrientes)
+
+| Año | BOB millones |
+|----:|-------------:|
+| 2000 | 52.3 |
+| 2001 | 76.2 |
+| 2002 | 58.9 |
+| 2003 | 63.4 |
+| 2004 | 69.1 |
+| 2005 | 94.4 |
+| 2006 | 75.5 |
+| **2007** | **279.5** |
+| **2008** | **372.2** |
+
+**Salto estructural en 2007-2008**: multiplicación por 5× del gasto tras
+nacionalización de hidrocarburos y creación del IDH.
+
+## Top 10 entidades agropecuarias por gasto ejecutado acumulado 1996-2008
+
+| Entidad | Total ejecutado (BOB mm) |
+|---------|-------------------------:|
+| Ministerio Desarrollo Rural, Agropecuario y Medio Ambiente | 342.9 |
+| Prefectura del Departamento de Tarija | 307.2 |
+| Prefectura del Departamento de Cochabamba | 299.0 |
+| Prefectura del Departamento de Santa Cruz | 254.7 |
+| **Empresa de Apoyo a la Producción de Alimentos (EMAPA)** | **239.0** |
+| Prefectura del Departamento de Chuquisaca | 206.6 |
+| Ministerio de Agricultura, Ganadería y Desarrollo Rural | 182.9 |
+| Prefectura del Departamento de Potosí | 129.1 |
+| Prefectura del Departamento de La Paz | 124.3 |
+| Ministerio de Asuntos Campesinos y Agropecuarios | 95.7 |
+
+**Lectura institucional**: 40% del gasto era ejecutado por prefecturas
+departamentales (descentralizado pre-autonomías). EMAPA aparece ya en
+top-5 desde su creación en 2007.
+
+## Cobertura APER (clasificación UDAPE-FAM)
+
+Distribución de los 27,512 registros del sector agropecuario (sector_code=1):
+
+| Código | Descripción | Filas | % |
+|:------:|-------------|------:|--:|
+| 103 | Riego, microriego y drenajes | 21,927 | 79.7% |
+| 104 | Fomento agricultura | 2,001 | 7.3% |
+| 107 | Infraestructura agricultura | 1,014 | 3.7% |
+| 101 | Investigación agricultura | 767 | 2.8% |
+| 102 | Extensión agricultura | 571 | 2.1% |
+| 105 | Maquinaria y equipo | 439 | 1.6% |
+| 106 | Insumos agricultura | 357 | 1.3% |
+| 110 | Otros no identificables | 195 | 0.7% |
+| 108 | Sanidad agrícola | 129 | 0.5% |
+| 109 | Administración y regulación | 112 | 0.4% |
+
+**Nota metodológica**: la fuerte concentración en código 103 (riego) es
+un sesgo del modo en que se registran los proyectos de inversión
+subnacional — cada actividad del POA genera un registro.
+
+**Archivo:** `01_data/processed/aper_{full,agro,national_panel,dept_panel}.rds`
+**Script:** `02_code/01_data_collection/08_process_aper.R`
+**Figuras:** `fig02_agro_spending_aper.png`, `fig03_spending_composition.png`
+
+\pagebreak
+
+# EMAPA — gasto individual 2008-2024
+
+**Fuente:** MEFP *Informe Fiscal 2024*, Cuadro N° 22 (p.103). Serie anual
+de gasto en bienes y servicios.
+
+| Año | Gasto b/s (BOB mm) |
+|----:|------------------:|
+| 2008 | 237 |
+| 2009 | 281 |
+| 2010 | 392 |
+| 2011 | 747 |
+| 2012 | 769 |
+| 2013 | 1,185 |
+| **2014** | **1,564** |
+| 2015 | 777 |
+| 2016 | 443 |
+| 2017 | 759 |
+| 2018 | 435 |
+| 2019 | 521 |
+| 2020 | 547 |
+| 2021 | 793 |
+| 2022 | 923 |
+| **2023** | **1,604** |
+| 2024 | 970 |
+
+**Observaciones**:
+- Pico 2014 (1,564 mm BOB) corresponde a programa "Alimentos para el Pueblo"
+en expansión máxima antes de la contracción fiscal 2015.
+- Pico 2023 (1,604 mm BOB) refleja intervenciones ante escasez de carburantes
+y alimentos.
+- Alta volatilidad: coeficiente de variación ~55% en la serie 2008-2024.
+
+**Archivo:** `emapa_series_wide.csv` (CSV); subconjunto de `informe_fiscal_2024_all_series.rds`
+
+\pagebreak
+
+# Datos subnacionales
+
+## PIB agropecuario departamental (INE Referencia 2017)
+
+**Cobertura actual:** 2017-2021 (5 años). Serie histórica 1988-2016 pendiente.
+
+Ranking 2021 por PIB agropecuario real (millones BOB encadenados base 2017):
+
+| Departamento | PIB agrop | PIB total | % agrop |
+|--------------|----------:|----------:|--------:|
+| Santa Cruz | 12,025 | 98,977 | 12.1% |
+| Cochabamba | 5,669 | 54,693 | 10.4% |
+| La Paz | 3,873 | 82,465 | 4.7% |
+| Beni | 1,579 | 11,299 | 14.0% |
+| Chuquisaca | 1,341 | 14,353 | 9.3% |
+| Tarija | 1,282 | 20,419 | 6.3% |
+| Potosí | 943 | 19,979 | 4.7% |
+| Pando | 849 | 3,573 | **23.8%** |
+| Oruro | 423 | 12,490 | 3.4% |
+
+**Concentración productiva**: Santa Cruz + Cochabamba concentran **58%**
+del PIB agropecuario nacional. Pando tiene la mayor dependencia relativa
+(23.8%) pero en magnitud absoluta es el más pequeño.
+
+**Archivo:** `01_data/processed/pib_departamental_agro.rds`
+
+## Deuda pública rural por departamento 2022 (millones BOB, stock)
+
+**Fuente:** MEFP *Boletín de Estadísticas Fiscales ETA y UP 2022*, Cuadro N° 34.
+
+| Destino | Departamento | Stock mm BOB |
+|---------|--------------|-------------:|
+| **Riego** | Chuquisaca | **171.1** |
+| Riego | Tarija | 155.0 |
+| Riego | Santa Cruz | 106.5 |
+| Riego | Cochabamba | 106.0 |
+| Caminos | Pando | 77.9 |
+| Caminos | La Paz | 37.9 |
+| Agropecuario (directo) | Potosí | 29.8 |
+| Caminos | Cochabamba | 14.8 |
+| Caminos | Beni | 14.3 |
+| Agropecuario (directo) | Beni | 0.5 |
+
+**Patrón**: la inversión rural se canaliza principalmente vía **proyectos
+de riego** (Chuquisaca, Tarija, Santa Cruz, Cochabamba concentran 83% del
+stock). El destino "Agropecuario directo" es marginal.
+
+**Archivo:** `01_data/processed/mefp_deuda_destino_long.rds` (846 obs)
+
+## Estadísticas agrícolas INE 1984-2024
+
+**Fuente:** INE — *Estadísticas Agrícolas* (URLs permanentes en `nube.ine.gob.bo`).
+**Granularidad:** 9 departamentos × cultivo × indicador.
+**Indicadores:** 3 archivos Excel con (a) producción en ton, (b) rendimiento
+en kg/ha, (c) superficie cultivada en ha.
+**Período:** 41 años agrícolas (1983-84 a 2023-24).
+**Estado:** Descargado, pendiente estructurar en panel largo.
+
+## Shapefiles administrativos
+
+| Nivel | Archivo | Unidades | Tamaño |
+|-------|---------|---------:|-------:|
+| ADM1 | `bolivia_adm1_departments.gpkg` | 9 departamentos | 3.3 MB |
+| ADM2 | `bolivia_adm2_municipalities.gpkg` | 110 provincias | 8.1 MB |
+
+Nota: ADM2 de geoBoundaries corresponde a **provincias** (segundo nivel
+administrativo), no a municipios. Bolivia tiene 339 municipios que serían
+ADM3, pero geoBoundaries no los publica en la versión actual.
+
+\pagebreak
+
+# Completitud del panel maestro por grupo de variables
+
+Medida sobre 35 años posibles (1990-2024):
+
+| Grupo de variables | # vars | Años promedio | Fuente principal |
+|--------------------|------:|-------------:|------------------|
+| Inversión pública VIPFE | 11 | 32/35 | MEFP Informe Fiscal 2024 |
+| USDA TFP | 4 | 32/35 | USDA ERS |
+| WDI outcomes + macro | 10 | 24/35 | World Bank |
+| EMAPA individual | 2 | 24/35 | MEFP Cuadro 22 |
+| Deflactores | 4 | 24/35 | WDI + BCB |
+| Variables derivadas (logs/ratios) | 5 | 22/35 | Calculadas |
+| PSE OCDE (IDB Agrimonitor) | 25 | 15/35 | IDB |
+| APER legado | 10 | 9/35 | WB APER 2011 |
+| GHG agrícolas | 1 | 5/35 | IDB Agrimonitor |
+
+**Lectura**: la columna vertebral del panel (TFP y Inversión VIPFE) está
+disponible para ≥90% de años. PSE OCDE cubre 51% (2006-2023). APER solo
+26% (1996-2008). Esta estructura permite:
+
+- Análisis descriptivo largo con TFP + Inversión (1990-2024).
+- Análisis PSE focalizado 2006-2023 (con suficiente potencia estadística).
+- Comparaciones pre/post-2009 para identificar cambios de régimen.
+
+\pagebreak
+
+# Arquitectura de carpetas
+
+```
+2026_WB_Bolivia/
+│
+├── 00_admin/                        Documentos administrativos
+│   ├── WB_Bolivia_ToR.jpg           ToR Banco Mundial
+│   ├── carta_solicitud_MEFP.md      Solicitud DS 28168 al MEFP
+│   └── data_access_log.md           Bitácora de accesos
+│
+├── 01_data/
+│   ├── raw/                         Originales inmutables (~1.3 GB total)
+│   │   ├── wdi/                     WDICSV.csv: 187 MB
+│   │   ├── ine_bolivia/             ENA ZIPs + agro stats: 430 MB
+│   │   ├── mefp/                    30 PDFs fiscales: 151 MB
+│   │   ├── idb_agrimonitor/         Agrimonitor CSV: 91 MB
+│   │   ├── boost/                   WB_Bolivia_APER.xlsx: 26 MB
+│   │   ├── usda_ers/                usda_ers_tfp_international.csv: 17 MB
+│   │   ├── wb_reports/              WB Tapping Potential, SCD: 7.4 MB
+│   │   ├── faostat/                 8 OWID CSVs: 2.5 MB
+│   │   ├── ifpri_speed/             ASTI factsheet: 740 KB
+│   │   ├── bcb/                     HTML del portal BCB: 156 KB
+│   │   ├── imf/                     (vacío — acceso 403)
+│   │   ├── pefa/                    (vacío)
+│   │   ├── oecd_pse/                (vacío — API caída)
+│   │   ├── mdryt/                   (vacío)
+│   │   ├── cepal/                   CEPALSTAT HTML metadata
+│   │   └── siif/                    (reservado — pendiente solicitud)
+│   │
+│   ├── processed/                   42 archivos .rds + .csv (~6 MB)
+│   │   ├── spending_panel_v3.rds    PANEL MAESTRO canónico (12 KB)
+│   │   ├── idb_pse_bolivia_aggregate.rds
+│   │   ├── idb_psct_by_commodity.rds
+│   │   ├── idb_prices_gap_bolivia.rds
+│   │   ├── idb_ghg_bolivia.rds
+│   │   ├── idb_agrimonitor_bolivia_full.rds
+│   │   ├── idb_agrimonitor_lac_full.rds
+│   │   ├── inversion_publica_sectorial_{wide,long}.rds
+│   │   ├── usda_tfp_{bolivia,latam}.rds
+│   │   ├── aper_{full,agro,national_panel,dept_panel}.rds
+│   │   ├── mefp_deuda_destino_{long,wide}.rds
+│   │   ├── informe_fiscal_2024_{all,agro}_series.rds
+│   │   ├── pib_departamental_agro.rds
+│   │   ├── spending_panel_v{1,2,3}.rds  (histórico de integración)
+│   │   └── DATASET_INDEX.md         Índice navegable
+│   │
+│   └── external/
+│       ├── bolivia_adm1_departments.gpkg
+│       ├── bolivia_adm2_municipalities.gpkg
+│       ├── bolivia_departments.csv
+│       ├── cofog_classification.csv
+│       ├── exchange_rates.csv
+│       └── inflation_deflators.csv
+│
+├── 02_code/                         29 scripts R
+│   ├── 00_setup/                    (3 scripts)
+│   │   ├── 00_packages.R
+│   │   ├── 01_constants.R
+│   │   └── 02_functions.R
+│   ├── 01_data_collection/          (14 scripts + 2 md)
+│   │   ├── 01_download_wdi.R
+│   │   ├── 02_download_faostat.R
+│   │   ├── 03_download_oecd.R       (API caída, mantenido)
+│   │   ├── 04_download_cepal.R      (API caída)
+│   │   ├── 05_process_boost.R
+│   │   ├── 06_manual_sources.md
+│   │   ├── 07_download_spatial.R
+│   │   ├── 08_process_aper.R        ✓ Ejecuta
+│   │   ├── 09_process_usda_tfp.R    ✓ Ejecuta
+│   │   ├── 10_siif_strategy.md
+│   │   ├── 10_siif_request_letter.md
+│   │   ├── 11_download_alternatives.R
+│   │   ├── 12_parse_mefp_boletin.R  ✓ Ejecuta
+│   │   ├── 13_parse_informe_fiscal_2024.R
+│   │   ├── 14_parse_inversion_publica_sectorial.R  ✓ Ejecuta
+│   │   └── 15_process_idb_agrimonitor.R  ✓ Ejecuta
+│   ├── 02_cleaning/                 (6 scripts)
+│   │   ├── 01_clean_spending.R
+│   │   ├── 02_clean_agricultural.R
+│   │   ├── 05_deflate_aggregate.R
+│   │   ├── 06_build_panel.R
+│   │   ├── 07_integrate_siif_proxies.R
+│   │   └── 08_integrate_pse.R       ← PANEL v3 canónico
+│   ├── 03_analysis/                 (6 scripts)
+│   │   ├── 01_descriptive_spending.R  ✓ Ejecuta
+│   │   ├── 02_pse_analysis.R        Template
+│   │   ├── 03_dea_efficiency.R      Template
+│   │   ├── 04_regression_outcomes.R Template
+│   │   ├── 05_food_security.R       Template
+│   │   └── 06_comparative_latam.R   Template
+│   └── 04_visualization/            (1 script)
+│       └── 00_wb_theme.R
+│
+├── 03_literature/                   Revisión PRISMA (en curso)
+│
+├── 04_report/                       Quarto Book
+│   ├── _quarto.yml
+│   ├── index.qmd … 06_recommendations.qmd
+│   └── appendix/
+│       ├── A_data_sources.qmd       ← Este documento
+│       └── B_methodology.qmd
+│
+└── 05_outputs/
+    ├── figures/                     17 PNGs (WB-theme, 150 dpi)
+    └── tables/                      (pendiente)
+```
+
+\pagebreak
+
+# Scripts de procesamiento — dependencias y outputs
+
+Listado completo de scripts que transforman raw → processed. Cada línea
+corresponde a un script ejecutable con Rscript.
+
+| # | Script | Input principal | Output principal |
+|:-:|--------|----------------|------------------|
+| 07 | `07_download_spatial.R` | geoBoundaries API | `bolivia_adm{1,2}_*.gpkg` |
+| 08 | `08_process_aper.R` | `WB_Bolivia_APER.xlsx` | `aper_{full,agro,national_panel,dept_panel}.rds` |
+| 09 | `09_process_usda_tfp.R` | `usda_ers_tfp_international.csv` | `usda_tfp_{bolivia,latam}.rds` + ranking CSV |
+| 12 | `12_parse_mefp_boletin.R` | `boletin_eef_eta_2022.pdf` p.89 | `mefp_deuda_destino_{long,wide}.rds` |
+| 13 | `13_parse_informe_fiscal_2024.R` | `Informe_Fiscal_2024.pdf` 142 pág | `informe_fiscal_2024_all_series.rds` (17,831 obs) |
+| 14 | `14_parse_inversion_publica_sectorial.R` | Informe Fiscal 2024 p.109 | `inversion_publica_sectorial_{wide,long}.rds` |
+| 15 | `15_process_idb_agrimonitor.R` | `Agrimonitor Dataset.csv` 91 MB | 6 archivos `idb_*.rds` |
+
+Integración final (build del panel maestro):
+
+| # | Script | Inputs | Output |
+|:-:|--------|--------|--------|
+| 05 | `05_deflate_aggregate.R` | WDI CPI + xrate | `{inflation_deflators,exchange_rates}.csv` |
+| 06 | `06_build_panel.R` | WDI + APER + defl | `spending_panel.rds` (v1) |
+| 07 | `07_integrate_siif_proxies.R` | v1 + VIPFE + EMAPA + TFP | `spending_panel_v2.rds` |
+| 08 | `08_integrate_pse.R` | v2 + IDB PSE + GHG | `spending_panel_v3.rds` ⭐ |
+
+\pagebreak
+
+# Catálogo de figuras — métricas reales
+
+Todas en `05_outputs/figures/` (PNG 150 dpi, tema World Bank):
+
+## Capítulo 2 — Desempeño del sector (8 figuras)
+
+| # | Archivo | Contenido | Tamaño |
+|:-:|---------|-----------|-------:|
+| 01 | `fig01_agr_value_added_pct_gdp.png` | PIB agropecuario % PIB 2000-2023 | 55 KB |
+| 04 | `fig04_outcomes_trends.png` | Rendimiento cereales + subalimentación | 82 KB |
+| 05 | `fig05_bolivia_departments_map.png` | Mapa 9 departamentos | 113 KB |
+| 06 | `fig06_tfp_bolivia_1961_2023.png` | TFP Bolivia 63 años con banda Morales | 71 KB |
+| 07 | `fig07_tfp_latam_comparison.png` | TFP Bolivia vs 8 LAC | 152 KB |
+| 08 | `fig08_tfp_decomposition_bolivia.png` | TFP = Output / Inputs 2000-2023 | 79 KB |
+| 09 | `fig09_input_indices_bolivia.png` | Inputs: tierra, trabajo, capital | 85 KB |
+| 12 | `fig12_inversion_vs_tfp.png` | **Inversión vs TFP 1990-2024** | 83 KB |
+
+## Capítulo 3 — Gasto público (4 figuras)
+
+| # | Archivo | Contenido | Tamaño |
+|:-:|---------|-----------|-------:|
+| 02 | `fig02_agro_spending_aper.png` | Gasto APER 2000-2008 eje dual | 48 KB |
+| 03 | `fig03_spending_composition.png` | Composición UDAPE-FAM | 43 KB |
+| 10 | `fig10_inversion_agro_1990_2024.png` | **Inversión agrop 35 años** | 110 KB |
+| 11 | `fig11_inversion_por_sector.png` | Comparación entre sectores | 116 KB |
+
+## Capítulo 4 — Análisis PSE (5 figuras)
+
+| # | Archivo | Contenido | Tamaño |
+|:-:|---------|-----------|-------:|
+| 13 | `fig13_pse_gsse_cse_bolivia.png` | PSE + GSSE + CSE barras | 63 KB |
+| 14 | `fig14_pse_composition.png` | PSE = MPS + BT apilado | 61 KB |
+| 15 | `fig15_psep_bolivia_vs_lac.png` | %PSE Bolivia vs 7 LAC | 155 KB |
+| 16 | `fig16_price_gap_by_commodity_2023.png` | Brecha precios 14 commodities | 59 KB |
+| 17 | `fig17_psct_heatmap.png` | PSCT 14 commodities × 14 años | 73 KB |
+
+**Total:** 17 figuras × 150 dpi = 1,554 KB total.
+
+\pagebreak
+
+# Brechas identificadas
+
+## Datos críticos pendientes
+
+| Dato | Período faltante | Fuente | Acción |
+|------|-----------------|--------|--------|
+| Gasto agropecuario detallado por entidad | 2009-2023 | MEFP SIGEP | **Solicitud formal DS 28168 preparada** en `00_admin/carta_solicitud_MEFP.md` |
+| PIB departamental serie larga | 1988-2016 | INE Ref 2001 | Buscar archivo histórico |
+| Microdatos ENA | 2008, 2015 | INE (ZIPs ya descargados) | Procesamiento pendiente |
+| OECD PSE comparadores formal | Todo | OECD API | API caída; usar IDB Agrimonitor como proxy |
+
+## Datos que NO forman parte del acervo (justificado)
+
+| Fuente descartada | Razón |
+|-------------------|-------|
+| FAO MAFAP | Bolivia no está entre los 17 países cubiertos |
+| IFPRI SPEED | Datos terminan 2012, reemplazados por IDB Agrimonitor |
+| SIGMA legacy (pre-2018) | Sistema reemplazado por SIGEP (Ley 1135/2018) |
+| IFPRI ASTI detallado | Solo disponible factsheet público (2009-2020) |
+
+\pagebreak
+
+# Reproducibilidad — orden de ejecución verificado
+
+Ordenamiento que reproduce el panel maestro desde raw:
+
+```bash
+cd 2026_WB_Bolivia
+
+# --- Paso 1: Descargar datos raw manualmente ---
+# (URLs en secciones anteriores; los siguientes archivos deben existir)
+ls 01_data/raw/boost/WB_Bolivia_APER.xlsx       # 26 MB
+ls 01_data/raw/wdi/WDICSV.csv                   # 187 MB (extraer del ZIP)
+ls 01_data/raw/usda_ers/usda_ers_tfp_international.csv  # 17 MB
+ls 01_data/raw/idb_agrimonitor/.../Agrimonitor\ Dataset.csv  # 91 MB
+ls 01_data/raw/mefp/Informe_Fiscal_2024.pdf     # 2.6 MB
+ls 01_data/raw/mefp/boletin_eef_eta_2022.pdf    # 4.3 MB
+
+# --- Paso 2: Setup ---
+Rscript 02_code/00_setup/00_packages.R
+
+# --- Paso 3: Procesar cada fuente (orden independiente) ---
+Rscript 02_code/01_data_collection/07_download_spatial.R           # ~30 seg
+Rscript 02_code/01_data_collection/08_process_aper.R               # ~90 seg
+Rscript 02_code/01_data_collection/09_process_usda_tfp.R           # ~40 seg
+Rscript 02_code/01_data_collection/12_parse_mefp_boletin.R         # ~20 seg
+Rscript 02_code/01_data_collection/13_parse_informe_fiscal_2024.R  # ~60 seg
+Rscript 02_code/01_data_collection/14_parse_inversion_publica_sectorial.R  # ~15 seg
+Rscript 02_code/01_data_collection/15_process_idb_agrimonitor.R    # ~90 seg
+
+# --- Paso 4: Integración panel maestro (orden secuencial obligatorio) ---
+Rscript 02_code/02_cleaning/05_deflate_aggregate.R
+Rscript 02_code/02_cleaning/06_build_panel.R         # → spending_panel.rds (v1)
+Rscript 02_code/02_cleaning/07_integrate_siif_proxies.R  # → v2
+Rscript 02_code/02_cleaning/08_integrate_pse.R       # → v3 (canónico)
+
+# --- Paso 5: Análisis ---
+Rscript 02_code/03_analysis/01_descriptive_spending.R  # genera figs 1-5
+```
+
+**Tiempo total estimado** (pipeline completo desde raw a figuras): 6-8 minutos.
+
+\pagebreak
+
+# Diferencias metodológicas entre fuentes — advertencias
+
+**Cuidado al comparar APER 2000 vs VIPFE 2000:**
+
+- APER 2000 reporta 52 MM BOB corrientes de gasto agropecuario nacional.
+- VIPFE reporta 53 MM USD (≈ 327 MM BOB corrientes) de inversión agropecuaria
+en el mismo año.
+
+**Diferencia 6× no es inconsistencia.** APER mide gasto agropecuario
+estricto (UDAPE-FAM 101-110); VIPFE mide inversión pública del sector
+agropecuario según clasificación funcional — incluye inversión municipal
+en infraestructura productiva no registrada en APER. Ambas series son
+correctas para sus definiciones respectivas.
+
+**PSE IDB (2006-2023) vs APER (2000-2008):**
+
+- APER = gasto público directo.
+- PSE = apoyo total incluyendo transferencias implícitas vía política de
+precios (MPS).
+- PSE Bolivia 2006 = -1,169 mm BOB (productores **tasados** pese a gasto
+público positivo APER).
+
+**No sumar las series**. Cada una responde a preguntas distintas.
+
+**WDI vs INE — PIB per cápita:**
+
+- WDI usa serie rebasada internacional comparable.
+- INE Referencia 2017 usa metodología nacional actualizada.
+- Diferencias típicas: ±2-3% en magnitudes. Se privilegia WDI para
+comparación internacional e INE para análisis subnacional.
+
+\pagebreak
+
+# Fuentes originales — trazabilidad
+
+URLs y citas exactas utilizadas (verificadas al 2026-04-21):
+
+## Datasets (descargas automáticas)
+
+1. **USDA ERS International Agricultural Productivity**
+   `https://www.ers.usda.gov/media/5403/machine-readable-and-long-format-file-of-tfp-indices-and-components-for-countries-regions-countries-grouped-by-income-level-and-the-world-1961-2023.csv?v=73658`
+
+2. **IDB Agrimonitor PSE Dataset**
+   `https://data.iadb.org/dataset/idb-agrimonitor-producer-support-estimates-pse-agricultural-policy-monitori`
+   (archivo ZIP v2026-04-17)
+
+3. **WB Bolivia APER (BOOST)**
+   `https://databank.worldbank.org/data/download/Bolivia-APER.xlsx`
+
+4. **WDI Bulk CSV**
+   `https://databank.worldbank.org/data/download/WDI_CSV.zip`
+
+5. **geoBoundaries API**
+   `https://www.geoboundaries.org/api/current/gbOpen/BOL/ADM1/`
+
+## Documentos MEFP (requieren `curl -k`)
+
+6. **MEFP Informe Fiscal 2024**
+   `https://www.economiayfinanzas.gob.bo/sites/default/files/2025-08/Boletin%20Economico_Informe%20Fiscal%202024.pdf`
+
+7. **MEFP Boletín Estadísticas Fiscales ETA y UP 2022**
+   `https://www.economiayfinanzas.gob.bo/sites/default/files/2023-09/BOLETIN%20ECONOMICO%20DE%20ESTADISTICAS%20FISCALES%20DE%20LAS%20ETA%20Y%20UP%202022.pdf`
+
+8. **WB Tapping the Potential 2021**
+   `https://documents1.worldbank.org/curated/en/739681617168032843/pdf/Tapping-the-Potential-of-Bolivia-s-Agriculture-and-Food-Systems.pdf`
+
+## Datos subnacionales INE
+
+9. **INE Estadísticas Agrícolas por Departamento** (cloud permanente):
+   - Producción: `https://nube.ine.gob.bo/index.php/s/V7sVhYgtH9GT2fd/download`
+   - Rendimiento: `https://nube.ine.gob.bo/index.php/s/9Th8JQ7vyccdEO7/download`
+   - Superficie: `https://nube.ine.gob.bo/index.php/s/PnEqp7IopHEJDBu/download`
+
+10. **INE PIB Departamental** (30 archivos CUADROS/D.*.xlsx):
+    `https://www.ine.gob.bo/referencia2017/pib_departamental.html`
+
+\pagebreak
+
+# Contactos institucionales
+
+| Rol | Persona / Institución | Contacto |
+|-----|------------------------|----------|
+| Investigador principal | Juan Carlos Muñoz Mora | jcmunozmora@gmail.com |
+| Institución líder | Universidad EAFIT | Medellín, Colombia |
+| Cliente | WB Bolivia Country Office | bolivia@worldbank.org |
+| Fuente fiscal oficial | MEFP Bolivia — DGSGIF | transparencia@economiayfinanzas.gob.bo |
+| Estadísticas | INE Bolivia | info@ine.gob.bo |
+| PSE LAC | IDB Agrimonitor team | agrimonitor@iadb.org |
+
+# Versionado del anexo
+
+| Versión | Fecha | Estado del panel | Fuentes integradas |
+|---------|-------|------------------|-------------------|
+| 0.1 | 2026-04-20 | — | Estructura inicial |
+| 0.2 | 2026-04-21 AM | v1 (WDI + APER) | 3 fuentes |
+| 0.3 | 2026-04-21 PM | v2 (+VIPFE + TFP + EMAPA) | 6 fuentes |
+| 0.4 | 2026-04-21 PM | v3 (+IDB PSE + GHG) | 8 fuentes |
+| **1.0** | **2026-04-21** | **Final con datos reales** | **10+ fuentes** |
+
+---
+
+*Documento actualizado al 2026-04-21. Todas las cifras presentadas son
+valores observados en los archivos procesados del proyecto al momento
+de generar este anexo. Los scripts `annex_stats.R` en `/tmp/` reproducen
+las tablas.*

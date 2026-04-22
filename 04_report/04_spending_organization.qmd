@@ -1,0 +1,120 @@
+---
+title: "Organización del Gasto Público en Agricultura"
+---
+
+```{r}
+#| include: false
+source(here::here("02_code", "00_setup", "01_constants.R"))
+source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
+library(tidyverse)
+
+panel    <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
+spending <- readRDS(here::here("01_data", "processed", "spending_clean.rds"))
+pse      <- readRDS(here::here("01_data", "processed", "pse_estimates.rds"))
+```
+
+## Nivel Nacional: Tendencias del Gasto Agropecuario
+
+### Evolución del Gasto Total
+
+```{r}
+#| label: fig-spending-trend
+#| fig-cap: "Gasto público agropecuario Bolivia: nivel y composición 2000–2023"
+panel |>
+  filter(!is.na(agr_spending_total_usd)) |>
+  ggplot(aes(x = year, y = agr_spending_total_usd / 1e6)) +
+  geom_line(color = WB_BLUE, linewidth = 1.3) +
+  geom_area(fill = WB_BLUE, alpha = 0.15) +
+  scale_y_continuous(labels = scales::dollar_format(suffix = "M")) +
+  labs(x = NULL, y = "USD millones (constantes 2015)",
+       caption = "Fuente: BOOST/SIIF. Elaboración propia.")
+```
+
+### Gasto como Porcentaje del PIB
+
+```{r}
+#| label: fig-maputo
+#| fig-cap: "Gasto agropecuario como porcentaje del PIB vs. meta Maputo"
+panel |>
+  filter(!is.na(agr_spending_pct_gdp)) |>
+  ggplot(aes(x = year, y = agr_spending_pct_gdp)) +
+  geom_col(fill = WB_BLUE, alpha = 0.75) +
+  geom_hline(yintercept = 10, linetype = "dashed", color = WB_RED, linewidth = 0.9) +
+  annotate("text", x = 2001, y = 10.4,
+           label = "Meta Maputo (10%)", hjust = 0, color = WB_RED, size = 3.2) +
+  scale_y_continuous(labels = scales::percent_format(scale=1)) +
+  labs(x = NULL, y = "% del PIB",
+       caption = "Fuente: BOOST/SIIF, WDI. Elaboración propia.")
+```
+
+### Comparación Regional
+
+Bolivia se ubica `r ifelse(mean(panel$agr_spending_pct_gdp, na.rm=TRUE) > 2, "por encima", "por debajo")` del promedio LAC en términos de gasto agropecuario como proporción del PIB. Sin embargo, la comparación debe considerar también la composición del gasto: países con mayor proporción en I+D y extensión (Chile, Uruguay) obtienen mejores resultados productivos con presupuestos similares o menores.
+
+## Clasificación Funcional del Gasto
+
+La clasificación funcional del gasto agropecuario permite identificar si los recursos se orientan hacia bienes públicos de alto retorno (investigación, extensión, sanidad, infraestructura) o hacia intervenciones de mercado con mayores distorsiones (subsidios de precios, crédito dirigido).
+
+```{r}
+#| label: fig-functional-class
+#| fig-cap: "Composición funcional del gasto agropecuario por categoría"
+spending |>
+  group_by(year, spending_category) |>
+  summarise(usd = sum(executed_usd, na.rm=TRUE), .groups="drop") |>
+  filter(!is.na(spending_category), usd > 0) |>
+  group_by(year) |>
+  mutate(share = usd / sum(usd) * 100) |>
+  ggplot(aes(x = year, y = share, fill = spending_category)) +
+  geom_area(position = "stack", alpha = 0.85) +
+  scale_fill_manual(values = WB_PALETTE,
+                    labels = c(
+                      "investigacion_extension" = "I+D y Extensión (INIAF)",
+                      "sanidad_inocuidad"       = "Sanidad (SENASAG)",
+                      "subsidios_precios"       = "Subsidios precios (EMAPA)",
+                      "credito_subsidiado"      = "Crédito subsidiado (BDP)",
+                      "riego_agua"              = "Riego y agua (MMAyA)",
+                      "tierra_titulacion"       = "Tierra (INRA)",
+                      "administracion_general"  = "Administración general",
+                      "otros"                   = "Otros"
+                    )) +
+  scale_y_continuous(labels = scales::percent_format(scale=1)) +
+  labs(x = NULL, y = "% del gasto total", fill = "Categoría",
+       caption = "Fuente: BOOST/SIIF. Elaboración propia.") +
+  theme(legend.position = "bottom", legend.text = element_text(size = 8))
+```
+
+## Nivel Subnacional: Organización Departamental
+
+Bolivia tiene un sistema de autonomías que asigna funciones agropecuarias tanto al nivel central como a los gobiernos departamentales y municipales. La distribución del gasto entre niveles de gobierno es una dimensión crítica de la equidad y eficiencia del gasto público.
+
+```{r}
+#| label: fig-subnacional
+subnac_path <- here::here("01_data", "processed", "subnacional_panel.rds")
+if (file.exists(subnac_path)) {
+  subnac <- readRDS(subnac_path)
+
+  subnac |>
+    group_by(department) |>
+    summarise(
+      total_spending = sum(agr_spending_real_bob, na.rm=TRUE),
+      .groups = "drop"
+    ) |>
+    mutate(share = total_spending / sum(total_spending) * 100) |>
+    ggplot(aes(x = reorder(department, share), y = share, fill = department)) +
+    geom_col(show.legend = FALSE) +
+    scale_fill_manual(values = WB_PALETTE) +
+    coord_flip() +
+    scale_y_continuous(labels = scales::percent_format(scale=1)) +
+    labs(x = NULL, y = "% del gasto subnacional total en agricultura",
+         caption = "Fuente: BOOST/SIIF subnacional. Elaboración propia.")
+} else {
+  cat(
+    "El análisis subnacional requiere datos departamentales SIIF/BOOST.\n",
+    "Ver 06_manual_sources.md para instrucciones de descarga."
+  )
+}
+```
+
+### Proceso Participativo para el Gasto Municipal
+
+Los arreglos institucionales para el gasto agropecuario municipal varían significativamente entre departamentos. En los departamentos con mayor capacidad institucional local y tradición de planificación participativa (Cochabamba, Santa Cruz), los Planes de Desarrollo Municipal incluyen componentes agropecuarios más estructurados que en departamentos con menor capacidad (Beni, Pando).

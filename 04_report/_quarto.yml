@@ -1,0 +1,70 @@
+project:
+  type: book
+  output-dir: ../05_outputs/report
+
+book:
+  title: "Gasto Público en el Sector Agropecuario de Bolivia"
+  subtitle: "Análisis de Nivel, Composición y Eficiencia 2000–2023"
+  author:
+    - name: "Equipo World Bank Bolivia"
+      affiliation: "Banco Mundial"
+  date: "2026"
+  language: es
+
+  chapters:
+    - index.qmd
+    - 01_introduction.qmd
+    - 02_sector_performance.qmd
+    - 03_budget_institutions.qmd
+    - 04_spending_organization.qmd
+    - 05_spending_analysis.qmd
+    - 06_recommendations.qmd
+    - references.qmd
+
+  appendices:
+    - appendix/A_data_sources.qmd
+    - appendix/B_methodology.qmd
+
+bibliography: references.bib
+csl: style/world-development.csl
+
+execute:
+  freeze: auto          # no re-ejecutar análisis costosos al editar
+  echo: false           # no mostrar código en el reporte final
+  warning: false
+  message: false
+  cache: true
+
+format:
+  html:
+    theme:
+      - cosmo
+      - style/wb_report.scss
+    toc: true
+    toc-depth: 3
+    toc-title: "Contenido"
+    number-sections: true
+    smooth-scroll: true
+    self-contained: true   # un solo archivo HTML para distribución
+    lang: es
+
+  pdf:
+    documentclass: report
+    classoption: [12pt, oneside]
+    papersize: letter
+    include-in-header: style/wb_report.tex
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    colorlinks: true
+    linkcolor: "009FDA"
+    lang: es
+    keep-tex: false
+
+knitr:
+  opts_chunk:
+    fig.align: center
+    fig.width: 7
+    fig.height: 4.5
+    dpi: 300
+    out.width: "100%"

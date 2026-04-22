@@ -1,0 +1,112 @@
+---
+title: "Recomendaciones y Opciones de Política"
+---
+
+```{r}
+#| include: false
+source(here::here("02_code", "00_setup", "01_constants.R"))
+```
+
+## Marco para las Recomendaciones
+
+Las recomendaciones se derivan directamente de los hallazgos empíricos de los capítulos anteriores y se estructuran según las cuatro dimensiones del PER (nivel, composición, eficiencia y equidad), así como por horizonte temporal de implementación.
+
+La priorización considera: (1) magnitud del impacto esperado sobre productividad y seguridad alimentaria, (2) viabilidad institucional y política, (3) coherencia con el Plan de Desarrollo Económico y Social (PDES) y la política de soberanía alimentaria.
+
+## Recomendaciones por Dimensión
+
+### Dimensión 1: Nivel del Gasto
+
+::: {.policy-box}
+**R1 — Incrementar progresivamente el gasto en bienes públicos agropecuarios**
+
+Bolivia debería avanzar hacia la meta de Maputo (10% del presupuesto total en agricultura) pero con prioridad en la recomposición antes que en el incremento nominal. El presupuesto adicional debería asignarse exclusivamente a categorías de alto retorno social (I+D, extensión, sanidad, riego).
+
+**Acciones**:
+- Establecer una senda fiscal plurianual para el gasto agropecuario en bienes públicos
+- Vincular el incremento presupuestal de INIAF al logro de metas de transferencia tecnológica
+- Reportar anualmente el cumplimiento de Maputo con metodología transparente y comparable
+:::
+
+### Dimensión 2: Composición del Gasto
+
+::: {.policy-box}
+**R2 — Reorientar el gasto desde subsidios hacia bienes públicos de alto retorno**
+
+La evidencia internacional y los resultados del análisis PSE sugieren que la composición actual del gasto boliviano está sesgada hacia intervenciones de mercado (EMAPA, crédito subsidiado) con retornos relativamente bajos, en detrimento de I+D, extensión y sanidad.
+
+**Acciones**:
+- Aumentar el presupuesto de INIAF hasta representar al menos el 15% del gasto agropecuario total (actualmente ~8-10%)
+- Fortalecer SENASAG para ampliar cobertura de inspección y reducir pérdidas poscosecha
+- Revisar la focalización de EMAPA para reducir la distorsión de precios en mercados locales
+- Expandir el programa de microriego con criterios de focalización en zonas con mayor déficit hídrico
+:::
+
+::: {.policy-box}
+**R3 — Fortalecer el ratio GSSE/TSE como indicador de calidad del gasto**
+
+Siguiendo la metodología OCDE, un mayor ratio GSSE/TSE (servicios generales sobre apoyo total) indica un gasto más orientado a bienes públicos y menos distorsionante. Bolivia debería establecer una meta explícita para este indicador.
+
+**Acciones**:
+- Monitorear anualmente el ratio GSSE/TSE y publicarlo en el Presupuesto General del Estado
+- Comparar con pares regionales Chile y Colombia (miembros OCDE con mejor ratio)
+:::
+
+### Dimensión 3: Eficiencia del Gasto
+
+::: {.policy-box}
+**R4 — Mejorar las tasas de ejecución presupuestal en entidades clave**
+
+Los análisis revelan tasas de ejecución presupuestal heterogéneas entre entidades. INIAF y algunos programas departamentales muestran brechas significativas entre el presupuesto aprobado y ejecutado, lo que implica capacidad institucional limitada.
+
+**Acciones**:
+- Implementar programas de fortalecimiento de capacidad institucional en INIAF y MDRyT
+- Adoptar presupuesto plurianual para programas de inversión en infraestructura de riego
+- Crear un sistema de seguimiento de la ejecución presupuestal en tiempo real (tablero SIIF)
+:::
+
+::: {.policy-box}
+**R5 — Implementar evaluaciones de impacto sistemáticas para programas principales**
+
+Actualmente no existen evaluaciones de impacto rigurosas (con grupos de control) de los principales programas agropecuarios bolivianos (EMAPA, INIAF-extensión, Mi Agua).
+
+**Acciones**:
+- Diseñar con aleatorización o discontinuidades de regresión las nuevas fases de expansión de programas
+- Establecer una Unidad de Evaluación en el MDRyT con mandato y recursos propios
+- Publicar resultados de evaluaciones en el repositorio del Banco Mundial
+:::
+
+### Dimensión 4: Equidad del Gasto
+
+::: {.policy-box}
+**R6 — Aumentar la orientación del gasto hacia los departamentos y productores más vulnerables**
+
+El análisis subnacional revela disparidades en el gasto agropecuario per cápita entre departamentos. Los departamentos con mayor concentración de pobreza rural (Potosí, Chuquisaca, Beni) reciben proporcionalmente menos recursos que los de mayor dinámica exportadora (Santa Cruz).
+
+**Acciones**:
+- Introducir criterios explícitos de equidad en la fórmula de distribución del gasto subnacional en agricultura
+- Fortalecer los programas de extensión y semillas mejoradas en comunidades indígenas del altiplano
+- Generar datos desagregados por género para evaluar acceso de mujeres agricultoras a programas públicos
+:::
+
+## Agenda de Investigación
+
+Para fortalecer la base de evidencia en futuras revisiones, se recomienda:
+
+1. **Censo Agropecuario actualizado**: El último censo es de 2013; un nuevo censo permitiría actualizar el análisis de estructura productiva y equidad
+2. **FIES Bolivia**: Implementar la Escala de Experiencia de Inseguridad Alimentaria (FIES) para medir directamente la inseguridad alimentaria a nivel de hogar
+3. **Datos de precios frontera**: Para completar el cálculo de Market Price Support (componente MPS del PSE)
+4. **Panel subnacional extendido**: Obtener datos SIIF departamentales para fortalecer el análisis DEA con mayor número de unidades y períodos
+
+## Opciones de Política por Horizonte Temporal
+
+| Opción | Costo fiscal | Impacto esperado | Horizonte |
+|--------|-------------|-----------------|-----------|
+| Recomposición gasto INIAF/SENASAG | Neutral | Alto | Corto (1-2 años) |
+| Meta GSSE/TSE explícita | Neutral | Medio | Corto |
+| Focalización EMAPA en seguridad alimentaria | Reducción subsidios | Alto | Mediano (2-4 años) |
+| Sistema M&E MDRyT | Bajo | Alto (largo plazo) | Corto |
+| Expansión microriego focalizada | Medio-alto | Alto | Mediano |
+| Nuevo Censo Agropecuario | Medio | Muy alto (base de evidencia) | Mediano |
+
+: Opciones de política priorizadas {#tbl-policy-options}

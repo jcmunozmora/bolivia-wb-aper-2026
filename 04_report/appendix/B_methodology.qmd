@@ -1,0 +1,121 @@
+---
+title: "Apéndice B: Notas Metodológicas"
+---
+
+```{r}
+#| include: false
+source(here::here("02_code", "00_setup", "01_constants.R"))
+```
+
+## B.1 Metodología PSE (Producer Support Estimates)
+
+La metodología PSE de la OCDE cuantifica el total de transferencias desde consumidores y contribuyentes hacia los productores agropecuarios [@oecd_pse_manual]. Se compone de:
+
+### Market Price Support (MPS)
+
+$$MPS_c = (P^{dom}_c - P^{ref}_c) \times Q_c$$
+
+donde:
+- $P^{dom}_c$ = precio al productor doméstico del commodity $c$ (fuente: FAOSTAT PP)
+- $P^{ref}_c$ = precio de referencia en frontera ajustado por márgenes de comercialización
+- $Q_c$ = cantidad producida (fuente: FAOSTAT QCL)
+
+Para Bolivia, los precios de referencia se construyen usando:
+- Exportables (soya, quinua): precio FOB ajustado por transporte interno
+- Importables (trigo, maíz): precio CIF ajustado por transporte interno y márgenes
+
+### Transferencias Presupuestales (BT)
+
+Las transferencias presupuestales a productores se clasifican en:
+- **A1**: Pagos basados en producción (precios garantizados EMAPA)
+- **A2**: Pagos basados en uso de insumos (subsidios semillas, fertilizantes)
+- **A3**: Pagos basados en ingreso corriente de la finca
+- **A4**: Pagos fijos históricos
+
+Para Bolivia se aplica principalmente la categoría A1 (EMAPA) y parcialmente B (crédito BDP).
+
+### General Services Support Estimate (GSSE)
+
+$$GSSE = \sum_i G_i$$
+
+donde $G_i$ son los gastos en servicios generales al sector: I+D (INIAF), extensión (INIAF), sanidad (SENASAG), infraestructura de riego (MMAyA), administración de tierras (INRA).
+
+### Métricas de Referencia OCDE
+
+| Métrica | Fórmula | Interpretación |
+|---------|---------|----------------|
+| %PSE | PSE / (PSE + VP_dom) | % de ingresos del productor originados en apoyos |
+| %GSSE | GSSE / TSE | Orientación hacia bienes públicos (mayor = mejor) |
+| %TSE/PIB | TSE / PIB | Carga total del apoyo sobre la economía |
+
+## B.2 Data Envelopment Analysis (DEA)
+
+### Especificación del Modelo
+
+Se utiliza un modelo DEA orientado a inputs, que mide qué tanto podría reducirse el uso de inputs (gasto público) manteniendo constante el nivel de outputs (producción agropecuaria).
+
+**Función de eficiencia input-orientada**:
+$$\theta^* = \min_{\theta, \lambda} \theta$$
+
+sujeto a:
+- $Y\lambda \geq y_0$ (outputs alcanzables)
+- $X\lambda \leq \theta x_0$ (inputs reducibles proporcionalmente)
+- $\lambda \geq 0$ (posibilidad de operación convexa)
+- $\mathbf{1}'\lambda = 1$ (restricción VRS, opcional)
+
+### Bootstrap Simar-Wilson (1998)
+
+Para obtener intervalos de confianza válidos sobre los scores DEA, se utiliza el procedimiento bootstrap de @simar_wilson1998:
+
+1. Estimar scores DEA originales $\hat{\theta}_i$ para todos los DMUs
+2. Ajustar densidad de kernel sobre $\hat{\theta}_i$
+3. Generar $B = 2000$ muestras bootstrap
+4. Para cada muestra bootstrap, re-estimar scores DEA
+5. Calcular IC al 95% como percentiles 2.5 y 97.5 de la distribución bootstrap
+
+### Segunda Etapa: Tobit
+
+Los scores de eficiencia se modelan como función de variables de contexto (factores fuera del control del gasto público):
+
+$$\theta_i^* = \alpha + \beta_1 \text{Governance}_i + \beta_2 \text{Rainfall}_i + \beta_3 \text{RoadDensity}_i + \varepsilon_i$$
+
+donde $\theta_i^* \in [0,1]$ → se usa regresión Tobit censurada en ambos extremos.
+
+## B.3 Análisis Econométrico de Panel
+
+### Especificación Principal
+
+$$\ln Y_{it} = \beta_1 \ln G_{it} + \beta_2 (\ln G_{it})^2 + \mathbf{X}_{it}'\gamma + \alpha_i + \delta_t + \varepsilon_{it}$$
+
+- $Y_{it}$: indicador de outcome (PIB agropecuario, rendimiento, subalimentación)
+- $G_{it}$: gasto agropecuario real per trabajador agrícola
+- $\alpha_i$: efectos fijos de unidad (absorbe heterogeneidad invariante en el tiempo)
+- $\delta_t$: efectos fijos temporales (absorbe shocks comunes)
+- $\varepsilon_{it}$: errores clusterizados por departamento
+
+El término cuadrático captura posible no-linealidad (rendimientos decrecientes del gasto).
+
+### Pruebas de Robustez
+
+1. Rezagos del gasto (1, 2, 3 años) para capturar retornos de largo plazo a la inversión
+2. Desagregación por categoría funcional (I+D, riego, sanidad, subsidios)
+3. Hausman test para validar FE vs. RE
+4. Prueba Moran's I para autocorrelación espacial de residuales
+5. GMM Arellano-Bond para corregir endogeneidad en modelos dinámicos
+
+## B.4 Índice Compuesto de Seguridad Alimentaria
+
+Siguiendo el marco FAO de cuatro dimensiones, el índice se construye en tres pasos:
+
+**Paso 1**: Normalizar cada indicador a escala [0, 100]:
+$$\tilde{x}_{it} = \frac{x_{it} - \min(x)}{\max(x) - \min(x)} \times 100$$
+
+Para indicadores "lower is better" (e.g., subalimentación): $\tilde{x} = 100 - \tilde{x}$
+
+**Paso 2**: Estimar pesos mediante ACP (Análisis de Componentes Principales):
+$$w_j = \frac{|\text{loading}_{j,PC1}|}{\sum_k |\text{loading}_{k,PC1}|}$$
+
+**Paso 3**: Calcular índice ponderado:
+$$FSI_{it} = \sum_j w_j \tilde{x}_{jit}$$
+
+Un valor de FSI más cercano a 100 indica mejor situación de seguridad alimentaria en todas las dimensiones.
