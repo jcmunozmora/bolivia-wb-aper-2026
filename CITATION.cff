@@ -1,0 +1,54 @@
+cff-version: 1.2.0
+message: "If you use this repository or the derived datasets, please cite it as below."
+title: "Bolivia Agricultural Public Expenditure Review 2026 — Data Pipeline and Analysis"
+abstract: "Reproducible R pipeline that integrates public data from USDA ERS, IDB Agrimonitor, World Bank (APER 2011 + Tapping Potential 2021 + WDI), FAOSTAT, MEFP Bolivia (Informe Fiscal 2024 + Boletín ETA 2022), and INE Bolivia to construct a 1990-2024 agricultural spending and productivity panel. Produces PSE (OECD methodology), sectoral public investment, TFP trends, and LAC comparisons for a World Bank Public Expenditure Review of Bolivia's agricultural sector."
+authors:
+  - family-names: "Muñoz Mora"
+    given-names: "Juan Carlos"
+    email: "jcmunozmora@gmail.com"
+    affiliation: "Universidad EAFIT"
+    orcid: ""
+repository-code: "https://github.com/jcmunozmora/2026_WB_Bolivia"
+url: "https://github.com/jcmunozmora/2026_WB_Bolivia"
+version: "1.0.0"
+date-released: 2026-04-21
+license: MIT
+keywords:
+  - "agricultural economics"
+  - "public expenditure review"
+  - "Bolivia"
+  - "OECD PSE"
+  - "data envelopment analysis"
+  - "total factor productivity"
+  - "World Bank"
+  - "reproducible research"
+
+references:
+  - type: article
+    title: "International Agricultural Productivity"
+    authors:
+      - family-names: "USDA Economic Research Service"
+    year: 2024
+    url: "https://www.ers.usda.gov/data-products/international-agricultural-productivity/"
+  - type: dataset
+    title: "Agrimonitor: Producer Support Estimates (PSE) - Agricultural Policy Monitoring"
+    authors:
+      - family-names: "Inter-American Development Bank"
+    year: 2024
+    url: "https://data.iadb.org/dataset/idb-agrimonitor-producer-support-estimates-pse-agricultural-policy-monitori"
+  - type: report
+    title: "Plurinational State of Bolivia: Agricultural Public Expenditure Review"
+    authors:
+      - family-names: "World Bank"
+    year: 2011
+    number: "59696-BO"
+  - type: report
+    title: "Tapping the Potential of Bolivia's Agriculture and Food Systems to Support Inclusive and Sustainable Growth"
+    authors:
+      - family-names: "World Bank"
+    year: 2021
+  - type: report
+    title: "Boletín Económico: Informe Fiscal 2024"
+    authors:
+      - family-names: "Ministerio de Economía y Finanzas Públicas de Bolivia"
+    year: 2025

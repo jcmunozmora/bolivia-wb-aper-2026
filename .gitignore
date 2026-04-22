@@ -1,0 +1,86 @@
+# =============================================================================
+# .gitignore — Bolivia Agricultural Public Expenditure Review 2026
+# =============================================================================
+# Estrategia:
+#   INCLUIR: código, documentación, figuras, datos procesados (pequeños y
+#            reproducibles), datos externos auxiliares (shapefiles, clasificadores)
+#   EXCLUIR: datos raw (grandes, re-descargables vía scripts/00_download_raw.sh)
+#            renv library (regenerable con renv::restore())
+# =============================================================================
+
+# ── Datos raw (GRANDE, re-descargable desde URLs) ───────────────────────────
+01_data/raw/
+# Excepción: mantener READMEs explicativos por subcarpeta
+!01_data/raw/**/README.md
+!01_data/raw/README.md
+
+# ── renv ────────────────────────────────────────────────────────────────────
+# Mantener renv.lock pero no la librería
+renv/library/
+renv/staging/
+renv/local/
+renv/python/
+
+# ── Outputs renderizados (pesados) ──────────────────────────────────────────
+04_report/_freeze/
+04_report/_book/
+04_report/_site/
+04_report/*.pdf
+04_report/*.html
+05_outputs/report/
+
+# ── Archivos de sistema ─────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── R files locales ─────────────────────────────────────────────────────────
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+.Renviron
+
+# ── Editores ────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Secretos y credenciales ─────────────────────────────────────────────────
+.env
+.env.local
+secrets.R
+secrets/
+config_private.R
+*.key
+*.pem
+credentials.json
+
+# ── Caché y temporales ──────────────────────────────────────────────────────
+*.log
+tmp/
+.cache/
+
+# ── Claude / AI tools metadata ──────────────────────────────────────────────
+.claude/
+
+# ── Binarios grandes (doble seguro) ─────────────────────────────────────────
+*.sav
+*.dta
+*.parquet
+*.feather
+*.zip
+*.tar.gz
+*.7z
+
+# Excepción: shapefiles externos (pequeños y críticos) SÍ se versionan
+!01_data/external/*.gpkg
+!01_data/external/**/*.shp
+!01_data/external/**/*.shx
+!01_data/external/**/*.dbf
+!01_data/external/**/*.prj
