@@ -1,0 +1,69 @@
+name: Pipeline smoke test
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - '02_code/**'
+      - '01_data/processed/**'
+      - '01_data/external/**'
+      - '.github/workflows/check-pipeline.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check-processed-data:
+    name: Verify processed data loads correctly
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3'
+
+      - name: Install minimal packages
+        run: |
+          install.packages(c("data.table", "readr"), repos = "https://cran.r-project.org")
+        shell: Rscript {0}
+
+      - name: Smoke test — load master panel v3
+        run: |
+          library(data.table)
+          panel <- readRDS("01_data/processed/spending_panel_v3.rds")
+          stopifnot(inherits(panel, "data.frame"))
+          stopifnot(nrow(panel) >= 30)
+          stopifnot(ncol(panel) >= 50)
+          cat(sprintf("OK: panel v3 has %d rows × %d cols\n",
+                      nrow(panel), ncol(panel)))
+          # Sanity checks on key variables
+          stopifnot("inv_agro_usd_mm" %in% names(panel))
+          stopifnot("PSE_BOB_mm" %in% names(panel))
+          stopifnot("tfp_index" %in% names(panel))
+          cat("OK: key variables present\n")
+        shell: Rscript {0}
+
+      - name: Smoke test — load IDB Agrimonitor processed
+        run: |
+          pse <- readRDS("01_data/processed/idb_pse_bolivia_aggregate.rds")
+          stopifnot(nrow(pse) == 18)  # years 2006-2023
+          cat(sprintf("OK: PSE Bolivia has %d years of data\n", nrow(pse)))
+        shell: Rscript {0}
+
+      - name: Smoke test — TFP Bolivia loads
+        run: |
+          tfp <- readRDS("01_data/processed/usda_tfp_bolivia.rds")
+          stopifnot(nrow(tfp) == 63)  # years 1961-2023
+          cat(sprintf("OK: USDA TFP has %d years\n", nrow(tfp)))
+        shell: Rscript {0}
+
+      - name: Check critical files exist
+        run: |
+          test -f "01_data/external/bolivia_adm1_departments.gpkg" && echo "OK: ADM1 shapefile"
+          test -f "01_data/external/inflation_deflators.csv" && echo "OK: deflators"
+          test -f "01_data/external/exchange_rates.csv" && echo "OK: exchange rates"
+          test -f "scripts/00_download_raw.sh" && echo "OK: download script"
+          test -x "scripts/00_download_raw.sh" && echo "OK: download script executable"
