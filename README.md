@@ -14,8 +14,8 @@
 
 ```bash
 # 1. Clonar el repo
-git clone https://github.com/<username>/2026_WB_Bolivia.git
-cd 2026_WB_Bolivia
+git clone https://github.com/jcmunozmora/bolivia-wb-aper-2026.git
+cd bolivia-wb-aper-2026
 
 # 2. Descargar datos raw (~400 MB, no incluidos en el repo)
 bash scripts/00_download_raw.sh
