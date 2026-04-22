@@ -1,0 +1,24 @@
+cofog_code,cofog_description,spending_category,spending_subcategory,institution_examples,notes
+04.2,Agricultura silvicultura pesca y caza,otros,sector_general,MDRyT,Código COFOG general para agricultura
+04.2.1,Apoyo a la produccion agropecuaria,subsidios_precios,precios_garantizados,EMAPA,"Compra de producción a precios garantizados, acopio"
+04.2.1,Apoyo a la produccion agropecuaria,credito_subsidiado,credito_desarrollo,BDP,"Líneas de crédito a tasas subsidiadas para productores"
+04.2.2,Investigacion y desarrollo agropecuario,investigacion_extension,investigacion,INIAF,"I+D: semillas, variedades, germoplasma"
+04.2.2,Investigacion y desarrollo agropecuario,investigacion_extension,extension,INIAF,"Asistencia técnica, transferencia tecnológica"
+04.2.3,Gestion de recursos hidricos agricolas,riego_agua,infraestructura_riego,MMAyA,"Microriego, sistemas de riego por aspersión"
+04.2.3,Gestion de recursos hidricos agricolas,riego_agua,gestion_agua,MMAyA,"Gestión cuencas, cosecha agua lluvia"
+04.2.4,Servicios de extension agropecuaria,investigacion_extension,extension_directa,MDRyT,"Centros de extensión, agencias de desarrollo rural"
+04.2.5,Servicios de inspeccion regulacion y sanidad,sanidad_inocuidad,sanidad_animal,SENASAG,"Fiebre aftosa, brucelosis, rabia, Newcastle"
+04.2.5,Servicios de inspeccion regulacion y sanidad,sanidad_inocuidad,sanidad_vegetal,SENASAG,"Plagas, enfermedades, cuarentena vegetal"
+04.2.5,Servicios de inspeccion regulacion y sanidad,sanidad_inocuidad,inocuidad,SENASAG,"Registros sanitarios, control de residuos"
+04.2.6,Administracion de tierras y recursos naturales,tierra_titulacion,saneamiento_tierras,INRA,"Proceso de saneamiento catastral de tierras"
+04.2.6,Administracion de tierras y recursos naturales,tierra_titulacion,acceso_tierra,Fondo_Tierra,"Dotación de tierras a comunidades indígenas"
+04.2.7,Administracion del sector agropecuario,administracion_general,planificacion,MDRyT,"Planificación sectorial, formulación de políticas"
+04.2.7,Administracion del sector agropecuario,administracion_general,regulacion,MDRyT,"Regulación de insumos, agroquímicos"
+04.2.8,Servicios de informacion agropecuaria,investigacion_extension,estadisticas,INIAF,"Estadísticas agrícolas, encuestas de producción"
+04.2.9,Otros servicios agropecuarios,otros,no_clasificado,Varios,"Programas no clasificables en otras categorías"
+042,Agricultura silvicultura pesca y caza,otros,sector_general,MDRyT,Código alternativo sin puntos
+0421,Apoyo a la produccion agropecuaria,subsidios_precios,precios_garantizados,EMAPA,Código alternativo
+0422,Investigacion y desarrollo agropecuario,investigacion_extension,investigacion,INIAF,Código alternativo
+0423,Gestion de recursos hidricos agricolas,riego_agua,infraestructura_riego,MMAyA,Código alternativo
+0424,Servicios de extension agropecuaria,investigacion_extension,extension,MDRyT,Código alternativo
+0425,Servicios de inspeccion y sanidad,sanidad_inocuidad,sanidad_animal,SENASAG,Código alternativo

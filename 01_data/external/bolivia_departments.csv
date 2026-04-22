@@ -1,0 +1,10 @@
+department,dept_code,iso_code,capital,area_km2,agroecological_zone,altitude_category,region
+Beni,7,BO-B,Trinidad,213564,Trópico_húmedo,Tierras_bajas,Oriente
+Chuquisaca,5,BO-H,Sucre,51524,Valles_y_serranías,Valles,Centro
+Cochabamba,3,BO-C,Cochabamba,55631,Valles_y_trópico,Valles,Centro
+La Paz,1,BO-L,La_Paz,133985,Altiplano_y_valles,Altiplano,Occidente
+Oruro,6,BO-O,Oruro,53588,Altiplano,Altiplano,Occidente
+Pando,8,BO-N,Cobija,63827,Amazónico_húmedo,Tierras_bajas,Oriente
+Potosí,4,BO-P,Potosí,118218,Altiplano_y_valles,Altiplano,Occidente
+Santa Cruz,2,BO-S,Santa_Cruz,370621,Trópico_seco_y_húmedo,Tierras_bajas,Oriente
+Tarija,9,BO-T,Tarija,37623,Valles_y_chaco,Valles,Centro
