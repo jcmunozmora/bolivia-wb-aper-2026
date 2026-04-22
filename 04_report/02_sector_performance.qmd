@@ -1,0 +1,90 @@
+---
+title: "Desempeño del Sector Agropecuario"
+---
+
+```{r}
+#| include: false
+source(here::here("02_code", "00_setup", "01_constants.R"))
+source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
+library(tidyverse)
+
+panel   <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
+prod    <- readRDS(here::here("01_data", "processed", "production_by_commodity.rds"))
+```
+
+## Perspectiva Histórica
+
+El sector agropecuario boliviano ha experimentado transformaciones estructurales profundas en las últimas dos décadas. La expansión de la frontera agrícola en el oriente del país —particularmente en Santa Cruz— ha convertido a Bolivia en un exportador relevante de soya y sus derivados en el mercado regional, mientras que los cultivos andinos (quinua, papa, maíz) mantienen su importancia para la seguridad alimentaria y los medios de vida rurales.
+
+```{r}
+#| label: fig-agr-gdp
+#| fig-cap: "PIB agropecuario como porcentaje del PIB total, Bolivia 2000–2023"
+panel |>
+  filter(!is.na(agr_value_added_pct_gdp)) |>
+  ggplot(aes(x = year, y = agr_value_added_pct_gdp)) +
+  geom_ribbon(aes(ymin = 0, ymax = agr_value_added_pct_gdp),
+              fill = WB_BLUE, alpha = 0.15) +
+  geom_line(color = WB_BLUE, linewidth = 1.2) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1),
+                     limits = c(0, NA)) +
+  labs(x = NULL, y = "% del PIB",
+       caption = "Fuente: WDI, Banco Mundial. Elaboración propia.")
+```
+
+## Perspectiva de Políticas
+
+La política agropecuaria boliviana ha evolucionado significativamente bajo la Constitución de 2009 y el enfoque del Estado Plurinacional. Los ejes principales han sido:
+
+- **Soberanía alimentaria**: prioridad a la producción interna de alimentos básicos (EMAPA, programa de granos)
+- **Desarrollo productivo comunitario**: apoyo a comunidades indígenas y pequeños agricultores (Fondo de Desarrollo Indígena)
+- **Industrialización agropecuaria**: incentivos para la transformación de materia prima (soya, azúcar, leche)
+- **Gestión del agua**: expansión de infraestructura de microriego (Programa Mi Agua)
+
+## Perspectiva Económica
+
+### Contribución al PIB
+
+```{r}
+#| label: tbl-sector-macro
+#| tbl-cap: "Indicadores macroeconómicos del sector agropecuario boliviano"
+panel |>
+  filter(year %in% c(2000, 2005, 2010, 2015, 2020, YEAR_END)) |>
+  select(
+    Año = year,
+    `PIB agrop. (% PIB)` = agr_value_added_pct_gdp,
+    `Índice producción alimentaria` = agr_food_prod_index,
+    `Rendimiento cereal (kg/ha)` = cereal_yield_kg_ha,
+    `Subalimentación (%)` = undernourishment_pct
+  ) |>
+  gt::gt() |>
+  gt::fmt_number(columns = 2:5, decimals = 1) |>
+  gt::opt_stylize(style = 1) |>
+  gt::tab_source_note("Fuente: WDI, FAOSTAT. Elaboración propia.")
+```
+
+### Producción por Commodity
+
+Los commodities de mayor valor en la canasta productiva boliviana son la soya (orientada a exportación), la caña de azúcar, el ganado bovino, y los tubérculos andinos (papa). La quinua, aunque de menor volumen, ha ganado relevancia por sus altos precios internacionales y su importancia para productores del altiplano.
+
+```{r}
+#| label: fig-commodity-share
+#| fig-cap: "Valor de producción por commodity principal, Bolivia"
+prod |>
+  filter(!is.na(production_value_usd), year >= 2010) |>
+  group_by(year, item) |>
+  summarise(value = sum(production_value_usd, na.rm=TRUE), .groups="drop") |>
+  group_by(year) |>
+  mutate(share = value / sum(value) * 100) |>
+  filter(share >= 2) |>
+  ggplot(aes(x = year, y = share, fill = item)) +
+  geom_area(position = "stack", alpha = 0.85) +
+  scale_fill_manual(values = WB_PALETTE) +
+  scale_y_continuous(labels = scales::percent_format(scale=1)) +
+  labs(x = NULL, y = "% del valor total", fill = "Producto",
+       caption = "Fuente: FAOSTAT, precios FAO. Elaboración propia.") +
+  theme(legend.position = "bottom")
+```
+
+### Empleo y Pobreza Rural
+
+El sector agropecuario emplea a un porcentaje significativamente mayor de la fuerza laboral en Bolivia que el promedio LAC, con una alta concentración de agricultores de subsistencia en los departamentos andinos. Esta realidad es central al analizar la equidad distributiva del gasto público agropecuario (Capítulo 5).

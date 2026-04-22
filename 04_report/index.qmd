@@ -1,0 +1,41 @@
+---
+title: "Resumen Ejecutivo"
+---
+
+```{r setup}
+#| include: false
+source(here::here("02_code", "00_setup", "01_constants.R"))
+source(here::here("02_code", "00_setup", "02_functions.R"))
+library(tidyverse)
+
+panel <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
+```
+
+## Contexto y Motivación
+
+Bolivia destina una parte significativa de su presupuesto público al sector agropecuario, sector que representa aproximadamente el `r round(mean(panel$agr_value_added_pct_gdp, na.rm=TRUE), 1)`% del PIB y emplea a cerca de un tercio de la población activa. Sin embargo, la efectividad de este gasto —en términos de aumentos en productividad, seguridad alimentaria y reducción de la pobreza rural— no ha sido evaluada sistemáticamente con metodología rigurosa y datos actualizados.
+
+Este análisis actualiza el diagnóstico de gasto público agropecuario de Bolivia con datos hasta `r YEAR_END`, utilizando la metodología de Revisión del Gasto Público (PER) del Banco Mundial y los instrumentos analíticos de la OCDE (PSE/GSSE), complementados con análisis econométrico de eficiencia técnica (DEA) y regresiones de panel.
+
+## Hallazgos Principales
+
+::: {.callout-note}
+**Nivel de gasto**: Bolivia cumple / no cumple la meta de Maputo (10% del presupuesto en agricultura). El gasto agropecuario representó en promedio `r round(mean(panel$agr_spending_pct_gdp, na.rm=TRUE), 1)`% del PIB en el período analizado.
+:::
+
+::: {.callout-important}
+**Composición**: Una parte desproporcionada del gasto se destina a subsidios de precios (EMAPA) y administración, en detrimento de bienes públicos de alto retorno como investigación (INIAF), infraestructura de riego y sanidad animal/vegetal (SENASAG).
+:::
+
+Los hallazgos específicos se desarrollan en los Capítulos 3 a 5 y las recomendaciones de política en el Capítulo 6.
+
+## Estructura del Reporte
+
+| Capítulo | Contenido |
+|----------|-----------|
+| 1 | Introducción: objetivos, alcance y metodología |
+| 2 | Desempeño del sector agropecuario (perspectiva histórica, económica y de políticas) |
+| 3 | Presupuestos e instituciones en el sector agropecuario |
+| 4 | Organización del gasto público (nivel nacional y subnacional) |
+| 5 | Análisis del gasto: eficiencia, seguridad alimentaria, eficiencia técnica |
+| 6 | Recomendaciones y opciones de política |

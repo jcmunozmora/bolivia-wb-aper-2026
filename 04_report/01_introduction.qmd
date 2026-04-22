@@ -1,0 +1,60 @@
+---
+title: "Introducción"
+---
+
+```{r}
+#| include: false
+source(here::here("02_code", "00_setup", "01_constants.R"))
+library(tidyverse)
+```
+
+## Objetivo del Estudio
+
+Este análisis tiene como objetivo proveer una evaluación rigurosa y actualizada del gasto público en el sector agropecuario de Bolivia para el período `r YEAR_START`–`r YEAR_END`. El estudio busca:
+
+1. Describir el nivel, composición y evolución temporal del gasto público agropecuario a nivel nacional y subnacional.
+2. Evaluar la eficiencia técnica y asignativa de dicho gasto en relación con los resultados del sector.
+3. Analizar la relación entre el gasto agropecuario y la seguridad alimentaria de la población boliviana.
+4. Formular recomendaciones de política basadas en evidencia para mejorar la efectividad del gasto.
+
+## Justificación
+
+El sector agropecuario boliviano enfrenta desafíos estructurales que hacen especialmente relevante este análisis:
+
+- **Alta dependencia** del sector en la generación de empleo rural e ingreso de los hogares más pobres
+- **Volatilidad climática** creciente que amenaza la producción en las regiones andinas y del altiplano
+- **Brecha de productividad** respecto a los pares regionales, particularmente en cultivos de subsistencia
+- **Presiones fiscales** que obligan a optimizar la asignación del gasto público
+
+Bolivia ha incrementado sustancialmente su inversión pública en el sector desde 2006, en el marco del Plan de Desarrollo Económico y Social (PDES). Sin embargo, la literatura existente señala que el incremento en recursos no ha sido acompañado por mejoras proporcionales en eficiencia institucional ni en los resultados productivos esperados [@worldbank2020; @ifpri2019].
+
+## Alcance y Delimitación
+
+El análisis cubre:
+
+- **Período**: `r YEAR_START`–`r YEAR_END` para análisis de tendencias; período más corto para análisis econométrico según disponibilidad de datos
+- **Nivel de análisis**: Nacional (serie de tiempo) y subnacional (panel de 9 departamentos)
+- **Instituciones cubiertas**: MDRyT, INIAF, SENASAG, EMAPA, BDP, INRA/Fondo Tierra, MMAyA (componente riego)
+- **Commodities PSE**: Soya, quinua, papa, maíz, trigo, arroz, ganado bovino, pollo
+
+Se excluyen del análisis: el sector forestal (cubierto en análisis separado del MMAyA), la pesca artesanal, y los programas de desarrollo rural integrado no específicamente agropecuarios.
+
+## Metodología
+
+El análisis utiliza cuatro herramientas complementarias:
+
+**1. Revisión del Gasto Público (PER)**
+Siguiendo la metodología del Banco Mundial [@worldbank_per_manual], se analiza el gasto en cuatro dimensiones: nivel, composición, eficiencia y equidad. Los datos provienen principalmente del sistema BOOST Bolivia y del SIIF (Sistema Integrado de Información Financiera).
+
+**2. Producer Support Estimates (PSE)**
+Se aplica la metodología de la OCDE [@oecd_pse_manual] para cuantificar el apoyo total al productor agropecuario, incluyendo tanto las transferencias de mercado (MPS) como las transferencias presupuestales directas e indirectas.
+
+**3. Data Envelopment Analysis (DEA)**
+Se estima la eficiencia técnica relativa de los departamentos bolivianos en la transformación del gasto agropecuario en resultados productivos, utilizando un modelo de panel DEA con bootstrap Simar-Wilson para intervalos de confianza estadísticamente válidos [@simar_wilson1998].
+
+**4. Análisis econométrico de panel**
+Se estiman los efectos del gasto agropecuario sobre indicadores de producción y seguridad alimentaria usando el estimador de efectos fijos de alta dimensión (`fixest`) con errores estándar clusterizados por departamento.
+
+## Fuentes de Datos
+
+Las fuentes primarias son: BOOST Bolivia (Banco Mundial), SIIF (MEFP), FAOSTAT, WDI (Banco Mundial), OECD PSE Database, INE Bolivia y CEPALSTAT. Los detalles metodológicos y de fuentes se presentan en el Apéndice A y B.

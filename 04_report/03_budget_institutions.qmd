@@ -1,0 +1,92 @@
+---
+title: "Presupuestos e Instituciones en el Sector Agropecuario"
+---
+
+```{r}
+#| include: false
+source(here::here("02_code", "00_setup", "01_constants.R"))
+source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
+library(tidyverse)
+
+spending <- readRDS(here::here("01_data", "processed", "spending_clean.rds"))
+panel    <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
+```
+
+## El Marco Institucional del Gasto Agropecuario
+
+La arquitectura institucional del sector agropecuario boliviano involucra múltiples entidades con mandatos diferenciados pero frecuentemente superpuestos. Comprender esta estructura es esencial para interpretar correctamente los datos de gasto y formular recomendaciones de política viables.
+
+### Entidades del Nivel Central
+
+**MDRyT — Ministerio de Desarrollo Rural y Tierras**
+Entidad rectora del sector agropecuario. Responsable de la planificación, regulación y coordinación de políticas. Administra directamente algunos programas de extensión y apoyo a la producción, aunque parte de sus funciones operativas han sido desconcentradas a entidades descentralizadas.
+
+**INIAF — Instituto Nacional de Innovación Agropecuaria y Forestal**
+Entidad descentralizada responsable de la investigación y extensión agropecuaria. Gestiona el banco de germoplasma nacional, produce semillas certificadas y ofrece servicios de asistencia técnica. Creado en 2008, absorbió funciones del ex-SIBTA.
+
+**SENASAG — Servicio Nacional de Sanidad Agropecuaria e Inocuidad Alimentaria**
+Responsable de la sanidad animal y vegetal, inocuidad alimentaria y control de insumos agropecuarios. Opera con tasas y aranceles propios además del presupuesto fiscal.
+
+**EMAPA — Empresa de Apoyo a la Producción de Alimentos**
+Empresa pública creada en 2007 para garantizar la seguridad alimentaria mediante la compra de productos a precios garantizados (trigo, maíz, arroz, soya) y su distribución a precios subsidiados. Elemento central de la política de soberanía alimentaria.
+
+**BDP — Banco de Desarrollo Productivo**
+Ofrece líneas de crédito a tasas subsidiadas para el sector agropecuario, financiadas parcialmente con recursos del Tesoro General del Estado.
+
+**INRA — Instituto Nacional de Reforma Agraria / Fondo Tierra**
+Administra el proceso de saneamiento y titulación de tierras. El Fondo Tierra facilita el acceso a la tierra para comunidades indígenas y campesinas.
+
+**MMAyA — Ministerio de Medio Ambiente y Agua**
+Aunque no es una entidad agropecuaria per se, gestiona la infraestructura de riego a través del programa Mi Agua y el Viceministerio de Recursos Hídricos, con impacto directo en la productividad agrícola.
+
+### Presupuesto por Entidad
+
+```{r}
+#| label: fig-spending-institution
+#| fig-cap: "Gasto agropecuario ejecutado por institución, Bolivia"
+spending |>
+  filter(!is.na(institution), !is.na(executed_usd)) |>
+  group_by(year, institution) |>
+  summarise(executed_usd = sum(executed_usd, na.rm=TRUE), .groups="drop") |>
+  group_by(institution) |>
+  filter(sum(executed_usd, na.rm=TRUE) > 0) |>
+  ungroup() |>
+  ggplot(aes(x = year, y = executed_usd / 1e6, fill = institution)) +
+  geom_col(position = "stack") +
+  scale_fill_manual(values = WB_PALETTE) +
+  scale_y_continuous(labels = scales::dollar_format(suffix = "M")) +
+  labs(x = NULL, y = "USD millones (constantes 2015)", fill = "Institución",
+       caption = "Fuente: BOOST/SIIF. Elaboración propia.") +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 8))
+```
+
+## Tasa de Ejecución Presupuestal
+
+La brecha entre presupuesto aprobado y ejecutado es un indicador de eficiencia institucional y capacidad de absorción. Una baja tasa de ejecución puede indicar problemas en: (i) planificación y formulación presupuestal, (ii) capacidad de contratación pública, (iii) disponibilidad de unidades ejecutoras certificadas.
+
+```{r}
+#| label: fig-exec-rate-institution
+#| fig-cap: "Tasa de ejecución presupuestal por institución"
+spending |>
+  filter(!is.na(exec_rate), !is.na(institution)) |>
+  group_by(institution) |>
+  summarise(
+    avg_exec_rate = mean(exec_rate, na.rm = TRUE),
+    n_years       = n_distinct(year),
+    .groups = "drop"
+  ) |>
+  filter(n_years >= 3) |>
+  mutate(below_90 = avg_exec_rate < 0.90) |>
+  ggplot(aes(x = reorder(institution, avg_exec_rate),
+             y = avg_exec_rate * 100,
+             fill = below_90)) +
+  geom_col() +
+  geom_hline(yintercept = 90, linetype = "dashed", color = WB_RED) +
+  coord_flip() +
+  scale_fill_manual(values = c("FALSE" = WB_TEAL, "TRUE" = WB_ORANGE), guide = "none") +
+  scale_y_continuous(limits = c(0, 105),
+                     labels = scales::percent_format(scale=1)) +
+  labs(x = NULL, y = "Tasa de ejecución promedio (%)",
+       caption = "Línea roja = 90%. Naranja = debajo del umbral.\nFuente: BOOST/SIIF. Elaboración propia.")
+```

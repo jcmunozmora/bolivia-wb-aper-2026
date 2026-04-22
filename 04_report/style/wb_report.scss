@@ -1,0 +1,111 @@
+/*-- World Bank Visual Identity: Quarto HTML Theme --*/
+
+/*-- Variables de color WB --*/
+$wb-blue:    #009FDA;
+$wb-navy:    #002244;
+$wb-teal:    #00B3A2;
+$wb-orange:  #F05023;
+$wb-grey:    #9EA4A8;
+$wb-grey-lt: #F5F5F5;
+
+/*-- Typography --*/
+$font-family-base: "Arial", "Helvetica Neue", sans-serif;
+$headings-color: $wb-navy;
+
+/*-- Navbar --*/
+$navbar-bg: $wb-navy;
+$navbar-fg: white;
+
+/*-- Body --*/
+body {
+  font-family: $font-family-base;
+  color: #333333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/*-- Headings --*/
+h1, h2, h3, h4 {
+  color: $wb-navy;
+  font-weight: bold;
+}
+
+h1.title {
+  color: $wb-blue;
+  border-bottom: 3px solid $wb-blue;
+  padding-bottom: 0.5rem;
+}
+
+/*-- TOC --*/
+#TOC {
+  border-left: 3px solid $wb-blue;
+  padding-left: 1rem;
+}
+
+#TOC a {
+  color: $wb-navy;
+}
+
+#TOC a:hover {
+  color: $wb-blue;
+}
+
+/*-- Tables --*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead {
+  background-color: $wb-navy;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: $wb-grey-lt;
+}
+
+/*-- Callout boxes para notas de política --*/
+.callout-note {
+  border-left-color: $wb-blue !important;
+}
+
+.callout-important {
+  border-left-color: $wb-orange !important;
+}
+
+/*-- Figures --*/
+figure {
+  text-align: center;
+}
+
+figcaption {
+  color: $wb-grey;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/*-- Source notes (debajo de tablas/figuras) --*/
+.source-note {
+  font-size: 0.8rem;
+  color: $wb-grey;
+  border-top: 1px solid $wb-grey-lt;
+  padding-top: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+/*-- Policy box highlight --*/
+.policy-box {
+  background-color: lighten($wb-blue, 45%);
+  border-left: 4px solid $wb-blue;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.policy-box h4 {
+  color: $wb-blue;
+  margin-top: 0;
+}

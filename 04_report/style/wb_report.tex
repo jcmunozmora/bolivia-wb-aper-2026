@@ -1,0 +1,105 @@
+% LaTeX header — World Bank Bolivia Report
+% Incluido via include-in-header en _quarto.yml
+
+\usepackage{geometry}
+\geometry{
+  letterpaper,
+  left=2.5cm,
+  right=2.5cm,
+  top=2.5cm,
+  bottom=2.5cm
+}
+
+% Colores WB
+\usepackage{xcolor}
+\definecolor{wbblue}{HTML}{009FDA}
+\definecolor{wbnavy}{HTML}{002244}
+\definecolor{wbgrey}{HTML}{9EA4A8}
+\definecolor{wbteal}{HTML}{00B3A2}
+
+% Tipografía y encoding
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% Español
+\usepackage[spanish]{babel}
+
+% Encabezados y pies de página
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{wbgrey}Banco Mundial — Bolivia Agricultural Public Spending}
+\fancyhead[R]{\small\color{wbgrey}\thepage}
+\fancyfoot[C]{\small\color{wbgrey}Borrador preliminar — No citar sin autorización}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{wbblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% Secciones con color WB
+\usepackage{titlesec}
+\titleformat{\chapter}[block]
+  {\Large\bfseries\color{wbnavy}}
+  {\thechapter.}{0.5em}{}[\color{wbblue}\titlerule]
+
+\titleformat{\section}
+  {\large\bfseries\color{wbnavy}}
+  {\thesection}{0.5em}{}
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{wbnavy}}
+  {\thesubsection}{0.5em}{}
+
+% Tablas y figuras
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup{
+  font=small,
+  labelfont={bf,color=wbnavy},
+  labelsep=period,
+  format=hang
+}
+
+% Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=wbblue,
+  citecolor=wbnavy,
+  urlcolor=wbteal,
+  pdfauthor={Banco Mundial Bolivia},
+  pdftitle={Gasto Público en el Sector Agropecuario de Bolivia}
+}
+
+% Notas al pie
+\usepackage[hang,flushmargin]{footmisc}
+
+% Box para recomendaciones de política
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newtcolorbox{policybox}[1][]{
+  enhanced,
+  breakable,
+  colback=wbblue!8!white,
+  colframe=wbblue,
+  leftrule=4pt,
+  rightrule=0pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  title=\textbf{\color{wbnavy}Recomendación de Política},
+  fonttitle=\bfseries,
+  #1
+}
+
+% Glosario box
+\newtcolorbox{glossbox}{
+  enhanced, breakable,
+  colback=wbgrey!12!white,
+  colframe=wbgrey,
+  leftrule=3pt, rightrule=0pt, toprule=0pt, bottomrule=0pt,
+  title=\textbf{Nota metodológica},
+  fonttitle=\bfseries\color{wbnavy}
+}
