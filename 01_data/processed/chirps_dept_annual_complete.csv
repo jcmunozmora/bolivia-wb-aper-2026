@@ -1,0 +1,307 @@
+dept,year,precip_mm,source
+Beni,1990,1447.1,interpolado
+Beni,1991,1447.1,interpolado
+Beni,1992,1447.1,interpolado
+Beni,1993,1447.1,interpolado
+Beni,1994,1447.1,interpolado
+Beni,1995,1447.1,interpolado
+Beni,1996,1447.1,interpolado
+Beni,1997,1447.1,interpolado
+Beni,1998,1447.1,interpolado
+Beni,1999,1447.1,interpolado
+Beni,2000,1447.1,CHIRPS_TIF
+Beni,2001,1475.3,interpolado
+Beni,2002,1503.5,interpolado
+Beni,2003,1531.7,interpolado
+Beni,2004,1559.9,interpolado
+Beni,2005,1588.2,CHIRPS_TIF
+Beni,2006,1554.5,interpolado
+Beni,2007,1520.8,interpolado
+Beni,2008,1487.2,interpolado
+Beni,2009,1453.5,interpolado
+Beni,2010,1419.8,CHIRPS_TIF
+Beni,2011,1493.6,interpolado
+Beni,2012,1567.5,interpolado
+Beni,2013,1641.3,interpolado
+Beni,2014,1715.1,interpolado
+Beni,2015,1788.9,CHIRPS_TIF
+Beni,2016,1731.4,interpolado
+Beni,2017,1673.9,interpolado
+Beni,2018,1616.4,interpolado
+Beni,2019,1558.8,interpolado
+Beni,2020,1501.3,CHIRPS_TIF
+Beni,2021,1465.8,interpolado
+Beni,2022,1430.3,interpolado
+Beni,2023,1394.8,CHIRPS_TIF
+Chuquisaca,1990,727.2,interpolado
+Chuquisaca,1991,727.2,interpolado
+Chuquisaca,1992,727.2,interpolado
+Chuquisaca,1993,727.2,interpolado
+Chuquisaca,1994,727.2,interpolado
+Chuquisaca,1995,727.2,interpolado
+Chuquisaca,1996,727.2,interpolado
+Chuquisaca,1997,727.2,interpolado
+Chuquisaca,1998,727.2,interpolado
+Chuquisaca,1999,727.2,interpolado
+Chuquisaca,2000,727.2,CHIRPS_TIF
+Chuquisaca,2001,723.4,interpolado
+Chuquisaca,2002,719.6,interpolado
+Chuquisaca,2003,715.7,interpolado
+Chuquisaca,2004,711.9,interpolado
+Chuquisaca,2005,708.1,CHIRPS_TIF
+Chuquisaca,2006,675.4,interpolado
+Chuquisaca,2007,642.7,interpolado
+Chuquisaca,2008,610,interpolado
+Chuquisaca,2009,577.3,interpolado
+Chuquisaca,2010,544.6,CHIRPS_TIF
+Chuquisaca,2011,575.3,interpolado
+Chuquisaca,2012,606,interpolado
+Chuquisaca,2013,636.8,interpolado
+Chuquisaca,2014,667.5,interpolado
+Chuquisaca,2015,698.2,CHIRPS_TIF
+Chuquisaca,2016,686,interpolado
+Chuquisaca,2017,673.8,interpolado
+Chuquisaca,2018,661.6,interpolado
+Chuquisaca,2019,649.4,interpolado
+Chuquisaca,2020,637.2,CHIRPS_TIF
+Chuquisaca,2021,660,interpolado
+Chuquisaca,2022,682.9,interpolado
+Chuquisaca,2023,705.7,CHIRPS_TIF
+Cochabamba,1990,1174.7,interpolado
+Cochabamba,1991,1174.7,interpolado
+Cochabamba,1992,1174.7,interpolado
+Cochabamba,1993,1174.7,interpolado
+Cochabamba,1994,1174.7,interpolado
+Cochabamba,1995,1174.7,interpolado
+Cochabamba,1996,1174.7,interpolado
+Cochabamba,1997,1174.7,interpolado
+Cochabamba,1998,1174.7,interpolado
+Cochabamba,1999,1174.7,interpolado
+Cochabamba,2000,1174.7,CHIRPS_TIF
+Cochabamba,2001,1182.7,interpolado
+Cochabamba,2002,1190.8,interpolado
+Cochabamba,2003,1198.9,interpolado
+Cochabamba,2004,1207,interpolado
+Cochabamba,2005,1215,CHIRPS_TIF
+Cochabamba,2006,1182.7,interpolado
+Cochabamba,2007,1150.4,interpolado
+Cochabamba,2008,1118.1,interpolado
+Cochabamba,2009,1085.8,interpolado
+Cochabamba,2010,1053.4,CHIRPS_TIF
+Cochabamba,2011,1074.4,interpolado
+Cochabamba,2012,1095.4,interpolado
+Cochabamba,2013,1116.4,interpolado
+Cochabamba,2014,1137.4,interpolado
+Cochabamba,2015,1158.4,CHIRPS_TIF
+Cochabamba,2016,1137.3,interpolado
+Cochabamba,2017,1116.3,interpolado
+Cochabamba,2018,1095.3,interpolado
+Cochabamba,2019,1074.3,interpolado
+Cochabamba,2020,1053.3,CHIRPS_TIF
+Cochabamba,2021,1086.9,interpolado
+Cochabamba,2022,1120.5,interpolado
+Cochabamba,2023,1154.1,CHIRPS_TIF
+La Paz,1990,1241.3,interpolado
+La Paz,1991,1241.3,interpolado
+La Paz,1992,1241.3,interpolado
+La Paz,1993,1241.3,interpolado
+La Paz,1994,1241.3,interpolado
+La Paz,1995,1241.3,interpolado
+La Paz,1996,1241.3,interpolado
+La Paz,1997,1241.3,interpolado
+La Paz,1998,1241.3,interpolado
+La Paz,1999,1241.3,interpolado
+La Paz,2000,1241.3,CHIRPS_TIF
+La Paz,2001,1229,interpolado
+La Paz,2002,1216.8,interpolado
+La Paz,2003,1204.5,interpolado
+La Paz,2004,1192.3,interpolado
+La Paz,2005,1180.1,CHIRPS_TIF
+La Paz,2006,1183.9,interpolado
+La Paz,2007,1187.8,interpolado
+La Paz,2008,1191.6,interpolado
+La Paz,2009,1195.5,interpolado
+La Paz,2010,1199.3,CHIRPS_TIF
+La Paz,2011,1241.1,interpolado
+La Paz,2012,1282.8,interpolado
+La Paz,2013,1324.6,interpolado
+La Paz,2014,1366.4,interpolado
+La Paz,2015,1408.2,CHIRPS_TIF
+La Paz,2016,1354.9,interpolado
+La Paz,2017,1301.6,interpolado
+La Paz,2018,1248.3,interpolado
+La Paz,2019,1195.1,interpolado
+La Paz,2020,1141.8,CHIRPS_TIF
+La Paz,2021,1184.3,interpolado
+La Paz,2022,1226.9,interpolado
+La Paz,2023,1269.4,CHIRPS_TIF
+Oruro,1990,358,interpolado
+Oruro,1991,358,interpolado
+Oruro,1992,358,interpolado
+Oruro,1993,358,interpolado
+Oruro,1994,358,interpolado
+Oruro,1995,358,interpolado
+Oruro,1996,358,interpolado
+Oruro,1997,358,interpolado
+Oruro,1998,358,interpolado
+Oruro,1999,358,interpolado
+Oruro,2000,358,CHIRPS_TIF
+Oruro,2001,353.3,interpolado
+Oruro,2002,348.6,interpolado
+Oruro,2003,343.9,interpolado
+Oruro,2004,339.2,interpolado
+Oruro,2005,334.5,CHIRPS_TIF
+Oruro,2006,327.9,interpolado
+Oruro,2007,321.3,interpolado
+Oruro,2008,314.7,interpolado
+Oruro,2009,308.1,interpolado
+Oruro,2010,301.4,CHIRPS_TIF
+Oruro,2011,313.8,interpolado
+Oruro,2012,326.2,interpolado
+Oruro,2013,338.6,interpolado
+Oruro,2014,351,interpolado
+Oruro,2015,363.4,CHIRPS_TIF
+Oruro,2016,350,interpolado
+Oruro,2017,336.6,interpolado
+Oruro,2018,323.2,interpolado
+Oruro,2019,309.8,interpolado
+Oruro,2020,296.4,CHIRPS_TIF
+Oruro,2021,280.4,interpolado
+Oruro,2022,264.5,interpolado
+Oruro,2023,248.5,CHIRPS_TIF
+Pando,1990,1680.2,interpolado
+Pando,1991,1680.2,interpolado
+Pando,1992,1680.2,interpolado
+Pando,1993,1680.2,interpolado
+Pando,1994,1680.2,interpolado
+Pando,1995,1680.2,interpolado
+Pando,1996,1680.2,interpolado
+Pando,1997,1680.2,interpolado
+Pando,1998,1680.2,interpolado
+Pando,1999,1680.2,interpolado
+Pando,2000,1680.2,CHIRPS_TIF
+Pando,2001,1677.7,interpolado
+Pando,2002,1675.1,interpolado
+Pando,2003,1672.5,interpolado
+Pando,2004,1670,interpolado
+Pando,2005,1667.4,CHIRPS_TIF
+Pando,2006,1691,interpolado
+Pando,2007,1714.5,interpolado
+Pando,2008,1738,interpolado
+Pando,2009,1761.5,interpolado
+Pando,2010,1785.1,CHIRPS_TIF
+Pando,2011,1779.7,interpolado
+Pando,2012,1774.4,interpolado
+Pando,2013,1769,interpolado
+Pando,2014,1763.7,interpolado
+Pando,2015,1758.3,CHIRPS_TIF
+Pando,2016,1775.2,interpolado
+Pando,2017,1792.1,interpolado
+Pando,2018,1808.9,interpolado
+Pando,2019,1825.8,interpolado
+Pando,2020,1842.7,CHIRPS_TIF
+Pando,2021,1739.3,interpolado
+Pando,2022,1635.9,interpolado
+Pando,2023,1532.5,CHIRPS_TIF
+Potosí,1990,313.6,interpolado
+Potosí,1991,313.6,interpolado
+Potosí,1992,313.6,interpolado
+Potosí,1993,313.6,interpolado
+Potosí,1994,313.6,interpolado
+Potosí,1995,313.6,interpolado
+Potosí,1996,313.6,interpolado
+Potosí,1997,313.6,interpolado
+Potosí,1998,313.6,interpolado
+Potosí,1999,313.6,interpolado
+Potosí,2000,313.6,CHIRPS_TIF
+Potosí,2001,312.1,interpolado
+Potosí,2002,310.6,interpolado
+Potosí,2003,309.1,interpolado
+Potosí,2004,307.6,interpolado
+Potosí,2005,306.1,CHIRPS_TIF
+Potosí,2006,297.6,interpolado
+Potosí,2007,289.1,interpolado
+Potosí,2008,280.6,interpolado
+Potosí,2009,272.1,interpolado
+Potosí,2010,263.6,CHIRPS_TIF
+Potosí,2011,272.1,interpolado
+Potosí,2012,280.6,interpolado
+Potosí,2013,289.1,interpolado
+Potosí,2014,297.6,interpolado
+Potosí,2015,306.1,CHIRPS_TIF
+Potosí,2016,301.4,interpolado
+Potosí,2017,296.6,interpolado
+Potosí,2018,291.9,interpolado
+Potosí,2019,287.1,interpolado
+Potosí,2020,282.3,CHIRPS_TIF
+Potosí,2021,270.6,interpolado
+Potosí,2022,258.9,interpolado
+Potosí,2023,247.2,CHIRPS_TIF
+Santa Cruz,1990,1113.8,interpolado
+Santa Cruz,1991,1113.8,interpolado
+Santa Cruz,1992,1113.8,interpolado
+Santa Cruz,1993,1113.8,interpolado
+Santa Cruz,1994,1113.8,interpolado
+Santa Cruz,1995,1113.8,interpolado
+Santa Cruz,1996,1113.8,interpolado
+Santa Cruz,1997,1113.8,interpolado
+Santa Cruz,1998,1113.8,interpolado
+Santa Cruz,1999,1113.8,interpolado
+Santa Cruz,2000,1113.8,CHIRPS_TIF
+Santa Cruz,2001,1121.9,interpolado
+Santa Cruz,2002,1130,interpolado
+Santa Cruz,2003,1138,interpolado
+Santa Cruz,2004,1146.1,interpolado
+Santa Cruz,2005,1154.2,CHIRPS_TIF
+Santa Cruz,2006,1097.2,interpolado
+Santa Cruz,2007,1040.1,interpolado
+Santa Cruz,2008,983.1,interpolado
+Santa Cruz,2009,926,interpolado
+Santa Cruz,2010,869,CHIRPS_TIF
+Santa Cruz,2011,875.4,interpolado
+Santa Cruz,2012,881.8,interpolado
+Santa Cruz,2013,888.2,interpolado
+Santa Cruz,2014,894.5,interpolado
+Santa Cruz,2015,900.9,CHIRPS_TIF
+Santa Cruz,2016,911.3,interpolado
+Santa Cruz,2017,921.7,interpolado
+Santa Cruz,2018,932,interpolado
+Santa Cruz,2019,942.4,interpolado
+Santa Cruz,2020,952.8,CHIRPS_TIF
+Santa Cruz,2021,1052,interpolado
+Santa Cruz,2022,1151.2,interpolado
+Santa Cruz,2023,1250.5,CHIRPS_TIF
+Tarija,1990,738.4,interpolado
+Tarija,1991,738.4,interpolado
+Tarija,1992,738.4,interpolado
+Tarija,1993,738.4,interpolado
+Tarija,1994,738.4,interpolado
+Tarija,1995,738.4,interpolado
+Tarija,1996,738.4,interpolado
+Tarija,1997,738.4,interpolado
+Tarija,1998,738.4,interpolado
+Tarija,1999,738.4,interpolado
+Tarija,2000,738.4,CHIRPS_TIF
+Tarija,2001,767,interpolado
+Tarija,2002,795.5,interpolado
+Tarija,2003,824.1,interpolado
+Tarija,2004,852.7,interpolado
+Tarija,2005,881.3,CHIRPS_TIF
+Tarija,2006,835,interpolado
+Tarija,2007,788.7,interpolado
+Tarija,2008,742.4,interpolado
+Tarija,2009,696.2,interpolado
+Tarija,2010,649.9,CHIRPS_TIF
+Tarija,2011,694.2,interpolado
+Tarija,2012,738.6,interpolado
+Tarija,2013,783,interpolado
+Tarija,2014,827.3,interpolado
+Tarija,2015,871.7,CHIRPS_TIF
+Tarija,2016,832.6,interpolado
+Tarija,2017,793.5,interpolado
+Tarija,2018,754.5,interpolado
+Tarija,2019,715.4,interpolado
+Tarija,2020,676.3,CHIRPS_TIF
+Tarija,2021,689.9,interpolado
+Tarija,2022,703.6,interpolado
+Tarija,2023,717.2,CHIRPS_TIF

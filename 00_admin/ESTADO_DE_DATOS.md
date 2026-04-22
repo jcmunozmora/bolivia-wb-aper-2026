@@ -1,9 +1,9 @@
 # Estado de datos del proyecto — snapshot trabajo futuro
 
-**Última actualización:** 2026-04-22
-**Panel nacional:** `01_data/processed/spending_panel_v4.rds` (35 años × 83 variables)
+**Última actualización:** 2026-04-22 (sesión 3)
+**Panel nacional v6:** `01_data/processed/spending_panel_v6.rds` (35 años × 102 variables) ⭐⭐
 **Panel subnacional v2:** `01_data/processed/subnacional_panel_v2.rds` (90 × 36 vars)
-**Panel municipal:** `01_data/processed/municipal_panel.rds` (3,368 × 23 vars) ⭐
+**Panel municipal v2:** `01_data/processed/municipal_panel_v2_lc.rds` (3,368 × 23 vars) ⭐
 **DEA-ready:** `01_data/processed/dea_dataset.rds` (81 DMUs × 32 vars)
 **Repo:** https://github.com/jcmunozmora/bolivia-wb-aper-2026
 
