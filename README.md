@@ -114,20 +114,32 @@ Solicitud de acceso a información pública lista para enviar.
 | **WB APER 2011** | 1996-2008 granular | Excel 26 MB | `08_process_aper.R` |
 | **MEFP Informe Fiscal 2024** | 1990-2024 inversión sectorial | PDF 2.6 MB | `14_parse_inversion_publica_sectorial.R` |
 | **MEFP Boletín ETA 2022** | 2005-2022 deuda rural | PDF 4.4 MB | `12_parse_mefp_boletin.R` |
+| **Jubileo Municipal** ⭐ | 2012-2021 gasto municipal 31 programas | HTML | `16_scrape_jubileo_municipal.R` |
 | **WDI Bulk** | 2000-2023 22 indicadores | CSV 280 MB | `process_wdi.R` |
-| **INE Estadísticas Agrícolas** | 1984-2024 por depto | Excel | — |
-| **INE PIB Departamental** | 2017-2021 | Excel | — |
 | **Our World in Data (FAOSTAT)** | 1961-2023 outcomes | CSV | `02_download_faostat.R` |
 | **geoBoundaries** | ADM1 + ADM2 | GeoPackage | `07_download_spatial.R` |
 
-### ⏳ Pendiente
+### 🟡 Descargado pero sin procesar
 
-| Dato | Fuente | Acción |
-|------|--------|--------|
-| Gasto detallado por entidad 2009-2023 | MEFP SIGEP | Solicitud formal DS 28168 |
-| ENA microdatos | INE (ZIPs descargados) | Procesar microdatos |
-| PIB dept 1988-2016 | INE Ref 2007 | Localizar archivo |
-| OECD PSE comparadores | API OECD | Reintentar |
+| Dato | Archivo raw | Acción pendiente |
+|------|-------------|------------------|
+| INE ENA 2015 microdatos | `Encuesta_Agropecuaria_2015.zip` (19.5 MB) | Extraer SPSS .sav, estructurar |
+| INE ENA 2008 microdatos | `Encuesta_Nacional_Agropecuaria_2008.zip` (5.2 MB) | Extraer SPSS .sav |
+| INE Estadísticas Agrícolas | 3 Excel (producción, rendimiento, superficie × 9 depts, 1984-2024) | Parsear a panel largo |
+| INE PIB Departamental | 30 Excel files 2017-2021 | Completar extracción |
+
+### ⏳ Pendiente de obtener
+
+| Dato | Fuente | Acción | Carta/script listo |
+|------|--------|--------|:------------------:|
+| Gasto detallado por entidad 2009-2023 | MEFP SIGEP | Solicitud formal DS 28168 | ✅ |
+| Jubileo datos por depto/municipio | Fundación Jubileo | Email colaboración | ✅ |
+| Precios productor pre-2006 | FAOSTAT PP | Crear cuenta + download | — |
+| PIB dept 1988-2016 | INE Ref 2001 | Localizar archivo | — |
+| OECD PSE comparadores oficial | API OECD | Reintentar | — |
+
+> Ver [ESTADO_DE_DATOS.md](00_admin/ESTADO_DE_DATOS.md) para el snapshot completo
+> con variables por grupo, cobertura real, y plan semanal de acciones.
 
 ---
 
