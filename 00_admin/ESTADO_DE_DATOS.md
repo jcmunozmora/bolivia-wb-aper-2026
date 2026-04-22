@@ -1,26 +1,27 @@
 # Estado de datos del proyecto — WB Bolivia APER 2026
 
-**Última actualización:** 2026-04-22 (sesión 8b)
-**Panel nacional v9:** `01_data/processed/spending_panel_v9.rds` (35 años × 131 variables) ⭐⭐
+**Última actualización:** 2026-04-22 (sesión 8)
+**Panel nacional v10:** `01_data/processed/spending_panel_v10.rds` (35 años × 143 variables) ⭐⭐ NEW
 **Panel subnacional v2:** `01_data/processed/subnacional_panel_v2.rds` (90 × 36 vars)
 **Panel municipal v3:** `01_data/processed/municipal_panel_v3.rds` (3,368 × 70 vars) ⭐⭐
 **DEA-ready:** `01_data/processed/dea_dataset.rds` (81 DMUs × 32 vars)
-**EH panel 2012-2024:** `01_data/processed/eh_panel_2012_2024.rds` (309,185 personas × 28 vars) ⭐
-**CNA 2013 municipal:** `01_data/processed/cna2013_indicadores.rds` (338 municipios × 49 vars) ⭐
-**ENA 2008:** `01_data/processed/ena_2008_upa_indicadores.rds` (8,022 UPAs × 33 vars) ⭐ NEW
-**ENA 2015:** `01_data/processed/ena_2015_upa_indicadores.rds` (12,650 UPAs × 34 vars) ⭐ NEW
-**Panel v10:** `01_data/processed/spending_panel_v10.rds` (35 años × 143 vars) ⭐ NEW
-**NRP extendido:** `01_data/processed/pse_nrp_extended.rds` (NRP 1991-2023 × 7 commodities) ⭐ NEW
+**EH panel 2012-2024:** `01_data/processed/eh_panel_2012_2024.rds` (309,185 personas × 28 vars)
+**CNA 2013 municipal:** `01_data/processed/cna2013_indicadores.rds` (338 municipios × 49 vars)
+**ENA 2008:** `01_data/processed/ena_2008_upa_indicadores.rds` (8,022 UPAs × 33 vars) ⭐
+**ENA 2015:** `01_data/processed/ena_2015_upa_indicadores.rds` (12,650 UPAs × 34 vars) ⭐
+**NRP extendido:** `01_data/processed/pse_nrp_extended.rds` (NRP 1991-2023 × 7 commodities) ⭐
+**FAOSTAT PP Bolivia:** `01_data/processed/faostat_pp_bolivia.rds` (119 commodities × 1991-2025) ⭐
 **Regresiones extendidas:** `01_data/processed/extended_regression_results.rds` + `05_outputs/tables/extended_regressions.txt`
-**Datasets procesados:** ~115 archivos `.rds` en `01_data/processed/` (+ `.csv` espejo)
-**Scripts de recolección:** 41 en `02_code/01_data_collection/` + 8 en `03_analysis/`
+**MEFP ejecución anual:** `01_data/processed/mefp_ejecucion_anual.rds` (tasas 2015-2023 MEFP) ⭐ NEW
+**Datasets procesados:** 123 archivos `.rds` en `01_data/processed/` (+ `.csv` espejo)
+**Scripts de recolección:** 42 en `02_code/01_data_collection/` + 8 en `03_analysis/`
 
 > Este documento consolida el estado real de los datos para no repetir trabajo
 > y saber exactamente qué falta. Se actualiza con cada integración.
 
 ---
 
-## 1. Panel maestro v9 — completitud por grupo (35 años × 131 vars)
+## 1. Panel maestro v10 — completitud por grupo (35 años × 143 vars)
 
 ### ✅ Cobertura completa (≥90%)
 
@@ -32,6 +33,7 @@
 | WDI macro Bolivia | 8 | 34/35 (1990-2023) | WDI API |
 | INE cereales yields | 2 | 32/35 (1984-2020) | INE Estadísticas Agrícolas |
 | MapBiomas LC nacional | 10 | 40/40 (1985-2024) | MapBiomas Bolivia Col.3 |
+| FAOSTAT PP + NRP pre-2006 | 12 | 31/35 (1991-2024) | FAOSTAT PP + WB Pink Sheet ⭐ NEW |
 
 ### 🟡 Cobertura media (50-90%)
 
@@ -49,7 +51,7 @@
 | Grupo | Vars | Cobertura | Período |
 |-------|:----:|:---------:|:-------:|
 | WDI financiero Bolivia | 5 | 13-34/35 | 1990-2023 |
-| BCB crédito agrop sectorial | 8 | 15/35 (2010-2024) | BCB Boletín Estadístico T.3.02 | ⭐ NEW
+| BCB crédito agrop sectorial | 8 | 15/35 (2010-2024) | BCB Boletín Estadístico T.3.02 |
 | GHG emisiones (IDB) | 1 | 5/35 | 2019-2023 |
 
 ---
@@ -96,6 +98,31 @@
 - **Composición económica 2000-2007**: salarios 44%, bienes/servicios 20%, beneficios sociales 18%, intereses 10%, subsidios 2.5%
 - **Bolivia vs LAC gasto total**: Bolivia debajo del promedio LAC hasta 2001, luego supera (boom hidros 2002-2007)
 - **Cobertura temporal SPEED**: gap 2008-2017 para Bolivia en ambas versiones (funcional + económica)
+
+---
+
+### 2.A.2 MEFP Ejecución Presupuestaria — Entidad 035 (sesión 8) ⭐ NEW
+
+| Archivo | Contenido | Dimensiones | Período |
+|---------|-----------|:-----------:|:-------:|
+| `mefp_ejecucion_anual.rds` | Serie anual TOTAL — vigente/ejecutado/% | 9 × 4 | 2015-2023 |
+| `mefp_ejecucion_grupo.rds` | Grupo de Gasto × año — inicial/vigente/ejec/% | 58 × 7 | 2015-2023 |
+
+**Fuente:** 9 PDFs `Ejecucion_YYYY.pdf` (DGAA MEFP) — solo Entidad 035 (Ministerio de Economía y Finanzas Públicas). Script: `42_process_mefp_ejecucion.R`.
+
+**Hallazgos clave tasas de ejecución MEFP 2015-2023:**
+- **Rango histórico**: 42.3% (2020) – 96.2% (2023)
+- **Mínimo 2020**: presupuesto vigente explotó 13× (de 426 MM a 5,540 MM Bs) por transferencias COVID, ejecución cayó al 42% — patrón típico de shock fiscal
+- **Recuperación 2022-2023**: tasas 93-96% tras normalización
+- **Composición 2023**: 82% del vigente fue "Otros Gastos" (devoluciones al TGN), 8% salarios, 6% activos reales
+- **Servicios No Personales** es consistentemente el grupo con menor ejecución (46-79%) — típico indicador de subejecución en compras
+- **Uso en APER**: benchmark de referencia para comparar con tasas de ejecución de MDRyT cuando se obtengan vía carta formal DS 28168
+
+**Limitaciones:**
+- Solo Entidad 035 (MEFP); no hay MDRyT/INIAF/SENASAG en los PDFs de DGAA
+- Estructura Programática (2020+) y Dirección Administrativa no parseables por text-wrapping en pdftools
+- Vitrinas Presupuestarias son newsletters temáticos — sin tasas sistemáticas
+- Informe Fiscal 2024 tiene ejecución subnacional (p54) 2020-2024: Gobernaciones 66-83%, Muni Grandes 54-64%, Muni Pequeños 49-72%
 
 ---
 
@@ -154,7 +181,7 @@
 
 ---
 
-### 2.B.2 FAOSTAT PP — Precios productor + WB Pink Sheet (sesión 8b) ⭐ NEW
+### 2.B.2 FAOSTAT PP — Precios productor + WB Pink Sheet (sesión 8) ⭐ NEW
 
 | Archivo | Contenido | Dimensiones | Período |
 |---------|-----------|:-----------:|:-------:|
@@ -389,10 +416,11 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 - **Hallazgo clave:** Soya creció de 563K ha → 1.3M ha (+131%); mujeres productoras subieron en todos los deptos
 
 **3.7 Precios productor por commodity (pre-2006)**
-- ✅ **COMPLETADO sesión 8b** — FAOSTAT PP 1991-2024 + WB Pink Sheet 1960-2025
+- ✅ **COMPLETADO sesión 8** — FAOSTAT PP 1991-2024 + WB Pink Sheet 1960-2025
 - Script: `41_process_faostat_pp.R`
-- Outputs: `faostat_pp_bolivia.rds` + `wb_pink_sheet_agro.rds` + `pse_nrp_extended.rds`
+- Outputs: `faostat_pp_bolivia.rds` (119 commodities × 4 elementos) + `wb_pink_sheet_agro.rds` (9 refs) + `pse_nrp_extended.rds` + `faostat_pp_lac.rds` (9 países LAC)
 - **Hallazgo:** Bolivia taxa exportables (soya −37%, arroz −33%) y protege seguridad alimentaria (maíz +46%, trigo +28%) — consistente con controles de precios/exportación
+- Integrado en `spending_panel_v10.rds` (+12 vars: pp_soya/maiz/trigo/arroz/papa/quinua_usd + nrp_* + avg_nrp)
 
 ---
 
@@ -408,9 +436,12 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 - **Alternativa B:** Contacto directo Jubileo Bolivia (René Martínez)
 - **Valor:** DEA municipal (en lugar de solo departamental)
 
-**3.10 Tasas de ejecución por programa (MEFP Vitrina Presupuestaria)**
-- 🟡 Parcialmente disponible — Vitrina tiene 2023-2025 (PDFs ya descargados)
-- **Acción:** Parsear PDFs con `pdftools` para extraer tasas de ejecución por programa sectorial
+**3.10 Tasas de ejecución — Ejecucion MEFP anual**
+- ✅ **COMPLETADO sesión 8** — parser de 9 PDFs `Ejecucion_YYYY.pdf` (2015-2023)
+- Script: `42_process_mefp_ejecucion.R`
+- Outputs: `mefp_ejecucion_anual.rds` (9 años) + `mefp_ejecucion_grupo.rds` (58 obs, 7 grupos × 9 años)
+- **Hallazgo:** Rango 42-96% ejecución; mínimo en 2020 (COVID, presupuesto 13× explotado); recuperación 93-96% en 2022-2023
+- **Limitación:** solo MEFP (Entidad 035). MDRyT/INIAF/SENASAG NO disponibles en PDFs públicos. Vitrinas Presupuestarias son temáticas (no sistemáticas). Requiere carta MEFP DS 28168 para desagregación institucional.
 
 ---
 
@@ -420,10 +451,10 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 |:--------:|:------:|-------------------|
 | **2 — Desempeño del sector** | ✅ LISTO | — TFP, yields, MapBiomas, WDI LAC, PSE ranking |
 | **3 — Gasto público** | 🟡 PARCIAL | Benchmark SPEED 1990-2007 disponible; falta desagregación institucional post-2008 |
-| **4a — PSE/GSSE/TSE** | ✅ LISTO | IDB AgriMonitor 2006-2023 + LAC + SPEED Maputo benchmark |
+| **4a — PSE/GSSE/TSE** | ✅ LISTO | IDB AgriMonitor 2006-2023 + LAC + SPEED Maputo + NRP FAOSTAT pre-2006 (7 commodities) |
 | **4b — DEA eficiencia** | ✅ LISTO | 81 DMUs, 3 inputs, 2 outputs; eficiencia proxy por depto corrida |
-| **4c — Regresiones panel** | ✅ LISTO | Panel v9 × panel muni v3; M1-M6 nacionales + MS1-MS5 subnacionales corridos; dummy post_ley393 disponible |
-| **4d — Equidad/incidencia** | ✅ LISTO | EH 2012-2024 (309K personas); FIES 2019-2024; 33.6K trabajadores agro |
+| **4c — Regresiones panel** | ✅ LISTO | Panel v10 × panel muni v3; M1-M6 nacionales + MS1-MS5 subnacionales; dummy post_ley393 + precios domésticos/NRP disponibles |
+| **4d — Equidad/incidencia** | ✅ LISTO | EH 2012-2024 (309K personas); FIES 2019-2024; 33.6K trabajadores agro; ENA 2008+2015 UPAs (20K) |
 | **5 — Recomendaciones** | ⏳ DESPUÉS | Depende de hallazgos 2-4 |
 
 ---
@@ -448,7 +479,7 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 
 ## 6. Inventario de scripts
 
-### `02_code/01_data_collection/` (38 scripts)
+### `02_code/01_data_collection/` (42 scripts)
 
 ```
 01-06:  APIs WDI/FAOSTAT/OECD/CEPAL/BOOST/manual (setup original)
@@ -487,7 +518,8 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 38:     process_bcb_credito.R          BCB Boletín Estadístico T.3.02 → credito_sectorial + panel_v9
 39:     process_ena_2008.R             ENA 2008 (26 módulos SAV) → UPA indicators + cultivos + dept summary
 40:     process_ena_2015.R             ENA 2015 (Hogar + Agrícola + Bovinos) → UPA + comparación 2008/2015
-41:     process_faostat_pp.R           FAOSTAT PP Americas + WB Pink Sheet → NRP 1991-2023 + panel_v10 ⭐ NEW
+41:     process_faostat_pp.R           FAOSTAT PP Americas + WB Pink Sheet → NRP 1991-2023 + panel_v10
+42:     process_mefp_ejecucion.R       MEFP Ejecucion_YYYY.pdf 2015-2023 → tasas ejecución MEFP Ent 035 ⭐ NEW
 ```
 
 ### `02_code/03_analysis/` (3 scripts activos)
@@ -519,9 +551,11 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 
 4. **CHIRPS:** 6 snapshots TIF interpolados linealmente a serie 34 años. Flaggear `source = "interpolado"` vs `"CHIRPS_TIF"` en análisis de sensibilidad.
 
-5. **Panel maestro:** `spending_panel_v9.rds` (35 años × 131 vars) es el dataset canónico para análisis nacionales. `subnacional_panel_v2.rds` para análisis departamentales. `municipal_panel_v3.rds` para análisis municipales (con Hansen + CNA 2013).
+5. **Panel maestro:** `spending_panel_v10.rds` (35 años × 143 vars) es el dataset canónico para análisis nacionales. `subnacional_panel_v2.rds` para análisis departamentales. `municipal_panel_v3.rds` para análisis municipales (con Hansen + CNA 2013).
 
 6. **Deflactor:** CPI base 2015 (INE Bolivia). Variables monetarias en BOB reales 2015 y USD corrientes WDI.
+
+7. **Precios y NRP pre-2006:** FAOSTAT PP (Bolivia área 19) como fuente doméstica; WB Pink Sheet como referencia mundial. NRP = (PP_dom − PP_ref)/PP_ref. NRP ≠ PSE completo (no incluye GSSE). Para PSE pre-2006 completo, combinar NRP con VIPFE/BOOST como proxy de transferencias presupuestales. Anomalía 2015 caña de azúcar (PP=261 USD/t) requiere verificación antes de usar en series largas.
 
 ---
 
@@ -531,10 +565,11 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 |:-:|--------|:-------:|:------:|
 | 1 | **Poblar capítulos Quarto** — Cap. 2 (desempeño) y Cap. 3 (gasto) primero | 🔴 Alto | Pendiente |
 | 2 | **Enviar carta MEFP DS 28168** — desagregación institucional post-2008 | 🟡 Medio | Lista para enviar |
-| ✅ | ~~Precios PP + NRP pre-2006~~ — script 41; FAOSTAT PP + WB Pink Sheet; NRP 1991-2023 × 7 commodities | — | HECHO sesión 8b |
+| 3 | **Memorias MDRyT 2015-2024** — narrativa cualitativa para Cap. 3 | 🟢 Bajo | Pendiente |
+| ✅ | ~~Tasas de ejecución MEFP~~ — script 42; Ejecucion_YYYY.pdf 2015-2023; 9 años × 7 grupos | — | HECHO sesión 8 |
+| ✅ | ~~Precios PP + NRP pre-2006~~ — script 41; FAOSTAT PP + WB Pink Sheet; NRP 1991-2023 × 7 commodities | — | HECHO sesión 8 |
 | ✅ | ~~ENA 2008 + 2015~~ — scripts 39 + 40; 8,022+12,650 UPAs; comparación dept 2008 vs 2015 | — | HECHO sesión 8 |
 | ✅ | ~~BCB Boletines históricos~~ — `38_process_bcb_credito.R` T.3.02 2010-2024 (63 trimestres) | — | HECHO sesión 7 |
-| 5 | **Precios productor FAOSTAT PP** — extender PSE commodity pre-2006 | 🟢 Bajo | API disponible |
 | ✅ | ~~IFPRI SPEED 2019 + SPEED_EC~~ — `36_process_ifpri_speed.R` + `37_process_ifpri_speed_ec.R` | — | HECHO sesión 6 |
 | ✅ | ~~Regresiones extendidas~~ — `08_extended_regressions.R`, M1-M6 + MS1-MS5 + eficiencia proxy | — | HECHO sesión 6 |
 | ✅ | ~~Panel municipal v3~~ — Hansen + CNA 2013, `35_integrate_municipal_panel_v3.R` | — | HECHO sesión 6 |
