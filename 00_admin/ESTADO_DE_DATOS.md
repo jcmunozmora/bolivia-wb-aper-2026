@@ -1,8 +1,14 @@
 # Estado de datos del proyecto — snapshot trabajo futuro
 
-**Última actualización:** 2026-04-21
-**Panel canónico actual:** `01_data/processed/spending_panel_v4.rds` (35 años × 83 variables)
+**Última actualización:** 2026-04-21 (noche)
+**Panel nacional:** `01_data/processed/spending_panel_v4.rds` (35 años × 83 variables)
+**Panel subnacional:** `01_data/processed/subnacional_panel.rds` (90 filas × 25 vars) ⭐ NUEVO
+**DEA-ready:** `01_data/processed/dea_dataset.rds` (81 DMUs × 32 vars) ⭐ NUEVO
 **Repo:** https://github.com/jcmunozmora/bolivia-wb-aper-2026
+
+> **🚀 BREAKTHROUGH 2026-04-21**: Se descubrió que el portal Jubileo SÍ filtra
+> por departamento usando `depa[]=N` (array format). Se extrajeron 2,780
+> observaciones subnacionales que desbloquean análisis DEA y panel FE.
 
 > Este documento consolida el estado real de los datos para no repetir trabajo
 > y saber exactamente qué falta. Se actualiza con cada integración.
@@ -32,8 +38,45 @@
 | Grupo | Variables | Cobertura | Período |
 |-------|:---------:|:---------:|:-------:|
 | APER legado | 10 | 9/35 años | 2000-2008 |
-| **Jubileo Municipal** ⭐ NUEVA | 11 | 10/35 años | 2012-2021 |
+| **Jubileo Municipal nacional** | 11 | 10/35 años | 2012-2021 |
 | GHG emisiones | 1 | 5/35 años | 2019-2023 |
+
+---
+
+## 1.B Panel SUBNACIONAL (nuevo 2026-04-21) ⭐
+
+**Archivo:** `01_data/processed/subnacional_panel.rds` — 90 filas × 25 variables
+
+| Variable | Cobertura | Fuente |
+|----------|:---------:|--------|
+| P10 Agropecuario por depto | 90/90 (9 depts × 10 años) | Jubileo scraping dept |
+| Agro estricto (10+12+32) | 90/90 | Jubileo scraping dept |
+| Rural infra (14-19) | 90/90 | Jubileo scraping dept |
+| Rural total (10 programas) | 90/90 | Jubileo scraping dept |
+| PIB agropecuario BOB 2017 | 45/90 | INE Ref 2017 (2017-2021) |
+| Deuda rural stock | 90/90 | MEFP ETA 2022 |
+
+**Archivo DEA-ready:** `01_data/processed/dea_dataset.rds` — 81 DMUs × 32 vars
+
+- 9 departamentos × 9 años (2012-2020)
+- **INPUTS**: gasto agrop real, superficie total, deuda rural stock (3 inputs completos 81/81)
+- **OUTPUTS**: producción total ton, rendimiento cereales, PIB agrop (2 outputs completos + 1 parcial)
+- Listo para `rDEA::dea.robust()` + Simar-Wilson bootstrap
+
+---
+
+## 1.C INE Estadísticas Agrícolas 1984-2020 (nuevo 2026-04-21) ⭐
+
+**Archivo:** `01_data/processed/ine_agro_stats_long.rds` — 64,688 filas
+
+| Dimensión | Cobertura |
+|-----------|-----------|
+| Departamentos | 10 (9 + Bolivia total) |
+| Cultivos únicos | 80 |
+| Años | 1984-2020 (41 años) |
+| Indicadores | Producción (ton), Rendimiento (kg/ha), Superficie (ha) |
+
+**Cultivos clave disponibles:** Soya, Papa, Maíz, Arroz, Quinua, Trigo, Caña de azúcar, Frijol, Cebada, Avena, Sorgo y 69 más.
 
 ---
 
@@ -64,21 +107,33 @@
 
 ## 3. Datos que NOS FALTAN (por prioridad)
 
-### 🔴 TIER 1 — Bloqueantes de análisis
+### ✅ RESUELTO 2026-04-21 (ya no falta)
+
+**✓ Panel subnacional de gasto agropecuario 2012-2021 (ERA TIER 1)**
+- Resuelto vía scraping Jubileo con filtro correcto `depa[]=N`
+- 9 depts × 31 programas × 10 años = 2,780 observaciones en
+  `subnacional_panel.rds` + `dea_dataset.rds`
+- ✅ DEA + Simar-Wilson ya es posible
+
+**✓ Outputs agrícolas subnacionales 1984-2020 (nuevo)**
+- INE Estadísticas Agrícolas procesadas (64,688 filas)
+- Producción, rendimiento, superficie × 10 depts × 80 cultivos × 37 años
+
+### 🔴 TIER 1 — Sigue bloqueando
 
 **1.1 Gasto agropecuario detallado por institución 2009-2023**
 - ❌ MDRyT, INIAF, SENASAG, INRA, FDI, BDP individuales
-- ✅ Solo tenemos: EMAPA individual + VIPFE agregado sectorial
-- **Impacto**: No podemos descomponer el gasto post-2008 por institución
+- ✅ Solo tenemos: EMAPA individual + VIPFE agregado sectorial + Jubileo por programa municipal
+- **Impacto**: No podemos descomponer el gasto post-2008 por institución nacional
 - **Vía de obtención**:
   - Carta formal DS 28168 al MEFP ([`00_admin/carta_solicitud_MEFP.md`](00_admin/carta_solicitud_MEFP.md))
   - WB Bolivia Country Office (Svetlana Edmeades / Camille Nuamah)
-  - **Fundación Jubileo** (carta preparada, ver 3.6)
 
-**1.2 Panel subnacional de gasto agropecuario 2009-2021**
-- ❌ Gasto por departamento × año 2009-2021 (tenemos APER 1996-2008 y fragmento 2017-2021)
-- ✅ Alternativas: Jubileo tiene datos por depto/municipio pero requieren browser automation o solicitud directa
-- **Impacto crítico para**: DEA + Simar-Wilson (capítulo 4 eficiencia)
+**1.2 Datos MUNICIPIO × programa (no solo depto)**
+- ❌ Filtro `mun[]` NO funciona server-side en portal Jubileo
+- ✅ Tenemos catálogo completo de 339 municipios (via `ajax_municipios.php`)
+- **Vía**: Browser automation con Playwright/Selenium (2-3 días de trabajo)
+- **Impacto**: DEA municipal en lugar de solo departamental
 
 ### 🟡 TIER 2 — Enriquecimiento sustancial
 
@@ -132,15 +187,15 @@
 
 ---
 
-## 4. Comparación por capítulo del reporte
+## 4. Comparación por capítulo del reporte (actualizado post-breakthrough)
 
 | Capítulo | Datos suficientes | Análisis viable hoy |
 |:--------:|:-----------------:|---------------------|
 | **2** — Desempeño del sector | ✅ Completo | Todo: TFP, outcomes, PIB agrop, benchmark LAC |
-| **3** — Gasto público | 🟡 Parcial | Serie agregada 1990-2024 ✓<br>Desagregación institucional post-2008 ❌ |
+| **3** — Gasto público | 🟡 Parcial | Nacional 1990-2024 ✓ · Subnacional 2012-2021 ✓ · Desagregación institucional post-2008 ❌ |
 | **4** — Análisis PSE | ✅ Completo | Todo: PSE/MPS/GSSE/TSE 2006-2023 + LAC |
-| **4b** — DEA eficiencia | 🟡 Parcial | DEA nacional ✓ · DEA dept ❌ (sin serie contigua) |
-| **4c** — Regresiones panel | 🟡 Parcial | TFP ~ VIPFE ✓ · con gasto desagregado ❌ |
+| **4b** — DEA eficiencia | ✅ **DESBLOQUEADO** | 81 DMUs (9 depts × 9 años) con 3 inputs + 2 outputs completos |
+| **4c** — Regresiones panel | ✅ **DESBLOQUEADO** | TFP/PIB agrop ~ gasto × depto × año, FE posible |
 | **4d** — Equidad/incidencia | 🔴 Bloqueado | Falta Encuesta Hogares procesada |
 | **5** — Recomendaciones | ✅ Completo | Se arma al final con hallazgos |
 
