@@ -14,8 +14,8 @@ en el *Bolivia Agricultural Public Expenditure Review 2026*.
 
 ```bash
 # 1. Clonar
-git clone https://github.com/jcmunozmora/2026_WB_Bolivia.git
-cd 2026_WB_Bolivia
+git clone https://github.com/jcmunozmora/bolivia-wb-aper-2026.git
+cd bolivia-wb-aper-2026
 
 # 2. Descargar datos raw (no están en el repo, ~400 MB)
 bash scripts/00_download_raw.sh
