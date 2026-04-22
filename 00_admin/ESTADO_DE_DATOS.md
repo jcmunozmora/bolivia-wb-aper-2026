@@ -1,14 +1,17 @@
 # Estado de datos del proyecto — snapshot trabajo futuro
 
-**Última actualización:** 2026-04-21 (noche)
+**Última actualización:** 2026-04-22
 **Panel nacional:** `01_data/processed/spending_panel_v4.rds` (35 años × 83 variables)
-**Panel subnacional:** `01_data/processed/subnacional_panel.rds` (90 filas × 25 vars) ⭐ NUEVO
-**DEA-ready:** `01_data/processed/dea_dataset.rds` (81 DMUs × 32 vars) ⭐ NUEVO
+**Panel subnacional v2:** `01_data/processed/subnacional_panel_v2.rds` (90 × 36 vars)
+**Panel municipal:** `01_data/processed/municipal_panel.rds` (3,368 × 23 vars) ⭐
+**DEA-ready:** `01_data/processed/dea_dataset.rds` (81 DMUs × 32 vars)
 **Repo:** https://github.com/jcmunozmora/bolivia-wb-aper-2026
 
-> **🚀 BREAKTHROUGH 2026-04-21**: Se descubrió que el portal Jubileo SÍ filtra
-> por departamento usando `depa[]=N` (array format). Se extrajeron 2,780
-> observaciones subnacionales que desbloquean análisis DEA y panel FE.
+> **🚀 TRIPLE BREAKTHROUGH 2026-04-21/22**:
+> 1. `depa[]=N` → filtro departamental (9 depts × 31 programas × 10 años)
+> 2. `get_mun=RELID` single value → filtro municipal (340 munis × 31 × 10 = 73,983 obs)
+> 3. `get_pro=N` single value → filtro programa
+> Combinados descubiertos leyendo función JS `array_var()` del portal.
 
 > Este documento consolida el estado real de los datos para no repetir trabajo
 > y saber exactamente qué falta. Se actualiza con cada integración.
@@ -77,6 +80,70 @@
 | Indicadores | Producción (ton), Rendimiento (kg/ha), Superficie (ha) |
 
 **Cultivos clave disponibles:** Soya, Papa, Maíz, Arroz, Quinua, Trigo, Caña de azúcar, Frijol, Cebada, Avena, Sorgo y 69 más.
+
+---
+
+## 1.D Panel MUNICIPAL 340 × 10 años (nuevo 2026-04-22) ⭐⭐⭐
+
+**Archivo:** `01_data/processed/municipal_panel.rds` — 3,368 filas × 23 vars
+
+| Dimensión | Cobertura |
+|-----------|-----------|
+| Municipios | 340 (incluye GAIOC + GAR) |
+| Años | 2012-2021 (10 años) |
+| Programas | 31 (agro + rural + resto) |
+| Observaciones raw | 73,983 en `jubileo_municipal_full_2012_2021.rds` |
+
+**Variables principales (BOB corrientes y 2015):**
+- `p10_agropecuario`, `p12_microriegos`, `p18_caminos_vecinales`, `p32_recursos_hidricos`
+- `agro_strict` (10+12+32), `rural_infra` (14-19), `rural_total` (10 progs rurales)
+- `total_presupuesto`, `agro_share_pct`, `p10_share_pct`
+
+**Top 2020:** La Paz ciudad (82.4 MM), Yacuiba/Tarija (18.7), Caraparí (10.6), Villamontes (9.7)
+
+---
+
+## 1.E ENA 2015 microdatos (nuevo 2026-04-22) ⭐
+
+**Archivos:** `01_data/processed/ena_2015_{hogar,agricola,pecuaria}.rds`
+
+| Módulo | Filas | Uso |
+|--------|------:|-----|
+| Hogar (3 partes) | 77,709 | UPAs base (12,650 unique), demografía rural |
+| Agrícola | 54,242 | Producción por cultivo × UPA × semestre (140 vars) |
+| Pecuaria (8 tipos) | 1,268,730 | Ganado bovino, ovino, caprino, porcino, llamas, alpacas, aves |
+
+**Agregados por depto 2015 disponibles**: UPAs, superficie, producción expandida, % riego.
+
+---
+
+## 1.F PIB Departamental completo (nuevo 2026-04-22) ⭐
+
+**Archivo:** `01_data/processed/pib_departamental_complete.rds` — 910 filas
+
+| Dimensión | Cobertura |
+|-----------|-----------|
+| Departamentos | 9 (+ Bolivia total) |
+| Años | 2017-2021 (5 años) |
+| Actividades económicas | 18 (Agricultura, Hidrocarburos, Manufactura, etc.) |
+| Series | Corrientes BOB mm + Constantes base 2017 encadenadas |
+
+**PIB Agropecuario corriente 2020 (MM BOB):**
+- Santa Cruz: 11,472 (dominante)
+- Cochabamba: 5,477 · La Paz: 3,941
+- Beni: 1,499 · Chuquisaca: 1,248 · Tarija: 1,161
+- Potosí: 979 · Pando: 807 · Oruro: 492
+
+---
+
+## 1.G Shapefile ADM3 (nuevo 2026-04-22) ⭐
+
+**Archivo:** `01_data/external/bolivia_adm3_municipalities.gpkg`
+
+- 339 municipios (nivel correcto para análisis municipal)
+- Fuente: geoBoundaries CC BY 4.0
+- Match con Jubileo por nombre: 255/339 (75.2%)
+- Los no-matched son por variaciones de nomenclatura ("San Javier" vs "San Javier del Beni")
 
 ---
 
