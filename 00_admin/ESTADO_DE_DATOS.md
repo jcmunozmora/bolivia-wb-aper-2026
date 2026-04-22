@@ -147,6 +147,69 @@
 
 ---
 
+## 1.H MapBiomas Bolivia Colección 3 — Cobertura vegetal 1985-2024 ⭐⭐⭐
+
+**Archivos:**
+- `01_data/processed/mapbiomas_national_annual.rds` — serie nacional Bolivia 40 años
+- `01_data/processed/mapbiomas_dept_annual.rds` — 9 depts × 40 años × macro-clase
+- `01_data/processed/mapbiomas_cobertura_long.rds` — 349,600 obs (territorios × clase × año)
+- `01_data/processed/mapbiomas_cambio_dept.rds` — tabla resumen cambio 1985→2024
+- `01_data/processed/mapbiomas_legend.rds` — 30 clases de cobertura con códigos
+
+**Cambio Bolivia 1985 → 2024:**
+- Área NATURAL: 103.2 → 93.7 M ha (**−9.1%**)
+- Área ANTRÓPICA: 5.2 → 14.7 M ha (**+180%**)
+- Pérdida neta cobertura natural: **9.4 millones de hectáreas en 40 años**
+
+**Por departamento (expansión antrópica absoluta 1985-2024):**
+| Departamento | 1985 (k ha) | 2024 (k ha) | Cambio (k ha) | % |
+|---|---:|---:|---:|---:|
+| Santa Cruz | 1,132 | 7,196 | **+6,064** | +536% |
+| Beni | 2,010 | 2,996 | +986 | +49% |
+| La Paz | 917 | 1,533 | +617 | +67% |
+| Cochabamba | 269 | 809 | +540 | +201% |
+| Oruro | 287 | 626 | +339 | +118% |
+| Potosí | 316 | 619 | +304 | +96% |
+| Tarija | 122 | 334 | +212 | +173% |
+| Pando | 35 | 225 | +190 | +547% |
+| Chuquisaca | 143 | 319 | +176 | +123% |
+
+Santa Cruz concentra el 64% de la expansión antrópica nacional (6.06/9.43 M ha).
+
+---
+
+## 1.I CHIRPS Precipitación departamental 2000-2023 ⭐
+
+**Archivo:** `01_data/processed/chirps_dept_annual.rds`
+
+| Dimensión | Cobertura |
+|-----------|-----------|
+| Departamentos | 9 |
+| Años | 2000, 2005, 2010, 2015, 2020, 2023 (snapshots decenales) |
+| Variable | Precipitación anual promedio (mm/año) |
+
+**Precipitación por depto (2023):**
+- Pando: 1,533 mm (llanura amazónica) · Beni: 1,395 mm
+- La Paz: 1,269 · Santa Cruz: 1,250 · Cochabamba: 1,154
+- Tarija: 717 · Chuquisaca: 706
+- Oruro: 249 · Potosí: 247 (altiplano árido)
+
+Tendencia clara: Oruro/Potosí se han **secado 25-30%** desde 2000.
+
+---
+
+## 1.J FAOSTAT via OWID (nuevo 2026-04-22)
+
+**Archivos:** `01_data/raw/faostat_qcl/owid_*.csv`
+- Cereal production (1961-2023)
+- Livestock counts (1961-2023)
+- Meat production (1961-2023)
+- Pesticide use per hectare (1990-2021)
+
+Datos globales pero fácil extraer Bolivia. Pendiente procesamiento y merge al panel.
+
+---
+
 ## 2. Datasets subnacionales disponibles
 
 ### ✅ Procesados y listos
