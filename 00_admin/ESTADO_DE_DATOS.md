@@ -1,7 +1,8 @@
 # Estado de datos del proyecto — WB Bolivia APER 2026
 
-**Última actualización:** 2026-04-22 (sesión 8)
-**Panel nacional v10:** `01_data/processed/spending_panel_v10.rds` (35 años × 143 variables) ⭐⭐ NEW
+**Última actualización:** 2026-04-22 (sesión 8 — cierre)
+**Panel nacional v11:** `01_data/processed/spending_panel_v11.rds` (35 años × 179 variables) ⭐⭐ NEW
+**Panel nacional v10:** `01_data/processed/spending_panel_v10.rds` (35 años × 143 variables) ⭐⭐
 **Panel subnacional v2:** `01_data/processed/subnacional_panel_v2.rds` (90 × 36 vars)
 **Panel municipal v3:** `01_data/processed/municipal_panel_v3.rds` (3,368 × 70 vars) ⭐⭐
 **DEA-ready:** `01_data/processed/dea_dataset.rds` (81 DMUs × 32 vars)
@@ -14,8 +15,10 @@
 **Regresiones extendidas:** `01_data/processed/extended_regression_results.rds` + `05_outputs/tables/extended_regressions.txt`
 **MEFP ejecución anual:** `01_data/processed/mefp_ejecucion_anual.rds` (tasas 2015-2023 MEFP) ⭐
 **Timeline política:** `01_data/timeline/timeline.csv` (61 hitos 1990-2025, formato KnightLab) ⭐ NEW
-**Datasets procesados:** 123 archivos `.rds` en `01_data/processed/` (+ `.csv` espejo)
-**Scripts de recolección:** 42 en `02_code/01_data_collection/` + 8 en `03_analysis/`
+**Datasets procesados:** 124 archivos `.rds` en `01_data/processed/` (+ `.csv` espejo)
+**Scripts de recolección:** 43 en `02_code/01_data_collection/` + 8 en `03_analysis/`
+**Fichas lectura MDRyT:** 7 fichas + template + README en `03_literature/mdryt_fichas/`
+**Timeline política agropecuaria:** 61 hitos 1990-2025 + 61 imágenes locales en `01_data/timeline/`
 
 > Este documento consolida el estado real de los datos para no repetir trabajo
 > y saber exactamente qué falta. Se actualiza con cada integración.
@@ -488,7 +491,8 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 | `spending_panel_v7.rds` | 118 | + PSE/GSSE/TSE IDB formal + WDI LAC |
 | `spending_panel_v8.rds` | 123 | + IFPRI SPEED ag_pctgdp/pctexp/pctaggdp/con_usd/con_ppp |
 | `spending_panel_v9.rds` | 131 | + BCB crédito agrop sectorial (2010-2024) × 8 vars |
-| **`spending_panel_v10.rds`** ⭐ | **143** | + FAOSTAT PP domésticos + NRP 1991-2023 × 12 vars |
+| `spending_panel_v10.rds` | 143 | + FAOSTAT PP domésticos + NRP 1991-2023 × 12 vars |
+| **`spending_panel_v11.rds`** ⭐ | **179** | + MapBiomas nacional LC + Hansen + WDI extendido + BOOST × 36 vars |
 
 ---
 
@@ -534,7 +538,8 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 39:     process_ena_2008.R             ENA 2008 (26 módulos SAV) → UPA indicators + cultivos + dept summary
 40:     process_ena_2015.R             ENA 2015 (Hogar + Agrícola + Bovinos) → UPA + comparación 2008/2015
 41:     process_faostat_pp.R           FAOSTAT PP Americas + WB Pink Sheet → NRP 1991-2023 + panel_v10
-42:     process_mefp_ejecucion.R       MEFP Ejecucion_YYYY.pdf 2015-2023 → tasas ejecución MEFP Ent 035 ⭐ NEW
+42:     process_mefp_ejecucion.R       MEFP Ejecucion_YYYY.pdf 2015-2023 → tasas ejecución MEFP Ent 035
+43:     panel_v11_consolidate.R        panel v10 + MapBiomas nacional + Hansen + WDI ext + BOOST → panel v11 ⭐ NEW
 ```
 
 ### `02_code/03_analysis/` (3 scripts activos)
@@ -591,6 +596,87 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 | ✅ | ~~Panel municipal v3~~ — Hansen + CNA 2013, `35_integrate_municipal_panel_v3.R` | — | HECHO sesión 6 |
 | ✅ | ~~EH Bolivia 2012-2024~~ — 8 años, 309K personas, `33_process_encuestas_hogares.R` | — | HECHO sesión 5 |
 | ✅ | ~~CNA 2013~~ — 338/339 munis × 49 vars, `34_scrape_cna2013_sice.R` | — | HECHO sesión 5 |
+
+---
+
+## 9. Auditoría final de datos — gaps restantes (sesión 8 cierre)
+
+Revisión sistemática identifica 3 categorías de gaps: (A) disponibles pero no procesados, (B) requieren gestión institucional, (C) próximas fases del proyecto.
+
+### A. Datos públicamente disponibles — no procesados aún
+
+| # | Dato | Fuente | Valor para APER | Esfuerzo |
+|:-:|------|--------|-----------------|:-------:|
+| A.1 | **Subsidios diésel agrícola** | YPFB estadísticas | Crítico — 2024 escasez combustibles afectó siembra | 🟢 Bajo |
+| A.2 | **INRA titulación serie anual 1996-2024** | INRA boletines | Contexto tenencia tierra; Cap. 2 | 🟡 Medio |
+| A.3 | **Incendios municipales MODIS/VIIRS 2001-2024** | NASA FIRMS API | Complementa Hansen; valida 2019 Chiquitanía y 2024 Amazonía | 🟢 Bajo |
+| A.4 | **Comercio exterior agropecuario FAOSTAT TCL** | FAOSTAT bulk (probado) | Balanza alimentaria, exportaciones soya | 🟢 Bajo |
+| A.5 | **Pobreza municipal UDAPE** | UDAPE mapa pobreza | Cap. 4d incidencia subnacional | 🟡 Medio |
+| A.6 | **ASFI crédito IFD/cooperativas** | ASFI boletines | Complementa BCB (solo banca múltiple) | 🟡 Medio |
+| A.7 | **CHIRPS serie mensual completa 1981-2024** | CHC UCSB | Reemplaza interpolación lineal actual | 🟡 Medio |
+| A.8 | **SENAMHI eventos climáticos extremos** | SENAMHI | Sequías/heladas/granizadas por muni/año | 🔴 Alto (no hay API) |
+| A.9 | **IPC rural por departamento** | INE | Deflactor real rural 1990-2024 | 🟢 Bajo |
+| A.10 | **EMAPA compras garantizadas serie** | Memorias EMAPA | Subsidios implícitos al productor | 🟡 Medio |
+| A.11 | **Bolivia MapBiomas irrigación clase específica** | MapBiomas Col.3 | Actualmente solo macro-clases | 🟢 Bajo |
+| A.12 | **CNA 2013 capa agrícola vs. ganadera** | INE tabulados extras | Desagrega los 49 vars actuales | 🟡 Medio |
+
+### B. Datos institucionales — requieren gestión
+
+| # | Dato | Gestión requerida | Bloqueo |
+|:-:|------|-------------------|---------|
+| B.1 | **MDRyT/INIAF/SENASAG ejecución 2008-2023** | Carta formal DS 28168 al MEFP | Sin datos, Cap. 3 queda incompleto |
+| B.2 | **Memorias MDRyT 2015-2018, 2020, 2022-2023** | Carta formal o contacto directo MDRyT | 5 años sin cobertura primaria |
+| B.3 | **BDP cartera agropecuaria detallada** | Carta BDP o datos ASFI | Solo snapshot Sept 2025 |
+| B.4 | **SIIF subnacional municipal 2009-2023** | Jubileo Bolivia (René Martínez) | DEA municipal bloqueado |
+| B.5 | **INIAF presupuesto por proyecto 2008-2024** | Contactar INIAF transparencia | Retorno por tipo de I+D |
+| B.6 | **SENASAG operativos por dept** | Contactar SENASAG | Complementa sanidad 2019 (25% ejec) |
+
+### C. Próximas fases — outputs y análisis
+
+| # | Acción | Estado |
+|:-:|--------|--------|
+| C.1 | **Poblar Cap. 2 Quarto** (desempeño sector) | Pendiente — datos listos |
+| C.2 | **Poblar Cap. 3 Quarto** (gasto público) | Pendiente — parcial por falta MDRyT |
+| C.3 | **Publicar timeline KnightLab** (Google Sheets → embed) | Pendiente — instrucciones listas |
+| C.4 | **Embeber timeline en Cap. 3** | Depende C.3 |
+| C.5 | **Análisis DEA bootstrap Simar-Wilson** | Pendiente — `dea_dataset.rds` listo |
+| C.6 | **Validar anomalía caña 2015** (PP=261 USD/t vs ref 37) | Pendiente — verificar con INE |
+| C.7 | **Renderizar reporte completo** | Depende C.1-C.2 |
+| C.8 | **Pre-review interno con equipo BM** | Antes de C.7 final |
+
+### Resumen ejecutivo del estado de datos
+
+**LISTOS PARA ANÁLISIS (7/7 capítulos viables):**
+- ✅ Cap. 2 Desempeño sector — TFP, yields, MapBiomas, WDI LAC, PSE ranking, ENA 2008/2015
+- ✅ Cap. 3 Gasto público — VIPFE 1990-2024, BOOST 1996-2008, SPEED 1980-2017, MEFP ejec, BCB crédito
+- ✅ Cap. 4a PSE/GSSE — IDB AgriMonitor 2006-2023 + NRP FAOSTAT 1991-2024
+- ✅ Cap. 4b DEA eficiencia — 81 DMUs × 2012-2020 listos
+- ✅ Cap. 4c Regresiones — Panel v11 × muni v3; M1-M6, MS1-MS5 corridos
+- ✅ Cap. 4d Equidad — EH 309K personas + FIES 2019-2024 + ENA 20K UPAs
+- 🟡 Cap. 5 Recomendaciones — depende síntesis Cap. 2-4 + fichas MDRyT
+
+**LIMITACIONES METODOLÓGICAS CLAVE DOCUMENTADAS:**
+1. Desagregación institucional post-2008 incompleta (MDRyT, INIAF, SENASAG)
+2. PAR III (BM) ejecución 16% en 2024 — señal crítica
+3. Ley 393/2014 quiebre estructural crédito (dummy `post_ley393` disponible)
+4. Anomalía PP caña 2015 requiere verificación
+5. Riego bajo tuición MMAyA (no MDRyT) — fragmentación institucional
+
+### Estadísticas finales del proyecto
+
+| Métrica | Valor |
+|---------|------:|
+| RDS procesados | 124 |
+| CSV espejo | 90 |
+| Scripts R (recolección) | 43 |
+| Scripts R (análisis) | 8 |
+| Fichas MDRyT | 7 |
+| Hitos timeline | 61 |
+| Imágenes timeline | 61 |
+| Variables en panel maestro v11 | **179** |
+| Años cubiertos panel | 35 (1990-2024) |
+| Años cubiertos timeline | 36 (1990-2025) |
+| Tamaño total datos procesados | 142 MB |
 
 ---
 
