@@ -12,7 +12,8 @@
 **NRP extendido:** `01_data/processed/pse_nrp_extended.rds` (NRP 1991-2023 × 7 commodities) ⭐
 **FAOSTAT PP Bolivia:** `01_data/processed/faostat_pp_bolivia.rds` (119 commodities × 1991-2025) ⭐
 **Regresiones extendidas:** `01_data/processed/extended_regression_results.rds` + `05_outputs/tables/extended_regressions.txt`
-**MEFP ejecución anual:** `01_data/processed/mefp_ejecucion_anual.rds` (tasas 2015-2023 MEFP) ⭐ NEW
+**MEFP ejecución anual:** `01_data/processed/mefp_ejecucion_anual.rds` (tasas 2015-2023 MEFP) ⭐
+**Timeline política:** `01_data/timeline/timeline.csv` (61 hitos 1990-2025, formato KnightLab) ⭐ NEW
 **Datasets procesados:** 123 archivos `.rds` en `01_data/processed/` (+ `.csv` espejo)
 **Scripts de recolección:** 42 en `02_code/01_data_collection/` + 8 en `03_analysis/`
 
@@ -579,6 +580,7 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 |:-:|--------|:-------:|:------:|
 | 1 | **Poblar capítulos Quarto** — Cap. 2 (desempeño) y Cap. 3 (gasto) primero | 🔴 Alto | Pendiente |
 | 2 | **Enviar carta MEFP DS 28168** — desagregación institucional post-2008 | 🟡 Medio | Lista para enviar |
+| ✅ | ~~Timeline política agropecuaria 1990-2025~~ — 61 hitos KnightLab en `01_data/timeline/` | — | HECHO sesión 8 |
 | ✅ | ~~Memorias MDRyT 2015-2024~~ — 10 PDFs + 7 fichas de lectura en `03_literature/mdryt_fichas/` | — | HECHO sesión 8 |
 | ✅ | ~~Tasas de ejecución MEFP~~ — script 42; Ejecucion_YYYY.pdf 2015-2023; 9 años × 7 grupos | — | HECHO sesión 8 |
 | ✅ | ~~Precios PP + NRP pre-2006~~ — script 41; FAOSTAT PP + WB Pink Sheet; NRP 1991-2023 × 7 commodities | — | HECHO sesión 8 |
