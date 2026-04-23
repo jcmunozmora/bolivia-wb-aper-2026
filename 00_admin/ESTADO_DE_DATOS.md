@@ -426,9 +426,23 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 
 ### 🟢 TIER 3 — Complementos marginales
 
-**3.8 Memorias institucionales MDRyT 2015-2024**
-- ❌ No descargadas (programas Bolivia Cambia, MIAGUA, Mi Riego, MINKA)
-- **Valor:** Narrativa cualitativa para Cap. 3, justificar cambios en composición del gasto
+**3.8 Memorias institucionales MDRyT 2015-2024 → 7 Fichas de lectura**
+- ✅ **COMPLETADO sesión 8** — 10 PDFs descargados + 7 fichas estructuradas
+- Carpeta: `03_literature/mdryt_fichas/` (README.md + 7 fichas + template)
+- **Fuentes:** Sitio oficial MDRyT (protegido Cloudflare) → Wayback Machine vía HTTP; INIAF rehost; CIPCA
+- **PDFs disponibles (10):** INIAF_Memoria_2019, RPC_2019 (MDRyT consolidado), RPC_Final_2021 (solo IPD-PACU), RPC_Final_2024 (MDRyT), PSARDI_2016_2020, PEI_2014_2018, CIPCA_riego, + 3 corruptos/scan (RPC 2020, 2022, 2023)
+- **Fichas creadas:** 2014_2018_pei, 2014_2018_plan_sectorial (PSARDI), 2019_memoria (INIAF), 2019_rpc_final, 2021_rpc_final (IPD-PACU), 2024_rpc_final, cipca_impacto_riego
+- **Hallazgos cuantitativos clave:**
+  - MDRyT consolidado 2019: Bs 1,200M vigente / 83% ejec
+  - MDRyT consolidado 2024: Bs 1,539M vigente / 74% fin / 54% fís
+  - **PAR III (BM) 2024: 16% fin / 60% fís** — 🔴 señal crítica para APER
+  - SENASAG inversión 25% (2019); IPD-PACU 18% (2019) / 44.7% (2021)
+  - PSARDI 2016-2020: Bs 1,107M en 1,897 proyectos por 7 macro-regiones
+  - PEI 2014-2018: USD 1,106M programados plurianual
+  - CIPCA: atajados Anzaldo funcionan solo 34% (128/372); Taraco 3 sistemas en desuso
+- **Descubrimientos metodológicos:** "Memoria_2019" era INIAF (no MDRyT); "Plan_Sectorial_2014_2018" es en realidad PSARDI 2016-2020; RPC 2021 solo cubre IPD-PACU
+- **Gaps sin cobertura primaria:** 2015, 2016, 2017, 2018, 2020, 2022, 2023 (requiere carta formal MDRyT)
+- **Uso en APER:** citas directas para Cap. 2-5; triangulación con BOOST 1996-2008 + VIPFE 2000-2024 + BCB crédito 2010-2024
 
 **3.9 Datos SIIF subnacional municipal 2009-2023**
 - ❌ Portal Jubileo no filtra por municipio server-side
@@ -565,7 +579,7 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 |:-:|--------|:-------:|:------:|
 | 1 | **Poblar capítulos Quarto** — Cap. 2 (desempeño) y Cap. 3 (gasto) primero | 🔴 Alto | Pendiente |
 | 2 | **Enviar carta MEFP DS 28168** — desagregación institucional post-2008 | 🟡 Medio | Lista para enviar |
-| 3 | **Memorias MDRyT 2015-2024** — narrativa cualitativa para Cap. 3 | 🟢 Bajo | Pendiente |
+| ✅ | ~~Memorias MDRyT 2015-2024~~ — 10 PDFs + 7 fichas de lectura en `03_literature/mdryt_fichas/` | — | HECHO sesión 8 |
 | ✅ | ~~Tasas de ejecución MEFP~~ — script 42; Ejecucion_YYYY.pdf 2015-2023; 9 años × 7 grupos | — | HECHO sesión 8 |
 | ✅ | ~~Precios PP + NRP pre-2006~~ — script 41; FAOSTAT PP + WB Pink Sheet; NRP 1991-2023 × 7 commodities | — | HECHO sesión 8 |
 | ✅ | ~~ENA 2008 + 2015~~ — scripts 39 + 40; 8,022+12,650 UPAs; comparación dept 2008 vs 2015 | — | HECHO sesión 8 |
