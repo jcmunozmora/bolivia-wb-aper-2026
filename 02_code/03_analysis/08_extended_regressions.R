@@ -31,21 +31,19 @@ sep <- function(titulo) {
 # ══════════════════════════════════════════════════════════
 sep("SECCIÓN 1: REGRESIONES NACIONALES — TFP")
 
-nat <- readRDS(file.path(proc, "spending_panel_v5.rds"))
+nat <- readRDS(file.path(proc, "spending_panel_v7.rds"))
 setDT(nat)
+cat("Usando panel_v7 (35 años × 118 vars)\n")
 
-# Integrar Hansen nacional si ya existe panel_v6, si no calculamos aquí
-if (file.exists(file.path(proc, "spending_panel_v6.rds"))) {
-  nat <- readRDS(file.path(proc, "spending_panel_v6.rds"))
-  setDT(nat)
-  cat("Usando panel_v6 (con Hansen integrado)\n")
-} else {
-  # Calcular deforestación nacional sumando depts
+# Hansen nacional: sumar depts si no viene ya en el panel
+if (!"defor_nacional_ha" %in% names(nat)) {
   hd <- readRDS(file.path(proc, "hansen_dept_annual_deforestation.rds"))
   setDT(hd)
   hnat <- hd[, .(defor_nacional_ha = sum(defor_ha, na.rm = TRUE)), by = year]
   nat <- merge(nat, hnat, by = "year", all.x = TRUE)
-  cat("Hansen integrado directamente desde dept_annual\n")
+  cat("Hansen integrado desde dept_annual\n")
+} else {
+  cat("Hansen ya incluido en panel_v7\n")
 }
 
 # Variables log
@@ -309,26 +307,29 @@ results <- list(
 saveRDS(results, file.path(proc, "extended_regression_results.rds"))
 cat("✓ extended_regression_results.rds guardado\n")
 
-# Tablas a archivo
-sink(file.path(tbl, "extended_regressions.txt"))
-cat("Bolivia Agricultural PER — Extended Regressions\n")
-cat(format(Sys.time(), "%Y-%m-%d %H:%M"), "\n\n")
-
-cat("═══ NACIONAL: TFP (baseline + controles) ═══\n")
-etable(m1, m2, m3, digits = 3, se.below = TRUE, fitstat = ~r2 + n)
-if (!is.null(m6)) {
-  cat("\n═══ NACIONAL: TFP con rezagos ═══\n")
-  etable(m4, m5, m6, digits = 3, se.below = TRUE, fitstat = ~r2 + n)
+# Tablas a archivo (print each model individually — evita bug fixest multi-model)
+etxt <- function(titulo, ...) {
+  args <- list(...)
+  mods <- Filter(Negate(is.null), args)
+  if (length(mods) == 0) return(character(0))
+  lines_out <- character(0)
+  for (m in mods) {
+    lines_out <- c(lines_out, capture.output(print(summary(m))))
+    lines_out <- c(lines_out, "")
+  }
+  c(titulo, lines_out)
 }
-cat("\n═══ SUBNACIONAL: PIB agropecuario ═══\n")
-do.call(etable, c(Filter(Negate(is.null), list(ms1, ms2, ms3, ms4, ms5)),
-                  list(digits = 3, se.below = TRUE, fitstat = ~r2 + n)))
-cat("\n═══ SUBNACIONAL: Producción INE ═══\n")
-do.call(etable, c(Filter(Negate(is.null), list(mp1, mp2, mp3, mp4)),
-                  list(digits = 3, se.below = TRUE, fitstat = ~r2 + n)))
-cat("\n═══ EFICIENCIA TÉCNICA (2017-2021) ═══\n")
-print(eff_avg)
-sink()
+
+out_lines <- c(
+  "Bolivia Agricultural PER — Extended Regressions",
+  format(Sys.time(), "%Y-%m-%d %H:%M"), "",
+  etxt("=== NACIONAL: TFP ===", m1, m2, m3, m4, m5, m6),
+  etxt("=== SUBNACIONAL: PIB agropecuario ===", ms1, ms2, ms3, ms4, ms5),
+  etxt("=== SUBNACIONAL: Produccion INE ===", mp1, mp2, mp3, mp4),
+  "=== EFICIENCIA TECNICA (2017-2021) ===",
+  capture.output(print(eff_avg))
+)
+writeLines(out_lines, file.path(tbl, "extended_regressions.txt"))
 
 cat("✓ Tabla guardada: 05_outputs/tables/extended_regressions.txt\n")
 cat("\n✓ ANÁLISIS COMPLETADO\n")
