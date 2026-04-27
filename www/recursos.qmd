@@ -1,0 +1,84 @@
+---
+title: "Recursos descargables"
+subtitle: "Reportes, datos, documentación institucional"
+---
+
+::: {.lead}
+Documentos, datos y análisis generados o consultados durante el estudio. Todos los recursos del Banco Mundial citados son de acceso público.
+:::
+
+## Reporte original — antecedente
+
+[World Bank (2011) — APER Bolivia 1996-2008 (PDF)](downloads/WB_APER_2011_Spanish.pdf){.download-btn}
+
+> **World Bank (2011).** *Bolivia: Análisis del Gasto Público en el Sector Agropecuario.* Informe N.° 59696-BO. Banco Mundial, Oficina Bolivia.
+
+Reporte original que esta actualización extiende. Cubrió el período 1996–2008 con datos del entonces SIGMA, hoy SIGEP. La presente actualización cierra la brecha temporal hasta 2024.
+
+## Inventario y diccionario de datos
+
+[Inventario completo de datos (Excel, 5 hojas)](downloads/Inventario_Datos_APER_Bolivia_2026.xlsx){.download-btn}
+[Diccionario panel maestro v12 (CSV)](downloads/spending_panel_v12_dictionary.csv){.download-btn}
+[Estado de datos completo (Markdown)](https://github.com/jcmunoz/2026_WB_Bolivia/blob/main/00_admin/ESTADO_DE_DATOS.md){.download-btn}
+
+## Solicitud formal al MEFP
+
+Para acceder a la información de ejecución presupuestaria por entidad agropecuaria 2009–2024, el equipo del Banco Mundial Bolivia gestiona una solicitud formal bajo el Decreto Supremo 28168/2005 (acceso a información pública).
+
+[Carta MEFP genérica (Word)](downloads/Carta_MEFP_Solicitud_Datos_APER2026.docx){.download-btn}
+[Anexo A — Portada APER 2011 (PDF)](downloads/Anexo_A_Portada_Estudio_Previo.pdf){.download-btn}
+[Anexo B — Listado técnico de variables (Excel)](downloads/Anexo_B_Listado_Variables_APER2026.xlsx){.download-btn}
+[Anexo C — Acuerdo de confidencialidad (Word)](downloads/Anexo_C_Acuerdo_Confidencialidad.docx){.download-btn}
+
+## Línea de tiempo de política agropecuaria
+
+[Timeline 1990–2025 — CSV KnightLab](downloads/timeline.csv){.download-btn}
+[Vista previa simplificada (CSV)](downloads/timeline_preview.csv){.download-btn}
+
+61 hitos validados con fecha exacta, fuente primaria, contexto y vínculo al panel. Compatible con [Knight Lab TimelineJS](https://timeline.knightlab.com).
+
+## Fichas de lectura — MDRyT
+
+Fichas estructuradas a partir de la documentación oficial del Ministerio de Desarrollo Rural y Tierras y de fuentes secundarias (CIPCA, Fundación TIERRA).
+
+| Documento | Año | Tipo |
+|-----------|:---:|------|
+| Plan Estratégico Institucional MDRyT | 2014–2018 | Estratégico |
+| PSARDI Plan Sectorial Agropecuario | 2016–2020 | Estratégico |
+| Memoria Anual INIAF | 2019 | Memoria institucional |
+| RPC Final MDRyT | 2019 | Rendición pública de cuentas |
+| RPC Final IPD-PACU (Pesca) | 2021 | Rendición pública de cuentas |
+| RPC Final MDRyT | 2024 | Rendición pública de cuentas |
+| CIPCA — Impacto riego/microriego | 2018 | Evaluación externa |
+
+[Ver fichas en GitHub](https://github.com/jcmunoz/2026_WB_Bolivia/tree/main/03_literature/mdryt_fichas){.download-btn}
+
+## Reportes complementarios consultados
+
+- **World Bank (2021).** *Tapping the Potential — Bolivia.* Análisis sectorial del Banco Mundial sobre el potencial de crecimiento agropecuario.
+- **World Bank.** *Systematic Country Diagnostic Update — Bolivia.* Diagnóstico estructural de la economía boliviana.
+
+[World Bank Tapping Potential 2021 (PDF)](downloads/WB_Tapping_Potential_2021.pdf){.download-btn}
+[World Bank SCD Update Bolivia (PDF)](downloads/WB_Bolivia_SCD_Update.pdf){.download-btn}
+
+## Repositorio de código
+
+Todo el código de análisis es público:
+
+- **44 scripts** de recolección y procesamiento (`02_code/01_data_collection/`).
+- **8 scripts** de análisis econométrico (`02_code/03_analysis/`).
+- Reproducibilidad: cada panel se construye de forma incremental con scripts numerados (28 → 36 → 38 → 41 → 43 → 44 = panel v12).
+
+[Repositorio GitHub](https://github.com/jcmunoz/2026_WB_Bolivia){.download-btn}
+
+## Cita sugerida
+
+Para citar este trabajo:
+
+> Banco Mundial / Universidad EAFIT (2026). *Bolivia Agricultural Public Expenditure Review — Actualización 2026.* Documento de trabajo. Disponible en: [URL del sitio]
+
+## Licencia
+
+Los datos primarios provienen de fuentes oficiales con sus propias licencias. El análisis derivado y la documentación se distribuyen bajo **Creative Commons Attribution 4.0 (CC-BY 4.0)**, salvo indicación contraria.
+
+Imágenes de la línea de tiempo bajo licencias CC-BY o CC-BY-SA de Wikimedia Commons (atribuciones registradas en el CSV correspondiente).

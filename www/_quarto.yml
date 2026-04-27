@@ -1,0 +1,86 @@
+project:
+  type: website
+  output-dir: ../docs
+  resources:
+    - "assets/**"
+    - "downloads/**"
+    - "figures/**"
+
+website:
+  title: "APER Bolivia 2026"
+  description: "Actualización del Agricultural Public Expenditure Review — Banco Mundial / Bolivia"
+  site-url: "https://jcmunoz.github.io/2026_WB_Bolivia"
+  favicon: assets/favicon.svg
+  open-graph: true
+  twitter-card: false
+  search:
+    type: overlay
+    location: navbar
+
+  navbar:
+    pinned: false
+    background: light
+    foreground: dark
+    title: "APER Bolivia 2026"
+    left:
+      - href: index.qmd
+        text: Inicio
+      - href: proyecto.qmd
+        text: Proyecto
+      - text: Hallazgos
+        menu:
+          - href: sector.qmd
+            text: Sector agropecuario
+          - href: gasto.qmd
+            text: Gasto público
+          - href: eficiencia.qmd
+            text: Eficiencia y equidad
+      - href: timeline.qmd
+        text: Línea de tiempo
+      - href: datos.qmd
+        text: Datos
+      - href: recursos.qmd
+        text: Recursos
+
+  page-footer:
+    border: true
+    left: "APER Bolivia 2026 · Banco Mundial · Universidad EAFIT"
+    right:
+      - text: "Última actualización 2026-04"
+      - text: "GitHub"
+        href: https://github.com/jcmunoz/2026_WB_Bolivia
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles/custom.scss
+    toc: true
+    toc-depth: 2
+    toc-title: "En esta página"
+    toc-location: right
+    code-copy: true
+    smooth-scroll: true
+    link-external-icon: false
+    link-external-newwindow: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    grid:
+      sidebar-width: 220px
+      body-width: 760px
+      margin-width: 220px
+      gutter-width: 1.5rem
+    page-layout: article
+    lang: es
+    fontsize: 17px
+    mainfont: "Inter"
+    monofont: "JetBrains Mono"
+    title-block-banner: false
+    title-block-style: plain
+
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+  message: false
+  cache: true

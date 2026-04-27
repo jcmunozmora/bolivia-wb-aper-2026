@@ -2,13 +2,22 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![R version](https://img.shields.io/badge/R-%E2%89%A5%204.3-blue.svg)](https://www.r-project.org/)
-[![Data](https://img.shields.io/badge/panel-1990--2024-green.svg)](./01_data/processed/spending_panel_v3.rds)
+[![Panel](https://img.shields.io/badge/panel-v12_(176_vars,_1990--2024)-green.svg)](./01_data/processed/spending_panel_v12.rds)
+[![Site](https://img.shields.io/badge/site-GitHub_Pages-14213D.svg)](https://jcmunoz.github.io/2026_WB_Bolivia)
 [![Reproducible](https://img.shields.io/badge/reproducible-yes-brightgreen.svg)](./CONTRIBUTING.md)
-[![Anexo datos](https://img.shields.io/badge/docs-Anexo%20A-blue.svg)](./04_report/appendix/A_data_sources.qmd)
 
-**Cliente:** World Bank – Bolivia Country Office
-**Periodo de análisis:** 1961-2024 (nacional) / 1984-2024 (subnacional)
-**Estado:** Pipeline de datos completo ✅ · Análisis en curso
+**Cliente:** World Bank — Bolivia Country Office
+**Antecedente:** Actualiza el [APER 2011 (Informe N.° 59696-BO)](./01_data/raw/wb_reports/WB_APER_2011_Spanish.pdf)
+**Periodo de análisis:** 1990-2024 (nacional) / 2012-2021 (subnacional / municipal)
+**Estado:** Datos consolidados (panel v12 con 176 vars) · Sitio público publicado · Reporte técnico en redacción
+
+## 🌐 Sitio público
+
+El proyecto cuenta con un sitio web minimalista que reúne hallazgos, datos y recursos descargables:
+
+**👉 [https://jcmunoz.github.io/2026_WB_Bolivia](https://jcmunoz.github.io/2026_WB_Bolivia)**
+
+Source en [`www/`](./www) · Renderizado en [`docs/`](./docs) · Auto-deploy vía GitHub Actions ([.github/workflows/publish-site.yml](./.github/workflows/publish-site.yml))
 
 ## Quickstart
 

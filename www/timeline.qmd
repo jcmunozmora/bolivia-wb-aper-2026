@@ -1,0 +1,109 @@
+---
+title: "Política agropecuaria 1990-2025"
+subtitle: "Línea de tiempo de hitos institucionales y eventos críticos"
+toc: false
+page-layout: full
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(data.table); library(gt)
+})
+tl <- fread(here::here("01_data/timeline/timeline.csv"))
+```
+
+::: {.lead}
+Esta línea de tiempo documenta 61 hitos de política agropecuaria boliviana entre 1990 y 2025: leyes, decretos supremos, programas emblemáticos y eventos externos que ayudan a interpretar las series cuantitativas del estudio.
+:::
+
+## Resumen
+
+```{r}
+#| label: tbl-resumen
+tl[, epoca := fcase(
+  Year < 2006, "1990–2005 · Pre-MAS",
+  Year < 2020, "2006–2019 · Era Morales",
+  default     = "2019–2025 · Áñez + Arce"
+)]
+tl_sum <- tl[, .(`Hitos` = .N), by = .(`Período` = epoca, Grupo = Group)]
+tl_wide <- dcast(tl_sum, `Período` ~ Grupo, value.var = "Hitos", fill = 0)
+gt(tl_wide) |>
+  tab_header(title = md("**Hitos por período y categoría**")) |>
+  tab_source_note(md("*Fuente: Gaceta Oficial + Lexivox + medios bolivianos + think tanks. 61 hitos validados.*")) |>
+  opt_table_outline(style = "none")
+```
+
+::: {.callout-note}
+## Cómo se construyó
+Cada hito cumple al menos uno de estos criterios:
+
+1. **Instrumento legal**: ley o decreto supremo del sector.
+2. **Programa emblemático**: presupuesto ≥ USD 10 M o impacto ≥ 10 000 beneficiarios.
+3. **Evento externo**: shock con impacto ≥ 1 % del PIB agropecuario.
+4. **Acuerdo / cumbre**: que produjo decisiones vinculantes.
+
+Cada hito tiene fecha exacta, fuente primaria (Gaceta Oficial / Lexivox / FAOLEX), al menos una fuente secundaria (medio o think tank), descripción contextual de 150–300 palabras y vínculo al panel cuantitativo del estudio. El listado completo está disponible en formato KnightLab TimelineJS.
+:::
+
+## Pre-MAS · 1990–2005
+
+```{r}
+tl[Year < 2006 & Type != "title",
+   .(`Año` = ifelse(is.na(Month), as.character(Year),
+                     sprintf("%d-%02d", Year, Month)),
+     Hito = Headline,
+     Grupo = Group)] |>
+  setorder(`Año`) |>
+  gt() |> opt_table_outline(style = "none")
+```
+
+Período de transición: cierre del modelo neoliberal (Ley INRA 1715, Ley Forestal 1700, Ley SAFCO 1178) y el ascenso de la confrontación social (Guerra del Agua 2000, Octubre Negro 2003) que culmina con el triunfo electoral del MAS en diciembre 2005.
+
+## Era Morales · 2006–2019
+
+```{r}
+tl[Year >= 2006 & Year < 2020 & Type != "title",
+   .(`Año` = ifelse(is.na(Month), as.character(Year),
+                     sprintf("%d-%02d", Year, Month)),
+     Hito = Headline,
+     Grupo = Group)] |>
+  setorder(`Año`) |>
+  gt() |> opt_table_outline(style = "none")
+```
+
+Período de mayor densidad legislativa para el sector: **catorce años, veinticinco hitos**. Incluye la creación del MDRyT, INIAF, EMAPA, BDP; la nueva Constitución 2009 con soberanía alimentaria explícita; las leyes Madre Tierra (071, 300); la Ley 144 de Revolución Productiva; la Cumbre Sembrando Bolivia 2015; y los incendios de la Chiquitanía 2019.
+
+## Áñez + Arce · 2019–2025
+
+```{r}
+tl[Year >= 2020 & Type != "title",
+   .(`Año` = ifelse(is.na(Month), as.character(Year),
+                     sprintf("%d-%02d", Year, Month)),
+     Hito = Headline,
+     Grupo = Group)] |>
+  setorder(`Año`) |>
+  gt() |> opt_table_outline(style = "none")
+```
+
+Período de turbulencia: transición política, pandemia, autorización de OGM (DS 4232), retorno del MAS, paro del Censo 2022, crisis de divisas 2023, escasez de combustibles e incendios masivos en 2024, elecciones generales 2025.
+
+## Línea de tiempo interactiva
+
+::: {.callout-tip}
+## Versión KnightLab TimelineJS
+La línea de tiempo está construida en formato compatible con [Knight Lab TimelineJS](https://timeline.knightlab.com). Cada hito incluye fecha exacta, descripción detallada (150–300 palabras), fuente primaria, fuente secundaria, imagen ilustrativa con licencia Creative Commons (Wikimedia Commons) y etiquetas temáticas.
+
+Para publicarla:
+
+1. Importar `01_data/timeline/timeline.csv` a una hoja de Google Sheets nueva.
+2. Publicar la hoja como CSV (`Archivo → Compartir → Publicar en web`).
+3. Pegar el enlace en [timeline.knightlab.com/#make](https://timeline.knightlab.com/#make).
+
+Las instrucciones detalladas están en `01_data/timeline/INSTRUCCIONES_KNIGHTLAB.md` del repositorio.
+:::
+
+## Recursos
+
+[Descargar timeline.csv](downloads/timeline.csv){.download-btn}
+[Ver fuentes detalladas](https://github.com/jcmunoz/2026_WB_Bolivia/blob/main/01_data/timeline/sources.md){.download-btn}

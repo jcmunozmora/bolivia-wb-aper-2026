@@ -1,0 +1,75 @@
+---
+title: "El proyecto"
+subtitle: "Antecedentes, alcance y metodología"
+---
+
+## Antecedente
+
+En 2011, el Banco Mundial publicó el *Agricultural Public Expenditure Review* (APER) de Bolivia (Informe N.° 59696-BO), un análisis sistemático de la magnitud, composición y eficiencia del gasto público agropecuario para el período 1996–2008. El reporte fue elaborado en conjunto con contrapartes del Ministerio de Economía y Finanzas Públicas (MEFP) y el entonces Ministerio de Desarrollo Rural, Agropecuario y Medio Ambiente.
+
+Quince años después, el contexto del sector agropecuario boliviano se ha transformado profundamente: la economía vivió un ciclo expansivo basado en hidrocarburos (2006–2014), una desaceleración fiscal, una crisis sanitaria global, eventos climáticos extremos (incendios masivos en 2019 y 2024, sequía 2023), y una sustitución de instrumentos de apoyo al sector —del gasto fiscal directo al crédito subsidiado vía Ley 393/2014.
+
+Esta actualización extiende la cobertura temporal del análisis a **35 años (1990–2024)**, integra metodologías internacionales estándar (OCDE-PSE, IFPRI-SPEED, DEA con bootstrap Simar-Wilson), y amplía el conjunto de fuentes incluyendo registros administrativos, censos, encuestas de hogares y datos satelitales.
+
+## Alcance
+
+El estudio responde a tres preguntas guía:
+
+1. **¿Cuánto gasta Bolivia en el sector agropecuario y cómo se compara con la región?** Análisis de nivel y composición del gasto, benchmarking con la meta de Maputo y con países LAC vía la base IFPRI-SPEED.
+
+2. **¿Es eficiente y equitativo este gasto?** Análisis envolvente de datos (DEA) a nivel departamental; regresiones panel que vinculan gasto con productividad agrícola (TFP) y PIB sectorial; análisis de incidencia subnacional con la Encuesta de Hogares.
+
+3. **¿Qué reorientaciones permitirían maximizar retornos productivos, sociales y ambientales?** Síntesis basada en la evidencia empírica y en la literatura comparada de reformas de gasto agropecuario en LAC.
+
+## Metodologías
+
+::: {.callout-note}
+## Producer Support Estimates (PSE)
+Metodología OCDE aplicada por el BID-AgriMonitor para el período **2006–2023**. Para extender el análisis hacia atrás, se calculó la *Tasa Nominal de Protección* (NRP) por commodity para **1991–2024** usando precios productor FAOSTAT contra precios de referencia mundiales (WB Pink Sheet).
+:::
+
+::: {.callout-note}
+## IFPRI SPEED 2019
+Base de datos comparable internacional (164 países, 1980–2017) basada en Government Finance Statistics (GFS) del FMI. Permite ranquear el esfuerzo fiscal agropecuario boliviano contra LAC y verificar el cumplimiento de la meta de Maputo (10 % del gasto público total).
+:::
+
+::: {.callout-note}
+## DEA con bootstrap Simar-Wilson
+Análisis envolvente de datos a nivel departamental (9 DMUs × 9 años = 81 observaciones), con tres inputs (gasto agropecuario real, crédito al sector, área irrigada) y dos outputs (PIB agropecuario real, rendimiento cereales). Bootstrap con B=2 000 iteraciones para intervalos de confianza. Segunda etapa Tobit con scores ~ uso de suelo + deforestación + clima.
+:::
+
+::: {.callout-note}
+## Panel econométrico fixest
+Modelos de productividad total de factores con efectos fijos: $\ln \text{TFP}_t = \beta_1 \ln \text{Inv}_t + \beta_2 \ln \text{LC antrópica}_t + \beta_3 t + \varepsilon_t$. Versiones con rezagos (L1, L2), variables climáticas y deforestación. Subnacional: $\ln \text{PIB agro}_{it} = \beta_1 \ln \text{Gasto}_{it} + \alpha_i + \gamma_t + \varepsilon_{it}$.
+:::
+
+## Estructura institucional
+
+El gasto agropecuario boliviano involucra al menos diez entidades con presupuesto y mandato relacionados:
+
+| Entidad | Mandato |
+|---------|---------|
+| MDRyT | Rector del sector — política, planificación, programas |
+| INIAF | Investigación e innovación agropecuaria; semillas |
+| SENASAG | Sanidad agropecuaria e inocuidad alimentaria |
+| EMAPA | Compras garantizadas y comercialización |
+| INRA | Saneamiento y titulación de tierras |
+| ABT | Control de bosques y autorizaciones de desmonte |
+| FDI | Transferencias directas a comunidades indígenas |
+| BDP-SAM | Crédito productivo subsidiado |
+| SENARI | Planificación y regulación de riego |
+| MMAyA | Mi Riego / MIAGUA — *fuera de tuición MDRyT* |
+
+Esta arquitectura — y su fragmentación reconocida en el propio Plan Estratégico Institucional MDRyT 2014–2018 — es uno de los hallazgos institucionales del estudio.
+
+## Equipo y contraparte
+
+El estudio se realiza con la **Oficina del Banco Mundial en Bolivia** y contrapartes técnicas del **Ministerio de Economía y Finanzas Públicas (MEFP)** y el **Ministerio de Desarrollo Rural y Tierras (MDRyT)**.
+
+La actualización 2026 fue coordinada técnicamente por **Universidad EAFIT (Colombia)** como consultor asociado al Banco Mundial.
+
+## Acceso al reporte original
+
+El reporte APER 2011 está disponible para consulta como documento de referencia:
+
+[Descargar reporte APER 2011 (PDF)](downloads/WB_APER_2011_Spanish.pdf){.download-btn}

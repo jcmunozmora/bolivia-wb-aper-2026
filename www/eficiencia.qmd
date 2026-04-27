@@ -1,0 +1,155 @@
+---
+title: "Eficiencia y equidad del gasto"
+subtitle: "DEA, regresiones panel e incidencia subnacional"
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(data.table); library(ggplot2); library(scales); library(gt); library(fixest)
+})
+source(here::here("02_code", "00_setup", "01_constants.R"))
+source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
+
+panel <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
+res   <- readRDS(here::here("01_data/processed/extended_regression_results.rds"))
+
+fig <- function(name) paste0("figures/", name, ".png")
+```
+
+::: {.lead}
+Este capítulo evalúa si el gasto agropecuario boliviano es eficiente y equitativo. Combina análisis envolvente de datos a nivel departamental, regresiones panel de productividad y análisis de incidencia con la Encuesta de Hogares.
+:::
+
+## Apoyo al productor — PSE Bolivia en contexto LAC
+
+![Tasa Producer Support Estimate (PSE%) Bolivia vs LAC, 2006–2023](`r fig("fig15_psep_bolivia_vs_lac")`)
+
+![Brecha de precios doméstico-frontera por commodity, Bolivia 2023](`r fig("fig16_price_gap_by_commodity_2023")`)
+
+![Heatmap PSCT por commodity y año (Bolivia)](`r fig("fig17_psct_heatmap")`)
+
+::: {.callout-note}
+## Patrón dual de protección
+Bolivia exhibe un patrón dual de apoyo al productor que persiste en el tiempo:
+
+- **Taxa exportables** (transferencia implícita del productor al consumidor): soya −37 %, arroz −33 %, sorgo −47 %.
+- **Protege seguridad alimentaria**: maíz +46 %, trigo +28 %, cebada +65 %.
+- PSE total Bolivia 2023: **5.8 %** — quinto en LAC tras México (6.6 %), Colombia (5.6 %), Perú (5.1 %), Brasil (4.4 %).
+
+Este patrón es coherente con la política explícita de soberanía alimentaria post-2009 y los controles de precios sobre exportables.
+:::
+
+## Eficiencia técnica departamental — DEA
+
+![Eficiencia simple por departamento, 2019 (proxy)](`r fig("fig24_eficiencia_simple_2019")`)
+
+```{r}
+#| label: tbl-eff
+eff <- as.data.table(res$eff_avg)
+eff[, .(
+  Departamento = dept_upper,
+  `Score eficiencia` = round(eff_mean, 3),
+  `PIB agrop. (BOB MM)` = round(pib_mean_mm, 0),
+  `Gasto (BOB MM)` = round(gasto_mean_mm, 1),
+  `Ratio PIB/Gasto` = round(ratio_mean, 0)
+)] |>
+  gt() |>
+  tab_header(title = md("**Score de eficiencia técnica relativa, promedio 2017–2021**")) |>
+  tab_source_note(md("*Score: ratio PIB/gasto normalizado por máximo anual. 1.0 = depto frontera.*")) |>
+  data_color(columns = "Score eficiencia",
+             palette = c("#C2410C", "#FED7AA", "#14213D"),
+             domain = c(0, 0.5, 1)) |>
+  opt_table_outline(style = "none")
+```
+
+Santa Cruz domina como frontera de eficiencia con score 1.0 (ratio PIB/gasto ~378), seguido por Beni (0.49) y Cochabamba (0.28). Tarija aparece como el menos eficiente (0.05) — gran gasto, bajo PIB agropecuario relativo.
+
+::: {.callout-note}
+## Determinante principal de la eficiencia
+La regresión de segunda etapa muestra que la **expansión de uso antrópico del suelo (MapBiomas)** explica el **63 % de la varianza** en los scores de eficiencia departamental.
+
+```
+score ~ ln(área antrópica)
+β = 0.230  (SE 0.028, p<0.001)
+R² ajustado = 0.632  (n=40)
+```
+
+Es decir, los departamentos con frontera agrícola activa son los que aparecen como "más eficientes" en términos de PIB agropecuario por boliviano gastado. Esta lectura matiza el resultado: la eficiencia observada está vinculada a la expansión territorial, no necesariamente a mejor gestión del gasto.
+:::
+
+## Regresiones de productividad — panel nacional
+
+```{r}
+#| label: tbl-tfp-summary
+m1 <- res$m1; m2 <- res$m2; m3 <- res$m3
+data.table(
+  Modelo = c("M1: TFP ~ Inv", "M2: TFP ~ Inv + LC + tendencia", "M3: M2 + PSE"),
+  `Coef. Inv (β1)` = c(round(coef(m1)["ln_inv_agro"], 3),
+                        round(coef(m2)["ln_inv_agro"], 3),
+                        round(coef(m3)["ln_inv_agro"], 3)),
+  `Coef. LC antrópica` = c(NA,
+                            round(coef(m2)["ln_lc_antrop"], 3),
+                            round(coef(m3)["ln_lc_antrop"], 3)),
+  `Coef. PSE%` = c(NA, NA, round(coef(m3)["PSEP_pct"], 4)),
+  `R² ajustado` = c(round(r2(m1, "ar2"), 3),
+                     round(r2(m2, "ar2"), 3),
+                     round(r2(m3, "ar2"), 3)),
+  `N obs` = c(nobs(m1), nobs(m2), nobs(m3))
+) |>
+  gt() |>
+  tab_header(title = md("**Determinantes de la TFP agrícola, Bolivia 1990–2023**")) |>
+  tab_source_note(md("*Estimación: feols(). Variables en log. Panel maestro v12.*")) |>
+  opt_table_outline(style = "none")
+```
+
+::: {.callout-tip}
+## Interpretación de las regresiones
+- La **elasticidad TFP-inversión** es positiva pero modesta: ~0.09 en el modelo baseline. Es decir, doblar la inversión agropecuaria se asocia con un aumento de TFP de ~9 %.
+- La **expansión de uso antrópico** muestra un coeficiente positivo y significativo: la frontera agrícola eleva la productividad agregada (mecanismo de ampliación de escala), no la productividad por hectárea.
+- El **PSE% es significativo y negativo** (β = −0.004, p<0.05): el apoyo de precios distorsiona la asignación de recursos y se asocia con menor TFP — un resultado consistente con la literatura OCDE.
+:::
+
+## Equidad — incidencia rural
+
+```{r}
+#| label: fig-incidencia
+#| fig-cap: "Pobreza rural por departamento (Encuesta de Hogares 2024)."
+eh_dept <- as.data.table(readRDS(here::here("01_data/processed/eh_dept_anual.rds")))
+eh_2024 <- eh_dept[year == 2024 & area == "rural"][!is.na(pov_rate)]
+ggplot(eh_2024, aes(x = reorder(depto, pov_rate), y = pov_rate)) +
+  geom_col(fill = "#14213D", alpha = 0.85) +
+  coord_flip() +
+  scale_y_continuous(labels = label_number(suffix = "%"), expand = c(0, 0)) +
+  labs(x = NULL, y = NULL,
+       caption = "Fuente: Encuesta de Hogares 2024, INE Bolivia.") +
+  theme_minimal(base_family = "Inter", base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "#FAFAF9", color = NA),
+    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.caption = element_text(color = "#6B7280", hjust = 0, size = 9)
+  )
+```
+
+::: {.callout-warning}
+## Asimetría territorial
+Los departamentos andinos —**Chuquisaca, Oruro y Potosí**— concentran las mayores tasas de pobreza rural (54–64 %), mientras Pando, Tarija y Beni muestran tasas de 27–34 %.
+
+Cruzando esta información con la distribución del gasto público agropecuario, se observa que las regiones más pobres no reciben proporcionalmente más recursos. La paradoja es nítida: **Santa Cruz concentra el mayor gasto agropecuario absoluto, mientras los departamentos más pobres reciben el más alto per cápita pero en montos absolutos pequeños** que no permiten programas de transformación productiva de escala.
+:::
+
+## Síntesis
+
+| Dimensión | Hallazgo | Implicación |
+|-----------|----------|-------------|
+| PSE Bolivia 2023 | 5.8 % — 5° en LAC | Apoyo moderado-bajo en contexto regional |
+| Patrón dual | Taxa soya/arroz, protege maíz/trigo | Política explícita de soberanía alimentaria |
+| DEA depts | Santa Cruz frontera (1.0); Tarija mínimo (0.05) | Heterogeneidad enorme |
+| 2ª etapa DEA | LC antrópica explica 63 % varianza | Eficiencia ligada a expansión territorial |
+| TFP-Inv | Elasticidad ~0.09 (significativa) | Retornos positivos pero modestos |
+| PSE-TFP | Coef negativo (−0.004**) | Apoyo de precios distorsiona productividad |
+| Incidencia | Chuquisaca/Oruro/Potosí 54–64 % pobreza | Asimetría territorial del gasto |
+
+Los retornos del gasto agropecuario son **positivos pero modestos**, **muy heterogéneos por territorio**, y **vinculados más a expansión de frontera que a mejoras de productividad por hectárea**. Estos hallazgos motivan las recomendaciones de reorientación del próximo capítulo del reporte técnico.

@@ -1,0 +1,475 @@
+/*-- scss:defaults --*/
+
+// ── Tipografía minimalista profesional (Inter + JetBrains Mono) ─────────────
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-family-monospace: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+$font-family-serif: 'Inter', sans-serif;
+
+$presentation-font-size-root: 17px;
+
+// ── Paleta sobria (academic / WB navy con acento terracota) ─────────────────
+$navy:        #14213D;   // azul oscuro APER
+$navy-light:  #1F3057;
+$ink:         #1A1A1A;   // texto principal
+$ink-soft:    #4A4A4A;   // texto secundario
+$paper:       #FAFAF9;   // fondo cálido
+$rule:        #E5E5E5;   // líneas
+$rule-soft:   #F0F0F0;
+$accent:      #C2410C;   // terracota — solo para acentos puntuales
+$accent-soft: #FED7AA;
+$muted:       #6B7280;
+
+$body-bg:     $paper;
+$body-color:  $ink;
+$link-color:  $navy;
+$link-hover-color: $accent;
+
+$primary:     $navy;
+$secondary:   $muted;
+
+$border-color: $rule;
+$component-active-bg: $navy;
+
+// ── Headings: tight tracking, peso variado ──────────────────────────────────
+$headings-font-family: 'Inter', sans-serif;
+$headings-font-weight: 600;
+$headings-color: $navy;
+$headings-line-height: 1.2;
+
+// ── Code blocks ──────────────────────────────────────────────────────────────
+$code-bg: $rule-soft;
+$code-color: $navy-light;
+$pre-bg: $rule-soft;
+$pre-border-radius: 4px;
+
+// ── Navbar ───────────────────────────────────────────────────────────────────
+$navbar-bg: $paper;
+$navbar-fg: $ink;
+$navbar-hl: $accent;
+
+/*-- scss:rules --*/
+
+// ── Reset / global ──────────────────────────────────────────────────────────
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'ss01' 1;
+  letter-spacing: -0.011em;
+}
+
+// ── Headings con jerarquía clara y tracking ajustado ────────────────────────
+h1, .h1 {
+  font-size: 2.0rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+h2, .h2 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid $rule;
+}
+
+h3, .h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: $ink;
+}
+
+h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $muted;
+  margin-top: 1.5rem;
+}
+
+// ── Subtítulo del documento ─────────────────────────────────────────────────
+.subtitle, .quarto-title-meta {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: $muted;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+// ── Layout: ancho legible, espaciado generoso ──────────────────────────────
+.page-columns,
+main.content,
+#quarto-content > main {
+  max-width: 760px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Para páginas que necesitan ancho completo (timeline, dashboards)
+.full-width {
+  max-width: 1200px !important;
+}
+
+// ── Párrafos ────────────────────────────────────────────────────────────────
+p {
+  line-height: 1.65;
+  margin-bottom: 1.1rem;
+  color: $ink-soft;
+}
+
+p strong {
+  color: $ink;
+  font-weight: 600;
+}
+
+// ── Links sin subrayado por defecto, subrayado fino al hover ───────────────
+a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+a:hover {
+  color: $accent;
+  border-bottom-color: $accent;
+}
+
+main a {
+  border-bottom: 1px solid rgba(20, 33, 61, 0.25);
+}
+
+main a:hover {
+  border-bottom-color: $accent;
+}
+
+// ── Navbar ultra limpia ─────────────────────────────────────────────────────
+.navbar {
+  background-color: $paper !important;
+  border-bottom: 1px solid $rule;
+  padding: 1rem 1.5rem;
+  box-shadow: none;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: $navy !important;
+  font-size: 0.95rem;
+}
+
+.navbar-brand:hover {
+  color: $accent !important;
+}
+
+.navbar .nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $ink-soft !important;
+  padding: 0.4rem 0.9rem !important;
+  border-bottom: none !important;
+  letter-spacing: 0;
+}
+
+.navbar .nav-link:hover {
+  color: $accent !important;
+}
+
+.navbar .nav-link.active {
+  color: $navy !important;
+  font-weight: 600;
+}
+
+// ── Smallcaps para acentos editoriales ──────────────────────────────────────
+.smallcaps {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78em;
+  font-weight: 600;
+  color: $muted;
+}
+
+// ── Lead paragraph ──────────────────────────────────────────────────────────
+.lead {
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: $ink;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $rule;
+}
+
+// ── Tablas mínimas con solo líneas horizontales finas ──────────────────────
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+
+table thead th {
+  border-top: 2px solid $navy;
+  border-bottom: 1px solid $navy;
+  padding: 0.6rem 0.5rem;
+  font-weight: 600;
+  text-align: left;
+  color: $navy;
+  letter-spacing: -0.005em;
+}
+
+table tbody td {
+  border-bottom: 1px solid $rule-soft;
+  padding: 0.5rem 0.5rem;
+  color: $ink-soft;
+}
+
+table tbody tr:last-child td {
+  border-bottom: 1px solid $navy;
+}
+
+// ── Code y pre ──────────────────────────────────────────────────────────────
+code {
+  font-family: $font-family-monospace;
+  font-size: 0.85em;
+  background: $rule-soft;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  color: $navy-light;
+}
+
+pre {
+  background: $rule-soft;
+  border: 1px solid $rule;
+  padding: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+// ── Callouts: estilo editorial muy sobrio (line accent) ────────────────────
+.callout {
+  background: transparent !important;
+  border: none !important;
+  border-left: 3px solid $rule !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0 0.5rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+  box-shadow: none !important;
+}
+
+.callout-title {
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: $muted !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.callout-body {
+  padding: 0 !important;
+  font-size: 0.95rem;
+  color: $ink-soft;
+}
+
+.callout-note { border-left-color: $navy !important; }
+.callout-warning { border-left-color: $accent !important; }
+.callout-tip { border-left-color: $muted !important; }
+
+// ── Footer ──────────────────────────────────────────────────────────────────
+.nav-footer {
+  background: transparent !important;
+  border-top: 1px solid $rule;
+  margin-top: 5rem;
+  padding: 1.5rem 0;
+  font-size: 0.82rem;
+  color: $muted;
+}
+
+.nav-footer a {
+  color: $muted;
+  border-bottom: none;
+}
+
+.nav-footer a:hover {
+  color: $accent;
+}
+
+// ── TOC lateral discreta ───────────────────────────────────────────────────
+#TOC, .sidebar-navigation, #toc-title {
+  font-size: 0.82rem;
+}
+
+#TOC > .toc-active {
+  font-weight: 600;
+}
+
+.sidebar nav ul li a {
+  color: $muted !important;
+  font-weight: 400;
+  border-left: 2px solid transparent;
+  padding-left: 0.5rem;
+  font-size: 0.82rem;
+  letter-spacing: 0;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  color: $navy !important;
+  border-left-color: $accent;
+  background: transparent;
+}
+
+// ── Imágenes con padding sutil ──────────────────────────────────────────────
+.figure, figure {
+  margin: 2rem 0;
+}
+
+.figure-caption, figcaption {
+  font-size: 0.82rem;
+  color: $muted;
+  margin-top: 0.5rem;
+  font-style: normal;
+  line-height: 1.4;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// ── Listas más legibles ────────────────────────────────────────────────────
+ul li, ol li {
+  margin-bottom: 0.4rem;
+  color: $ink-soft;
+}
+
+// ── Blockquote tipo prensa ─────────────────────────────────────────────────
+blockquote {
+  border-left: 3px solid $accent;
+  padding-left: 1.25rem;
+  margin: 2rem 0;
+  font-size: 1.05rem;
+  color: $ink;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+// ── Hero / landing ─────────────────────────────────────────────────────────
+.hero {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid $rule;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: $navy;
+  margin-bottom: 1rem;
+}
+
+.hero .lead {
+  font-size: 1.2rem;
+  color: $ink-soft;
+  border-bottom: none;
+  padding: 0;
+  max-width: 600px;
+}
+
+.hero-meta {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $muted;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+// ── Tarjetas (grid de hallazgos) ───────────────────────────────────────────
+.findings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.finding-card {
+  border: 1px solid $rule;
+  padding: 1.25rem;
+  background: white;
+}
+
+.finding-card .label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $muted;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.finding-card .value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: $navy;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.finding-card .desc {
+  font-size: 0.85rem;
+  color: $ink-soft;
+  line-height: 1.4;
+}
+
+// ── Botón / CTA discreto ───────────────────────────────────────────────────
+.btn-link, .download-btn {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $navy;
+  border: 1px solid $navy;
+  padding: 0.45rem 0.9rem;
+  background: transparent;
+  border-radius: 0;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn-link:hover, .download-btn:hover {
+  background: $navy;
+  color: $paper;
+  border-color: $navy;
+}
+
+// ── Responsive ─────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  h1, .h1 { font-size: 1.6rem; }
+  h2, .h2 { font-size: 1.25rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero .lead { font-size: 1.05rem; }
+  .findings-grid { grid-template-columns: 1fr; }
+}

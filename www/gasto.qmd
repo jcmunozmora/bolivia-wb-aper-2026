@@ -1,0 +1,204 @@
+---
+title: "Gasto público agropecuario"
+subtitle: "Magnitud, composición, ejecución y sustitución por crédito"
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(data.table); library(ggplot2); library(scales); library(gt)
+})
+source(here::here("02_code", "00_setup", "01_constants.R"))
+source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
+
+panel  <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
+boost  <- as.data.table(readRDS(here::here("01_data/processed/boost_agro_panel.rds")))
+mefp   <- as.data.table(readRDS(here::here("01_data/processed/mefp_ejecucion_anual.rds")))
+speed  <- as.data.table(readRDS(here::here("01_data/processed/speed_agro_bolivia.rds")))
+
+fig <- function(name) paste0("figures/", name, ".png")
+```
+
+::: {.lead}
+Bolivia destinó al sector agropecuario, en promedio, menos del 3 % de su gasto público total durante todo el período 1990–2017. El país nunca alcanzó la meta de Maputo del 10 %. Desde 2014, el crédito subsidiado del sistema bancario ha sustituido parcialmente la inversión pública directa.
+:::
+
+## Magnitud histórica de la inversión
+
+![Inversión pública agropecuaria, Bolivia 1990–2024](`r fig("fig10_inversion_agro_1990_2024")`)
+
+```{r}
+#| label: tbl-inv-decadas
+panel[, decada := fcase(
+  year < 2000, "1990s",
+  year < 2010, "2000s",
+  year < 2020, "2010s",
+  default     = "2020-2024"
+)]
+panel[!is.na(inv_agro_usd_mm), .(
+  `Inversión agrop. promedio (USD MM)` = round(mean(inv_agro_usd_mm, na.rm=TRUE), 0),
+  `% inversión pública total`           = round(mean(inv_agro_pct_total, na.rm=TRUE), 1),
+  `% PIB`                               = round(mean(inv_agro_pct_gdp, na.rm=TRUE), 2)
+), by = .(Década = decada)] |>
+  setorder(Década) |>
+  gt() |>
+  tab_header(title = md("**Inversión agropecuaria por década, 1990–2024**")) |>
+  tab_source_note(md("*Fuente: VIPFE / MEFP Informe Fiscal 2024.*")) |>
+  opt_table_outline(style = "none")
+```
+
+La trayectoria muestra cuatro fases:
+
+- **1990s**: nivel bajo (~USD 50 M anuales), contexto neoliberal post-ajuste.
+- **2000s**: ascenso a ~USD 130 M, asociado al boom de commodities y al cambio político de 2006.
+- **2010s**: pico de USD 320 M en 2015, financiado por el ciclo de hidrocarburos.
+- **2020–2024**: caída a USD 130–260 M, con crisis fiscal, COVID y escasez de divisas.
+
+## Benchmark internacional — la meta de Maputo
+
+```{r}
+#| label: fig-maputo
+#| fig-cap: "Bolivia frente a la meta de Maputo (10%): gasto agropecuario como % del gasto público total, 1980-2007. Fuente: IFPRI SPEED 2019."
+sp <- speed[, .(year, ag_pctexp)]
+ggplot(sp[!is.na(ag_pctexp)], aes(x = year, y = ag_pctexp)) +
+  geom_col(fill = "#14213D", alpha = 0.78) +
+  geom_hline(yintercept = 10, linetype = "dashed", color = "#C2410C", linewidth = 0.8) +
+  annotate("text", x = 1986, y = 10.5, label = "Meta Maputo (10%)",
+            color = "#C2410C", fontface = "bold", size = 3.5, hjust = 0) +
+  scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 12), expand = c(0,0)) +
+  scale_x_continuous(breaks = seq(1980, 2007, 4)) +
+  labs(x = NULL, y = NULL,
+       caption = "Bolivia cubre 1980-2007 en la base IFPRI SPEED 2019.") +
+  theme_minimal(base_family = "Inter", base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "#FAFAF9", color = NA),
+    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.caption = element_text(color = "#6B7280", hjust = 0, size = 9)
+  )
+```
+
+::: {.callout-note}
+## Bolivia nunca alcanzó la meta de Maputo
+**Máximo histórico**: 3.48 % del gasto público total en 1990. **Promedio 2000–2007**: 2.2 %. En el ranking LAC 2000–2017, Bolivia ocupa la posición 9 de 24 con 0.43 % del PIB — por encima de Argentina (0.08 %), Chile (0.31 %) y Perú (0.21 %).
+:::
+
+## Composición del gasto: período BOOST 1996–2008
+
+```{r}
+#| label: tbl-boost
+boost[year %in% c(1996, 2000, 2004, 2008),
+      .(Año                                = year,
+        `Presup. ejecutado (BOB MM)`       = round(presup_ejecutado_mm, 0),
+        `Tasa ejecución (%)`               = round(tasa_ejecucion, 1),
+        `Gasto corriente (BOB MM)`         = round(gasto_corriente_mm, 0),
+        `Gasto capital (BOB MM)`           = round(gasto_capital_mm, 0),
+        `% capital`                        = round(pct_capital, 1))] |>
+  gt() |>
+  tab_header(title = md("**Ejecución y composición — BOOST 1996-2008**")) |>
+  tab_source_note(md("*Fuente: World Bank BOOST Bolivia.*")) |>
+  opt_table_outline(style = "none")
+```
+
+Durante el período BOOST (único con microdato institucional completo), el gasto agropecuario ejecutado pasó de **278 MM BOB (1996)** a **1 282 MM BOB (2008)** — multiplicación ×4.6 en términos nominales. La tasa de ejecución mejoró de **74 % a 101 %**, evidenciando fortalecimiento institucional. Composición 2008: Agricultura 63 %, Agropecuaria 15 %, Ganadería 6 %, Silvicultura 6 %.
+
+## Tasa de ejecución reciente — benchmark MEFP
+
+```{r}
+#| label: tbl-mefp
+mefp[, .(
+  Año                            = year,
+  `Vigente (BOB MM)`              = round(presup_vigente_mm_bs, 0),
+  `Ejecutado (BOB MM)`            = round(ejecutado_mm_bs, 0),
+  `% Ejecución`                   = round(pct_ejec_ponderado, 1)
+)] |>
+  gt() |>
+  tab_header(title = md("**Tasas de ejecución MEFP (Entidad 035), 2015-2023**")) |>
+  tab_source_note(md("*Fuente: PDFs DGAA MEFP. Solo Entidad 035 (referencia comparativa).*")) |>
+  data_color(columns = "% Ejecución",
+             palette = c("#C2410C", "#FED7AA", "#14213D"),
+             domain = c(40, 70, 100)) |>
+  opt_table_outline(style = "none")
+```
+
+::: {.callout-tip}
+## Lectura del benchmark
+- Rango histórico de ejecución MEFP: **42 % (2020) – 96 % (2023)**.
+- En 2020 el presupuesto vigente *explotó ×13* por transferencias COVID; ejecución cayó al 42 %.
+- 2022–2023: recuperación a 93–96 % tras normalización.
+- Servicios No Personales es consistentemente el grupo con menor ejecución (46–79 %).
+
+> Los datos por entidad de los **ministerios sectoriales** (MDRyT, INIAF, SENASAG) no están públicamente disponibles para 2009–2024 con el detalle requerido. La carta formal al MEFP (DS 28168) gestiona esta solicitud.
+:::
+
+## El cambio estructural: crédito subsidiado vs. inversión pública
+
+```{r}
+#| label: fig-credito-vs-inv
+#| fig-cap: "Inversión pública agropecuaria frente a crédito bancario al sector, Bolivia 2010-2024. Quiebre estructural en 2014 (Ley 393)."
+panel_cred <- panel[year >= 2010 & year <= 2024,
+                     .(year,
+                       inv_agro = inv_agro_usd_mm,
+                       credito  = bcb_cred_agro_mm_usd)]
+panel_long <- melt(panel_cred, id.vars = "year",
+                   variable.name = "fuente", value.name = "valor")
+panel_long[, fuente := fifelse(fuente == "inv_agro",
+                                "Inversión pública (VIPFE)",
+                                "Crédito bancario al sector (BCB)")]
+ggplot(panel_long[!is.na(valor)], aes(x = year, y = valor, color = fuente)) +
+  geom_line(linewidth = 1.3) +
+  geom_point(size = 2.5) +
+  geom_vline(xintercept = 2014, linetype = "dashed", color = "#1F3057", alpha = 0.5) +
+  annotate("text", x = 2014.2, y = 3000, label = "Ley 393\n(jul 2014)",
+            color = "#1F3057", hjust = 0, size = 3.2, fontface = "bold") +
+  scale_color_manual(values = c("Inversión pública (VIPFE)" = "#14213D",
+                                  "Crédito bancario al sector (BCB)" = "#C2410C")) +
+  scale_y_continuous(labels = label_dollar(suffix = " M")) +
+  labs(x = NULL, y = "USD millones", color = NULL,
+       caption = "Inversión: VIPFE/MEFP. Crédito: BCB Boletín Estadístico Cuadro 3.02.") +
+  theme_minimal(base_family = "Inter", base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "#FAFAF9", color = NA),
+    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    panel.grid.minor = element_blank(),
+    legend.position = "top",
+    legend.justification = "left",
+    plot.caption = element_text(color = "#6B7280", hjust = 0, size = 9)
+  )
+```
+
+::: {.callout-note}
+## Hallazgo central
+- La **inversión pública** cayó de 0.97 % del PIB en 2015 a 0.38 % en 2021.
+- El **crédito agropecuario** subió de 5.1 % (2010) a 11.7 % (2024) del crédito total bancario.
+- En valores absolutos, el crédito al sector pasó de USD 290 M (2010) a USD 3 397 M (2024) — multiplicación ×11.7.
+
+Esta sustitución de instrumentos transforma la naturaleza del apoyo público: del **gasto fiscal directo** a la **inducción regulatoria del crédito subsidiado**. Las regresiones panel del estudio incluyen un dummy estructural `post_ley393` para capturar este quiebre.
+:::
+
+## Distribución subnacional
+
+![Mapa: gasto agropecuario municipal 2020](`r fig("fig22_mapa_gasto_agro_2020")`)
+
+![VIPFE vs Jubileo municipal — composición y validación](`r fig("fig18_vipfe_vs_jubileo_municipal")`)
+
+Patrones territoriales del gasto:
+
+- **Santa Cruz** concentra el mayor gasto agropecuario absoluto pero el más bajo *per cápita rural* (paradoja de la concentración).
+- Los municipios pequeños del altiplano y valles tienen el **mayor gasto per cápita**, reflejando la combinación de coparticipación tributaria + IDH.
+- El gasto agropecuario municipal (Programa 10) representa entre **2 % y 8 %** del presupuesto total municipal — espacio limitado para programas locales.
+
+## Síntesis
+
+| Dimensión | Hallazgo | Implicación |
+|-----------|----------|-------------|
+| Magnitud | Bolivia nunca alcanzó Maputo (máx 3.48 %) | Sector sub-financiado relativo al consenso regional |
+| Tendencia | Inversión pico 2015, contracción post-2020 | Ciclo asociado a hidrocarburos y crisis fiscal |
+| Composición | Gasto corriente domina; capital crece con BOOST | Fortalecimiento de inversión 1996–2008 |
+| Ejecución | MEFP 42–96 %; MDRyT 74 % (2024) | Capacidad heterogénea entre entidades |
+| Estructural | Crédito sustituye inversión post-Ley 393 | Cambio de instrumento: fiscal → crédito |
+| Institucional | Riego fragmentado MDRyT-MMAyA | Coordinación intersectorial débil |
+| Subnacional | Concentración Santa Cruz / dispersión altiplano | Diferenciar gasto por contexto regional |
+
+El gasto agropecuario boliviano es **persistentemente bajo** en términos relativos, **crecientemente dependiente de instrumentos crediticios** post-2014, y **fragmentado** entre múltiples entidades. El [siguiente capítulo](eficiencia.qmd) examina si este gasto es eficiente y equitativo.

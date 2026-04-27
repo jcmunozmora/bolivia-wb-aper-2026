@@ -1,0 +1,132 @@
+---
+title: "Datos y metodología"
+subtitle: "Panel maestro v12, fuentes y diccionario"
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(data.table); library(gt)
+})
+panel <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
+dict  <- fread(here::here("01_data/processed/spending_panel_v12_dictionary.csv"))
+```
+
+::: {.lead}
+El estudio descansa sobre un panel maestro de 35 años × 176 variables consolidadas a partir de 124 datasets procesados de fuentes nacionales e internacionales.
+:::
+
+## El panel maestro
+
+```{r}
+#| label: tbl-panel-summary
+data.table(
+  Indicador = c("Años cubiertos", "Variables totales", "Variables clasificadas",
+                 "Datasets procesados (RDS)", "Scripts de recolección",
+                 "Densidad media", "Densidad máxima"),
+  Valor = c("35 (1990-2024)",
+            paste(ncol(panel), "vars"),
+            paste(sum(dict$group != "99_sin_clasificar"), "vars en 17 grupos"),
+            "124", "44",
+            sprintf("%d vars/año", round(mean(panel[, sum(!is.na(.SD)), .SDcols = -1, by = year]$V1))),
+            sprintf("%d vars (año %d)", max(panel[, sum(!is.na(.SD)), .SDcols = -1, by = year]$V1),
+                    panel$year[which.max(panel[, sum(!is.na(.SD)), .SDcols = -1, by = year]$V1)]))
+) |>
+  gt() |>
+  tab_header(title = md("**Panel maestro v12 — síntesis**")) |>
+  opt_table_outline(style = "none")
+```
+
+## Composición por grupo temático
+
+```{r}
+#| label: tbl-grupos
+dict[group != "99_sin_clasificar",
+     .(Variables = .N), by = .(Grupo = group)] |>
+  setorder(Grupo) |>
+  gt() |>
+  tab_header(title = md("**Variables por grupo temático**")) |>
+  opt_table_outline(style = "none")
+```
+
+::: {.callout-note}
+## Limpieza realizada en v12
+La versión 12 del panel corrige tres bugs detectados en v11:
+
+1. **Nombres MapBiomas truncados** (`mb_atural_ha` → `mb_natural_ha`, etc.) — causa: regex aplicado antes de `tolower()`.
+2. **Duplicados WDI idénticos eliminados**: `wdi_food_prod_index`, `wdi_agr_empl_pct`, `wdi_agr_va_pct_gdp`.
+3. **Cereales renombrados por fuente**: `fao_cereal_yield_kg_ha`, `ine_cereal_yield_kg_ha`, `wdi_cereal_yield_kg_ha`.
+
+Diccionario completo de las 176 variables disponible en `spending_panel_v12_dictionary.csv`.
+:::
+
+## Fuentes — visión panorámica
+
+| Fuente | Cobertura | Variables | Uso en el estudio |
+|--------|-----------|-----------|-------------------|
+| **VIPFE / MEFP** | 1990–2024 | Inversión sectorial, ejecución | Cap. 3 — gasto público |
+| **World Bank BOOST** | 1996–2008 | Microdatos fiscales | Cap. 3 — período histórico detallado |
+| **IFPRI SPEED 2019** | 1980–2017 | Gasto agro % PIB y % gasto total | Cap. 3 — meta Maputo, ranking LAC |
+| **IDB AgriMonitor** | 2006–2023 | PSE, GSSE, TSE, NPC | Cap. 4a — apoyo al productor |
+| **FAOSTAT PP** | 1991–2024 | Precios productor 119 commodities | Cap. 4a — NRP pre-2006 |
+| **WB Pink Sheet** | 1960–2025 | Precios mundiales referencia | Cap. 4a — NRP cálculo |
+| **BCB Boletín Estadístico** | 2010–2025 | Crédito por sector × banco | Cap. 3 — sustitución crédito |
+| **MapBiomas Bolivia Col.3** | 1985–2024 | Cobertura del suelo | Cap. 2 — uso de suelo |
+| **Hansen GFC** | 2001–2023 | Deforestación anual | Cap. 2, 4c — costos ambientales |
+| **CHIRPS** | 1990–2023 | Precipitación (interpolada) | Cap. 4c — control climático |
+| **USDA ERS** | 1961–2023 | TFP agropecuario | Cap. 2, 4c — productividad |
+| **WDI Banco Mundial** | 1990–2023 | Macroeconómicos | Cap. 2 — contexto |
+| **INE Bolivia EH** | 2012–2024 | Encuesta de Hogares (309 K personas) | Cap. 4d — equidad, FIES |
+| **INE Bolivia ENA** | 2008, 2015 | Encuesta Nacional Agropecuaria | Cap. 2 — estructura productiva |
+| **INE Bolivia CNA** | 2013 | Censo Agropecuario (338 munis) | Cap. 4b — DEA municipal |
+| **INE Estadísticas Agrícolas** | 1984–2024 | Producción, rendimiento, superficie | Cap. 2 — yields |
+| **PDFs MEFP DGAA** | 2015–2023 | Tasas de ejecución institucional | Cap. 3 — benchmark ejecución |
+
+## Datasets disponibles
+
+El proyecto incluye **124 datasets RDS** organizados en categorías. Los principales:
+
+```{r}
+#| label: tbl-datasets-cuenta
+data.table(
+  Categoría = c("Paneles maestros (nacional, subnacional, municipal, DEA)",
+                 "Gasto público (VIPFE, BOOST, MEFP, Jubileo, MDRyT)",
+                 "PSE/GSSE (IDB, IFPRI SPEED, FAOSTAT PP, WB Pink Sheet)",
+                 "Producción agropecuaria (INE, FAOSTAT, USDA TFP)",
+                 "Censos y encuestas (CNA 2013, ENA 2008+2015, EH 2012-2024)",
+                 "Crédito y sector financiero (BCB, WDI)",
+                 "Comparadores LAC (WDI, CEPAL)",
+                 "Uso del suelo y deforestación (MapBiomas, Hansen)",
+                 "Clima (CHIRPS)",
+                 "PIB y macro (INE, WDI)"),
+  `Datasets` = c(4, 12, 12, 7, 4, 4, 4, 6, 3, 3)
+) |>
+  gt() |>
+  tab_header(title = md("**Datasets por categoría**")) |>
+  opt_table_outline(style = "none")
+```
+
+## Recursos descargables
+
+[Inventario completo (Excel, 5 hojas)](downloads/Inventario_Datos_APER_Bolivia_2026.xlsx){.download-btn}
+[Diccionario panel v12 (CSV)](downloads/spending_panel_v12_dictionary.csv){.download-btn}
+[Estado de datos (Markdown)](https://github.com/jcmunoz/2026_WB_Bolivia/blob/main/00_admin/ESTADO_DE_DATOS.md){.download-btn}
+
+## Auditoría de gaps
+
+El estudio identifica **23 datos pendientes** clasificados en tres categorías:
+
+::: {.callout-tip}
+## Tier A — Disponibles públicamente, no procesados (12 items)
+Subsidios diésel YPFB, INRA titulación serie, NASA FIRMS incendios, FAOSTAT TCL comercio, UDAPE pobreza municipal, ASFI crédito IFD/cooperativas, CHIRPS mensual completo, IPC rural INE, EMAPA serie compras garantizadas. Esfuerzo de procesamiento estimado: bajo a medio.
+:::
+
+::: {.callout-warning}
+## Tier B — Requieren gestión institucional (6 items)
+**MDRyT/INIAF/SENASAG ejecución 2009–2024** (gestión: carta DS 28168 al MEFP — preparada y lista para envío por la Oficina BM Bolivia). Memorias institucionales MDRyT 2015–2018, 2020, 2022–2023. BDP cartera detallada. SIIF subnacional municipal (Jubileo). INIAF presupuesto por proyecto. SENASAG operativos por departamento.
+:::
+
+::: {.callout-note}
+## Tier C — Próximas fases (5 items)
+Poblar capítulos Quarto del reporte técnico. Publicar timeline KnightLab. Análisis DEA bootstrap Simar-Wilson formal. Validar anomalía caña de azúcar 2015. Pre-review interno con equipo BM.
+:::
