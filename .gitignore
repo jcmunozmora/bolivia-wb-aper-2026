@@ -29,6 +29,13 @@ renv/python/
 04_report/*.html
 05_outputs/report/
 
+# ── Quarto build cache (regenerado por quarto render) ───────────────────────
+www/_freeze/
+www/*_cache/
+www/*_files/
+www/.quarto/
+**/.quarto/
+
 # ── Archivos de sistema ─────────────────────────────────────────────────────
 .DS_Store
 **/.DS_Store
