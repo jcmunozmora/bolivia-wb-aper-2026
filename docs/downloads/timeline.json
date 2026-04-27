@@ -1,0 +1,1220 @@
+{
+  "events": [
+    {
+      "start_date": {
+        "year": 1991,
+        "month": 3,
+        "day": 7
+      },
+      "display_date": "7 marzo 1991",
+      "text": {
+        "headline": "Ley 1178 SAFCO <e2><80><94> administraci<c3><b3>n y control gubernamental",
+        "text": "La <strong>Ley 1178 de Administraci<c3><b3>n y Control Gubernamentales (SAFCO)<\/strong>, promulgada el 20 de julio de 1990 bajo Jaime Paz Zamora, comenz<c3><b3> a reglamentarse en 1991 e instaur<c3><b3> siete sistemas (programaci<c3><b3>n de operaciones, organizaci<c3><b3>n administrativa, presupuesto, administraci<c3><b3>n de personal, administraci<c3><b3>n de bienes y servicios, tesorer<c3><ad>a y cr<c3><a9>dito p<c3><ba>blico, contabilidad integrada) y control gubernamental interno/externo. Sent<c3><b3> la base de toda la contabilidad presupuestaria del Ministerio de Asuntos Campesinos y Agropecuarios (MACA) y antecesores del MDRyT. <br><br>La ley obliga a cada entidad p<c3><ba>blica a rendir cuentas sobre el logro de objetivos, introduciendo la <em>responsabilidad por la funci<c3><b3>n p<c3><ba>blica<\/em>. Es el marco que hace posible el ejercicio de un APER en Bolivia: sin SAFCO no existen las series de ejecuci<c3><b3>n presupuestaria utilizadas. <br><br><em>Impacto en el panel<\/em>: define la unidad de registro de <code>spending_agro_pct_total<\/code> y la clasificaci<c3><b3>n funcional-program<c3><a1>tica desde 1990."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_02.png",
+        "credit": "Wikimedia Commons / Dominio p<c3><ba>blico",
+        "caption": "Escudo de Bolivia <e2><80><94> instrumento estatal"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 1992,
+        "month": 4,
+        "day": 27
+      },
+      "display_date": "27 abril 1992",
+      "text": {
+        "headline": "Ley 1333 del Medio Ambiente",
+        "text": "La <strong>Ley 1333<\/strong> promulgada por Jaime Paz Zamora estableci<c3><b3> el marco ambiental que condicionar<c3><ad>a toda expansi<c3><b3>n agr<c3><ad>cola posterior, incluyendo requisitos de EEIA (Estudio de Evaluaci<c3><b3>n de Impacto Ambiental) para desmontes, manejo forestal y uso de agroqu<c3><ad>micos. Complementada por los reglamentos de 1995 (DS 24176), fue el instrumento invocado para autorizar <e2><80><94>y para cuestionar<e2><80><94> la expansi<c3><b3>n soyera en Santa Cruz. <br><br>La ley cre<c3><b3> la <strong>Secretar<c3><ad>a Nacional del Medio Ambiente (SENMA)<\/strong>, antecesora del actual Ministerio de Medio Ambiente y Agua, y el Fondo Nacional para el Medio Ambiente (FONAMA). Junto con la Ley Forestal 1700 (1996) conform<c3><b3> el andamiaje ambiental del ciclo neoliberal. <br><br><em>Impacto en el panel<\/em>: variable <code>gasto_ambiental_agro<\/code> y <code>ha_desmonte_autorizado<\/code> desde 1995."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_03.jpg",
+        "credit": "Wikimedia Commons / Sam Beebe / CC-BY-2.0",
+        "caption": "Amazon<c3><ad>a boliviana <e2><80><94> objeto de la Ley 1333"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 1996,
+        "month": 7,
+        "day": 12
+      },
+      "display_date": "12 julio 1996",
+      "text": {
+        "headline": "Ley Forestal 1700",
+        "text": "La <strong>Ley Forestal 1700<\/strong> del 12 de julio de 1996, bajo el primer gobierno de Gonzalo S<c3><a1>nchez de Lozada, reemplaz<c3><b3> el r<c3><a9>gimen de extracci<c3><b3>n libre por un sistema de <em>concesiones forestales<\/em> de hasta 40 a<c3><b1>os renovables, con patente por hect<c3><a1>rea y Planes Generales de Manejo Forestal (PGMF) obligatorios. Cre<c3><b3> la <strong>Superintendencia Forestal<\/strong> y el Fondo Nacional de Desarrollo Forestal (FONABOSQUE). <br><br>Bolivia se convirti<c3><b3> en el primer pa<c3><ad>s con m<c3><a1>s superficie certificada FSC del mundo en bosques tropicales hacia 2000 (<e2><89><88>1.5 millones de ha). La ley coexisti<c3><b3> tensamente con el saneamiento INRA y con la expansi<c3><b3>n agropecuaria: el 'chaqueo' ilegal sigui<c3><b3> siendo la principal causa de deforestaci<c3><b3>n. <br><br><em>Impacto en el panel<\/em>: variables <code>area_concesion_forestal<\/code>, <code>patentes_forestales_ingresos<\/code>, e inflexi<c3><b3>n en deforestaci<c3><b3>n 1996-2005."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_04.png",
+        "credit": "Wikimedia Commons / CC-BY-SA",
+        "caption": "Bosque chiquitano <e2><80><94> r<c3><a9>gimen de la Ley 1700"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 1996,
+        "month": 10,
+        "day": 18
+      },
+      "display_date": "18 octubre 1996",
+      "text": {
+        "headline": "Ley INRA 1715 <e2><80><94> Reforma Agraria moderna",
+        "text": "La <strong>Ley 1715 del Servicio Nacional de Reforma Agraria (INRA)<\/strong>, promulgada el 18 de octubre de 1996 tras la marcha ind<c3><ad>gena de tierras bajas, cre<c3><b3> el <strong>Instituto Nacional de Reforma Agraria (INRA)<\/strong>, la Superintendencia Agraria y el Tribunal Agrario Nacional. Introdujo cuatro figuras: (i) <em>saneamiento<\/em> de la propiedad (SAN-SIM, SAN-TCO, SAN-CAT), (ii) <em>Tierras Comunitarias de Origen (TCO)<\/em> para pueblos ind<c3><ad>genas, (iii) la <em>Funci<c3><b3>n Econ<c3><b3>mico-Social (FES)<\/em> como condici<c3><b3>n de permanencia, y (iv) reversi<c3><b3>n por incumplimiento. <br><br>El plazo original de saneamiento de 10 a<c3><b1>os fue prorrogado por la Ley 3545 (2006). Al 2005, solo ~9% del territorio nacional hab<c3><ad>a sido saneado; las TCO tituladas cubr<c3><ad>an ~5 Mha. Fue la reforma agraria m<c3><a1>s importante desde la de 1953. <br><br>Fuente primaria: Gaceta Oficial 1996; texto en <a href='https://www.lexivox.org/norms/BO-L-1715.html'>LexiVox<\/a>. <br><br><em>Impacto en el panel<\/em>: origen de <code>saneamiento_ha_acum<\/code>, <code>tco_tituladas_ha<\/code>, inversi<c3><b3>n institucional INRA."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_05.jpg",
+        "credit": "Wikimedia Commons / CC-BY-SA",
+        "caption": "Altiplano boliviano <e2><80><94> paisaje agrario de la reforma"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 1997,
+        "month": 4,
+        "day": 21
+      },
+      "display_date": "21 abril 1997",
+      "text": {
+        "headline": "Ley 1770 de Arbitraje y Conciliaci<c3><b3>n",
+        "text": "La <strong>Ley 1770<\/strong> introdujo el arbitraje comercial en Bolivia, habilitando mecanismos extrajudiciales para disputas agropecuarias (contratos de compraventa de soya, contratos de maquila azucarera). Aunque de car<c3><a1>cter general, fue utilizada intensivamente por la agroindustria cruce<c3><b1>a (ANAPO, CAINCO) y por inversionistas extranjeros en el sector agropecuario. <br><br>Complementa la arquitectura pro-mercado de la Ley INRA y la Ley Forestal, facilitando contratos privados entre peque<c3><b1>os productores y acopiadores/molineras sin pasar por la justicia ordinaria. <br><br><em>Impacto en el panel<\/em>: indirecto, en formalizaci<c3><b3>n contractual de la cadena agro-exportadora."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_06.png",
+        "credit": "Wikimedia Commons / Dominio p<c3><ba>blico",
+        "caption": "Escudo de Bolivia"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2000,
+        "month": 3,
+        "day": 23
+      },
+      "display_date": "23 marzo 2000",
+      "text": {
+        "headline": "Ley 2061 <e2><80><94> creaci<c3><b3>n del SENASAG",
+        "text": "La <strong>Ley 2061 del 16 de marzo de 2000<\/strong> cre<c3><b3> el <strong>Servicio Nacional de Sanidad Agropecuaria e Inocuidad Alimentaria (SENASAG)<\/strong> como entidad descentralizada del entonces Ministerio de Agricultura, Ganader<c3><ad>a y Desarrollo Rural (MAGDR) bajo Hugo Banzer. Unific<c3><b3> las competencias de sanidad animal, sanidad vegetal, inocuidad alimentaria y control de insumos antes dispersas. <br><br>SENASAG se convirti<c3><b3> en la ventanilla <c3><ba>nica para certificaci<c3><b3>n fito-zoosanitaria de exportaciones (soya, carne, quinua) y para el registro de plaguicidas. Su creaci<c3><b3>n fue condici<c3><b3>n de acceso a mercados del MERCOSUR y de la CAN. Sede central: Trinidad, Beni. <br><br>Fuente: <a href='https://www.senasag.gob.bo/'>senasag.gob.bo<\/a>; Gaceta Oficial. <br><br><em>Impacto en el panel<\/em>: variable <code>gasto_senasag<\/code>, <code>certificaciones_fitosanitarias<\/code>; inflexi<c3><b3>n en exportaciones c<c3><a1>rnicas y de soya post-2000."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_07.jpg",
+        "credit": "Wikimedia Commons / Dominio p<c3><ba>blico",
+        "caption": "Emblema institucional <e2><80><94> SENASAG bajo MAGDR"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2000,
+        "month": 4,
+        "day": 8
+      },
+      "display_date": "abril 2000",
+      "text": {
+        "headline": "Guerra del Agua <e2><80><94> Cochabamba",
+        "text": "La <strong>Guerra del Agua<\/strong> de abril de 2000 en Cochabamba fue la movilizaci<c3><b3>n que reverti<c3><b3> la concesi<c3><b3>n de SEMAPA a Aguas del Tunari (consorcio Bechtel), tras la entrada en vigor de la Ley 2029 de Agua Potable y Alcantarillado (octubre 1999). Aunque centrada en agua urbana, la movilizaci<c3><b3>n politiz<c3><b3> los <em>usos y costumbres<\/em> del agua de riego campesino, incluida en la controvertida ley. <br><br>La derogaci<c3><b3>n de la Ley 2029 y posterior aprobaci<c3><b3>n de la <strong>Ley 2066<\/strong> reconoci<c3><b3> los derechos campesinos-ind<c3><ad>genas al agua. Este evento marca el inicio del ciclo de protesta que culmina en 2003-2005 y adelanta la futura Ley 2878 de Riego (2004). <br><br>Fuente: <a href='https://es.wikipedia.org/wiki/Guerra_del_Agua_(Bolivia)'>Wikipedia ES<\/a>; CEDLA. <br><br><em>Impacto en el panel<\/em>: antecedente directo de <code>inversion_riego_pct_gdp<\/code> y creaci<c3><b3>n del SENARI en 2004."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_08.jpg",
+        "credit": "Wikimedia Commons / Dominio p<c3><ba>blico (imagen de prensa)",
+        "caption": "Movilizaci<c3><b3>n en Cochabamba, abril 2000"
+      },
+      "group": "Eventos"
+    },
+    {
+      "start_date": {
+        "year": 2001,
+        "month": 7,
+        "day": 31
+      },
+      "display_date": "31 julio 2001",
+      "text": {
+        "headline": "Ley 2235 del Di<c3><a1>logo Nacional 2000 (HIPC II)",
+        "text": "La <strong>Ley 2235 del Di<c3><a1>logo Nacional 2000<\/strong>, promulgada el 31 de julio de 2001, institucionaliz<c3><b3> el <strong>Di<c3><a1>logo Nacional<\/strong> como mecanismo de definici<c3><b3>n de pol<c3><ad>ticas y canaliz<c3><b3> los recursos del alivio de deuda HIPC-II (Iniciativa para Pa<c3><ad>ses Pobres Altamente Endeudados) hacia los municipios mediante la <strong>Cuenta Especial Di<c3><a1>logo 2000<\/strong>. <br><br>De los ~US$ 1,300 millones aliviados, el 70% se distribuy<c3><b3> a municipios por f<c3><b3>rmula de pobreza, y el 20% directamente a educaci<c3><b3>n/salud. Para el sector rural, los municipios recibieron recursos etiquetables para infraestructura productiva, con co-ejecuci<c3><b3>n del Fondo Productivo Social (FPS) y el Fondo Nacional de Desarrollo Regional (FNDR). <br><br>Fuente: Ley 2235 en Gaceta Oficial; <a href='https://www.cedla.org/'>CEDLA<\/a>. <br><br><em>Impacto en el panel<\/em>: variable <code>hipc_agro_municipios<\/code>, disparador del gasto agropecuario descentralizado 2001-2005."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_09.jpg",
+        "credit": "Wikimedia Commons / Dominio p<c3><ba>blico",
+        "caption": "Escudo boliviano <e2><80><94> institucionalidad HIPC"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2001,
+        "month": 12,
+        "day": 31
+      },
+      "display_date": "diciembre 2001",
+      "text": {
+        "headline": "DS 26462 <e2><80><94> Estrategia Boliviana de Reducci<c3><b3>n de Pobreza (EBRP)",
+        "text": "La <strong>Estrategia Boliviana de Reducci<c3><b3>n de Pobreza (EBRP)<\/strong>, aprobada por DS 26462 en 2001 bajo Jorge Quiroga, consolid<c3><b3> la condicionalidad HIPC-II con un plan plurianual que destinaba cerca de <strong>US$ 400 millones/a<c3><b1>o durante 15 a<c3><b1>os<\/strong> a cuatro ejes: oportunidades (incluye desarrollo rural), capacidades humanas, seguridad y protecci<c3><b3>n, y participaci<c3><b3>n e integraci<c3><b3>n social. <br><br>El componente rural inclu<c3><ad>a el Plan Nacional de Desarrollo Agropecuario y Rural, con metas de riego (80,000 ha nuevas), caminos vecinales y asistencia t<c3><a9>cnica v<c3><ad>a SIBTA. Gran parte de la EBRP fue abandonada tras la crisis de octubre 2003 y reemplazada por el PND de 2006. <br><br>Fuentes: <a href='https://documents.worldbank.org/'>World Bank PRSP archive Bolivia 2001<\/a>. <br><br><em>Impacto en el panel<\/em>: marco contable de todas las transferencias agro 2001-2005; fuente de series <code>inversion_rural_prsp<\/code>."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_10.jpg",
+        "credit": "Wikimedia Commons / Dominio p<c3><ba>blico",
+        "caption": "Identidad estatal <e2><80><94> EBRP como pol<c3><ad>tica de gobierno"
+      },
+      "group": "Programas"
+    },
+    {
+      "start_date": {
+        "year": 2003,
+        "month": 10,
+        "day": 17
+      },
+      "display_date": "17 octubre 2003",
+      "text": {
+        "headline": "Guerra del Gas <e2><80><94> ca<c3><ad>da de S<c3><a1>nchez de Lozada",
+        "text": "La <strong>Guerra del Gas<\/strong> de septiembre-octubre de 2003 fue la movilizaci<c3><b3>n contra el proyecto de exportaci<c3><b3>n de gas por puerto chileno. El saldo: 67 muertos (la mayor<c3><ad>a aymaras de El Alto), renuncia y huida de Gonzalo S<c3><a1>nchez de Lozada el 17 de octubre y asunci<c3><b3>n de Carlos Mesa. <br><br>Aunque el detonante fue hidrocarburos, el conflicto tiene ra<c3><ad>ces rurales: la movilizaci<c3><b3>n articul<c3><b3> a la CSUTCB, cocaleros del Chapare (liderados por Evo Morales) y comunidades aymaras del altiplano. Marca el fin pol<c3><ad>tico del ciclo neoliberal y abre la agenda de nacionalizaci<c3><b3>n y reforma agraria profunda. El gasto agropecuario 2003-2004 se contrajo ~15% por la crisis fiscal. <br><br>Fuentes: <a href='https://es.wikipedia.org/wiki/Guerra_del_Gas'>Wikipedia ES<\/a>; informes CEDLA 2003-2004. <br><br><em>Impacto en el panel<\/em>: ruptura estructural en <code>spending_agro_pct_total<\/code> 2003; variable dummy <code>crisis_2003<\/code>."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_11.jpg",
+        "credit": "Wikimedia Commons / CC-BY-SA",
+        "caption": "El Alto, epicentro de la movilizaci<c3><b3>n de octubre 2003"
+      },
+      "group": "Eventos"
+    },
+    {
+      "start_date": {
+        "year": 2004,
+        "month": 7,
+        "day": 18
+      },
+      "display_date": "18 julio 2004",
+      "text": {
+        "headline": "Refer<c3><a9>ndum del Gas",
+        "text": "El <strong>Refer<c3><a9>ndum Vinculante sobre la Pol<c3><ad>tica Energ<c3><a9>tica<\/strong> del 18 de julio de 2004 plante<c3><b3> 5 preguntas sobre la derogaci<c3><b3>n de la Ley de Hidrocarburos 1689, recuperaci<c3><b3>n de la propiedad estatal, refundaci<c3><b3>n de YPFB y uso del gas como herramienta geopol<c3><ad>tica. El 'S<c3><ad>' gan<c3><b3> en las cinco con 60-87%. <br><br>Aunque no trat<c3><b3> directamente agricultura, el refer<c3><a9>ndum configur<c3><b3> el r<c3><a9>gimen fiscal post-2005 (Ley 3058 de Hidrocarburos, 17 mayo 2005) que cre<c3><b3> el IDH (Impuesto Directo a los Hidrocarburos) <e2><80><94> principal fuente de financiamiento del gasto agro municipal y departamental desde 2006. <br><br>Fuente: Corte Nacional Electoral 2004; <a href='https://es.wikipedia.org/wiki/Refer%C3%A9ndum_del_gas_de_2004'>Wikipedia ES<\/a>. <br><br><em>Impacto en el panel<\/em>: origen fiscal del IDH <e2><80><94> variable clave <code>idh_agro_asignado<\/code> 2006+."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_12.jpg",
+        "credit": "Wikimedia Commons / Presidencia Bolivia / CC-BY",
+        "caption": "Carlos Mesa convoc<c3><b3> el refer<c3><a9>ndum 2004"
+      },
+      "group": "Eventos"
+    },
+    {
+      "start_date": {
+        "year": 2004,
+        "month": 10,
+        "day": 8
+      },
+      "display_date": "8 octubre 2004",
+      "text": {
+        "headline": "Ley 2878 <e2><80><94> Promoci<c3><b3>n y Apoyo al Riego",
+        "text": "La <strong>Ley 2878 de Promoci<c3><b3>n y Apoyo al Sector Riego para la Producci<c3><b3>n Agropecuaria y Forestal<\/strong>, promulgada el 8 de octubre de 2004 bajo Carlos Mesa, cre<c3><b3> el <strong>Servicio Nacional de Riego (SENARI)<\/strong> y los Servicios Departamentales de Riego (SEDERIs). Reconoci<c3><b3> los <em>usos y costumbres<\/em> del agua de riego como derecho colectivo de comunidades campesinas e ind<c3><ad>genas, resolviendo parcialmente la tensi<c3><b3>n abierta en 2000. <br><br>La ley defini<c3><b3> el Registro de fuentes de agua de riego y los Planes Directores de Cuenca. Bolivia ten<c3><ad>a apenas ~226,000 ha bajo riego en 2004 (6% del <c3><a1>rea cultivada); la ley buscaba expandir a 400,000 ha. Fue la base del posterior programa MI RIEGO (2011+). <br><br>Fuente: <a href='https://www.lexivox.org/norms/BO-L-2878.html'>LexiVox Ley 2878<\/a>. <br><br><em>Impacto en el panel<\/em>: creaci<c3><b3>n de <code>inversion_riego_senari<\/code>, <code>ha_riego_nuevas<\/code>."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_13.jpg",
+        "credit": "Wikimedia Commons / CC-BY-SA",
+        "caption": "Canal de riego campesino en valle boliviano"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2005,
+        "month": 5,
+        "day": 17
+      },
+      "display_date": "17 mayo 2005",
+      "text": {
+        "headline": "Ley 3058 de Hidrocarburos <e2><80><94> origen del IDH",
+        "text": "La <strong>Ley 3058 de Hidrocarburos<\/strong>, promulgada el 17 de mayo de 2005 tras la renuncia parcial de Mesa, cre<c3><b3> el <strong>Impuesto Directo a los Hidrocarburos (IDH)<\/strong> del 32% sobre la producci<c3><b3>n (complementario al 18% de regal<c3><ad>as). El IDH se distribuye entre prefecturas, municipios, universidades y el TGN bajo una f<c3><b3>rmula que destina un porcentaje a 'desarrollo productivo' rural. <br><br>Aunque promulgada en el per<c3><ad>odo pre-MAS, define la columna vertebral fiscal de todo el periodo posterior. Para el APER, el IDH es la principal fuente extrapresupuestaria de inversi<c3><b3>n agropecuaria desde 2006, financiando MI AGUA, MI RIEGO y Soberan<c3><ad>a Alimentaria. <br><br>Fuente: <a href='https://www.lexivox.org/norms/BO-L-3058.html'>LexiVox Ley 3058<\/a>. <br><br><em>Impacto en el panel<\/em>: origen de <code>idh_total<\/code>, <code>idh_agro_municipios<\/code>, inflexi<c3><b3>n en <code>inversion_agro_pct_gdp<\/code> post-2006."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_14.jpg",
+        "credit": "Wikimedia Commons / YPFB / CC-BY",
+        "caption": "Infraestructura de hidrocarburos <e2><80><94> base del IDH"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2005,
+        "month": 12,
+        "day": 18
+      },
+      "display_date": "18 diciembre 2005",
+      "text": {
+        "headline": "Elecciones generales <e2><80><94> triunfo del MAS",
+        "text": "El <strong>18 de diciembre de 2005<\/strong>, Evo Morales Ayma y el Movimiento al Socialismo (MAS-IPSP) ganaron la elecci<c3><b3>n presidencial con <strong>53.74%<\/strong> <e2><80><94> la primera mayor<c3><ad>a absoluta en la Bolivia democr<c3><a1>tica desde 1982. <c3><81>lvaro Garc<c3><ad>a Linera fue electo vicepresidente. Morales, ex-dirigente cocalero del Chapare, fue el primer presidente ind<c3><ad>gena de Bolivia. <br><br>La campa<c3><b1>a articul<c3><b3> demandas de reforma agraria profunda (ampliaci<c3><b3>n del saneamiento INRA, reversi<c3><b3>n de latifundios), nacionalizaci<c3><b3>n de hidrocarburos y cambio constitucional. Cierra el ciclo neoliberal 1985-2005 y abre el ciclo MAS (2006-2019). Toma de posesi<c3><b3>n: 22 de enero de 2006. <br><br>Fuente: Corte Nacional Electoral; <a href='https://es.wikipedia.org/wiki/Elecciones_generales_de_Bolivia_de_2005'>Wikipedia ES<\/a>. <br><br><em>Impacto en el panel<\/em>: quiebre estructural <code>post_2006<\/code>; todas las variables de pol<c3><ad>tica agro cambian de r<c3><a9>gimen."
+      },
+      "media": {
+        "url": "media/pre_2006/hito_15.jpg",
+        "credit": "Wikimedia Commons / Ag<c3><aa>ncia Brasil / CC-BY-3.0-BR",
+        "caption": "Evo Morales poco despu<c3><a9>s de su elecci<c3><b3>n"
+      },
+      "group": "Eventos"
+    },
+    {
+      "start_date": {
+        "year": 2006,
+        "month": 1,
+        "day": 22
+      },
+      "end_date": {
+        "year": 2019,
+        "month": 11,
+        "day": 10
+      },
+      "display_date": "2006-2019 Era Morales",
+      "text": {
+        "headline": "Era Evo Morales Ayma",
+        "text": "Primer presidente ind<c3><ad>gena de Bolivia (22 ene 2006 - 10 nov 2019). 14 a<c3><b1>os de gobierno del MAS-IPSP definieron el giro m<c3><a1>s profundo de la pol<c3><ad>tica agropecuaria boliviana en medio siglo: creaci<c3><b3>n del Ministerio de Desarrollo Rural y Tierras (MDRyT), reconducci<c3><b3>n comunitaria de la reforma agraria (Ley 3545), reconocimiento constitucional de la soberan<c3><ad>a alimentaria (arts. 405-408 CPE 2009), consolidaci<c3><b3>n de EMAPA, INIAF y BDP como brazos productivos estatales, y una agenda paralela de legalizaci<c3><b3>n progresiva del desmonte (Leyes 337, 741, DS 3973) que culmina con los incendios de 2019. Este bloque temporal es el n<c3><ba>cleo del APER: el gasto p<c3><ba>blico agropecuario se multiplica varias veces por el ciclo del gas (IDH) y reorganiza la arquitectura institucional de CRIAR, EMPODERAR, PAR, Mi Riego, Mi Agua."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_16.jpg",
+        "credit": "Agencia Brasil / Wikimedia",
+        "caption": "Evo Morales Ayma"
+      },
+      "background": {
+        "color": "#8B2E2E"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2006,
+        "month": 1,
+        "day": 22
+      },
+      "display_date": "22 ene 2006",
+      "text": {
+        "headline": "Posesi<c3><b3>n de Evo Morales y creaci<c3><b3>n del MDRyT",
+        "text": "Evo Morales Ayma asume la presidencia el 22 de enero de 2006 tras ganar con 53,7% en diciembre de 2005. Casi simult<c3><a1>neamente, la Ley 3351 de Organizaci<c3><b3>n del Poder Ejecutivo (21 feb 2006) y su reglamento DS 28631 (8 mar 2006) reorganizan el gabinete: el antiguo Ministerio de Asuntos Campesinos y Agropecuarios se transforma en <b>Ministerio de Desarrollo Rural, Agropecuario y Medio Ambiente<\/b>, antecesor directo del actual MDRyT (Ministerio de Desarrollo Rural y Tierras, formalizado posteriormente por el DS 29894 de febrero 2009 bajo la nueva CPE). Esta reestructuraci<c3><b3>n unifica bajo un mismo paraguas tierras, agricultura, bosques y coca, y es el punto de partida del nuevo modelo de gasto sectorial. Fuente primaria: Gaceta Oficial, DS 28631/2006 y DS 29894/2009. V<c3><ad>nculo con panel: se observa salto estructural en la clasificaci<c3><b3>n COFOG/funcional 04.2 (agricultura) y aparici<c3><b3>n del MDRyT como ejecutor principal del gasto agropecuario en el panel."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_17.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Posesi<c3><b3>n de Evo Morales"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2006,
+        "month": 6,
+        "day": 16
+      },
+      "display_date": "16 jun 2006",
+      "text": {
+        "headline": "Plan Nacional de Desarrollo \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Bolivia Digna, Soberana, Productiva\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"",
+        "text": "El PND presentado el 16 de junio de 2006 y formalmente aprobado por DS 29272 del 12 de septiembre de 2007 es la <i>carta de navegaci<c3><b3>n<\/i> macro del primer gobierno Morales. Cuatro pilares (Bolivia Digna, Democr<c3><a1>tica, Productiva, Soberana) reordenan la pol<c3><ad>tica de gasto: el cap<c3><ad>tulo productivo introduce la l<c3><b3>gica de <b>Revoluci<c3><b3>n Rural, Agraria y Forestal<\/b>, impulsa la Nacionalizaci<c3><b3>n de Hidrocarburos (1 mayo 2006) como fuente de renta para la pol<c3><ad>tica rural, y sienta la doctrina del \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Vivir Bien\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" que luego se materializar<c3><a1> en la CPE 2009, la Ley 071 y la Ley 300. Para el APER marca el quiebre conceptual: la agricultura deja de ser tratada como sector subordinado a la apertura exportadora y pasa a ser instrumento de soberan<c3><ad>a alimentaria. Fuente primaria: DS 29272, Gaceta Oficial."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_18.jpg",
+        "credit": "Ministerio de Planificaci<c3><b3>n del Desarrollo",
+        "caption": "Car<c3><a1>tula del PND 2006-2011"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2006,
+        "month": 11,
+        "day": 28
+      },
+      "display_date": "28 nov 2006",
+      "text": {
+        "headline": "Ley 3545 <e2><80><94> Reconducci<c3><b3>n Comunitaria de la Reforma Agraria",
+        "text": "Promulgada el 28 de noviembre de 2006, la Ley 3545 modifica la Ley 1715 (INRA, 1996) y reorienta el saneamiento de tierras hacia un enfoque comunitario-ind<c3><ad>gena. Incorpora el cumplimiento estricto de la Funci<c3><b3>n Econ<c3><b3>mico-Social (FES) como condici<c3><b3>n para mantener la propiedad agraria, establece procedimientos expeditos de saneamiento para peque<c3><b1>a propiedad y TCO, prioriza la titulaci<c3><b3>n conjunta a mujeres y define sanciones por incumplimiento (reversi<c3><b3>n de tierras). Es el instrumento que permiti<c3><b3>, entre 2006 y 2013, titular m<c3><a1>s de 65 millones de hect<c3><a1>reas (incluyendo TCO/TIOC) y tension<c3><b3> la relaci<c3><b3>n Estado-agroindustria del oriente. Fuente primaria: Gaceta Oficial, Ley 3545 del 28/11/2006. V<c3><ad>nculo con panel: variable de superficie saneada por departamento (INRA) y correlaci<c3><b3>n con gasto de transferencias a comunidades."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_19.jpg",
+        "credit": "INRA Bolivia",
+        "caption": "Ley 3545 - portada oficial"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2007,
+        "month": 1,
+        "day": 1
+      },
+      "display_date": "1 ene 2007",
+      "text": {
+        "headline": "Creaci<c3><b3>n del Banco de Desarrollo Productivo (BDP)",
+        "text": "El DS 28999 del 1 de enero de 2007 transforma NAFIBO S.A.M. (Nacional Financiera Boliviana, creada por Ley 1670/1995) en el <b>Banco de Desarrollo Productivo <e2><80><94> Sociedad An<c3><b3>nima Mixta (BDP-SAM)<\/b>, brazo financiero de segundo piso del Estado para el cr<c3><a9>dito productivo en el marco del PND. Propiedad: 80% Estado boliviano, 20% CAF. Opera mediante IFI (Instituciones Financieras Intermediarias) colocando cr<c3><a9>dito productivo sectorial con tasas subsidiadas. Desde 2007 el BDP se convierte en uno de los principales canalizadores de cr<c3><a9>dito agropecuario estatal y complementa la banca de fomento privada regulada luego por la Ley 393 (2013). Fuente primaria: DS 28999/2007. V<c3><ad>nculo con panel: variable bcb_cred_agro y cartera BDP-productivo."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_20.jpg",
+        "credit": "BDP-SAM",
+        "caption": "Memoria BDP 2009"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2007,
+        "month": 8,
+        "day": 15
+      },
+      "display_date": "15 ago 2007",
+      "text": {
+        "headline": "DS 29230 <e2><80><94> Creaci<c3><b3>n de EMAPA",
+        "text": "El Decreto Supremo 29230 del 15 de agosto de 2007 crea la <b>Empresa de Apoyo a la Producci<c3><b3>n de Alimentos (EMAPA)<\/b> como empresa p<c3><ba>blica bajo tuici<c3><b3>n del entonces Ministerio de Desarrollo Rural, Agropecuario y Medio Ambiente. Misi<c3><b3>n: apoyar al productor agropecuario nacional con acopio a precio justo, provisi<c3><b3>n de insumos (semilla, urea) y comercializaci<c3><b3>n de productos estrat<c3><a9>gicos (trigo, ma<c3><ad>z, arroz, soya) para estabilizar precios internos y garantizar abastecimiento. EMAPA se convierte, junto con el BDP, en el principal instrumento de intervenci<c3><b3>n directa del Estado en mercados agroalimentarios y es uno de los actores clave del gasto agropecuario desde 2008 en adelante. Modificado por DS 29710 (sep 2008) y DS 2095 (sep 2014). Fuente primaria: DS 29230/2007. V<c3><ad>nculo con panel: emapa_acopio, emapa_creditos_insumos, precios al productor trigo/arroz."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_21.jpg",
+        "credit": "EMAPA",
+        "caption": "Informe de gesti<c3><b3>n EMAPA"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2007,
+        "month": 11,
+        "day": 28
+      },
+      "display_date": "28 nov 2007",
+      "text": {
+        "headline": "Ley 3791 <e2><80><94> Renta Dignidad",
+        "text": "La Ley 3791 del 28 de noviembre de 2007 crea la <b>Renta Universal de Vejez (Renta Dignidad)<\/b>, pensi<c3><b3>n no contributiva para personas de 60+ a<c3><b1>os, operativizada por DS 29400 (29 dic 2007). Financiada con 30% del Impuesto Directo a los Hidrocarburos (IDH) de Prefecturas, Municipios, Fondo Ind<c3><ad>gena y TGN. Pagos inician en febrero 2008 usando FFAA y Ministerio de la Presidencia para coberturar <c3><a1>reas rurales. Aunque no es pol<c3><ad>tica agropecuaria estricta, tiene impacto directo sobre los hogares rurales: estudios del BCB muestran reducci<c3><b3>n de pobreza rural e incremento de consumo alimentario en hogares campesinos con adultos mayores. Es el primer gran mecanismo de transferencia monetaria a econom<c3><ad>as rurales. Fuente primaria: Gaceta Oficial, Ley 3791."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_22.jpg",
+        "credit": "APS Bolivia",
+        "caption": "Ley 3791 Renta Dignidad"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2008,
+        "month": 6,
+        "day": 25
+      },
+      "display_date": "25 jun 2008",
+      "text": {
+        "headline": "DS 29611 <e2><80><94> Creaci<c3><b3>n del INIAF",
+        "text": "El DS 29611 del 25 de junio de 2008 crea el <b>Instituto Nacional de Innovaci<c3><b3>n Agropecuaria y Forestal (INIAF)<\/b> como instituci<c3><b3>n p<c3><ba>blica descentralizada bajo tuici<c3><b3>n del MDRyT. Absorbe funciones y patrimonio del Programa Nacional de Semillas (PNS), UCPSA y CNPSH y cierra operativamente el anterior SIBTA (Sistema Boliviano de Tecnolog<c3><ad>a Agropecuaria). El INIAF es el ente rector del Sistema Nacional de Innovaci<c3><b3>n Agropecuaria y Forestal (SNIAF) y autoridad competente en certificaci<c3><b3>n de semillas, extensi<c3><b3>n, investigaci<c3><b3>n, asistencia t<c3><a9>cnica y conservaci<c3><b3>n de recursos gen<c3><a9>ticos (agrobiodiversidad). Su creaci<c3><b3>n llena el vac<c3><ad>o dejado por el desmantelamiento del IBTA en los 90s y es pieza central de la Revoluci<c3><b3>n Productiva Comunitaria. Fuente primaria: DS 29611/2008. V<c3><ad>nculo con panel: gasto_iniaf, certificaci<c3><b3>n de semilla, gasto I+D agropecuario."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_23.jpg",
+        "credit": "INIAF Bolivia",
+        "caption": "Logo INIAF"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2009,
+        "month": 2,
+        "day": 7
+      },
+      "display_date": "7 feb 2009",
+      "text": {
+        "headline": "Nueva Constituci<c3><b3>n Pol<c3><ad>tica del Estado <e2><80><94> Soberan<c3><ad>a Alimentaria",
+        "text": "Promulgada el 7 de febrero de 2009 tras refer<c3><a9>ndum aprobatorio del 25 de enero (61,4% s<c3><ad>), la nueva CPE funda el <b>Estado Plurinacional de Bolivia<\/b>. Los art<c3><ad>culos 405-408 consagran el <b>desarrollo rural integral sustentable<\/b> como pol<c3><ad>tica de Estado. El art. 405 obliga al Estado a planes integrales agropecuarios, artesanales, forestales y tur<c3><ad>sticos. El art. 407 establece la <b>soberan<c3><ad>a y seguridad alimentaria<\/b> como objetivos prioritarios, con protecci<c3><b3>n especial a peque<c3><b1>os/medianos productores frente a intercambio inequitativo. El art. 408 proh<c3><ad>be expresamente la producci<c3><b3>n, importaci<c3><b3>n y comercializaci<c3><b3>n de transg<c3><a9>nicos que afecten al ecosistema boliviano (prohibici<c3><b3>n que ser<c3><a1> progresivamente erosionada por DS posteriores). Junto con la Ley 3545 y el PND, la CPE es la arquitectura fundacional del modelo agropecuario MAS. Fuente primaria: CPE 2009, Gaceta Oficial."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_24.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "CPE 2009"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2010,
+        "month": 12,
+        "day": 21
+      },
+      "display_date": "21 dic 2010",
+      "text": {
+        "headline": "Ley 071 <e2><80><94> Derechos de la Madre Tierra",
+        "text": "La Ley Corta 071 del 21 de diciembre de 2010 reconoce a la <b>Madre Tierra como sujeto colectivo de inter<c3><a9>s p<c3><ba>blico<\/b>, titular de derechos propios (vida, diversidad, agua, aire limpio, equilibrio, restauraci<c3><b3>n, vivir libre de contaminaci<c3><b3>n). Consecuencia directa de la Conferencia Mundial de los Pueblos sobre el Cambio Clim<c3><a1>tico celebrada en Tiquipaya (19-22 abril 2010) convocada por Bolivia tras el fracaso de Copenhague 2009. Aunque program<c3><a1>tica (10 art<c3><ad>culos), es la primera ley del mundo en reconocer derechos a la naturaleza y marca doctrinariamente la agenda ambiental boliviana. Se complementa dos a<c3><b1>os despu<c3><a9>s con la Ley 300 que la operativiza. Fuente primaria: Ley 071, Gaceta Oficial."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_25.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Representaci<c3><b3>n Pachamama"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2011,
+        "month": 6,
+        "day": 18
+      },
+      "end_date": {
+        "year": 2019,
+        "month": 11,
+        "day": 10
+      },
+      "display_date": "2011-2019",
+      "text": {
+        "headline": "Programa Mi Agua / MIAGUA I-V",
+        "text": "El <b>Programa M<c3><a1>s Inversi<c3><b3>n para el Agua (MIAGUA)<\/b> lanzado en 2011 es el mayor programa de inversi<c3><b3>n rural de la era Morales en agua y riego. MIAGUA I (2011-2015) financiado con pr<c3><a9>stamo CAF de USD 93,5 millones; fases II-V sumaron adicional CAF+BID+FONPLATA. Acumulado: 176.144 conexiones domiciliarias, 7.957 piletas p<c3><ba>blicas y 43.035 hect<c3><a1>reas bajo riego, beneficiando a ~359.000 familias. El subprograma <b>Mi Riego<\/b> (desde 2014, administrado por la UCEP Mi Riego del MDRyT) se especializa exclusivamente en riego agropecuario. Es el programa insignia del enfoque \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"agua como derecho\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" combinado con aumento de productividad agr<c3><ad>cola. Fuente primaria: DS 0831/2011, contratos CAF. V<c3><ad>nculo con panel: inversi<c3><b3>n_riego, hect<c3><a1>reas con riego (ENA)."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_26.jpg",
+        "credit": "CAF",
+        "caption": "Evaluaci<c3><b3>n ex-post MIAGUA IV"
+      },
+      "group": "Programas"
+    },
+    {
+      "start_date": {
+        "year": 2011,
+        "month": 6,
+        "day": 26
+      },
+      "display_date": "26 jun 2011",
+      "text": {
+        "headline": "Ley 144 <e2><80><94> Revoluci<c3><b3>n Productiva Comunitaria Agropecuaria",
+        "text": "Promulgada el 26 de junio de 2011, la Ley 144 es el marco legal sectorial m<c3><a1>s importante de la era Morales. Establece como finalidad la <b>soberan<c3><ad>a alimentaria para el Vivir Bien<\/b> mediante 15 pol<c3><ad>ticas productivas. Reconoce formalmente a las OECOM (Organizaciones Econ<c3><b3>micas Comunitarias) como sujetos productivos. Crea el <b>Seguro Agrario Universal \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Pachamama\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"<\/b> (art. 20) para cubrir da<c3><b1>os clim<c3><a1>ticos en cultivos estrat<c3><a9>gicos, reestructura la institucionalidad rural bajo el CONSEA y el COMANSA, y manda la asistencia t<c3><a9>cnica integral obligatoria. Sus reglamentos posteriores dan origen operativo a CRIAR, EMPODERAR y otros. Fuente primaria: Ley 144, Gaceta Oficial 27/06/2011. V<c3><ad>nculo con panel: gasto en seguro agrario, gasto CRIAR/EMPODERAR, cobertura de asistencia t<c3><a9>cnica."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_27.jpg",
+        "credit": "Fundaci<c3><b3>n TIERRA",
+        "caption": "Ley 144 - publicaci<c3><b3>n"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2011,
+        "month": 11,
+        "day": 27
+      },
+      "end_date": {
+        "year": 2019,
+        "month": 12,
+        "day": 31
+      },
+      "display_date": "2011-2019",
+      "text": {
+        "headline": "Programa CRIAR <e2><80><94> Apoyos Directos Agroalimentarios",
+        "text": "El <b>Programa de Apoyos Directos para la Creaci<c3><b3>n de Iniciativas Alimentarias Rurales (CRIAR)<\/b> fue financiado por contrato de pr<c3><a9>stamo BID firmado el 27 de noviembre de 2009 (USD 20 millones) e implementado desde 2011 por el MDRyT con cobertura en La Paz, Cochabamba, Chuquisaca, Tarija y Potos<c3><ad>. Mecanismo: vouchers no reembolsables que cubren 90% del costo de tecnolog<c3><ad>as agropecuarias elegidas por productoras/es de agricultura familiar, m<c3><a1>s asistencia t<c3><a9>cnica grupal e individual. Evaluaciones de impacto del BID mostraron incrementos de 20-30% en ingresos, +22% productividad, +36% seguridad alimentaria. Se extiende con <b>CRIAR II<\/b> (desde 2016, BID BO-L1119). Fuente primaria: pr<c3><a9>stamo BID BO-L1040; Ley 144 art. 14. V<c3><ad>nculo con panel: gasto_MDRyT_CRIAR, indicadores de adopci<c3><b3>n tecnol<c3><b3>gica."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_28.jpg",
+        "credit": "BID",
+        "caption": "Publicaci<c3><b3>n CRIAR"
+      },
+      "group": "Programas"
+    },
+    {
+      "start_date": {
+        "year": 2012,
+        "month": 10,
+        "day": 15
+      },
+      "display_date": "15 oct 2012",
+      "text": {
+        "headline": "Ley 300 <e2><80><94> Marco Madre Tierra y Desarrollo Integral",
+        "text": "La Ley Marco 300 del 15 de octubre de 2012 operativiza los derechos reconocidos en la Ley 071 y los concilia con el imperativo del desarrollo integral para Vivir Bien. Define 17 principios (entre ellos no mercantilizaci<c3><b3>n de funciones ambientales, justicia clim<c3><a1>tica, integralidad). Crea: (i) el <b>Consejo Plurinacional para Vivir Bien en Armon<c3><ad>a y Equilibrio con la Madre Tierra<\/b>; (ii) la <b>Autoridad Plurinacional de la Madre Tierra (APMT)<\/b>, responsable de pol<c3><ad>tica clim<c3><a1>tica; (iii) el <b>Mecanismo Conjunto de Mitigaci<c3><b3>n y Adaptaci<c3><b3>n para el Manejo Integral y Sustentable de los Bosques y la Madre Tierra<\/b>. En tensi<c3><b3>n estructural con las Leyes 337/741 posteriores, constituye el brazo \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"verde\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" de la arquitectura MAS. Fuente primaria: Ley 300, Gaceta Oficial."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_29.jpg",
+        "credit": "FAO Bolivia",
+        "caption": "Ley 300 - car<c3><a1>tula"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2013,
+        "month": 1,
+        "day": 11
+      },
+      "display_date": "11 ene 2013",
+      "text": {
+        "headline": "Ley 337 <e2><80><94> Apoyo a la Producci<c3><b3>n de Alimentos y Restituci<c3><b3>n de Bosques",
+        "text": "La Ley 337 del 11 de enero de 2013 establece un <b>r<c3><a9>gimen excepcional<\/b> para predios con desmontes no autorizados entre el 12 de julio de 1996 y el 31 de diciembre de 2011. A cambio de adherirse al \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Programa de Producci<c3><b3>n de Alimentos y Restituci<c3><b3>n de Bosques\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" (administrado por MDRyT, EMAPA y ABT), los propietarios pagan multas fuertemente reducidas respecto al r<c3><a9>gimen de la Ley Forestal 1700. Es la primera de las llamadas <b>\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"leyes incendiarias\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"<\/b>: legaliza ~5,9 millones de hect<c3><a1>reas de desmontes ilegales en Santa Cruz y Beni bajo el argumento de la soberan<c3><ad>a alimentaria. La ABT report<c3><b3> m<c3><a1>s de 300.000 ha inscritas en el programa. Fuente primaria: Ley 337, Gaceta Oficial. V<c3><ad>nculo con panel: p<c3><a9>rdida de bosque MapBiomas/Hansen, desmonte legal vs ilegal ABT."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_30.jpg",
+        "credit": "FAO Lex",
+        "caption": "Ley 337 - texto"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2013,
+        "month": 8,
+        "day": 21
+      },
+      "display_date": "21 ago 2013",
+      "text": {
+        "headline": "Ley 393 <e2><80><94> Servicios Financieros",
+        "text": "La Ley 393 del 21 de agosto de 2013 reemplaza la Ley 1488 (1993) y reforma integralmente el sistema financiero con <c3><a9>nfasis productivo y social. Faculta al <c3><93>rgano Ejecutivo a fijar por DS <b>tasas m<c3><a1>ximas de cr<c3><a9>dito productivo y vivienda social<\/b> y <b>niveles m<c3><ad>nimos de cartera<\/b>: bancos m<c3><ba>ltiples deben mantener <e2><89><a5>50% de su cartera entre cr<c3><a9>dito productivo y vivienda social (con <e2><89><a5>25% al sector productivo); bancos PYME <e2><89><a5>40% a cr<c3><a9>dito productivo. Es la palanca regulatoria clave para inducir cr<c3><a9>dito agropecuario desde la banca privada y convive con el BDP de segundo piso. Fuente primaria: Ley 393, Gaceta Oficial. V<c3><ad>nculo con panel: bcb_cred_agro_productivo, tasas reguladas, cartera sector productivo por banco."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_31.jpg",
+        "credit": "MEFP Bolivia",
+        "caption": "Ministerio de Econom<c3><ad>a"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2013,
+        "month": 12,
+        "day": 17
+      },
+      "display_date": "dic 2013",
+      "text": {
+        "headline": "Agenda Patri<c3><b3>tica 2025 (13 Pilares)",
+        "text": "Presentada por Evo Morales ante la Asamblea Legislativa Plurinacional el 22 de enero de 2013 y consolidada durante ese a<c3><b1>o como hoja de ruta del Bicentenario (2025), la <b>Agenda Patri<c3><b3>tica 2025<\/b> organiza 13 pilares y 68 dimensiones. Pilares clave para el APER: <b>Pilar 6<\/b> (Soberan<c3><ad>a Productiva con Diversificaci<c3><b3>n), <b>Pilar 8<\/b> (Soberan<c3><ad>a Alimentaria <e2><80><94> \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Saber alimentarse para Vivir Bien\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"), <b>Pilar 9<\/b> (Soberan<c3><ad>a Ambiental y derechos de la Madre Tierra). Elevada a rango de ley por <b>Ley 650 del 15 de enero de 2015<\/b>, se convierte en el marco de obligatorio referente para el PDES 2016-2020 y los planes sectoriales. Es la matriz que articula gasto, planificaci<c3><b3>n e indicadores del sector agropecuario en el segundo y tercer mandato de Morales. Fuente primaria: Ley 650/2015; discurso presidencial 22/01/2013."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_32.jpg",
+        "credit": "CEPAL Observatorio",
+        "caption": "Agenda Patri<c3><b3>tica 2025 PDGES"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2014,
+        "month": 6,
+        "day": 26
+      },
+      "display_date": "jun 2014",
+      "text": {
+        "headline": "Plan del Sector Desarrollo Agropecuario \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Revoluci<c3><b3>n Rural y Agraria\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" (PSDA 2014-2018)",
+        "text": "El Plan del Sector Desarrollo Agropecuario \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Revoluci<c3><b3>n Rural y Agraria\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" 2014-2018, elaborado por el MDRyT y aprobado por Resoluci<c3><b3>n Ministerial, operativiza la Ley 144 y la Agenda Patri<c3><b3>tica en el sector. Sus ejes: (i) transformaci<c3><b3>n de los sistemas productivos pecuarios y forestales con enfoque ecol<c3><b3>gico, sostenible e inclusivo; (ii) cambio tecnol<c3><b3>gico e innovaci<c3><b3>n; (iii) seguridad y soberan<c3><ad>a alimentaria; (iv) mercados justos e institucionalidad comunitaria. Integra los programas bandera (CRIAR, EMPODERAR, PAR, Mi Riego, EMAPA, INIAF) en un solo marco presupuestal. Sucedido en 2016 por el PSARDI. Fuente primaria: MDRyT, FAO-Lex BOL148581."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_33.jpg",
+        "credit": "FAO-Lex",
+        "caption": "PSDA 2014-2018"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2014,
+        "month": 12,
+        "day": 29
+      },
+      "display_date": "29 dic 2014",
+      "text": {
+        "headline": "Ley 622 <e2><80><94> Alimentaci<c3><b3>n Escolar",
+        "text": "La Ley 622 del 29 de diciembre de 2014 regula la <b>Alimentaci<c3><b3>n Complementaria Escolar (ACE)<\/b> en el marco de la soberan<c3><ad>a alimentaria y la econom<c3><ad>a plural. Obliga a las entidades territoriales aut<c3><b3>nomas (gobiernos municipales y departamentales) a proveer ACE durante toda la gesti<c3><b3>n educativa, con alimentos sanos, nutritivos y <b>de origen local/nacional<\/b>. Reconoce como proveedores prioritarios a las <b>OECAS<\/b> (Organizaciones Econ<c3><b3>micas de la Agricultura Familiar Campesina), OECOM y la econom<c3><ad>a social comunitaria. Es la norma que convierte la compra p<c3><ba>blica de alimentos en palanca estructural de la agricultura familiar: moviliza ~USD 150 millones anuales en compras municipales. Fuente primaria: Ley 622, Gaceta Oficial. V<c3><ad>nculo con panel: compras p<c3><ba>blicas locales, participaci<c3><b3>n OECAS en ACE municipal."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_34.jpg",
+        "credit": "FAO Bolivia",
+        "caption": "Ley 622 ACE"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2015,
+        "month": 4,
+        "day": 21
+      },
+      "end_date": {
+        "year": 2015,
+        "month": 4,
+        "day": 23
+      },
+      "display_date": "21-23 abr 2015",
+      "text": {
+        "headline": "Cumbre Agropecuaria \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Sembrando Bolivia\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"",
+        "text": "La Cumbre \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Sembrando Bolivia\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\", del 21-23 de abril de 2015 en Santa Cruz, re<c3><ba>ne por primera vez al gobierno, la CAO (agroindustria), peque<c3><b1>os productores, ind<c3><ad>genas e interculturales en cinco mesas: (1) Tierra y estructura agraria, (2) Producci<c3><b3>n y productividad, (3) Diversificaci<c3><b3>n e industrializaci<c3><b3>n, (4) Mercado y exportaciones, (5) Infraestructura y riego. Acuerdos hist<c3><b3>ricos: <b>ampliaci<c3><b3>n del desmonte autorizado de 5 a 20 ha<\/b> para peque<c3><b1>as propiedades, comunidades y asentamientos; impulso a mejoramiento gen<c3><a9>tico bovino y lechero; estudio de un <b>Seguro Agr<c3><ad>cola Universal<\/b>; mecanismos para agilizar exportaciones e importaci<c3><b3>n de insumos. Sin acuerdo en transg<c3><a9>nicos. <c3><81>lvaro Garc<c3><ad>a Linera la calific<c3><b3> de \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"extraordinaria\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\". Consolida el <b>giro productivista-agroexportador<\/b> de Morales y abre la puerta pol<c3><ad>tica a las leyes posteriores (741, DS 3973). Fuente: CIPCA, Bolet<c3><ad>n SIIP MDPyEP."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_35.jpg",
+        "credit": "CIPCA",
+        "caption": "Documento CIPCA sobre la Cumbre"
+      },
+      "group": "Eventos"
+    },
+    {
+      "start_date": {
+        "year": 2015,
+        "month": 9,
+        "day": 29
+      },
+      "display_date": "29 sep 2015",
+      "text": {
+        "headline": "Ley 741 <e2><80><94> Desmonte hasta 20 ha",
+        "text": "Promulgada por Evo Morales en Montero el 29 de septiembre de 2015, la Ley 741 autoriza el <b>desmonte de hasta 20 hect<c3><a1>reas<\/b> en peque<c3><b1>as propiedades, propiedades comunitarias/colectivas y asentamientos humanos legalmente establecidos, incluyendo <b>bosques primarios<\/b>, con fines agropecuarios de \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"producci<c3><b3>n integral y sustentable\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\". Exonera de patente de desmonte. Operativiza el acuerdo clave de la Cumbre \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Sembrando Bolivia\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\". Consecuencia: ~460.000 hect<c3><a1>reas deforestadas bajo los PDM-20 seg<c3><ba>n c<c3><a1>lculos sobre datos ABT; adem<c3><a1>s se presume triangulaci<c3><b3>n con desmontes mayores encadenados. Los an<c3><a1>lisis de Fundaci<c3><b3>n TIERRA muestran que el desmonte aument<c3><b3> pero <b>no la producci<c3><b3>n agropecuaria<\/b> en comunidades receptoras. Abrogada por el Senado en septiembre de 2024. Fuente primaria: Ley 741, Gaceta Oficial."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_36.jpg",
+        "credit": "Fundaci<c3><b3>n TIERRA",
+        "caption": "Ley 741 - an<c3><a1>lisis TIERRA"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2016,
+        "month": 12,
+        "day": 15
+      },
+      "end_date": {
+        "year": 2020,
+        "month": 12,
+        "day": 31
+      },
+      "display_date": "2016-2020",
+      "text": {
+        "headline": "PSARDI <e2><80><94> Plan del Sector Agropecuario y Rural con Desarrollo Integral",
+        "text": "El <b>Plan del Sector Agropecuario y Rural con Desarrollo Integral (PSARDI) 2016-2020<\/b>, construido participativamente por el MDRyT durante 2016, reemplaza al PSDA y alinea al sector con el PDES 2016-2020 y la Ley 650 (Agenda Patri<c3><b3>tica). Objetivo general: <b>incrementar el ingreso de productoras/es agropecuarios y rurales<\/b>, priorizando poblaci<c3><b3>n vulnerable, mediante asistencia t<c3><a9>cnica, infraestructura, acceso a mercados e inclusi<c3><b3>n con equidad social, cultural y de g<c3><a9>nero. Organiza la inversi<c3><b3>n de CRIAR II, EMPODERAR, PAR II, Mi Riego II, INIAF, ACCESOS, PICAR. Es el <c3><ba>ltimo gran marco sectorial estructurado antes de la crisis 2019 y la base de todas las evaluaciones de gasto del tercer mandato. Fuente primaria: MDRyT; CEPAL Observatorio."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_37.jpg",
+        "credit": "Ministerio de Planificaci<c3><b3>n",
+        "caption": "PDES 2016-2020"
+      },
+      "group": "Institucional"
+    },
+    {
+      "start_date": {
+        "year": 2019,
+        "month": 7,
+        "day": 9
+      },
+      "display_date": "9 jul 2019",
+      "text": {
+        "headline": "DS 3973 <e2><80><94> Ampliaci<c3><b3>n del chaqueo en Santa Cruz y Beni",
+        "text": "El Decreto Supremo 3973 del 9 de julio de 2019 modifica el art. 5 del DS 26075 (2001) y autoriza quemas controladas (chaqueo) y desmontes <b>incluso en Tierras de Producci<c3><b3>n Forestal Permanente (TPFP)<\/b> en los departamentos de Santa Cruz y Beni. Emitido sin consulta a ABT ni a pueblos ind<c3><ad>genas afectados. Es considerado el detonante regulatorio directo de los incendios masivos de agosto-octubre 2019 en la Chiquitan<c3><ad>a. Junto con las Leyes 337, 740 y 741, completa el \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"paquete incendiario\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" de la era Morales. Gener<c3><b3> pedidos de abrogaci<c3><b3>n de FAN, Fundaci<c3><b3>n TIERRA y movimientos ind<c3><ad>genas. Fuente primaria: DS 3973, Gaceta Oficial 09/07/2019."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_38.jpeg",
+        "credit": "Mongabay Latam",
+        "caption": "Chaqueo Chiquitan<c3><ad>a"
+      },
+      "group": "Leyes"
+    },
+    {
+      "start_date": {
+        "year": 2019,
+        "month": 8,
+        "day": 1
+      },
+      "end_date": {
+        "year": 2019,
+        "month": 10,
+        "day": 31
+      },
+      "display_date": "ago-oct 2019",
+      "text": {
+        "headline": "Incendios masivos en la Chiquitania",
+        "text": "Entre agosto y octubre de 2019, los incendios forestales en Bolivia arrasan <b>5,3 millones de hect<c3><a1>reas<\/b> a nivel nacional (FAN, 25 sep 2019), de las cuales ~73% en la Chiquitan<c3><ad>a (Santa Cruz): 1.416.105 ha de bosque chiquitano puro, m<c3><a1>s 427.847 ha chiquitano-chaque<c3><b1>o y 13.897 ha chiquitano-amaz<c3><b3>nico. Afectaron 30 <c3><a1>reas protegidas (entre ellas <c3><91>embi Guasu y San Mat<c3><ad>as). Causaron la muerte estimada de >6 millones de mam<c3><ad>feros (Scielo Bolivia, 2021). El desastre combina efectos de la Ley 337, Ley 741 y DS 3973 con una temporada at<c3><ad>picamente seca. El rechazo social contribuy<c3><b3> a deslegitimar al gobierno en la recta final hacia las elecciones de octubre. Fuente: FAN, CEDIB Dossier Incendios 2019. V<c3><ad>nculo con panel: p<c3><a9>rdida forestal MapBiomas, focos MODIS/VIIRS, hect<c3><a1>reas <c3><a1>reas protegidas afectadas."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_39.jpg",
+        "credit": "Wikimedia Commons / Adel Alcantara / CC-BY-SA 4.0",
+        "caption": "Gran incendio en San Jos<c3><a9> de Chiquitos, agosto 2019"
+      },
+      "group": "Eventos"
+    },
+    {
+      "start_date": {
+        "year": 2019,
+        "month": 10,
+        "day": 20
+      },
+      "end_date": {
+        "year": 2019,
+        "month": 11,
+        "day": 10
+      },
+      "display_date": "20 oct - 10 nov 2019",
+      "text": {
+        "headline": "Crisis pol<c3><ad>tica y renuncia de Evo Morales",
+        "text": "Las elecciones generales del 20 de octubre de 2019 desencadenan la mayor crisis pol<c3><ad>tica boliviana del siglo XXI. La interrupci<c3><b3>n del TREP, la denuncia de fraude por la OEA (informe del 10 de noviembre) y 21 d<c3><ad>as de protestas civiles y bloqueos culminan el <b>10 de noviembre de 2019<\/b> con la \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"sugerencia\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" p<c3><ba>blica del Alto Mando Militar (Gral. Williams Kaliman) a Morales de renunciar. Morales renuncia esa misma tarde, huye a M<c3><a9>xico y luego Argentina. Jeanine <c3><81><c3><b1>ez asume la presidencia transitoria el 12 de noviembre. Para el APER, la crisis cierra 14 a<c3><b1>os de pol<c3><ad>tica agropecuaria MAS y abre un corto pero intenso per<c3><ad>odo de reversi<c3><b3>n (emergencia por COVID, autorizaci<c3><b3>n transitoria de eventos transg<c3><a9>nicos, DS 4232/2020, DS 4348/2020). Fuente: Informe OEA 10/11/2019; Infobae, CNN Espa<c3><b1>ol."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_40.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Evo Morales"
+      },
+      "group": "Eventos"
+    },
+    {
+      "start_date": {
+        "year": 2019,
+        "month": 11,
+        "day": 10
+      },
+      "end_date": {
+        "year": 2020,
+        "month": 11,
+        "day": 8
+      },
+      "display_date": "2019-2020 Transici<c3><b3>n <c3><81><c3><b1>ez",
+      "text": {
+        "headline": "Crisis pol<c3><ad>tica post-electoral y gobierno transitorio",
+        "text": "Tras las elecciones del 20 de octubre 2019, la OEA observa irregularidades y el 10 de noviembre Evo Morales renuncia y sale al exilio. El 12 de noviembre la senadora Jeanine <c3><81><c3><b1>ez (Dem<c3><b3>cratas) asume la Presidencia en un Congreso sin qu<c3><b3>rum de MAS. La transici<c3><b3>n estuvo marcada por los conflictos de Sacaba y Senkata (noviembre 2019) con m<c3><a1>s de 30 muertos (CIDH/GIEI). El gobierno interino paraliza la agenda productiva del MAS, suspende programas emblem<c3><a1>ticos (PAR II parcialmente), y pivota hacia la apertura biotecnol<c3><b3>gica y la gesti<c3><b3>n de la pandemia. En t<c3><a9>rminos del panel v10, el shock se observa en la ca<c3><ad>da de inv_agro 2020 y en la ejecuci<c3><b3>n MDRyT 2020, con la \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"p<c3><a9>sima programaci<c3><b3>n de producci<c3><b3>n pisc<c3><ad>cola\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" reconocida por la propia RPC IPD-PACU 2021 (p.30). La transici<c3><b3>n cierra con las elecciones de octubre 2020."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_41.jpg",
+        "credit": "Senado Bolivia / Wikimedia Commons",
+        "caption": "Jeanine <c3><81><c3><b1>ez asume la presidencia de Bolivia, 12 nov 2019"
+      },
+      "group": "Eventos",
+      "background": {
+        "color": "#8B0000"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2019,
+        "month": 11,
+        "day": 12
+      },
+      "text": {
+        "headline": "<c3><81><c3><b1>ez asume presidencia interina",
+        "text": "El 12 de noviembre 2019 Jeanine <c3><81><c3><b1>ez (presidenta del Senado) se proclama Presidenta Constitucional Interina en sesi<c3><b3>n sin qu<c3><b3>rum del MAS, invocando la Sentencia Constitucional Plurinacional 0003/01 de sucesi<c3><b3>n. Nombra gabinete con perfil cruce<c3><b1>o-empresarial y, en agropecuaria, designa a C<c3><a9>sar Cocarico (en un primer momento) y luego a Eliane Capobianco (diciembre 2019) al frente del MDRyT, de perfil cercano a CAO-Santa Cruz. Esta inflexi<c3><b3>n pol<c3><ad>tica abre el ciclo de pol<c3><ad>tica agropecuaria m<c3><a1>s favorable al agronegocio cruce<c3><b1>o desde 2006: se desactivan mesas con CSUTCB/CONAMAQ, se frenan negociaciones sobre tierras fiscales, y se priorizan demandas del agronegocio (biotecnolog<c3><ad>a, apertura de exportaciones, biodi<c3><a9>sel). Primera decisi<c3><b3>n con implicancia agropecuaria directa: DS 4100/2019 (autorizaci<c3><b3>n de exportaciones agr<c3><ad>colas, diciembre 2019)."
+      },
+      "media": {
+        "url": "media/morales_2006_2019/hito_42.jpg",
+        "credit": "Ministerio de Comunicaci<c3><b3>n Bolivia / Wikimedia Commons",
+        "caption": "Jeanine <c3><81><c3><b1>ez, presidenta transitoria (noviembre 2019)"
+      },
+      "group": "Institucional",
+      "background": {
+        "color": "#8B0000"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2020,
+        "month": 3,
+        "day": 17
+      },
+      "text": {
+        "headline": "Cuarentena COVID-19 y primeros decretos sectoriales",
+        "text": "El 17 de marzo 2020 el gobierno <c3><81><c3><b1>ez declara cuarentena total por COVID-19 (DS 4196). El sector agropecuario es declarado esencial pero sufre disrupci<c3><b3>n fuerte en cadenas (leche, hortalizas, carne, papa) y ca<c3><ad>da de precios internos por cierre de ferias y mercados urbanos. La econom<c3><ad>a boliviana se contrae -8,7% en 2020 (INE/BCB), la mayor ca<c3><ad>da desde 1953; el PIB agropecuario (rama A) se mantiene resiliente (+1,6%) por ser esencial pero con fuerte heterogeneidad entre cultivos de exportaci<c3><b3>n y de subsistencia. En abril-mayo se emiten DS 4196, 4199, 4200, 4216 y 4232 en paquete. Para el APER este a<c3><b1>o es el ancla del shock externo: la ca<c3><ad>da de ejec_agro 2020 observada en el panel v10 combina (i) disrupci<c3><b3>n administrativa por cambio de gobierno, (ii) redirecci<c3><b3>n de recursos TGN a salud y bonos, (iii) par<c3><a1>lisis de contrataciones por cuarentena."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_43.png",
+        "credit": "Ministerio de Comunicaci<c3><b3>n / Wikimedia Commons",
+        "caption": "<c3><81><c3><b1>ez anuncia cuarentena total, 17 marzo 2020"
+      },
+      "group": "Eventos",
+      "background": {
+        "color": "#B22222"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2020,
+        "month": 5,
+        "day": 7
+      },
+      "text": {
+        "headline": "DS 4232 <e2><80><94> Apertura OGM de emergencia",
+        "text": "El 7 de mayo 2020 el gobierno <c3><81><c3><b1>ez emite el DS 4232, que autoriza al Comit<c3><a9> Nacional de Bioseguridad a establecer procedimientos abreviados para evaluar eventos gen<c3><a9>ticamente modificados de ma<c3><ad>z, ca<c3><b1>a de az<c3><ba>car, algod<c3><b3>n, trigo y soya, \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"destinados al abastecimiento del consumo interno y comercializaci<c3><b3>n externa\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" y justificados por la emergencia COVID-19 y la seguridad alimentaria. La norma es celebrada por CAO, ANAPO y CNI-C<c3><a1>mara Nacional de Industrias, y rechazada por CIPCA, Fundaci<c3><b3>n TIERRA, plataforma Bolivia Libre de Transg<c3><a9>nicos, CSUTCB, Bartolinas y CIDOB. Abre la puerta a HB4 (soya tolerante a sequ<c3><ad>a) y eventos Bt/RR en otros cultivos. El debate es uno de los fracturadores de la agenda agropecuaria 2020-2025. En el panel v10 marca el punto de inflexi<c3><b3>n en discurso regulatorio y es insumo para narrativa del APER sobre gobernanza biotecnol<c3><b3>gica. Fuente primaria: Gaceta Oficial, DS 4232 de 07/V/2020."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_44.jpg",
+        "credit": "USDA / Wikimedia Commons",
+        "caption": "Campo de soya (ilustrativo)"
+      },
+      "group": "Leyes",
+      "background": {
+        "color": "#8B4513"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2020,
+        "month": 10,
+        "day": 18
+      },
+      "text": {
+        "headline": "Elecciones 2020 <e2><80><94> Arce gana en primera vuelta",
+        "text": "El 18 de octubre 2020 Luis Arce (MAS-IPSP) gana en primera vuelta con 55,1% frente a Carlos Mesa (28,8%) y Luis Fernando Camacho (14%). El resultado valida electoralmente el retorno del MAS y abre el segundo ciclo del proyecto. David Choquehuanca es electo Vicepresidente. Para el sector agropecuario el giro es n<c3><ad>tido: retorno del eje \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"reconstrucci<c3><b3>n productiva y seguridad alimentaria con soberan<c3><ad>a\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\", reactivaci<c3><b3>n de programas congelados en la transici<c3><b3>n (PAR II, EMPODERAR, IPD-PACU), y revisi<c3><b3>n pol<c3><ad>tica de los decretos biotecnol<c3><b3>gicos de <c3><81><c3><b1>ez. En el panel v10 se espera recuperaci<c3><b3>n de la ejecuci<c3><b3>n MDRyT entre 2021 y 2022 (confirmada por RPC Final 2021 y 2022)."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_45.png",
+        "credit": "Presidencia Bolivia / Wikimedia Commons",
+        "caption": "Luis Arce, presidente electo 2020"
+      },
+      "group": "Eventos",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2020,
+        "month": 11,
+        "day": 8
+      },
+      "text": {
+        "headline": "Posesi<c3><b3>n Luis Arce <e2><80><94> fin de la transici<c3><b3>n",
+        "text": "El 8 de noviembre 2020 Luis Arce y David Choquehuanca son investidos Presidente y Vicepresidente del Estado Plurinacional. En agropecuaria designa a Remmy Gonzales Atila (MDRyT) y consolida la agenda de \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Reconstrucci<c3><b3>n econ<c3><b3>mica con sustituci<c3><b3>n de importaciones\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\". El nuevo gobierno recibe un MDRyT con ejecuci<c3><b3>n degradada (IPD-PACU cerr<c3><b3> 2020 con fuerte sub-producci<c3><b3>n; RPC 2021 p.30) y una econom<c3><ad>a en recesi<c3><b3>n profunda. Los primeros decretos con impacto agropecuario son el DS 4393 (reactivaci<c3><b3>n econ<c3><b3>mica) y posteriormente el DS 4497 (2021, reglamentaci<c3><b3>n OGM restrictiva). Este hito ancla el inicio del ciclo Arce-MDRyT 2020-2025 evaluado por el APER."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_46.png",
+        "credit": "ABI / Wikimedia Commons",
+        "caption": "Posesi<c3><b3>n presidencial Arce-Choquehuanca, 8 nov 2020"
+      },
+      "group": "Institucional",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2020,
+        "month": 12,
+        "day": 28
+      },
+      "text": {
+        "headline": "Ley 1357 <e2><80><94> Impuesto a las Grandes Fortunas (IGF)",
+        "text": "El 28 de diciembre 2020 se promulga la Ley 1357 del Impuesto a las Grandes Fortunas (IGF), primer impuesto permanente al patrimonio neto >Bs 30 millones (aprox. USD 4,3 M) con al<c3><ad>cuotas progresivas 1,4%-2,4%. Aunque no es impuesto sectorial, su dise<c3><b1>o afecta a grandes propietarios agropecuarios (soyeros, ganaderos del Beni y Santa Cruz) y es parte del discurso arcista de justicia tributaria post-COVID. Recaudaci<c3><b3>n efectiva inicial modesta (~Bs 240 M a<c3><b1>o 1 seg<c3><ba>n MEFP) pero con efecto se<c3><b1>alizaci<c3><b3>n relevante para el debate sobre presi<c3><b3>n tributaria rural. Fuente primaria: Ley 1357/2020, Gaceta Oficial. Para el APER es relevante porque la frontera de tributaci<c3><b3>n sobre grandes tenencias rurales ha sido hist<c3><b3>ricamente baja y este impuesto es el primer intento permanente desde la Ley 843."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_47.png",
+        "credit": "Wikimedia Commons",
+        "caption": "Asamblea Legislativa Plurinacional"
+      },
+      "group": "Leyes",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2021,
+        "month": 3,
+        "day": 31
+      },
+      "text": {
+        "headline": "DS 4497 <e2><80><94> reversi<c3><b3>n de la v<c3><ad>a abreviada OGM",
+        "text": "El 31 de marzo 2021 el gobierno Arce emite el DS 4497, que abroga los incisos del DS 4232/2020 que habilitaban procedimientos abreviados para eventos transg<c3><a9>nicos en ma<c3><ad>z, ca<c3><b1>a, algod<c3><b3>n y trigo. Deja vigente solo el evento RR1 de soya (introducido en 2005) bajo el r<c3><a9>gimen ordinario. La medida es respuesta a la demanda de organizaciones ind<c3><ad>gena-campesinas (CSUTCB, Bartolinas, CIDOB) y cierra parcialmente la ventana abierta por <c3><81><c3><b1>ez. ANAPO y CAO rechazan la decisi<c3><b3>n y abren un frente de presi<c3><b3>n empresarial que se prolongar<c3><a1> todo el gobierno Arce. Para el APER documenta la discontinuidad regulatoria biotecnol<c3><b3>gica 2020-2021 y es insumo para la secci<c3><b3>n de gobernanza sectorial. Fuente primaria: DS 4497 de 31/III/2021, Gaceta Oficial."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_48.jpg",
+        "credit": "Gobierno de Bolivia",
+        "caption": "Bandera oficial del Estado Plurinacional"
+      },
+      "group": "Leyes",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2021,
+        "month": 12,
+        "day": 1
+      },
+      "text": {
+        "headline": "DS 4632 <e2><80><94> Programa Nacional Pesca y Acuicultura 2022-2025",
+        "text": "El 1 de diciembre 2021 el gobierno Arce promulga el DS 4632, que crea seis programas nacionales 2022-2025 entre ellos el Programa Nacional para el Desarrollo de la Pesca y la Acuicultura Sostenible en Bolivia (Bs 265,07 M) ejecutado por IPD-PACU con meta de 18.173 t de carne al 2025 y 9.640 familias beneficiarias. Es la norma marco plurianual que organiza el portafolio agropecuario del quinquenio arcista. En el panel v10, este decreto explica la expansi<c3><b3>n de asignaci<c3><b3>n a IPD-PACU desde 2022 (confirmada en RPC Final 2024 con Bs 65 M vigente). Fuente primaria: DS 4632/2021, Gaceta Oficial; RPC Final IPD-PACU 2021, p. 3 y 18."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_49.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Lago Titicaca, Bolivia <e2><80><94> pesca artesanal"
+      },
+      "group": "Leyes",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2022,
+        "month": 6,
+        "day": 30
+      },
+      "text": {
+        "headline": "PAR III aprobado por el Banco Mundial",
+        "text": "El 30 de junio 2022 el Directorio del Banco Mundial aprueba el Proyecto de Alianzas Rurales III (P176869) por USD 300 millones (Bs ~2.058 M) orientado a productividad rural, inclusi<c3><b3>n de mujeres y j<c3><b3>venes, y resiliencia clim<c3><a1>tica, ejecutado por EMPODERAR-MDRyT. Es la tercera fase del programa PAR (2007-2013 fase I, 2013-2021 fase II) y el compromiso BM-MDRyT m<c3><a1>s grande del ciclo Arce. La RPC Final 2024 (p.11) reporta ejec. financiera 2024 de apenas 16% (Bs 320 M sobre Bs 2.058 M programados), lo que plantea una alerta cr<c3><ad>tica para el APER sobre capacidad de absorci<c3><b3>n. En el panel v10 corresponde a la transferencia BM-MDRyT 2022 con fuerte gap entre asignaci<c3><b3>n y desembolso."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_50.jpg",
+        "credit": "World Bank / Wikimedia Commons",
+        "caption": "Logo Banco Mundial"
+      },
+      "group": "Programas",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2022,
+        "month": 10,
+        "day": 22
+      },
+      "end_date": {
+        "year": 2022,
+        "month": 11,
+        "day": 26
+      },
+      "display_date": "2022 Paro del Censo",
+      "text": {
+        "headline": "Paro c<c3><ad>vico de Santa Cruz por el Censo (36 d<c3><ad>as)",
+        "text": "Entre el 22 de octubre y el 26 de noviembre 2022, el Comit<c3><a9> Pro Santa Cruz lidera un paro c<c3><ad>vico de 36 d<c3><ad>as exigiendo que el Censo Nacional de Poblaci<c3><b3>n y Vivienda se realice en 2023 (no en 2024) para ajustar la distribuci<c3><b3>n de coparticipaci<c3><b3>n tributaria y esca<c3><b1>os. El paro paraliza el 60% del PIB agroindustrial nacional (soya, girasol, carne, az<c3><ba>car) en plena zafra. P<c3><a9>rdidas estimadas: USD 1.200-1.800 M seg<c3><ba>n CAO/IBCE. El gobierno Arce cede parcialmente (Ley 1492 de 28/XI/2022 convoca censo para 23/03/2024). Hito externo con impacto observable en la serie de PIB agro 2022 y en el deterioro de la relaci<c3><b3>n gobierno-agronegocio cruce<c3><b1>o. Para el APER es clave para el cap<c3><ad>tulo de contexto pol<c3><ad>tico-territorial. Fuente: INE/CAO/El Deber 26-XI-2022."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_51.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Plaza 24 de Septiembre, Santa Cruz de la Sierra"
+      },
+      "group": "Eventos",
+      "background": {
+        "color": "#B22222"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2023,
+        "month": 1,
+        "day": 1
+      },
+      "end_date": {
+        "year": 2023,
+        "month": 12,
+        "day": 31
+      },
+      "display_date": "2023",
+      "text": {
+        "headline": "Crisis de divisas y d<c3><b3>lar paralelo",
+        "text": "Desde febrero 2023 el BCB suspende la venta directa de d<c3><b3>lares al p<c3><ba>blico y Bolivia ingresa en un r<c3><a9>gimen de escasez estructural de divisas. Las Reservas Internacionales Netas caen de USD 15.495 M (2014) a menos de USD 2.000 M l<c3><ad>quidos (2023) seg<c3><ba>n BCB/MEFP Informe Fiscal 2023. El tipo de cambio oficial se mantiene en Bs 6,96/USD pero el mercado paralelo llega a Bs 10-13/USD (2024-2025). Impacto agropecuario: encarecimiento de insumos importados (fertilizantes, agroqu<c3><ad>micos, maquinaria), contracci<c3><b3>n de la importaci<c3><b3>n de di<c3><a9>sel para siembra/cosecha, y distorsi<c3><b3>n de precios relativos que desincentiva exportaci<c3><b3>n por canales oficiales. Para el APER es la variable macro dominante del bienio 2023-2024 y explica parte de la baja ejecuci<c3><b3>n de programas con componente importado (maquinaria, semillas, pozos). Fuente: MEFP Informe Fiscal 2023; Bolet<c3><ad>n SIP dic-2023; BCB."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_52.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Banco Central de Bolivia, La Paz"
+      },
+      "group": "Externo",
+      "background": {
+        "color": "#B22222"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2023,
+        "month": 3,
+        "day": 1
+      },
+      "end_date": {
+        "year": 2023,
+        "month": 10,
+        "day": 31
+      },
+      "display_date": "2023 Sequ<c3><ad>a",
+      "text": {
+        "headline": "Sequ<c3><ad>a severa 2023 en el Altiplano y Chaco",
+        "text": "El ciclo 2022-2023 es clasificado por SENAMHI como evento de sequ<c3><ad>a severa El Ni<c3><b1>o, con d<c3><a9>ficit de lluvia >50% en Chaco, Valles y Altiplano sur. P<c3><a9>rdidas en papa, quinua, ma<c3><ad>z, trigo y ganader<c3><ad>a estimadas por MDRyT/INE en >USD 500 M. Defensa Civil declara emergencia en 72 municipios. Para la APER se refleja en la ca<c3><ad>da del rendimiento de cultivos andinos 2023 y en la ampliaci<c3><b3>n presupuestaria del Programa de Perforaci<c3><b3>n de Pozos (\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Nuestro Pozo\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\") que en 2024 se duplica en presupuesto vigente (de Bs 60M a Bs 110M, RPC Final 2024 p.6). Refuerza adem<c3><a1>s la demanda de riego tecnificado canalizada por ACCESOS RURAL/FIDA. Fuente: SENAMHI; MDRyT; INE <e2><80><94> Encuesta Agr<c3><ad>cola Nacional 2023."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_53.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Altiplano boliviano en <c3><a9>poca seca (ilustrativo)"
+      },
+      "group": "Externo",
+      "background": {
+        "color": "#B22222"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2023,
+        "month": 6,
+        "day": 30
+      },
+      "text": {
+        "headline": "Pol<c3><ad>tica de Biocombustibles <e2><80><94> planta El Alto",
+        "text": "En 2022 se emite el DS 4760 (pol<c3><ad>tica de biocombustibles, antecedida por la Ley 1098/2018) que autoriza mezcla de etanol y biodi<c3><a9>sel con combustibles f<c3><b3>siles y posterior producci<c3><b3>n estatal. En junio-2023 YPFB inaugura la planta de biodi<c3><a9>sel El Alto fase I (capacidad 1.500 bpd), alimentada con aceite de soya y otras oleaginosas. Se anuncia expansi<c3><b3>n a partir de palma y pi<c3><b1><c3><b3>n. La pol<c3><ad>tica es controvertida: (i) CAO advierte competencia por grano entre alimento y combustible; (ii) organizaciones ambientales advierten presi<c3><b3>n expansiva sobre frontera agr<c3><ad>cola en Santa Cruz y Beni; (iii) el costo fiscal es significativo v<c3><ad>a subsidios. Para APER es hito clave del eje energ<c3><ad>a-agro y explica parte de la pol<c3><ad>tica de ole<c3><ad>feras (Bs 402,7 M programados en 2024, ejec. 34% <e2><80><94> RPC Final 2024)."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_54.jpg",
+        "credit": "YPFB / Wikimedia Commons",
+        "caption": "Instalaciones YPFB (ilustrativo)"
+      },
+      "group": "Programas",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2023,
+        "month": 12,
+        "day": 28
+      },
+      "text": {
+        "headline": "Ley 1546 <e2><80><94> Presupuesto 2024",
+        "text": "El 28 de diciembre 2023 se promulga la Ley Financial N<c2><b0> 1546 del Presupuesto General del Estado 2024. Para el MDRyT asigna Bs 1.539,41 M iniciales, distribuidos entre Administraci<c3><b3>n Central, EMPODERAR, IPD-PACU, IPD-SA, PROCAMELIDOS, Nuestro Pozo, FONADIN, ACCESOS RURAL, PROCAMQUI y SENASAG (RPC Final 2024 p.6). El presupuesto marca el mayor nivel nominal de la serie reciente, aunque en t<c3><a9>rminos reales (ajustado por inflaci<c3><b3>n y TC paralelo) representa p<c3><a9>rdida respecto al inicio del ciclo Arce. Es el anclaje fiscal del <c3><ba>ltimo a<c3><b1>o completo pre-electoral. Fuente primaria: Ley 1546/2023, Gaceta Oficial; RPC Final MDRyT 2024."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_55.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Asamblea Legislativa, La Paz"
+      },
+      "group": "Leyes",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2024,
+        "month": 1,
+        "day": 1
+      },
+      "end_date": {
+        "year": 2024,
+        "month": 12,
+        "day": 31
+      },
+      "display_date": "2024",
+      "text": {
+        "headline": "Escasez de combustibles <e2><80><94> impacto en siembra/cosecha",
+        "text": "A lo largo de 2024, YPFB reporta escasez estructural de di<c3><a9>sel y gasolina por limitaciones de divisas para importaci<c3><b3>n. Filas de hasta 48h en estaciones, racionamiento por placa, desabastecimiento cr<c3><b3>nico en ciudades intermedias. Impacto agropecuario directo: atraso en siembra de soya verano (SCZ), alza de 30-50% en fletes rurales, reducci<c3><b3>n de <c3><a1>rea sembrada (ANAPO estima -10% campa<c3><b1>a verano 2024/25). Combina con crisis de divisas y afecta ejecuci<c3><b3>n de programas con componente log<c3><ad>stico (pozos, riego, caminos vecinales). Fuente: YPFB; MEFP Informe Fiscal 2024; El Deber-ANAPO reportes sectoriales 2024."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_56.png",
+        "credit": "Wikimedia Commons",
+        "caption": "Estaci<c3><b3>n de servicio YPFB (ilustrativo)"
+      },
+      "group": "Externo",
+      "background": {
+        "color": "#B22222"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2024,
+        "month": 3,
+        "day": 23
+      },
+      "text": {
+        "headline": "Censo Nacional 2024",
+        "text": "El 23 de marzo 2024 el INE ejecuta el Censo Nacional de Poblaci<c3><b3>n y Vivienda, con cuestionario agropecuario simplificado. Los resultados preliminares (agosto 2024) revelan una poblaci<c3><b3>n total de 11,31 millones y cambios en la distribuci<c3><b3>n territorial con crecimiento relativo de Santa Cruz, Pando y Cochabamba, y estancamiento en Potos<c3><ad>, Oruro y Chuquisaca. Hito clave para el APER porque (i) actualiza denominadores demogr<c3><a1>ficos del panel v10, (ii) informa la pr<c3><b3>xima distribuci<c3><b3>n de coparticipaci<c3><b3>n tributaria (Pacto Fiscal pendiente), (iii) facilita redefinici<c3><b3>n de la cobertura de programas rurales. Fuente: INE <e2><80><94> Censo 2024 Resultados Preliminares."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_57.jpg",
+        "credit": "INE Bolivia",
+        "caption": "Logo Instituto Nacional de Estad<c3><ad>stica"
+      },
+      "group": "Institucional",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2024,
+        "month": 8,
+        "day": 1
+      },
+      "end_date": {
+        "year": 2024,
+        "month": 10,
+        "day": 31
+      },
+      "display_date": "2024 Incendios",
+      "text": {
+        "headline": "Incendios forestales masivos <e2><80><94> 10 M ha quemadas",
+        "text": "Entre agosto y octubre 2024 Bolivia enfrenta la peor temporada de incendios de su historia reciente. Datos ABT/INRA/MMAyA y monitoreo satelital (INPE-MAAP, Global Forest Watch) estiman >10 millones de hect<c3><a1>reas quemadas, >50% en el departamento de Santa Cruz (Chiquitania, Bosque Seco). Fundaci<c3><b3>n TIERRA documenta expansi<c3><b3>n del frente agropecuario y quema ligada a chaqueo ilegal. El gobierno emite DS 5225 (agosto 2024) que suspende temporalmente autorizaciones de desmonte y quemas controladas en <c3><a1>reas cr<c3><ad>ticas, y en diciembre se discute la abrogaci<c3><b3>n de las \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"leyes incendiarias\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" (Ley 337, 502, 739, 741, 1171 y DS 3973 y 4232). Impacto agropecuario: p<c3><a9>rdidas en ganader<c3><ad>a (Beni-SCZ), da<c3><b1>os a cultivos, emisi<c3><b3>n masiva de GEI, crisis sanitaria. Para APER es el evento ambiental-pol<c3><ad>tico dominante del <c3><ba>ltimo a<c3><b1>o del ciclo Arce y empata con la agenda de titulaci<c3><b3>n INRA post-incendios."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_58.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Incendios en la Chiquitania, Bolivia (imagen de archivo 2019)"
+      },
+      "group": "Externo",
+      "background": {
+        "color": "#8B0000"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2024,
+        "month": 12,
+        "day": 31
+      },
+      "text": {
+        "headline": "RPC MDRyT 2024 <e2><80><94> ejecuci<c3><b3>n f<c3><ad>sica 54%, financiera 74%",
+        "text": "Al cierre fiscal 2024 el MDRyT reporta ejecuci<c3><b3>n financiera consolidada del 74% y f<c3><ad>sica del 54% (RPC Final 2024, p.11). El presupuesto vigente asciende a ~Bs 1.684 M con cambios de MAE en el a<c3><b1>o (Gonzales <e2><86><92> Condori <e2><86><92> Flores). Desempe<c3><b1>o heterog<c3><a9>neo: Nuestro Pozo 89%/89%, Cacao 99%/97%, Cam<c3><a9>lidos 100%/96% vs. PAR III 60%/16%, Ole<c3><ad>feras 20%/34%, Ap<c3><ad>cola 32%/26%, ACCESOS RURAL 31%/20%. La baja ejecuci<c3><b3>n financiera de PAR III (16%) es el hallazgo cr<c3><ad>tico: se<c3><b1>ala problemas de absorci<c3><b3>n del principal pr<c3><a9>stamo BM del ciclo. Para el APER este cierre es l<c3><ad>nea base clave (Cap. 3 y 4) y evidencia emp<c3><ad>rica de la fragmentaci<c3><b3>n de la cartera."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_59.jpg",
+        "credit": "MDRyT",
+        "caption": "RPC Final MDRyT 2024 (PDF oficial)"
+      },
+      "group": "Institucional",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2025,
+        "month": 8,
+        "day": 17
+      },
+      "text": {
+        "headline": "Elecciones generales 2025 <e2><80><94> primera vuelta",
+        "text": "El 17 de agosto 2025 se celebran elecciones generales. Tras la implosi<c3><b3>n del MAS (ruptura Arce-Evo) el resultado de primera vuelta ubica a Rodrigo Paz Pereira (PDC) y Jorge \"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"Tuto\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" Quiroga (Alianza Libre) como los candidatos m<c3><a1>s votados, con el MAS reducido a una fracci<c3><b3>n marginal. Se confirma la necesidad de segunda vuelta (balotaje). Es la primera elecci<c3><b3>n desde 2002 donde MAS-IPSP no compite por la presidencia como primera fuerza. Hito que marca el fin del ciclo pol<c3><ad>tico de 19 a<c3><b1>os del MAS (2006-2025) y abre un escenario de reconfiguraci<c3><b3>n sectorial. Para APER contextualiza el documento como insumo de transici<c3><b3>n."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_60.jpg",
+        "credit": "Wikimedia Commons",
+        "caption": "Bandera del Estado Plurinacional de Bolivia"
+      },
+      "group": "Eventos",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    },
+    {
+      "start_date": {
+        "year": 2025,
+        "month": 10,
+        "day": 19
+      },
+      "text": {
+        "headline": "Balotaje 2025 <e2><80><94> nuevo gobierno",
+        "text": "El 19 de octubre 2025 se celebra la segunda vuelta presidencial. El ganador del balotaje (Paz Pereira / Quiroga seg<c3><ba>n resultado oficial TSE) asume la Presidencia el 8 de noviembre 2025. El cambio de gobierno implica transici<c3><b3>n administrativa del MDRyT, revisi<c3><b3>n de convenios con BM/FIDA (PAR III, ACCESOS), definici<c3><b3>n de pol<c3><ad>tica de biocombustibles y posible ajuste del r<c3><a9>gimen cambiario. Hito terminal del per<c3><ad>odo APER 2019-2025 y apertura del nuevo ciclo que el documento buscar<c3><a1> influir con recomendaciones. Fuente: TSE Bolivia <e2><80><94> Resultados oficiales; La Raz<c3><b3>n/El Deber."
+      },
+      "media": {
+        "url": "media/anez_arce_2019_2025/hito_61.png",
+        "credit": "Wikimedia Commons",
+        "caption": "Bandera del Estado Plurinacional de Bolivia"
+      },
+      "group": "Eventos",
+      "background": {
+        "color": "#1E4D8A"
+      }
+    }
+  ],
+  "title": {
+    "start_date": {
+      "year": 1990
+    },
+    "end_date": {
+      "year": 2005,
+      "month": 12,
+      "day": 17
+    },
+    "display_date": "1990-2005 Era neoliberal",
+    "text": {
+      "headline": "Bolivia pre-MAS: del ajuste al quiebre",
+      "text": "<strong>Slide inicial.<\/strong> Periodo marcado por la consolidaci<c3><b3>n del modelo neoliberal iniciado con el DS 21060 (1985) y cerrado con el triunfo de Evo Morales en diciembre de 2005. En agricultura predomin<c3><b3> el desmantelamiento progresivo del IBTA/CIAT-estatal, la apertura comercial y la titulaci<c3><b3>n v<c3><ad>a saneamiento INRA (Ley 1715). El gasto p<c3><ba>blico agropecuario cay<c3><b3> por debajo del 3% del presupuesto nacional en casi todo el periodo. <br><br><em>Cubre variables del panel<\/em>: <code>spending_agro_pct_total<\/code>, <code>inversion_agro_pct_gdp<\/code>, <code>saneamiento_ha_acum<\/code> desde 1996."
+    },
+    "media": {
+      "url": "media/pre_2006/hito_01.jpg",
+      "credit": "Wikimedia Commons / Dominio p<c3><ba>blico",
+      "caption": "Bandera de estado de Bolivia"
+    },
+    "group": "Eventos"
+  }
+}

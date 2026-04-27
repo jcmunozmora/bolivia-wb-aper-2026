@@ -27,6 +27,8 @@ website:
         text: Inicio
       - href: proyecto.qmd
         text: Proyecto
+      - href: avances.qmd
+        text: Avances vs 2011
       - text: Hallazgos
         menu:
           - href: sector.qmd
@@ -37,6 +39,8 @@ website:
             text: Eficiencia y equidad
       - href: timeline.qmd
         text: Línea de tiempo
+      - href: slides.qmd
+        text: Slides
       - href: datos.qmd
         text: Datos
       - href: recursos.qmd

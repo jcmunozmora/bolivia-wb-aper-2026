@@ -104,12 +104,14 @@ Hogares rurales con FIES ≥1 en 2024 (era 49 % en 2019). Tendencia alarmante en
 
 ## Estructura del trabajo
 
-| Capítulo | Tema | Estado |
+| Sección | Tema | Estado |
 |----------|------|:------:|
+| [Avances vs 2011](avances.qmd) | Comparativa con el reporte original y cinco grandes adiciones | ✓ |
 | [Sector](sector.qmd) | Desempeño productivo, TFP, estructura por commodity, uso de suelo | ✓ |
 | [Gasto](gasto.qmd) | Magnitud, composición, ejecución, sustitución por crédito | ✓ |
 | [Eficiencia](eficiencia.qmd) | DEA departamental, regresiones panel, equidad e incidencia | ✓ |
-| [Timeline](timeline.qmd) | Línea de tiempo de la política agropecuaria 1990–2025 | ✓ |
+| [Timeline](timeline.qmd) | Línea de tiempo interactiva de política agropecuaria 1990–2025 | ✓ |
+| [Slides](slides.qmd) | Presentaciones del proyecto (kickoff y siguientes) | ✓ |
 | [Datos](datos.qmd) | Panel maestro v12, fuentes, diccionario | ✓ |
 | [Recursos](recursos.qmd) | Reporte 2011, fichas MDRyT, descargas | ✓ |
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>El proyecto – APER Bolivia 2026</title>
+<title>Presentaciones – APER Bolivia 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,38 +69,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="El proyecto – APER Bolivia 2026">
-<meta property="og:description" content="Antecedentes, alcance y metodología">
+<meta property="og:title" content="Presentaciones – APER Bolivia 2026">
+<meta property="og:description" content="Decks utilizados en sesiones del proyecto">
 <meta property="og:site_name" content="APER Bolivia 2026">
 </head>
 
@@ -126,7 +97,7 @@ window.Quarto = {
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./proyecto.html" aria-current="page"> 
+    <a class="nav-link" href="./proyecto.html"> 
 <span class="menu-text">Proyecto</span></a>
   </li>  
   <li class="nav-item">
@@ -157,7 +128,7 @@ window.Quarto = {
 <span class="menu-text">Línea de tiempo</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./slides.html"> 
+    <a class="nav-link active" href="./slides.html" aria-current="page"> 
 <span class="menu-text">Slides</span></a>
   </li>  
   <li class="nav-item">
@@ -184,22 +155,19 @@ window.Quarto = {
     <h2 id="toc-title">En esta página</h2>
    
   <ul class="collapse">
-  <li><a href="#antecedente" id="toc-antecedente" class="nav-link active" data-scroll-target="#antecedente">Antecedente</a></li>
-  <li><a href="#alcance" id="toc-alcance" class="nav-link" data-scroll-target="#alcance">Alcance</a></li>
-  <li><a href="#metodologías" id="toc-metodologías" class="nav-link" data-scroll-target="#metodologías">Metodologías</a></li>
-  <li><a href="#estructura-institucional" id="toc-estructura-institucional" class="nav-link" data-scroll-target="#estructura-institucional">Estructura institucional</a></li>
-  <li><a href="#equipo-y-contraparte" id="toc-equipo-y-contraparte" class="nav-link" data-scroll-target="#equipo-y-contraparte">Equipo y contraparte</a></li>
-  <li><a href="#acceso-al-reporte-original" id="toc-acceso-al-reporte-original" class="nav-link" data-scroll-target="#acceso-al-reporte-original">Acceso al reporte original</a></li>
+  <li><a href="#kickoff-con-el-banco-mundial-27-de-abril-de-2026" id="toc-kickoff-con-el-banco-mundial-27-de-abril-de-2026" class="nav-link active" data-scroll-target="#kickoff-con-el-banco-mundial-27-de-abril-de-2026">Kickoff con el Banco Mundial — 27 de abril de 2026</a></li>
+  <li><a href="#inventario-de-presentaciones" id="toc-inventario-de-presentaciones" class="nav-link" data-scroll-target="#inventario-de-presentaciones">Inventario de presentaciones</a></li>
+  <li><a href="#convenciones-del-repositorio-de-slides" id="toc-convenciones-del-repositorio-de-slides" class="nav-link" data-scroll-target="#convenciones-del-repositorio-de-slides">Convenciones del repositorio de slides</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">El proyecto</h1>
-<p class="subtitle lead">Antecedentes, alcance y metodología</p>
+<h1 class="title">Presentaciones</h1>
+<p class="subtitle lead">Decks utilizados en sesiones del proyecto</p>
 </div>
 
 
@@ -216,140 +184,82 @@ window.Quarto = {
 </header>
 
 
-<section id="antecedente" class="level2">
-<h2 class="anchored" data-anchor-id="antecedente">Antecedente</h2>
-<p>En 2011, el Banco Mundial publicó el <em>Agricultural Public Expenditure Review</em> (APER) de Bolivia (Informe N.° 59696-BO), un análisis sistemático de la magnitud, composición y eficiencia del gasto público agropecuario para el período 1996–2008. El reporte fue elaborado en conjunto con contrapartes del Ministerio de Economía y Finanzas Públicas (MEFP) y el entonces Ministerio de Desarrollo Rural, Agropecuario y Medio Ambiente.</p>
-<p>Quince años después, el contexto del sector agropecuario boliviano se ha transformado profundamente: la economía vivió un ciclo expansivo basado en hidrocarburos (2006–2014), una desaceleración fiscal, una crisis sanitaria global, eventos climáticos extremos (incendios masivos en 2019 y 2024, sequía 2023), y una sustitución de instrumentos de apoyo al sector —del gasto fiscal directo al crédito subsidiado vía Ley 393/2014.</p>
-<p>Esta actualización extiende la cobertura temporal del análisis a <strong>35 años (1990–2024)</strong>, integra metodologías internacionales estándar (OCDE-PSE, IFPRI-SPEED, DEA con bootstrap Simar-Wilson), y amplía el conjunto de fuentes incluyendo registros administrativos, censos, encuestas de hogares y datos satelitales.</p>
-</section>
-<section id="alcance" class="level2">
-<h2 class="anchored" data-anchor-id="alcance">Alcance</h2>
-<p>El estudio responde a tres preguntas guía:</p>
+<div class="lead">
+<p>Cada presentación se conserva en su versión original (HTML autocontenido, sin dependencias externas) para trazabilidad de qué se mostró, cuándo y a quién. La fuente Quarto está en el repositorio.</p>
+</div>
+<section id="kickoff-con-el-banco-mundial-27-de-abril-de-2026" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="kickoff-con-el-banco-mundial-27-de-abril-de-2026">Kickoff con el Banco Mundial — 27 de abril de 2026</h2>
+<p>Presentación inicial de los avances de la actualización del APER. Repasa el reporte original (WB 2011), el esfuerzo de datos consolidado (124 datasets, 35 años, 309 K personas en encuestas) y las cinco grandes adiciones metodológicas: PSE/GSSE OECD, DEA con bootstrap, crédito agropecuario, clima y uso del suelo, microdatos de hogares y UPAs.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cómo navegar el deck embebido
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Espacio o ↓</strong> → siguiente diapositiva.</li>
+<li><strong>↑</strong> → diapositiva previa.</li>
+<li><strong>Esc</strong> → vista panorámica de todas las diapositivas.</li>
+<li><strong>F</strong> → pantalla completa.</li>
+<li><strong>S</strong> → notas del orador (si existen).</li>
+</ul>
+</div>
+</div>
+<div class="column-screen-inset">
+<div style="position: relative; width: 100%; padding-bottom: 56.25%; max-width: 1400px; margin: 1.5rem auto; border: 1px solid #E5E5E5; background: #FAFAF9;">
+  <iframe src="downloads/slides/2026-04-27_kickoff_BM.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen="" title="APER Bolivia 2026 — Kickoff con el Banco Mundial">
+  </iframe>
+</div>
+</div>
+<p><a href="downloads/slides/2026-04-27_kickoff_BM.html" class="download-btn" target="_blank">Abrir deck en pestaña nueva</a> <a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/slides/2026-04-27_kickoff/01_kickoff_BM_avances.qmd" class="download-btn">Ver fuente Quarto en GitHub</a></p>
+<section id="hoja-de-ruta-del-deck" class="level3">
+<h3 class="anchored" data-anchor-id="hoja-de-ruta-del-deck">Hoja de ruta del deck</h3>
 <ol type="1">
-<li><p><strong>¿Cuánto gasta Bolivia en el sector agropecuario y cómo se compara con la región?</strong> Análisis de nivel y composición del gasto, benchmarking con la meta de Maputo y con países LAC vía la base IFPRI-SPEED.</p></li>
-<li><p><strong>¿Es eficiente y equitativo este gasto?</strong> Análisis envolvente de datos (DEA) a nivel departamental; regresiones panel que vinculan gasto con productividad agrícola (TFP) y PIB sectorial; análisis de incidencia subnacional con la Encuesta de Hogares.</p></li>
-<li><p><strong>¿Qué reorientaciones permitirían maximizar retornos productivos, sociales y ambientales?</strong> Síntesis basada en la evidencia empírica y en la literatura comparada de reformas de gasto agropecuario en LAC.</p></li>
+<li><strong>Punto de partida</strong> — APER 2011, alcance, fuentes, mensajes centrales.</li>
+<li><strong>Lo que actualizamos</strong> — el esfuerzo de datos en una lámina; cobertura por capítulo 2011 vs 2026.</li>
+<li><strong>Lo nuevo en 2026</strong> — métodos OECD, DEA, crédito BCB, clima/MapBiomas, microdatos hogares y UPAs.</li>
+<li><strong>Análisis preliminares</strong> — ocho hallazgos cuantitativos para discusión.</li>
+<li><strong>Cierre</strong> — gaps abiertos (Tier A/B/C) y próximos pasos.</li>
 </ol>
 </section>
-<section id="metodologías" class="level2">
-<h2 class="anchored" data-anchor-id="metodologías">Metodologías</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Producer Support Estimates (PSE)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Metodología OCDE aplicada por el BID-AgriMonitor para el período <strong>2006–2023</strong>. Para extender el análisis hacia atrás, se calculó la <em>Tasa Nominal de Protección</em> (NRP) por commodity para <strong>1991–2024</strong> usando precios productor FAOSTAT contra precios de referencia mundiales (WB Pink Sheet).</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-IFPRI SPEED 2019
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Base de datos comparable internacional (164 países, 1980–2017) basada en Government Finance Statistics (GFS) del FMI. Permite ranquear el esfuerzo fiscal agropecuario boliviano contra LAC y verificar el cumplimiento de la meta de Maputo (10 % del gasto público total).</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-DEA con bootstrap Simar-Wilson
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Análisis envolvente de datos a nivel departamental (9 DMUs × 9 años = 81 observaciones), con tres inputs (gasto agropecuario real, crédito al sector, área irrigada) y dos outputs (PIB agropecuario real, rendimiento cereales). Bootstrap con B=2 000 iteraciones para intervalos de confianza. Segunda etapa Tobit con scores ~ uso de suelo + deforestación + clima.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Panel econométrico fixest
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Modelos de productividad total de factores con efectos fijos: <span class="math inline">\(\ln \text{TFP}_t = \beta_1 \ln \text{Inv}_t + \beta_2 \ln \text{LC antrópica}_t + \beta_3 t + \varepsilon_t\)</span>. Versiones con rezagos (L1, L2), variables climáticas y deforestación. Subnacional: <span class="math inline">\(\ln \text{PIB agro}_{it} = \beta_1 \ln \text{Gasto}_{it} + \alpha_i + \gamma_t + \varepsilon_{it}\)</span>.</p>
-</div>
-</div>
 </section>
-<section id="estructura-institucional" class="level2">
-<h2 class="anchored" data-anchor-id="estructura-institucional">Estructura institucional</h2>
-<p>El gasto agropecuario boliviano involucra al menos diez entidades con presupuesto y mandato relacionados:</p>
+<section id="inventario-de-presentaciones" class="level2">
+<h2 class="anchored" data-anchor-id="inventario-de-presentaciones">Inventario de presentaciones</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Entidad</th>
-<th>Mandato</th>
+<th>Fecha</th>
+<th>Evento</th>
+<th>Audiencia</th>
+<th>Deck</th>
+<th style="text-align: center;">Tamaño</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>MDRyT</td>
-<td>Rector del sector — política, planificación, programas</td>
-</tr>
-<tr class="even">
-<td>INIAF</td>
-<td>Investigación e innovación agropecuaria; semillas</td>
-</tr>
-<tr class="odd">
-<td>SENASAG</td>
-<td>Sanidad agropecuaria e inocuidad alimentaria</td>
-</tr>
-<tr class="even">
-<td>EMAPA</td>
-<td>Compras garantizadas y comercialización</td>
-</tr>
-<tr class="odd">
-<td>INRA</td>
-<td>Saneamiento y titulación de tierras</td>
-</tr>
-<tr class="even">
-<td>ABT</td>
-<td>Control de bosques y autorizaciones de desmonte</td>
-</tr>
-<tr class="odd">
-<td>FDI</td>
-<td>Transferencias directas a comunidades indígenas</td>
-</tr>
-<tr class="even">
-<td>BDP-SAM</td>
-<td>Crédito productivo subsidiado</td>
-</tr>
-<tr class="odd">
-<td>SENARI</td>
-<td>Planificación y regulación de riego</td>
-</tr>
-<tr class="even">
-<td>MMAyA</td>
-<td>Mi Riego / MIAGUA — <em>fuera de tuición MDRyT</em></td>
+<td>2026-04-27</td>
+<td>Kickoff BM</td>
+<td>Banco Mundial Bolivia</td>
+<td><a href="downloads/slides/2026-04-27_kickoff_BM.html">HTML</a></td>
+<td style="text-align: center;">3.8 MB</td>
 </tr>
 </tbody>
 </table>
-<p>Esta arquitectura — y su fragmentación reconocida en el propio Plan Estratégico Institucional MDRyT 2014–2018 — es uno de los hallazgos institucionales del estudio.</p>
 </section>
-<section id="equipo-y-contraparte" class="level2">
-<h2 class="anchored" data-anchor-id="equipo-y-contraparte">Equipo y contraparte</h2>
-<p>El estudio se realiza con la <strong>Oficina del Banco Mundial en Bolivia</strong> y contrapartes técnicas del <strong>Ministerio de Economía y Finanzas Públicas (MEFP)</strong> y el <strong>Ministerio de Desarrollo Rural y Tierras (MDRyT)</strong>.</p>
-<p>La actualización 2026 fue coordinada técnicamente por <strong>Universidad EAFIT (Colombia)</strong> como consultor asociado al Banco Mundial.</p>
-</section>
-<section id="acceso-al-reporte-original" class="level2">
-<h2 class="anchored" data-anchor-id="acceso-al-reporte-original">Acceso al reporte original</h2>
-<p>El reporte APER 2011 está disponible para consulta como documento de referencia:</p>
-<p><a href="downloads/WB_APER_2011_Spanish.pdf" class="download-btn">Descargar reporte APER 2011 (PDF)</a></p>
+<section id="convenciones-del-repositorio-de-slides" class="level2">
+<h2 class="anchored" data-anchor-id="convenciones-del-repositorio-de-slides">Convenciones del repositorio de slides</h2>
+<p>Cada deck vive en <code>slides/YYYY-MM-DD_evento/</code> con:</p>
+<ul>
+<li><code>NN_titulo.qmd</code> — fuente reproducible.</li>
+<li><code>NN_titulo.html</code> — render autocontenido (<code>embed-resources: true</code>) listo para distribuir.</li>
+<li>Tema visual: <code>slides/wb_slides.scss</code> — paleta navy del proyecto + tipografía Inter.</li>
+</ul>
+<p>Las figuras del pipeline se reutilizan desde <code>05_outputs/figures/</code> para mantener consistencia con el reporte técnico. Los datos frescos se cargan desde <code>01_data/processed/*.rds</code> en chunks <code>echo: false</code>.</p>
+<p><a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/tree/main/slides" class="download-btn">Estructura completa en GitHub</a></p>
 
 
 </section>

@@ -1,6 +1,6 @@
 ---
 title: "Política agropecuaria 1990-2025"
-subtitle: "Línea de tiempo de hitos institucionales y eventos críticos"
+subtitle: "Línea de tiempo interactiva de hitos institucionales y eventos críticos"
 toc: false
 page-layout: full
 ---
@@ -17,7 +17,53 @@ tl <- fread(here::here("01_data/timeline/timeline.csv"))
 Esta línea de tiempo documenta 61 hitos de política agropecuaria boliviana entre 1990 y 2025: leyes, decretos supremos, programas emblemáticos y eventos externos que ayudan a interpretar las series cuantitativas del estudio.
 :::
 
-## Resumen
+## Línea de tiempo interactiva
+
+::: {.column-screen-inset}
+
+```{=html}
+<link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+<div id="timeline-embed" style="width: 100%; height: 720px; max-width: 1400px; margin: 0 auto; border: 1px solid #E5E5E5; background: #FAFAF9;"></div>
+<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.min.js"></script>
+<script>
+  var timeline_config = {
+    height: 720,
+    width: "100%",
+    is_embed: true,
+    initial_zoom: 2,
+    language: "es",
+    font: "default",
+    timenav_position: "bottom",
+    optimal_tick_width: 100,
+    hash_bookmark: false,
+    debug: false
+  };
+  fetch("timeline.json")
+    .then(r => r.json())
+    .then(data => {
+      window.timeline = new TL.Timeline("timeline-embed", data, timeline_config);
+    })
+    .catch(err => {
+      document.getElementById("timeline-embed").innerHTML =
+        '<div style="padding: 2rem; text-align: center; color: #6B7280;">' +
+        'No fue posible cargar la línea de tiempo. ' +
+        '<a href="downloads/timeline.csv">Descargar CSV</a>.' +
+        '</div>';
+      console.error(err);
+    });
+</script>
+```
+
+:::
+
+::: {.callout-note}
+## Cómo navegar
+- Usa la barra inferior para moverte por las décadas; **click en un hito** lo despliega arriba.
+- Las flechas del teclado (← →) avanzan entre hitos.
+- Cada tarjeta incluye descripción 150–300 palabras, fuente primaria (Gaceta Oficial / Lexivox / FAOLEX), una fuente secundaria y, cuando existe, imagen ilustrativa de Wikimedia Commons (CC).
+:::
+
+## Resumen por período y categoría
 
 ```{r}
 #| label: tbl-resumen
@@ -34,8 +80,8 @@ gt(tl_wide) |>
   opt_table_outline(style = "none")
 ```
 
-::: {.callout-note}
 ## Cómo se construyó
+
 Cada hito cumple al menos uno de estos criterios:
 
 1. **Instrumento legal**: ley o decreto supremo del sector.
@@ -43,10 +89,11 @@ Cada hito cumple al menos uno de estos criterios:
 3. **Evento externo**: shock con impacto ≥ 1 % del PIB agropecuario.
 4. **Acuerdo / cumbre**: que produjo decisiones vinculantes.
 
-Cada hito tiene fecha exacta, fuente primaria (Gaceta Oficial / Lexivox / FAOLEX), al menos una fuente secundaria (medio o think tank), descripción contextual de 150–300 palabras y vínculo al panel cuantitativo del estudio. El listado completo está disponible en formato KnightLab TimelineJS.
-:::
+Cada hito tiene fecha exacta, fuente primaria (Gaceta Oficial / Lexivox / FAOLEX), al menos una fuente secundaria (medio o think tank), descripción contextual de 150–300 palabras y vínculo al panel cuantitativo del estudio.
 
-## Pre-MAS · 1990–2005
+## Listado completo
+
+### Pre-MAS · 1990–2005
 
 ```{r}
 tl[Year < 2006 & Type != "title",
@@ -58,9 +105,7 @@ tl[Year < 2006 & Type != "title",
   gt() |> opt_table_outline(style = "none")
 ```
 
-Período de transición: cierre del modelo neoliberal (Ley INRA 1715, Ley Forestal 1700, Ley SAFCO 1178) y el ascenso de la confrontación social (Guerra del Agua 2000, Octubre Negro 2003) que culmina con el triunfo electoral del MAS en diciembre 2005.
-
-## Era Morales · 2006–2019
+### Era Morales · 2006–2019
 
 ```{r}
 tl[Year >= 2006 & Year < 2020 & Type != "title",
@@ -72,9 +117,7 @@ tl[Year >= 2006 & Year < 2020 & Type != "title",
   gt() |> opt_table_outline(style = "none")
 ```
 
-Período de mayor densidad legislativa para el sector: **catorce años, veinticinco hitos**. Incluye la creación del MDRyT, INIAF, EMAPA, BDP; la nueva Constitución 2009 con soberanía alimentaria explícita; las leyes Madre Tierra (071, 300); la Ley 144 de Revolución Productiva; la Cumbre Sembrando Bolivia 2015; y los incendios de la Chiquitanía 2019.
-
-## Áñez + Arce · 2019–2025
+### Áñez + Arce · 2019–2025
 
 ```{r}
 tl[Year >= 2020 & Type != "title",
@@ -86,24 +129,9 @@ tl[Year >= 2020 & Type != "title",
   gt() |> opt_table_outline(style = "none")
 ```
 
-Período de turbulencia: transición política, pandemia, autorización de OGM (DS 4232), retorno del MAS, paro del Censo 2022, crisis de divisas 2023, escasez de combustibles e incendios masivos en 2024, elecciones generales 2025.
+## Recursos descargables
 
-## Línea de tiempo interactiva
-
-::: {.callout-tip}
-## Versión KnightLab TimelineJS
-La línea de tiempo está construida en formato compatible con [Knight Lab TimelineJS](https://timeline.knightlab.com). Cada hito incluye fecha exacta, descripción detallada (150–300 palabras), fuente primaria, fuente secundaria, imagen ilustrativa con licencia Creative Commons (Wikimedia Commons) y etiquetas temáticas.
-
-Para publicarla:
-
-1. Importar `01_data/timeline/timeline.csv` a una hoja de Google Sheets nueva.
-2. Publicar la hoja como CSV (`Archivo → Compartir → Publicar en web`).
-3. Pegar el enlace en [timeline.knightlab.com/#make](https://timeline.knightlab.com/#make).
-
-Las instrucciones detalladas están en `01_data/timeline/INSTRUCCIONES_KNIGHTLAB.md` del repositorio.
-:::
-
-## Recursos
-
-[Descargar timeline.csv](downloads/timeline.csv){.download-btn}
-[Ver fuentes detalladas](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/01_data/timeline/sources.md){.download-btn}
+[Timeline CSV (KnightLab)](downloads/timeline.csv){.download-btn}
+[Timeline JSON (embed propio)](downloads/timeline.json){.download-btn}
+[Vista previa simplificada (CSV)](downloads/timeline_preview.csv){.download-btn}
+[Ver fuentes detalladas en GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/01_data/timeline/sources.md){.download-btn}

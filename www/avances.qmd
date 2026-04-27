@@ -1,0 +1,242 @@
+---
+title: "Avances vs APER 2011"
+subtitle: "Continuidad metodológica y cinco grandes adiciones"
+---
+
+::: {.lead}
+Este capítulo documenta cómo la actualización 2026 dialoga con el reporte original del Banco Mundial (Informe N.° 59696-BO, 2011): qué se mantiene como ancla metodológica, qué se mejora con datos más extensos y qué se incorpora como nuevo dominio analítico.
+:::
+
+## Punto de partida — APER 2011
+
+El **Agricultural Public Expenditure Review** publicado por el Banco Mundial en marzo de 2011 (Informe N.° 59696-BO, Unidad de Agricultura y Desarrollo Rural — LCSAR) fue el único diagnóstico integral del gasto público agropecuario boliviano disponible al inicio de este encargo.
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({ library(gt); library(data.table) })
+```
+
+```{r}
+#| label: tbl-aper2011
+data.table(
+  Dimensión = c("Período cubierto",
+                 "Cobertura territorial",
+                 "Equipo gobierno",
+                 "Núcleo de datos",
+                 "Fuentes complementarias",
+                 "Métodos analíticos",
+                 "Capítulos del reporte"),
+  `APER 2011` = c("1996 – 2008 (13 años)",
+                  "9 departamentos · 327 municipios",
+                  "MPD · MDRyT · MEFP · Min. Autonomías",
+                  "MEFP-DGCF + FAM (clasificación funcional 1996-2008) + UDAPE",
+                  "FAO, WDI, índice VAM, encuesta primaria 40 municipios",
+                  "Frontera estocástica (eficiencia técnica) + análisis descriptivo",
+                  "6 capítulos + 12 anexos (86 pp.)")
+) |>
+  gt() |>
+  tab_header(title = md("**Reporte original — APER 2011 (WB Report N.° 59696-BO)**")) |>
+  tab_source_note(md("*Fuente: World Bank (2011), Tabla de contenidos pp. iii-iv y secciones metodológicas.*")) |>
+  opt_table_outline(style = "none")
+```
+
+### Mensajes centrales del APER 2011 — recordatorio
+
+1. **Bajo nivel de gasto** público agropecuario respecto al peso económico del sector.
+2. **Composición desbalanceada** — concentración en gastos "integrales" sin desagregación clara.
+3. **Subejecución persistente** del presupuesto aprobado, especialmente subnacional.
+4. **Inequidad espacial** — mayor concentración del gasto donde menos se necesita.
+5. **Eficiencia técnica heterogénea** entre departamentos (frontera estocástica 2000-2007).
+6. **Escasos vínculos** entre planificación, presupuesto y resultados sectoriales.
+7. **Recomendaciones** en 3 ejes: priorización · estandarización contable · coordinación institucional.
+
+::: {.callout-note}
+## Limitaciones reconocidas en 2011
+- Datos detallados solo hasta 2008.
+- Sin métricas tipo OECD (PSE / GSSE / NRP).
+- No mide eficiencia técnica con metodologías no-paramétricas (DEA).
+- Sin datos satelitales (uso de suelo, clima).
+- Sin microdatos de hogares posteriores a 2008.
+:::
+
+## El esfuerzo de datos — 2026 en cifras
+
+::: {.findings-grid}
+
+::: {.finding-card}
+::: {.label}
+Período cubierto
+:::
+::: {.value}
+1990–2024
+:::
+::: {.desc}
+35 años · 9 deptos · 339 municipios. Triplica el alcance temporal del APER 2011.
+:::
+:::
+
+::: {.finding-card}
+::: {.label}
+Datasets procesados
+:::
+::: {.value}
+124
+:::
+::: {.desc}
+Archivos `.rds` con espejos `.csv` para auditoría. 142 MB de datos consolidados.
+:::
+:::
+
+::: {.finding-card}
+::: {.label}
+Microdatos
+:::
+::: {.value}
+309 mil
+:::
+::: {.desc}
+Personas en la Encuesta de Hogares 2012-2024 (8 rondas). Núcleo del análisis de equidad.
+:::
+:::
+
+::: {.finding-card}
+::: {.label}
+Pipeline reproducible
+:::
+::: {.value}
+44
+:::
+::: {.desc}
+Scripts R numerados para recolección, más 8 de análisis. Reproducible vía `renv.lock`.
+:::
+:::
+
+::: {.finding-card}
+::: {.label}
+Salidas listas
+:::
+::: {.value}
+40
+:::
+::: {.desc}
+Figuras PNG 300 dpi con tema World Bank. Archivos en `05_outputs/figures/`.
+:::
+:::
+
+::: {.finding-card}
+::: {.label}
+Documentación
+:::
+::: {.value}
+6 + 7 + 61
+:::
+::: {.desc}
+Capítulos Quarto + fichas MDRyT + hitos timeline. Trazabilidad completa de cada dato.
+:::
+:::
+
+:::
+
+## Cobertura por capítulo: 2011 vs 2026
+
+```{r}
+#| label: tbl-cobertura
+data.table(
+  Capítulo = c("2. Desempeño",
+               "3. Presupuestos / instituciones",
+               "4. Organización del gasto",
+               "5a. Eficacia",
+               "5b. Eficiencia técnica",
+               "5c. Apoyo al productor",
+               "5d. Crédito",
+               "5e. Clima / suelo",
+               "5f. Pobreza / FIES",
+               "5g. Microdatos UPA"),
+  `APER 2011` = c("INE + FAO 1996-2008",
+                  "MEFP 1996-2008",
+                  "BOOST 1996-2008 (FAM)",
+                  "FE departamental",
+                  "Frontera estocástica",
+                  "—",
+                  "—",
+                  "—",
+                  "VAM municipal",
+                  "CNA 2008 (limitado)"),
+  `APER 2026` = c("INE 1984-2024 + FAOSTAT QCL + USDA TFP + WDI",
+                  "VIPFE 1990-2024 + Informe Fiscal 2024 + 7 fichas MDRyT",
+                  "BOOST 1996-2008 + Jubileo 2012-2021 + MEFP DGAA",
+                  "Panel dept (2012-2021) + panel muni (3 368 obs) + FE",
+                  "DEA bootstrap Simar-Wilson (81 DMU) + FE",
+                  "PSE / GSSE / NRP OECD-IDB (2006-2023) + NRP extendido 1991-2024",
+                  "BCB serie 2010-2024 + Ley 393/2014",
+                  "CHIRPS 1990-2023 · MapBiomas 1985-2024 · Hansen 2001-2023",
+                  "EH 2012-2024 (309K personas) + FIES 2019-2024",
+                  "ENA 2008 + ENA 2015 + CNA 2013 SICE (UPA-level)"),
+  Estado = c("Mejorado", "Mejorado", "Mejorado", "Mejorado",
+              "Nuevo", "Nuevo", "Nuevo", "Nuevo", "Nuevo", "Nuevo")
+) |>
+  gt() |>
+  tab_header(title = md("**Continuidad y novedad por capítulo del reporte**")) |>
+  data_color(columns = "Estado",
+             palette = c("#FED7AA", "#14213D"),
+             domain = c("Mejorado", "Nuevo")) |>
+  cols_align(columns = "Estado", align = "center") |>
+  opt_table_outline(style = "none")
+```
+
+## Cinco grandes adiciones metodológicas
+
+### 1. Apoyo al productor — métricas OECD
+
+PSE, GSSE, TSE y NRP por commodity vía **IDB AgriMonitor (2006-2023)** permiten comparar Bolivia con LAC y descomponer el apoyo entre **transferencias de precios al productor** vs **servicios generales** (investigación, infraestructura, sanidad). El estudio extiende además la NRP hacia atrás hasta **1991** combinando precios productor FAOSTAT con precios de referencia mundiales del WB Pink Sheet.
+
+::: {.callout-tip}
+**Hallazgo nuevo 2026:** Bolivia exhibe un patrón dual de protección — **taxa exportables** (soya −37 %, arroz −33 %) y **protege seguridad alimentaria** (maíz +46 %, trigo +28 %).
+:::
+
+### 2. Eficiencia técnica con DEA + bootstrap Simar-Wilson
+
+81 DMUs (9 departamentos × 9 años, 2012-2020), inputs / outputs en `dea_dataset.rds`. Mejora la frontera estocástica de 2011 al **no asumir forma funcional** y permitir intervalos de confianza vía bootstrap.
+
+::: {.callout-tip}
+**Hallazgo nuevo 2026:** Santa Cruz domina la frontera (score 1.0); Tarija aparece como la menos eficiente (0.05). En la segunda etapa, **el uso antrópico del suelo explica el 63 % de la varianza** entre scores: la "eficiencia" observada está vinculada a expansión de frontera, no a mejor gestión.
+:::
+
+### 3. Crédito agropecuario y Ley 393/2014
+
+Tema **ausente en 2011**. La serie BCB Boletín Estadístico 2010-2024 muestra cómo la Ley 393 (julio 2014) — que mandó cuotas mínimas de cartera productiva al sistema bancario — transformó el instrumento de apoyo del **gasto fiscal directo al crédito subsidiado**.
+
+::: {.callout-tip}
+**Hallazgo nuevo 2026:** Mientras la inversión pública agropecuaria caía de 0.97 % del PIB (2015) a 0.38 % (2021), el crédito bancario al sector se multiplicó por 11.7 (USD 290 M → USD 3 397 M). Las regresiones panel incluyen un dummy estructural `post_ley393`.
+:::
+
+### 4. Clima, uso del suelo y deforestación
+
+Datos satelitales sin precedente para Bolivia: **MapBiomas Bolivia Col.3** (1985-2024 cobertura del suelo nacional, departamental y municipal), **Hansen Global Forest Change v1.11** (deforestación anual 2001-2023) y **CHIRPS** (precipitación 1990-2023).
+
+::: {.callout-tip}
+**Hallazgo nuevo 2026:** Bolivia perdió 9.4 millones de hectáreas de cobertura natural en 40 años; Santa Cruz concentra el 64 % de la expansión agrícola del país.
+:::
+
+### 5. Microdatos de hogares y UPAs
+
+Encuesta de Hogares 2012-2024 (8 rondas, 309 K personas), ENA 2008 + ENA 2015 (microdato a nivel UPA) y CNA 2013 (49 indicadores × 338 municipios desde el portal SICE-INE).
+
+::: {.callout-tip}
+**Hallazgo nuevo 2026:** La pobreza rural bajó de 55 % (2012) a 40 % (2021) y se revirtió a 45 % (2024). La inseguridad alimentaria FIES pasó de 49 % (2019) a 74 % (2024) — tendencia alarmante. La superficie de soya creció +131 % entre ENA 2008 y ENA 2015.
+:::
+
+## Continuidad metodológica
+
+Aunque la actualización amplía sustancialmente el alcance, mantiene tres **anclas** del reporte original:
+
+1. **Clasificación funcional UDAPE-FAM-FAO** del gasto agropecuario (Investigación, Extensión, Riego, Insumos, Sanidad, Desarrollo Productivo, Recursos Naturales, Administración).
+2. **Estructura de capítulos** — sigue el esqueleto de los 6 capítulos + anexos del APER 2011, con ajustes en Cap. 4 (organización) y Cap. 5 (análisis).
+3. **Continuidad de la base BOOST 1996-2008** procesada desde la fuente original del Banco Mundial.
+
+## Cita del reporte original
+
+> **World Bank (2011).** *Bolivia: Análisis del Gasto Público en el Sector Agropecuario.* Informe N.° 59696-BO. Banco Mundial — Unidad de Agricultura y Desarrollo Rural (LCSAR), Oficina Bolivia. 86 pp.
+
+[Descargar reporte APER 2011](downloads/WB_APER_2011_Spanish.pdf){.download-btn}
+[Ver presentación de avances (slides)](slides.qmd){.download-btn}
