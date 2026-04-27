@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.34">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Datos y metodología – APER Bolivia 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/favicon.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-114341b918e606a1f46e170a36b214bb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c69004a60252fccc180e8b43c8a494db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<meta property="og:title" content="Datos y metodología – APER Bolivia 2026">
+<meta property="og:description" content="Panel maestro v12, fuentes y diccionario">
+<meta property="og:site_name" content="APER Bolivia 2026">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">APER Bolivia 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./proyecto.html"> 
+<span class="menu-text">Proyecto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./avances.html"> 
+<span class="menu-text">Avances vs 2011</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hallazgos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hallazgos</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hallazgos">    
+        <li>
+    <a class="dropdown-item" href="./sector.html">
+ <span class="dropdown-text">Sector agropecuario</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gasto.html">
+ <span class="dropdown-text">Gasto público</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./eficiencia.html">
+ <span class="dropdown-text">Eficiencia y equidad</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./timeline.html"> 
+<span class="menu-text">Línea de tiempo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./slides.html"> 
+<span class="menu-text">Slides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./datos.html" aria-current="page"> 
+<span class="menu-text">Datos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./recursos.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#el-panel-maestro" id="toc-el-panel-maestro" class="nav-link active" data-scroll-target="#el-panel-maestro">El panel maestro</a></li>
+  <li><a href="#composición-por-grupo-temático" id="toc-composición-por-grupo-temático" class="nav-link" data-scroll-target="#composición-por-grupo-temático">Composición por grupo temático</a></li>
+  <li><a href="#fuentes-visión-panorámica" id="toc-fuentes-visión-panorámica" class="nav-link" data-scroll-target="#fuentes-visión-panorámica">Fuentes — visión panorámica</a></li>
+  <li><a href="#datasets-disponibles" id="toc-datasets-disponibles" class="nav-link" data-scroll-target="#datasets-disponibles">Datasets disponibles</a></li>
+  <li><a href="#recursos-descargables" id="toc-recursos-descargables" class="nav-link" data-scroll-target="#recursos-descargables">Recursos descargables</a></li>
+  <li><a href="#auditoría-de-gaps" id="toc-auditoría-de-gaps" class="nav-link" data-scroll-target="#auditoría-de-gaps">Auditoría de gaps</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Datos y metodología</h1>
+<p class="subtitle lead">Panel maestro v12, fuentes y diccionario</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lead">
+<p>El estudio descansa sobre un panel maestro de 35 años × 176 variables consolidadas a partir de 124 datasets procesados de fuentes nacionales e internacionales.</p>
+</div>
+<section id="el-panel-maestro" class="level2">
+<h2 class="anchored" data-anchor-id="el-panel-maestro">El panel maestro</h2>
+<div class="cell">
+<div id="tbl-panel-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-panel-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1
+</figcaption>
+<div aria-describedby="tbl-panel-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="hztutcvssc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hztutcvssc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hztutcvssc thead, #hztutcvssc tbody, #hztutcvssc tfoot, #hztutcvssc tr, #hztutcvssc td, #hztutcvssc th {
+  border-style: none;
+}
+
+#hztutcvssc p {
+  margin: 0;
+  padding: 0;
+}
+
+#hztutcvssc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hztutcvssc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hztutcvssc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hztutcvssc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hztutcvssc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hztutcvssc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hztutcvssc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hztutcvssc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hztutcvssc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hztutcvssc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hztutcvssc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hztutcvssc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hztutcvssc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hztutcvssc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hztutcvssc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztutcvssc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hztutcvssc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hztutcvssc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hztutcvssc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztutcvssc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hztutcvssc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztutcvssc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hztutcvssc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztutcvssc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hztutcvssc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hztutcvssc .gt_left {
+  text-align: left;
+}
+
+#hztutcvssc .gt_center {
+  text-align: center;
+}
+
+#hztutcvssc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hztutcvssc .gt_font_normal {
+  font-weight: normal;
+}
+
+#hztutcvssc .gt_font_bold {
+  font-weight: bold;
+}
+
+#hztutcvssc .gt_font_italic {
+  font-style: italic;
+}
+
+#hztutcvssc .gt_super {
+  font-size: 65%;
+}
+
+#hztutcvssc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hztutcvssc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hztutcvssc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hztutcvssc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hztutcvssc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hztutcvssc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hztutcvssc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hztutcvssc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hztutcvssc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Panel maestro v12 &lt;U+2014&gt; s&lt;U+00ED&gt;ntesis</strong></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Indicador" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Indicador</th>
+<th id="Valor" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Valor</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Indicador">A&lt;U+00F1&gt;os cubiertos</td>
+<td class="gt_row gt_left" headers="Valor">35 (1990-2024)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Indicador">Variables totales</td>
+<td class="gt_row gt_left" headers="Valor">176 vars</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Indicador">Variables clasificadas</td>
+<td class="gt_row gt_left" headers="Valor">176 vars en 17 grupos</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Indicador">Datasets procesados (RDS)</td>
+<td class="gt_row gt_left" headers="Valor">124</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Indicador">Scripts de recolecci&lt;U+00F3&gt;n</td>
+<td class="gt_row gt_left" headers="Valor">44</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Indicador">Densidad media</td>
+<td class="gt_row gt_left" headers="Valor">108 vars/a&lt;U+00F1&gt;o</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Indicador">Densidad m&lt;U+00E1&gt;xima</td>
+<td class="gt_row gt_left" headers="Valor">153 vars (a&lt;U+00F1&gt;o 2007)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="composición-por-grupo-temático" class="level2">
+<h2 class="anchored" data-anchor-id="composición-por-grupo-temático">Composición por grupo temático</h2>
+<div class="cell">
+<div id="tbl-grupos" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-grupos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;2
+</figcaption>
+<div aria-describedby="tbl-grupos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="kvgkuszmvi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kvgkuszmvi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kvgkuszmvi thead, #kvgkuszmvi tbody, #kvgkuszmvi tfoot, #kvgkuszmvi tr, #kvgkuszmvi td, #kvgkuszmvi th {
+  border-style: none;
+}
+
+#kvgkuszmvi p {
+  margin: 0;
+  padding: 0;
+}
+
+#kvgkuszmvi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kvgkuszmvi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kvgkuszmvi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kvgkuszmvi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kvgkuszmvi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kvgkuszmvi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kvgkuszmvi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kvgkuszmvi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kvgkuszmvi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kvgkuszmvi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kvgkuszmvi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kvgkuszmvi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kvgkuszmvi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kvgkuszmvi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kvgkuszmvi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvgkuszmvi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kvgkuszmvi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kvgkuszmvi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kvgkuszmvi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvgkuszmvi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kvgkuszmvi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvgkuszmvi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kvgkuszmvi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvgkuszmvi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kvgkuszmvi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kvgkuszmvi .gt_left {
+  text-align: left;
+}
+
+#kvgkuszmvi .gt_center {
+  text-align: center;
+}
+
+#kvgkuszmvi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kvgkuszmvi .gt_font_normal {
+  font-weight: normal;
+}
+
+#kvgkuszmvi .gt_font_bold {
+  font-weight: bold;
+}
+
+#kvgkuszmvi .gt_font_italic {
+  font-style: italic;
+}
+
+#kvgkuszmvi .gt_super {
+  font-size: 65%;
+}
+
+#kvgkuszmvi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kvgkuszmvi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kvgkuszmvi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kvgkuszmvi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kvgkuszmvi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kvgkuszmvi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kvgkuszmvi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kvgkuszmvi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kvgkuszmvi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Variables por grupo tem&lt;U+00E1&gt;tico</strong></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Grupo" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Grupo</th>
+<th id="Variables" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Variables</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">00_id</td>
+<td class="gt_row gt_right" headers="Variables">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">01_macro</td>
+<td class="gt_row gt_right" headers="Variables">16</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">02_gasto_vipfe</td>
+<td class="gt_row gt_right" headers="Variables">5</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">03_aper_2011</td>
+<td class="gt_row gt_right" headers="Variables">10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">04_gasto_boost</td>
+<td class="gt_row gt_right" headers="Variables">12</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">05_gasto_municipal</td>
+<td class="gt_row gt_right" headers="Variables">11</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">06_emapa</td>
+<td class="gt_row gt_right" headers="Variables">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">07_speed_ifpri</td>
+<td class="gt_row gt_right" headers="Variables">5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">08_pse_idb</td>
+<td class="gt_row gt_right" headers="Variables">43</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">09_precios_nrp</td>
+<td class="gt_row gt_right" headers="Variables">12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">10_credito_bcb</td>
+<td class="gt_row gt_right" headers="Variables">8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">11_uso_suelo</td>
+<td class="gt_row gt_right" headers="Variables">14</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">12_hansen</td>
+<td class="gt_row gt_right" headers="Variables">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">13_clima</td>
+<td class="gt_row gt_right" headers="Variables">3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">14_tfp_usda</td>
+<td class="gt_row gt_right" headers="Variables">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">15_fao_ine</td>
+<td class="gt_row gt_right" headers="Variables">4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo">16_wdi</td>
+<td class="gt_row gt_right" headers="Variables">15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo">17_otros_outcomes</td>
+<td class="gt_row gt_right" headers="Variables">8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Limpieza realizada en v12
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La versión 12 del panel corrige tres bugs detectados en v11:</p>
+<ol type="1">
+<li><strong>Nombres MapBiomas truncados</strong> (<code>mb_atural_ha</code> → <code>mb_natural_ha</code>, etc.) — causa: regex aplicado antes de <code>tolower()</code>.</li>
+<li><strong>Duplicados WDI idénticos eliminados</strong>: <code>wdi_food_prod_index</code>, <code>wdi_agr_empl_pct</code>, <code>wdi_agr_va_pct_gdp</code>.</li>
+<li><strong>Cereales renombrados por fuente</strong>: <code>fao_cereal_yield_kg_ha</code>, <code>ine_cereal_yield_kg_ha</code>, <code>wdi_cereal_yield_kg_ha</code>.</li>
+</ol>
+<p>Diccionario completo de las 176 variables disponible en <code>spending_panel_v12_dictionary.csv</code>.</p>
+</div>
+</div>
+</section>
+<section id="fuentes-visión-panorámica" class="level2">
+<h2 class="anchored" data-anchor-id="fuentes-visión-panorámica">Fuentes — visión panorámica</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fuente</th>
+<th>Cobertura</th>
+<th>Variables</th>
+<th>Uso en el estudio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>VIPFE / MEFP</strong></td>
+<td>1990–2024</td>
+<td>Inversión sectorial, ejecución</td>
+<td>Cap. 3 — gasto público</td>
+</tr>
+<tr class="even">
+<td><strong>World Bank BOOST</strong></td>
+<td>1996–2008</td>
+<td>Microdatos fiscales</td>
+<td>Cap. 3 — período histórico detallado</td>
+</tr>
+<tr class="odd">
+<td><strong>IFPRI SPEED 2019</strong></td>
+<td>1980–2017</td>
+<td>Gasto agro % PIB y % gasto total</td>
+<td>Cap. 3 — meta Maputo, ranking LAC</td>
+</tr>
+<tr class="even">
+<td><strong>IDB AgriMonitor</strong></td>
+<td>2006–2023</td>
+<td>PSE, GSSE, TSE, NPC</td>
+<td>Cap. 4a — apoyo al productor</td>
+</tr>
+<tr class="odd">
+<td><strong>FAOSTAT PP</strong></td>
+<td>1991–2024</td>
+<td>Precios productor 119 commodities</td>
+<td>Cap. 4a — NRP pre-2006</td>
+</tr>
+<tr class="even">
+<td><strong>WB Pink Sheet</strong></td>
+<td>1960–2025</td>
+<td>Precios mundiales referencia</td>
+<td>Cap. 4a — NRP cálculo</td>
+</tr>
+<tr class="odd">
+<td><strong>BCB Boletín Estadístico</strong></td>
+<td>2010–2025</td>
+<td>Crédito por sector × banco</td>
+<td>Cap. 3 — sustitución crédito</td>
+</tr>
+<tr class="even">
+<td><strong>MapBiomas Bolivia Col.3</strong></td>
+<td>1985–2024</td>
+<td>Cobertura del suelo</td>
+<td>Cap. 2 — uso de suelo</td>
+</tr>
+<tr class="odd">
+<td><strong>Hansen GFC</strong></td>
+<td>2001–2023</td>
+<td>Deforestación anual</td>
+<td>Cap. 2, 4c — costos ambientales</td>
+</tr>
+<tr class="even">
+<td><strong>CHIRPS</strong></td>
+<td>1990–2023</td>
+<td>Precipitación (interpolada)</td>
+<td>Cap. 4c — control climático</td>
+</tr>
+<tr class="odd">
+<td><strong>USDA ERS</strong></td>
+<td>1961–2023</td>
+<td>TFP agropecuario</td>
+<td>Cap. 2, 4c — productividad</td>
+</tr>
+<tr class="even">
+<td><strong>WDI Banco Mundial</strong></td>
+<td>1990–2023</td>
+<td>Macroeconómicos</td>
+<td>Cap. 2 — contexto</td>
+</tr>
+<tr class="odd">
+<td><strong>INE Bolivia EH</strong></td>
+<td>2012–2024</td>
+<td>Encuesta de Hogares (309 K personas)</td>
+<td>Cap. 4d — equidad, FIES</td>
+</tr>
+<tr class="even">
+<td><strong>INE Bolivia ENA</strong></td>
+<td>2008, 2015</td>
+<td>Encuesta Nacional Agropecuaria</td>
+<td>Cap. 2 — estructura productiva</td>
+</tr>
+<tr class="odd">
+<td><strong>INE Bolivia CNA</strong></td>
+<td>2013</td>
+<td>Censo Agropecuario (338 munis)</td>
+<td>Cap. 4b — DEA municipal</td>
+</tr>
+<tr class="even">
+<td><strong>INE Estadísticas Agrícolas</strong></td>
+<td>1984–2024</td>
+<td>Producción, rendimiento, superficie</td>
+<td>Cap. 2 — yields</td>
+</tr>
+<tr class="odd">
+<td><strong>PDFs MEFP DGAA</strong></td>
+<td>2015–2023</td>
+<td>Tasas de ejecución institucional</td>
+<td>Cap. 3 — benchmark ejecución</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datasets-disponibles" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-disponibles">Datasets disponibles</h2>
+<p>El proyecto incluye <strong>124 datasets RDS</strong> organizados en categorías. Los principales:</p>
+<div class="cell">
+<div id="tbl-datasets-cuenta" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-datasets-cuenta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;3
+</figcaption>
+<div aria-describedby="tbl-datasets-cuenta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="gsrpzournf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gsrpzournf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gsrpzournf thead, #gsrpzournf tbody, #gsrpzournf tfoot, #gsrpzournf tr, #gsrpzournf td, #gsrpzournf th {
+  border-style: none;
+}
+
+#gsrpzournf p {
+  margin: 0;
+  padding: 0;
+}
+
+#gsrpzournf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gsrpzournf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gsrpzournf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gsrpzournf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gsrpzournf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gsrpzournf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gsrpzournf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gsrpzournf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gsrpzournf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gsrpzournf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gsrpzournf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gsrpzournf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gsrpzournf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gsrpzournf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gsrpzournf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gsrpzournf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gsrpzournf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gsrpzournf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gsrpzournf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gsrpzournf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gsrpzournf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gsrpzournf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gsrpzournf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gsrpzournf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gsrpzournf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gsrpzournf .gt_left {
+  text-align: left;
+}
+
+#gsrpzournf .gt_center {
+  text-align: center;
+}
+
+#gsrpzournf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gsrpzournf .gt_font_normal {
+  font-weight: normal;
+}
+
+#gsrpzournf .gt_font_bold {
+  font-weight: bold;
+}
+
+#gsrpzournf .gt_font_italic {
+  font-style: italic;
+}
+
+#gsrpzournf .gt_super {
+  font-size: 65%;
+}
+
+#gsrpzournf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gsrpzournf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gsrpzournf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gsrpzournf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gsrpzournf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gsrpzournf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gsrpzournf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#gsrpzournf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gsrpzournf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Datasets por categoría</strong></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Categoría" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Categoría</th>
+<th id="Datasets" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Datasets</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Categoría">Paneles maestros (nacional, subnacional, municipal, DEA)</td>
+<td class="gt_row gt_right" headers="Datasets">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Categoría">Gasto público (VIPFE, BOOST, MEFP, Jubileo, MDRyT)</td>
+<td class="gt_row gt_right" headers="Datasets">12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Categoría">PSE/GSSE (IDB, IFPRI SPEED, FAOSTAT PP, WB Pink Sheet)</td>
+<td class="gt_row gt_right" headers="Datasets">12</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Categoría">Producción agropecuaria (INE, FAOSTAT, USDA TFP)</td>
+<td class="gt_row gt_right" headers="Datasets">7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Categoría">Censos y encuestas (CNA 2013, ENA 2008+2015, EH 2012-2024)</td>
+<td class="gt_row gt_right" headers="Datasets">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Categoría">Crédito y sector financiero (BCB, WDI)</td>
+<td class="gt_row gt_right" headers="Datasets">4</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Categoría">Comparadores LAC (WDI, CEPAL)</td>
+<td class="gt_row gt_right" headers="Datasets">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Categoría">Uso del suelo y deforestación (MapBiomas, Hansen)</td>
+<td class="gt_row gt_right" headers="Datasets">6</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Categoría">Clima (CHIRPS)</td>
+<td class="gt_row gt_right" headers="Datasets">3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Categoría">PIB y macro (INE, WDI)</td>
+<td class="gt_row gt_right" headers="Datasets">3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="recursos-descargables" class="level2">
+<h2 class="anchored" data-anchor-id="recursos-descargables">Recursos descargables</h2>
+<p><a href="downloads/Inventario_Datos_APER_Bolivia_2026.xlsx" class="download-btn">Inventario completo (Excel, 5 hojas)</a> <a href="downloads/spending_panel_v12_dictionary.csv" class="download-btn">Diccionario panel v12 (CSV)</a> <a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md" class="download-btn">Estado de datos (Markdown)</a></p>
+</section>
+<section id="auditoría-de-gaps" class="level2">
+<h2 class="anchored" data-anchor-id="auditoría-de-gaps">Auditoría de gaps</h2>
+<p>El estudio identifica <strong>23 datos pendientes</strong> clasificados en tres categorías:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tier A — Disponibles públicamente, no procesados (12 items)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Subsidios diésel YPFB, INRA titulación serie, NASA FIRMS incendios, FAOSTAT TCL comercio, UDAPE pobreza municipal, ASFI crédito IFD/cooperativas, CHIRPS mensual completo, IPC rural INE, EMAPA serie compras garantizadas. Esfuerzo de procesamiento estimado: bajo a medio.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tier B — Requieren gestión institucional (6 items)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>MDRyT/INIAF/SENASAG ejecución 2009–2024</strong> (gestión: carta DS 28168 al MEFP — preparada y lista para envío por la Oficina BM Bolivia). Memorias institucionales MDRyT 2015–2018, 2020, 2022–2023. BDP cartera detallada. SIIF subnacional municipal (Jubileo). INIAF presupuesto por proyecto. SENASAG operativos por departamento.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tier C — Próximas fases (5 items)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Poblar capítulos Quarto del reporte técnico. Publicar timeline KnightLab. Análisis DEA bootstrap Simar-Wilson formal. Validar anomalía caña de azúcar 2015. Pre-review interno con equipo BM.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jcmunozmora\.github\.io\/bolivia-wb-aper-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>APER Bolivia 2026 · Banco Mundial · Universidad EAFIT</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Última actualización 2026-04
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/jcmunozmora/bolivia-wb-aper-2026">
+<p>GitHub</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
