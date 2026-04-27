@@ -12,11 +12,21 @@ on:
       - ".github/workflows/publish-site.yml"
   workflow_dispatch:
 
+# Cancela runs anteriores en progreso si llega un push nuevo a main
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      LANG: en_US.UTF-8
+      LC_ALL: en_US.UTF-8
+      RENV_CONFIG_AUTOLOADER_ENABLED: FALSE
+      RSTUDIO_PANDOC: /opt/quarto/bin/tools
 
     steps:
       - name: Check out repository
@@ -26,11 +36,20 @@ jobs:
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: "4.4"
+          use-public-rspm: true
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: "1.7.34"
+
+      - name: Install system dependencies for R packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev \
+            libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev \
+            libharfbuzz-dev libfribidi-dev
 
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
@@ -42,14 +61,27 @@ jobs:
             any::gt
             any::here
             any::fixest
+            any::knitr
+            any::rmarkdown
+          cache-version: 2
+
+      - name: Verify project structure
+        run: |
+          echo "=== Working dir ==="
+          pwd
+          echo "=== Root files ==="
+          ls -la | head -30
+          echo "=== www/ ==="
+          ls -la www/ | head -20
+          echo "=== Critical files exist? ==="
+          for f in .here www/_quarto.yml www/index.qmd 01_data/processed/spending_panel_v12.rds; do
+            if [ -f "$f" ]; then echo "  ✓ $f"; else echo "  ✗ $f MISSING"; fi
+          done
 
       - name: Render Quarto site
-        env:
-          LANG: en_US.UTF-8
-          LC_ALL: en_US.UTF-8
         run: |
           cd www
-          quarto render
+          quarto render --execute-debug 2>&1 | tail -100
 
       - name: Add .nojekyll
         run: touch docs/.nojekyll
@@ -60,3 +92,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           keep_files: false
+          enable_jekyll: false
