@@ -9,7 +9,7 @@ project:
 website:
   title: "APER Bolivia 2026"
   description: "Actualización del Agricultural Public Expenditure Review — Banco Mundial / Bolivia"
-  site-url: "https://jcmunoz.github.io/2026_WB_Bolivia"
+  site-url: "https://jcmunozmora.github.io/bolivia-wb-aper-2026"
   favicon: assets/favicon.svg
   open-graph: true
   twitter-card: false
@@ -48,7 +48,7 @@ website:
     right:
       - text: "Última actualización 2026-04"
       - text: "GitHub"
-        href: https://github.com/jcmunoz/2026_WB_Bolivia
+        href: https://github.com/jcmunozmora/bolivia-wb-aper-2026
 
 format:
   html:

@@ -110,7 +110,7 @@ data.table(
 
 [Inventario completo (Excel, 5 hojas)](downloads/Inventario_Datos_APER_Bolivia_2026.xlsx){.download-btn}
 [Diccionario panel v12 (CSV)](downloads/spending_panel_v12_dictionary.csv){.download-btn}
-[Estado de datos (Markdown)](https://github.com/jcmunoz/2026_WB_Bolivia/blob/main/00_admin/ESTADO_DE_DATOS.md){.download-btn}
+[Estado de datos (Markdown)](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md){.download-btn}
 
 ## Auditoría de gaps
 

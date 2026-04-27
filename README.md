@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![R version](https://img.shields.io/badge/R-%E2%89%A5%204.3-blue.svg)](https://www.r-project.org/)
 [![Panel](https://img.shields.io/badge/panel-v12_(176_vars,_1990--2024)-green.svg)](./01_data/processed/spending_panel_v12.rds)
-[![Site](https://img.shields.io/badge/site-GitHub_Pages-14213D.svg)](https://jcmunoz.github.io/2026_WB_Bolivia)
+[![Site](https://img.shields.io/badge/site-GitHub_Pages-14213D.svg)](https://jcmunozmora.github.io/bolivia-wb-aper-2026)
 [![Reproducible](https://img.shields.io/badge/reproducible-yes-brightgreen.svg)](./CONTRIBUTING.md)
 
 **Cliente:** World Bank — Bolivia Country Office
@@ -15,7 +15,7 @@
 
 El proyecto cuenta con un sitio web minimalista que reúne hallazgos, datos y recursos descargables:
 
-**👉 [https://jcmunoz.github.io/2026_WB_Bolivia](https://jcmunoz.github.io/2026_WB_Bolivia)**
+**👉 [https://jcmunozmora.github.io/bolivia-wb-aper-2026](https://jcmunozmora.github.io/bolivia-wb-aper-2026)**
 
 Source en [`www/`](./www) · Renderizado en [`docs/`](./docs) · Auto-deploy vía GitHub Actions ([.github/workflows/publish-site.yml](./.github/workflows/publish-site.yml))
 

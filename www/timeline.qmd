@@ -106,4 +106,4 @@ Las instrucciones detalladas están en `01_data/timeline/INSTRUCCIONES_KNIGHTLAB
 ## Recursos
 
 [Descargar timeline.csv](downloads/timeline.csv){.download-btn}
-[Ver fuentes detalladas](https://github.com/jcmunoz/2026_WB_Bolivia/blob/main/01_data/timeline/sources.md){.download-btn}
+[Ver fuentes detalladas](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/01_data/timeline/sources.md){.download-btn}

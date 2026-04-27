@@ -19,7 +19,7 @@ Reporte original que esta actualización extiende. Cubrió el período 1996–20
 
 [Inventario completo de datos (Excel, 5 hojas)](downloads/Inventario_Datos_APER_Bolivia_2026.xlsx){.download-btn}
 [Diccionario panel maestro v12 (CSV)](downloads/spending_panel_v12_dictionary.csv){.download-btn}
-[Estado de datos completo (Markdown)](https://github.com/jcmunoz/2026_WB_Bolivia/blob/main/00_admin/ESTADO_DE_DATOS.md){.download-btn}
+[Estado de datos completo (Markdown)](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md){.download-btn}
 
 ## Solicitud formal al MEFP
 
@@ -51,7 +51,7 @@ Fichas estructuradas a partir de la documentación oficial del Ministerio de Des
 | RPC Final MDRyT | 2024 | Rendición pública de cuentas |
 | CIPCA — Impacto riego/microriego | 2018 | Evaluación externa |
 
-[Ver fichas en GitHub](https://github.com/jcmunoz/2026_WB_Bolivia/tree/main/03_literature/mdryt_fichas){.download-btn}
+[Ver fichas en GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026/tree/main/03_literature/mdryt_fichas){.download-btn}
 
 ## Reportes complementarios consultados
 
@@ -69,7 +69,7 @@ Todo el código de análisis es público:
 - **8 scripts** de análisis econométrico (`02_code/03_analysis/`).
 - Reproducibilidad: cada panel se construye de forma incremental con scripts numerados (28 → 36 → 38 → 41 → 43 → 44 = panel v12).
 
-[Repositorio GitHub](https://github.com/jcmunoz/2026_WB_Bolivia){.download-btn}
+[Repositorio GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026){.download-btn}
 
 ## Cita sugerida
 
