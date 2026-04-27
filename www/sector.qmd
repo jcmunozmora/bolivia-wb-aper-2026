@@ -23,6 +23,12 @@ fig <- function(name) paste0("figures/", name, ".png")
 El sector agropecuario boliviano ha experimentado dos décadas de transformaciones estructurales profundas: expansión de la frontera agrícola en el oriente, consolidación del altiplano alrededor de la quinua y el ganado camélido, y un patrón de productividad que ha crecido más lentamente que la inversión pública.
 :::
 
+## Bolivia en mapa
+
+![División departamental de Bolivia: 9 departamentos como unidad de análisis subnacional del estudio](`r fig("fig05_bolivia_departments_map")`)
+
+El país se divide en nueve departamentos con perfiles agropecuarios contrastantes: el **altiplano** andino (La Paz, Oruro, Potosí, Chuquisaca) con minifundio, papa y quinua; los **valles** templados (Cochabamba, Tarija) con horticultura y vid; y los **llanos** orientales (Santa Cruz, Beni, Pando) con agricultura comercial extensiva (soya, caña, ganadería). Esta heterogeneidad territorial estructura el resto del análisis.
+
 ## Contribución macroeconómica
 
 ```{r}
@@ -43,13 +49,27 @@ panel[year %in% c(2000, 2005, 2010, 2015, 2020, 2023),
 
 En 2020, Bolivia ocupó el **sexto lugar en LAC** en participación del valor agregado agropecuario en el PIB (9.1 %), por encima de Chile (4.0 %) y México (3.7 %). El empleo agropecuario ha caído gradualmente de 30 % (2010) a 25 % (2023), reflejando una diversificación más lenta que el promedio regional.
 
+![PIB agropecuario como porcentaje del PIB total, Bolivia 1990–2023](`r fig("fig01_agr_value_added_pct_gdp")`)
+
+![Tendencia de outcomes seleccionados (rendimientos, comercio, empleo) — Bolivia 1990-2023](`r fig("fig04_outcomes_trends")`)
+
 ## Productividad total de factores
 
-![PIB agropecuario como porcentaje del PIB total, Bolivia 1990–2023](`r fig("fig01_agr_value_added_pct_gdp")`)
+La productividad total de factores (TFP) es el indicador-síntesis del desempeño productivo del sector. Bolivia muestra un crecimiento sostenido pero modesto: la TFP creció ~30 % entre 2000 y 2023, frente a ~70 % en Brasil y ~50 % en Chile en el mismo período.
 
 ![Productividad total de factores agropecuaria — Bolivia 1961–2023 (USDA ERS)](`r fig("fig06_tfp_bolivia_1961_2023")`)
 
 ![Comparación de TFP — Bolivia frente a países seleccionados de LAC](`r fig("fig07_tfp_latam_comparison")`)
+
+### Descomposición — outputs vs inputs
+
+La TFP es la diferencia entre el crecimiento del valor de la producción y el crecimiento de los insumos utilizados. La descomposición permite ver si el desempeño del sector se debe a más recursos (extensivo) o a mejor uso de los mismos (intensivo).
+
+![Descomposición TFP Bolivia: contribución de outputs vs inputs](`r fig("fig08_tfp_decomposition_bolivia")`)
+
+![Índices de inputs agropecuarios Bolivia (USDA ERS) — tierra, mano de obra, capital, insumos](`r fig("fig09_input_indices_bolivia")`)
+
+El crecimiento agropecuario boliviano es predominantemente **extensivo**: la expansión de tierra cultivada y rebaño explica buena parte del aumento del valor de producción, mientras que los rendimientos por hectárea y por animal crecen más lentamente. Esta característica enlaza con el análisis de uso del suelo más adelante en este capítulo.
 
 ```{r}
 #| label: fig-tfp-vs-inv
@@ -138,7 +158,28 @@ data.table(
 
 ![Mapa: cambio de cobertura por departamento 1985→2024](`r fig("fig35_cambio_cobertura_dept")`)
 
+![Series temporales de uso antrópico del suelo por departamento](`r fig("fig36_lineas_antropico_dept")`)
+
 Bolivia perdió aproximadamente **9.4 millones de hectáreas de cobertura natural** en cuarenta años. **Santa Cruz concentra el 64 %** de la expansión agrícola del país. Esta huella ambiental es central para el análisis de sostenibilidad y para el debate sobre los costos no monetarios del modelo agroexportador.
+
+### Geografía municipal de la expansión
+
+A nivel municipal, la expansión es mucho más concentrada. Apenas un puñado de municipios del oriente concentra la transformación territorial; el resto del país muestra cambios mucho más modestos.
+
+![Mapa de uso antrópico del suelo en 2024, escala municipal](`r fig("fig34_mapa_antropico_2024")`)
+
+![Top 15 municipios con mayor expansión de frontera agrícola 1985-2024](`r fig("fig37_top15_muni_expansion")`)
+
+![Mapa: expansión de uso antrópico por municipio 1985 → 2024](`r fig("fig38_mapa_muni_expansion_1985_2024")`)
+
+![Mapa: participación del uso antrópico en el área total municipal](`r fig("fig39_mapa_muni_antropico_share")`)
+
+![Series temporales de uso antrópico — top 6 municipios con mayor superficie convertida](`r fig("fig40_series_top6_muni_antropico")`)
+
+::: {.callout-warning}
+## Concentración extrema
+La transformación del paisaje boliviano no es difusa, es **concentrada**: 6 municipios del oriente representan más del 50 % del cambio neto 1985-2024. Esta característica condiciona el debate de política: programas universales (gasto promedio uniforme por municipio) tienen poca tracción ambiental si no diferencian por intensidad de cambio.
+:::
 
 ## Pobreza rural y seguridad alimentaria
 

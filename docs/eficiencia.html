@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta property="og:title" content="Eficiencia y equidad del gasto – APER Bolivia 2026">
 <meta property="og:description" content="DEA, regresiones panel e incidencia subnacional">
-<meta property="og:image" content="https://jcmunozmora.github.io/bolivia-wb-aper-2026/figures/fig15_psep_bolivia_vs_lac.png">
+<meta property="og:image" content="https://jcmunozmora.github.io/bolivia-wb-aper-2026/figures/fig13_pse_gsse_cse_bolivia.png">
 <meta property="og:site_name" content="APER Bolivia 2026">
 <meta property="og:image:height" content="825">
 <meta property="og:image:width" content="1500">
@@ -161,6 +161,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#apoyo-al-productor-pse-bolivia-en-contexto-lac" id="toc-apoyo-al-productor-pse-bolivia-en-contexto-lac" class="nav-link active" data-scroll-target="#apoyo-al-productor-pse-bolivia-en-contexto-lac">Apoyo al productor — PSE Bolivia en contexto LAC</a></li>
   <li><a href="#eficiencia-técnica-departamental-dea" id="toc-eficiencia-técnica-departamental-dea" class="nav-link" data-scroll-target="#eficiencia-técnica-departamental-dea">Eficiencia técnica departamental — DEA</a></li>
   <li><a href="#regresiones-de-productividad-panel-nacional" id="toc-regresiones-de-productividad-panel-nacional" class="nav-link" data-scroll-target="#regresiones-de-productividad-panel-nacional">Regresiones de productividad — panel nacional</a></li>
+  <li><a href="#equidad-distribución-del-gasto-entre-municipios" id="toc-equidad-distribución-del-gasto-entre-municipios" class="nav-link" data-scroll-target="#equidad-distribución-del-gasto-entre-municipios">Equidad — distribución del gasto entre municipios</a></li>
   <li><a href="#equidad-incidencia-rural" id="toc-equidad-incidencia-rural" class="nav-link" data-scroll-target="#equidad-incidencia-rural">Equidad — incidencia rural</a></li>
   <li><a href="#síntesis" id="toc-síntesis" class="nav-link" data-scroll-target="#síntesis">Síntesis</a></li>
   </ul>
@@ -194,6 +195,24 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="apoyo-al-productor-pse-bolivia-en-contexto-lac" class="level2">
 <h2 class="anchored" data-anchor-id="apoyo-al-productor-pse-bolivia-en-contexto-lac">Apoyo al productor — PSE Bolivia en contexto LAC</h2>
+<section id="composición-de-los-apoyos" class="level3">
+<h3 class="anchored" data-anchor-id="composición-de-los-apoyos">Composición de los apoyos</h3>
+<p>Antes de comparar Bolivia con LAC, es útil examinar la composición interna de los apoyos al productor — la metodología OECD distingue entre <strong>Producer Support Estimate (PSE)</strong> que captura transferencias directas (precios, pagos, reducción de insumos), <strong>General Services Support Estimate (GSSE)</strong> que cubre bienes públicos al sector (I+D, sanidad, infraestructura), y <strong>Consumer Support Estimate (CSE)</strong> que mide transferencias hacia consumidores.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig13_pse_gsse_cse_bolivia.png" class="img-fluid figure-img"></p>
+<figcaption>PSE, GSSE y CSE Bolivia 2006-2023 — niveles y trayectoria</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig14_pse_composition.png" class="img-fluid figure-img"></p>
+<figcaption>Composición interna del PSE Bolivia por tipo de transferencia</figcaption>
+</figure>
+</div>
+</section>
+<section id="bolivia-frente-a-lac" class="level3">
+<h3 class="anchored" data-anchor-id="bolivia-frente-a-lac">Bolivia frente a LAC</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig15_psep_bolivia_vs_lac.png" class="img-fluid figure-img"></p>
@@ -232,8 +251,21 @@ Patrón dual de protección
 </div>
 </div>
 </section>
+</section>
 <section id="eficiencia-técnica-departamental-dea" class="level2">
 <h2 class="anchored" data-anchor-id="eficiencia-técnica-departamental-dea">Eficiencia técnica departamental — DEA</h2>
+<section id="setup-metodológico" class="level3">
+<h3 class="anchored" data-anchor-id="setup-metodológico">Setup metodológico</h3>
+<p>El análisis envolvente de datos (DEA) compara cada unidad territorial (DMU) con la mejor combinación factible de inputs y outputs observada en la muestra. Para Bolivia, la unidad de análisis son los 9 departamentos × 9 años (81 DMUs) entre 2012 y 2020.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_dea_inputs_outputs.png" class="img-fluid figure-img"></p>
+<figcaption>DEA Bolivia: inputs (gasto, crédito, área irrigada) y outputs (PIB agropecuario, rendimientos)</figcaption>
+</figure>
+</div>
+</section>
+<section id="resultados-por-departamento" class="level3">
+<h3 class="anchored" data-anchor-id="resultados-por-departamento">Resultados por departamento</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig24_eficiencia_simple_2019.png" class="img-fluid figure-img"></p>
@@ -808,6 +840,7 @@ R² ajustado = 0.632  (n=40)</code></pre>
 </div>
 </div>
 </section>
+</section>
 <section id="regresiones-de-productividad-panel-nacional" class="level2">
 <h2 class="anchored" data-anchor-id="regresiones-de-productividad-panel-nacional">Regresiones de productividad — panel nacional</h2>
 <div class="cell">
@@ -1338,6 +1371,44 @@ Interpretación de las regresiones
 </ul>
 </div>
 </div>
+</section>
+<section id="equidad-distribución-del-gasto-entre-municipios" class="level2">
+<h2 class="anchored" data-anchor-id="equidad-distribución-del-gasto-entre-municipios">Equidad — distribución del gasto entre municipios</h2>
+<section id="distribución-y-concentración" class="level3">
+<h3 class="anchored" data-anchor-id="distribución-y-concentración">Distribución y concentración</h3>
+<p>Antes de medir la incidencia rural del gasto agropecuario sobre la pobreza, conviene examinar <strong>cómo se distribuye el gasto entre municipios</strong>. La distribución es muy asimétrica: pocos municipios reciben grandes volúmenes y la mayoría queda con asignaciones modestas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig25_dist_muni_agro_2020.png" class="img-fluid figure-img"></p>
+<figcaption>Distribución del gasto agropecuario municipal 2020 — histograma y dispersión</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig26_lorenz_muni_2020.png" class="img-fluid figure-img"></p>
+<figcaption>Curva de Lorenz del gasto agropecuario municipal — concentración entre municipios</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig27_muni_share_vs_size.png" class="img-fluid figure-img"></p>
+<figcaption>Gasto agropecuario por municipio frente a tamaño poblacional</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Concentración del gasto entre municipios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La curva de Lorenz revela una concentración extrema: un grupo pequeño de municipios concentra una fracción desproporcionada del gasto agropecuario, mientras que la mayoría de municipios pequeños queda con montos absolutos modestos. Cruzando con la incidencia rural de pobreza (siguiente sección), la asimetría territorial del gasto se vuelve políticamente relevante.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="equidad-incidencia-rural" class="level2">
 <h2 class="anchored" data-anchor-id="equidad-incidencia-rural">Equidad — incidencia rural</h2>

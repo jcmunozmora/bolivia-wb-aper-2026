@@ -23,6 +23,16 @@ Este capítulo evalúa si el gasto agropecuario boliviano es eficiente y equitat
 
 ## Apoyo al productor — PSE Bolivia en contexto LAC
 
+### Composición de los apoyos
+
+Antes de comparar Bolivia con LAC, es útil examinar la composición interna de los apoyos al productor — la metodología OECD distingue entre **Producer Support Estimate (PSE)** que captura transferencias directas (precios, pagos, reducción de insumos), **General Services Support Estimate (GSSE)** que cubre bienes públicos al sector (I+D, sanidad, infraestructura), y **Consumer Support Estimate (CSE)** que mide transferencias hacia consumidores.
+
+![PSE, GSSE y CSE Bolivia 2006-2023 — niveles y trayectoria](`r fig("fig13_pse_gsse_cse_bolivia")`)
+
+![Composición interna del PSE Bolivia por tipo de transferencia](`r fig("fig14_pse_composition")`)
+
+### Bolivia frente a LAC
+
 ![Tasa Producer Support Estimate (PSE%) Bolivia vs LAC, 2006–2023](`r fig("fig15_psep_bolivia_vs_lac")`)
 
 ![Brecha de precios doméstico-frontera por commodity, Bolivia 2023](`r fig("fig16_price_gap_by_commodity_2023")`)
@@ -41,6 +51,14 @@ Este patrón es coherente con la política explícita de soberanía alimentaria 
 :::
 
 ## Eficiencia técnica departamental — DEA
+
+### Setup metodológico
+
+El análisis envolvente de datos (DEA) compara cada unidad territorial (DMU) con la mejor combinación factible de inputs y outputs observada en la muestra. Para Bolivia, la unidad de análisis son los 9 departamentos × 9 años (81 DMUs) entre 2012 y 2020.
+
+![DEA Bolivia: inputs (gasto, crédito, área irrigada) y outputs (PIB agropecuario, rendimientos)](`r fig("fig23_dea_inputs_outputs")`)
+
+### Resultados por departamento
 
 ![Eficiencia simple por departamento, 2019 (proxy)](`r fig("fig24_eficiencia_simple_2019")`)
 
@@ -108,6 +126,23 @@ data.table(
 - La **elasticidad TFP-inversión** es positiva pero modesta: ~0.09 en el modelo baseline. Es decir, doblar la inversión agropecuaria se asocia con un aumento de TFP de ~9 %.
 - La **expansión de uso antrópico** muestra un coeficiente positivo y significativo: la frontera agrícola eleva la productividad agregada (mecanismo de ampliación de escala), no la productividad por hectárea.
 - El **PSE% es significativo y negativo** (β = −0.004, p<0.05): el apoyo de precios distorsiona la asignación de recursos y se asocia con menor TFP — un resultado consistente con la literatura OCDE.
+:::
+
+## Equidad — distribución del gasto entre municipios
+
+### Distribución y concentración
+
+Antes de medir la incidencia rural del gasto agropecuario sobre la pobreza, conviene examinar **cómo se distribuye el gasto entre municipios**. La distribución es muy asimétrica: pocos municipios reciben grandes volúmenes y la mayoría queda con asignaciones modestas.
+
+![Distribución del gasto agropecuario municipal 2020 — histograma y dispersión](`r fig("fig25_dist_muni_agro_2020")`)
+
+![Curva de Lorenz del gasto agropecuario municipal — concentración entre municipios](`r fig("fig26_lorenz_muni_2020")`)
+
+![Gasto agropecuario por municipio frente a tamaño poblacional](`r fig("fig27_muni_share_vs_size")`)
+
+::: {.callout-warning}
+## Concentración del gasto entre municipios
+La curva de Lorenz revela una concentración extrema: un grupo pequeño de municipios concentra una fracción desproporcionada del gasto agropecuario, mientras que la mayoría de municipios pequeños queda con montos absolutos modestos. Cruzando con la incidencia rural de pobreza (siguiente sección), la asimetría territorial del gasto se vuelve políticamente relevante.
 :::
 
 ## Equidad — incidencia rural
