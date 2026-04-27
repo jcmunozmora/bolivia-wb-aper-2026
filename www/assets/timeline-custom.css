@@ -1,0 +1,429 @@
+/* Timeline custom — APER Bolivia 2026
+ * Componente nativo sin dependencias externas
+ * Paleta: navy (#14213D) + terracota (#C2410C) + paper (#FAFAF9)
+ */
+
+.tl-app {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1A1A1A;
+  background: #FAFAF9;
+  border: 1px solid #E5E5E5;
+  width: 100%;
+  max-width: 1400px;
+  margin: 1.5rem auto 2rem;
+  display: flex;
+  flex-direction: column;
+  --navy: #14213D;
+  --navy-soft: #1F3057;
+  --accent: #C2410C;
+  --accent-soft: #FED7AA;
+  --paper: #FAFAF9;
+  --rule: #E5E5E5;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --muted: #6B7280;
+}
+
+/* ── Filtros ─────────────────────────────────────────────────────────────── */
+.tl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.2rem;
+  border-bottom: 1px solid var(--rule);
+  background: white;
+}
+
+.tl-filter-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+.tl-filter {
+  font-family: inherit;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  letter-spacing: 0;
+}
+
+.tl-filter:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.tl-filter.active {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+
+.tl-filter .tl-count {
+  font-size: 0.68rem;
+  margin-left: 0.3rem;
+  opacity: 0.7;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.tl-search {
+  margin-left: auto;
+  font-family: inherit;
+  font-size: 0.82rem;
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.7rem;
+  width: 200px;
+  transition: border-color 0.12s ease;
+}
+
+.tl-search:focus {
+  outline: none;
+  border-color: var(--navy);
+}
+
+/* ── Panel detalle ──────────────────────────────────────────────────────── */
+.tl-detail {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 1.2rem;
+  min-height: 280px;
+  background: white;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (max-width: 720px) {
+  .tl-detail {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+.tl-detail-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #F0F0F0;
+  border: 1px solid var(--rule);
+}
+
+.tl-detail-image-placeholder {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, var(--rule) 0%, white 100%);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.tl-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.tl-detail-date {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.tl-detail-group {
+  color: var(--muted);
+  padding: 0.15rem 0.5rem;
+  background: var(--rule);
+  border-radius: 2px;
+  font-size: 0.66rem;
+}
+
+.tl-detail-headline {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 0.7rem;
+}
+
+.tl-detail-text {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.tl-detail-text p {
+  margin: 0 0 0.6rem;
+}
+
+.tl-detail-text strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.tl-detail-credit {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+  font-style: italic;
+}
+
+.tl-detail-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  padding: 2.5rem;
+  font-size: 0.95rem;
+}
+
+/* ── Navegación timeline ────────────────────────────────────────────────── */
+.tl-nav {
+  background: var(--paper);
+  padding: 0;
+  position: relative;
+}
+
+.tl-nav-track {
+  position: relative;
+  height: 110px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
+.tl-nav-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tl-nav-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tl-nav-track::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 3px;
+}
+
+.tl-nav-track::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+.tl-nav-inner {
+  position: relative;
+  height: 100%;
+  min-width: 100%;
+}
+
+/* Línea horizontal */
+.tl-nav-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--rule);
+  transform: translateY(-50%);
+}
+
+/* Marcadores de año */
+.tl-year-mark {
+  position: absolute;
+  top: 50%;
+  width: 1px;
+  height: 8px;
+  background: var(--rule);
+  transform: translate(-50%, -50%);
+}
+
+.tl-year-mark.major {
+  height: 14px;
+  background: var(--muted);
+}
+
+.tl-year-label {
+  position: absolute;
+  bottom: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+/* Bandas de gobierno */
+.tl-era-band {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-left: 1px dashed rgba(20, 33, 61, 0.18);
+}
+
+.tl-era-band.first {
+  border-left: none;
+}
+
+.tl-era-label {
+  position: absolute;
+  top: 6px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 0.1rem 0.5rem 0.1rem 0;
+  white-space: nowrap;
+}
+
+/* Dots de hitos */
+.tl-dot {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px var(--rule);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+  z-index: 2;
+}
+
+.tl-dot:hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  box-shadow: 0 0 0 2px var(--ink), 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 4;
+}
+
+.tl-dot.active {
+  width: 16px;
+  height: 16px;
+  background: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--accent), 0 0 0 6px rgba(194, 65, 12, 0.18);
+  z-index: 5;
+}
+
+.tl-dot.hidden {
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* Color por grupo */
+.tl-dot[data-group="Leyes"] { background: #14213D; }
+.tl-dot[data-group="Institucional"] { background: #1F3057; }
+.tl-dot[data-group="Programas"] { background: #5B6F94; }
+.tl-dot[data-group="Eventos"] { background: #C2410C; }
+.tl-dot[data-group="Externo"] { background: #9A6E50; }
+.tl-dot[data-group="Otros"] { background: #9CA3AF; }
+
+/* Tooltip al hover */
+.tl-tooltip {
+  position: absolute;
+  bottom: calc(50% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: white;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  max-width: 280px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  z-index: 10;
+}
+
+.tl-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--navy);
+}
+
+.tl-dot:hover .tl-tooltip {
+  opacity: 1;
+}
+
+/* Indicador de progreso */
+.tl-progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.2rem;
+  background: white;
+  border-top: 1px solid var(--rule);
+  font-size: 0.78rem;
+}
+
+.tl-progress-counter {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.tl-nav-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.tl-nav-btn {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  background: white;
+  border: 1px solid var(--rule);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.tl-nav-btn:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.tl-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Estado de carga */
+.tl-loading {
+  padding: 3rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}

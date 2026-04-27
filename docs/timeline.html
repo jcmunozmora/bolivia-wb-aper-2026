@@ -761,36 +761,9 @@ Tabla&nbsp;1
 <section id="línea-de-tiempo-interactiva" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="línea-de-tiempo-interactiva">Línea de tiempo interactiva</h2>
 <div class="column-screen-inset">
-<link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
-<div id="timeline-embed" style="width: 100%; height: 720px; max-width: 1400px; margin: 0 auto; border: 1px solid #E5E5E5; background: #FAFAF9;"></div>
-<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.min.js"></script>
-<script>
-  var timeline_config = {
-    height: 720,
-    width: "100%",
-    is_embed: true,
-    initial_zoom: 2,
-    language: "es",
-    font: "default",
-    timenav_position: "bottom",
-    optimal_tick_width: 100,
-    hash_bookmark: false,
-    debug: false
-  };
-  fetch("timeline.json")
-    .then(r => r.json())
-    .then(data => {
-      window.timeline = new TL.Timeline("timeline-embed", data, timeline_config);
-    })
-    .catch(err => {
-      document.getElementById("timeline-embed").innerHTML =
-        '<div style="padding: 2rem; text-align: center; color: #6B7280;">' +
-        'No fue posible cargar la línea de tiempo. ' +
-        '<a href="downloads/timeline.csv">Descargar CSV</a>.' +
-        '</div>';
-      console.error(err);
-    });
-</script>
+<link rel="stylesheet" href="assets/timeline-custom.css">
+<div id="tl-app" role="region" aria-label="Línea de tiempo interactiva de política agropecuaria boliviana"></div>
+<script src="assets/timeline-custom.js" defer=""></script>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -803,9 +776,12 @@ Cómo navegar
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Usa la barra inferior para moverte por las décadas; <strong>click en un hito</strong> lo despliega arriba.</li>
-<li>Las flechas del teclado (← →) avanzan entre hitos.</li>
-<li>Cada tarjeta incluye descripción 150–300 palabras, fuente primaria, una fuente secundaria y, cuando existe, imagen ilustrativa de Wikimedia Commons (CC).</li>
+<li><strong>Click en un dot</strong> del eje temporal abre la ficha del hito en el panel superior.</li>
+<li><strong>Filtros</strong> en la parte alta acotan por categoría (Leyes, Eventos, Programas, etc.).</li>
+<li><strong>Búsqueda</strong> por palabras clave (busca en título, descripción y tags).</li>
+<li><strong>Flechas del teclado</strong> (← →) avanzan entre hitos visibles.</li>
+<li>Las <strong>bandas de gobierno</strong> (Pre-MAS, Era Morales, Áñez+Arce) ayudan a ubicar el contexto político.</li>
+<li>Componente desarrollado en JavaScript vanilla — sin dependencias externas, funciona offline.</li>
 </ul>
 </div>
 </div>

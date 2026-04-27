@@ -11,7 +11,7 @@
     "href": "timeline.html#línea-de-tiempo-interactiva",
     "title": "Política agropecuaria 1990-2025",
     "section": "Línea de tiempo interactiva",
-    "text": "Línea de tiempo interactiva\n\n\n\n\n\n\n\n\n\n\n\n\nCómo navegar\n\n\n\n\nUsa la barra inferior para moverte por las décadas; click en un hito lo despliega arriba.\nLas flechas del teclado (← →) avanzan entre hitos.\nCada tarjeta incluye descripción 150–300 palabras, fuente primaria, una fuente secundaria y, cuando existe, imagen ilustrativa de Wikimedia Commons (CC)."
+    "text": "Línea de tiempo interactiva\n\n\n\n\n\n\n\n\n\n\n\nCómo navegar\n\n\n\n\nClick en un dot del eje temporal abre la ficha del hito en el panel superior.\nFiltros en la parte alta acotan por categoría (Leyes, Eventos, Programas, etc.).\nBúsqueda por palabras clave (busca en título, descripción y tags).\nFlechas del teclado (← →) avanzan entre hitos visibles.\nLas bandas de gobierno (Pre-MAS, Era Morales, Áñez+Arce) ayudan a ubicar el contexto político.\nComponente desarrollado en JavaScript vanilla — sin dependencias externas, funciona offline."
   },
   {
     "objectID": "timeline.html#resumen-por-período-y-categoría",
