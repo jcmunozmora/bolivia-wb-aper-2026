@@ -35,7 +35,8 @@ Presentación inicial de los avances de la actualización del APER. Repasa el re
 
 :::
 
-[Abrir deck en pestaña nueva](downloads/slides/2026-04-27_kickoff_BM.html){.download-btn target="_blank"}
+[Abrir HTML interactivo en pestaña nueva](downloads/slides/2026-04-27_kickoff_BM.html){.download-btn target="_blank"}
+[Descargar PDF (630 KB)](downloads/slides/2026-04-27_kickoff_BM.pdf){.download-btn}
 [Ver fuente Quarto en GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/slides/2026-04-27_kickoff/01_kickoff_BM_avances.qmd){.download-btn}
 
 ### Hoja de ruta del deck (20 láminas)
@@ -74,9 +75,9 @@ Presentación inicial de los avances de la actualización del APER. Repasa el re
 
 ## Inventario de presentaciones
 
-| Fecha | Evento | Audiencia | Láminas | Deck | Tamaño |
-|-------|--------|-----------|:------:|------|:------:|
-| 2026-04-27 | Kickoff BM | Banco Mundial Bolivia | 20 | [HTML](downloads/slides/2026-04-27_kickoff_BM.html) | 3.8 MB |
+| Fecha | Evento | Audiencia | Láminas | Formatos |
+|-------|--------|-----------|:------:|----------|
+| 2026-04-27 | Kickoff BM | Banco Mundial Bolivia | 20 | [HTML](downloads/slides/2026-04-27_kickoff_BM.html) · [PDF](downloads/slides/2026-04-27_kickoff_BM.pdf) |
 
 ## Convenciones del repositorio de slides
 
