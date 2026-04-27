@@ -1,92 +1,237 @@
 ---
-title: "Presupuestos e Instituciones en el Sector Agropecuario"
+title: "Presupuestos e Instituciones del Sector Agropecuario"
 ---
 
 ```{r}
 #| include: false
+suppressPackageStartupMessages({
+  library(data.table)
+  library(ggplot2)
+  library(scales)
+  library(gt)
+})
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
-library(tidyverse)
 
-spending <- readRDS(here::here("01_data", "processed", "spending_clean.rds"))
-panel    <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
+panel  <- as.data.table(readRDS(here::here("01_data", "processed", "spending_panel_v12.rds")))
+boost  <- as.data.table(readRDS(here::here("01_data", "processed", "boost_agro_panel.rds")))
+mefp   <- as.data.table(readRDS(here::here("01_data", "processed", "mefp_ejecucion_anual.rds")))
+bcb    <- as.data.table(readRDS(here::here("01_data", "processed", "bcb_credito_sectorial_anual.rds")))
+speed  <- as.data.table(readRDS(here::here("01_data", "processed", "speed_agro_bolivia.rds")))
+
+FIG_DIR <- here::here("05_outputs", "figures")
+fig <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
 ```
 
-## El Marco Institucional del Gasto Agropecuario
+## Resumen ejecutivo del capítulo
 
-La arquitectura institucional del sector agropecuario boliviano involucra múltiples entidades con mandatos diferenciados pero frecuentemente superpuestos. Comprender esta estructura es esencial para interpretar correctamente los datos de gasto y formular recomendaciones de política viables.
+Bolivia destinó al sector agropecuario, en promedio, **menos del 3% de su gasto público total** durante todo el período 1990-2017 — máximo histórico 3.48% en 1990 (IFPRI SPEED). El país **nunca alcanzó la meta de Maputo del 10%** acordada por gobiernos africanos pero adoptada como referencia regional. Esta brecha entre la prioridad declarativa al sector rural y la asignación presupuestaria efectiva es uno de los hallazgos centrales de este reporte. Adicionalmente, desde 2014 el **crédito subsidiado del sistema bancario** (impulsado por la Ley 393) ha sustituido parcialmente la inversión pública directa, transformando la arquitectura del apoyo financiero al sector.
 
-### Entidades del Nivel Central
+## Marco institucional del gasto agropecuario
 
-**MDRyT — Ministerio de Desarrollo Rural y Tierras**
-Entidad rectora del sector agropecuario. Responsable de la planificación, regulación y coordinación de políticas. Administra directamente algunos programas de extensión y apoyo a la producción, aunque parte de sus funciones operativas han sido desconcentradas a entidades descentralizadas.
+La arquitectura institucional involucra al menos **10 entidades** con presupuesto y mandato relacionados al sector:
 
-**INIAF — Instituto Nacional de Innovación Agropecuaria y Forestal**
-Entidad descentralizada responsable de la investigación y extensión agropecuaria. Gestiona el banco de germoplasma nacional, produce semillas certificadas y ofrece servicios de asistencia técnica. Creado en 2008, absorbió funciones del ex-SIBTA.
+| Entidad | Mandato principal | Presupuesto referencia |
+|---------|-------------------|------------------------|
+| **MDRyT** | Rector del sector — política, planificación, programas | Bs 1,539 M (2024 vigente) |
+| **INIAF** | Investigación e innovación agropecuaria; semillas | Bs 98 M (2019 vigente) |
+| **SENASAG** | Sanidad agropecuaria e inocuidad alimentaria | Ingresos propios Bs 108 M (2019) |
+| **EMAPA** | Compras garantizadas y comercialización (soberanía alimentaria) | Bs ~600 M anuales |
+| **INRA** | Saneamiento y titulación de tierras | — |
+| **ABT** | Control de bosques y autorizaciones de desmonte | — |
+| **FDI** | Transferencias directas a comunidades indígenas | — |
+| **BDP-SAM** | Crédito productivo subsidiado | Cartera 2025 ~USD 3.4 B (68% agro) |
+| **SENARI** | Planificación y regulación de riego | — |
+| **MMAyA** | Riego mediante "Mi Agua / MIAGUA" — *tuición fuera del MDRyT* | — |
 
-**SENASAG — Servicio Nacional de Sanidad Agropecuaria e Inocuidad Alimentaria**
-Responsable de la sanidad animal y vegetal, inocuidad alimentaria y control de insumos agropecuarios. Opera con tasas y aranceles propios además del presupuesto fiscal.
+**Hallazgo institucional crítico:** el riego — uno de los principales determinantes de la productividad agrícola — está bajo tuición del Ministerio de Medio Ambiente y Agua (MMAyA), no del MDRyT. Esta fragmentación se documenta explícitamente en el PEI MDRyT 2014-2018 como *"riesgo institucional reconocido"* (p. 12), y aparece como tema recurrente en evaluaciones externas (CIPCA 2018).
 
-**EMAPA — Empresa de Apoyo a la Producción de Alimentos**
-Empresa pública creada en 2007 para garantizar la seguridad alimentaria mediante la compra de productos a precios garantizados (trigo, maíz, arroz, soya) y su distribución a precios subsidiados. Elemento central de la política de soberanía alimentaria.
+## Inversión pública agropecuaria 1990-2024
 
-**BDP — Banco de Desarrollo Productivo**
-Ofrece líneas de crédito a tasas subsidiadas para el sector agropecuario, financiadas parcialmente con recursos del Tesoro General del Estado.
+::: {layout-ncol=2}
 
-**INRA — Instituto Nacional de Reforma Agraria / Fondo Tierra**
-Administra el proceso de saneamiento y titulación de tierras. El Fondo Tierra facilita el acceso a la tierra para comunidades indígenas y campesinas.
+![Inversión agropecuaria pública Bolivia 1990-2024 (USD MM)](`r fig("fig10_inversion_agro_1990_2024")`){fig-alt="Inversión agropecuaria"}
 
-**MMAyA — Ministerio de Medio Ambiente y Agua**
-Aunque no es una entidad agropecuaria per se, gestiona la infraestructura de riego a través del programa Mi Agua y el Viceministerio de Recursos Hídricos, con impacto directo en la productividad agrícola.
+![Inversión por sector económico 1990-2024](`r fig("fig11_inversion_por_sector")`){fig-alt="Inversión por sector"}
 
-### Presupuesto por Entidad
+:::
 
 ```{r}
-#| label: fig-spending-institution
-#| fig-cap: "Gasto agropecuario ejecutado por institución, Bolivia"
-spending |>
-  filter(!is.na(institution), !is.na(executed_usd)) |>
-  group_by(year, institution) |>
-  summarise(executed_usd = sum(executed_usd, na.rm=TRUE), .groups="drop") |>
-  group_by(institution) |>
-  filter(sum(executed_usd, na.rm=TRUE) > 0) |>
-  ungroup() |>
-  ggplot(aes(x = year, y = executed_usd / 1e6, fill = institution)) +
-  geom_col(position = "stack") +
-  scale_fill_manual(values = WB_PALETTE) +
-  scale_y_continuous(labels = scales::dollar_format(suffix = "M")) +
-  labs(x = NULL, y = "USD millones (constantes 2015)", fill = "Institución",
-       caption = "Fuente: BOOST/SIIF. Elaboración propia.") +
-  theme(legend.position = "bottom",
-        legend.text = element_text(size = 8))
+#| label: tbl-inv-decadas
+#| tbl-cap: "Inversión pública agropecuaria, promedios decadales 1990-2024"
+panel[, decada := fcase(
+  year < 2000, "1990s",
+  year < 2010, "2000s",
+  year < 2020, "2010s",
+  default     = "2020-2024"
+)]
+inv_dec <- panel[!is.na(inv_agro_usd_mm), .(
+  `Inversión agrop. (USD MM, prom)` = round(mean(inv_agro_usd_mm, na.rm=TRUE), 0),
+  `Como % inv. pública total`        = round(mean(inv_agro_pct_total, na.rm=TRUE), 1),
+  `Como % PIB`                       = round(mean(inv_agro_pct_gdp, na.rm=TRUE), 2)
+), by = decada]
+setorder(inv_dec, decada)
+gt(inv_dec) |>
+  tab_source_note("Fuente: VIPFE / MEFP Informe Fiscal 2024.") |>
+  opt_stylize(style = 1)
 ```
 
-## Tasa de Ejecución Presupuestal
+**Patrón identificado:**
 
-La brecha entre presupuesto aprobado y ejecutado es un indicador de eficiencia institucional y capacidad de absorción. Una baja tasa de ejecución puede indicar problemas en: (i) planificación y formulación presupuestal, (ii) capacidad de contratación pública, (iii) disponibilidad de unidades ejecutoras certificadas.
+- 1990s: inversión agrop. ~USD 50 M anuales (% bajo, contexto neoliberal)
+- 2000s: ascenso a ~USD 130 M (precios commodities y cambio político 2006)
+- 2010s: pico USD 320 M en 2015 (boom de inversión pública post-nacionalización)
+- 2020-2024: caída a USD 130-260 M (crisis fiscal, COVID, escasez de divisas)
+
+## Benchmark internacional — meta Maputo y SPEED
 
 ```{r}
-#| label: fig-exec-rate-institution
-#| fig-cap: "Tasa de ejecución presupuestal por institución"
-spending |>
-  filter(!is.na(exec_rate), !is.na(institution)) |>
-  group_by(institution) |>
-  summarise(
-    avg_exec_rate = mean(exec_rate, na.rm = TRUE),
-    n_years       = n_distinct(year),
-    .groups = "drop"
-  ) |>
-  filter(n_years >= 3) |>
-  mutate(below_90 = avg_exec_rate < 0.90) |>
-  ggplot(aes(x = reorder(institution, avg_exec_rate),
-             y = avg_exec_rate * 100,
-             fill = below_90)) +
-  geom_col() +
-  geom_hline(yintercept = 90, linetype = "dashed", color = WB_RED) +
-  coord_flip() +
-  scale_fill_manual(values = c("FALSE" = WB_TEAL, "TRUE" = WB_ORANGE), guide = "none") +
-  scale_y_continuous(limits = c(0, 105),
-                     labels = scales::percent_format(scale=1)) +
-  labs(x = NULL, y = "Tasa de ejecución promedio (%)",
-       caption = "Línea roja = 90%. Naranja = debajo del umbral.\nFuente: BOOST/SIIF. Elaboración propia.")
+#| label: fig-maputo
+#| fig-cap: "Bolivia vs meta Maputo (10%): gasto agropecuario como % del gasto público total, 1980-2007 (IFPRI SPEED)"
+sp <- speed[, .(year, ag_pctexp)]
+ggplot(sp[!is.na(ag_pctexp)], aes(x = year, y = ag_pctexp)) +
+  geom_col(fill = WB_BLUE, alpha = 0.7) +
+  geom_hline(yintercept = 10, linetype = "dashed", color = WB_RED, linewidth = 1) +
+  annotate("text", x = 1985, y = 10.5, label = "Meta Maputo (10%)",
+            color = WB_RED, fontface = "bold", size = 3.5) +
+  scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 12)) +
+  labs(x = NULL, y = "Gasto agrop. / gasto público total (%)",
+       caption = "Fuente: IFPRI SPEED 2019. Bolivia cubre 1980-2007 en la base.")
 ```
+
+**Bolivia nunca alcanzó la meta Maputo del 10%.** Máximo histórico: **3.48% en 1990**. Promedio 2000-2007: **2.2%**. En el ranking LAC 2000-2017, Bolivia ocupa la posición **9 de 24** con 0.43% del PIB (IFPRI SPEED), **por encima** de Argentina (0.08%), Chile (0.31%) y Perú (0.21%).
+
+## Composición del gasto agropecuario — fase BOOST 1996-2008
+
+```{r}
+#| label: tbl-boost
+#| tbl-cap: "Ejecución y composición del gasto agropecuario público, Bolivia 1996-2008 (BOOST)"
+boost[year %in% c(1996, 2000, 2004, 2008),
+      .(Año                                = year,
+        `Presup. ejecutado (BOB MM)`       = round(presup_ejecutado_mm, 0),
+        `Tasa ejecución (%)`               = round(tasa_ejecucion, 1),
+        `Gasto corriente (BOB MM)`         = round(gasto_corriente_mm, 0),
+        `Gasto capital (BOB MM)`           = round(gasto_capital_mm, 0),
+        `% capital`                        = round(pct_capital, 1))] |>
+  gt() |>
+  tab_source_note("Fuente: World Bank BOOST Bolivia 1996-2008.") |>
+  opt_stylize(style = 1)
+```
+
+**Hallazgos del período BOOST:**
+
+- Gasto agropecuario ejecutado pasó de **278 MM BOB (1996)** a **1,282 MM BOB (2008)** — multiplicación ×4.6 en términos nominales.
+- Tasa de ejecución mejoró de **74% (1996) a 101% (2008)** — fortalecimiento de capacidad ejecutora.
+- Composición 2008: Agricultura 63%, Agropecuaria 15%, Ganadería 6%, Silvicultura 6%.
+- Top entidades ejecutoras post-2006: MDRyT, Prefecturas Tarija/Cochabamba/Santa Cruz, EMAPA.
+
+## Tasas de ejecución presupuestal — benchmark MEFP 2015-2023
+
+::: {layout-ncol=2}
+
+![Gasto subnacional por departamento (líneas)](`r fig("fig21_gasto_subnacional_lineas")`){fig-alt="Gasto subnacional"}
+
+![Gasto agropecuario municipal — Programa 10](`r fig("fig20_programa10_agropecuario")`){fig-alt="P10 muni"}
+
+:::
+
+```{r}
+#| label: tbl-mefp
+#| tbl-cap: "Tasas de ejecución presupuestal — Ministerio de Economía y Finanzas Públicas (MEFP, Entidad 035) 2015-2023"
+mefp[, .(
+  Año                            = year,
+  `Vigente (BOB MM)`              = round(presup_vigente_mm_bs, 0),
+  `Ejecutado (BOB MM)`            = round(ejecutado_mm_bs, 0),
+  `% Ejecución (ponderado)`       = round(pct_ejec_ponderado, 1)
+)] |>
+  gt() |>
+  tab_source_note("Fuente: PDFs DGAA MEFP (Ejecucion_YYYY.pdf). Solo Entidad 035.") |>
+  opt_stylize(style = 1) |>
+  data_color(columns = "% Ejecución (ponderado)",
+              palette = c(WB_RED, WB_YELLOW, WB_GREEN),
+              domain = c(40, 70, 100))
+```
+
+**Patrón observado en el benchmark MEFP:**
+
+- Rango histórico de ejecución: **42% (2020, COVID) – 96% (2023)**.
+- 2020: presupuesto vigente *explotó 13×* (de 426 MM a 5,540 MM BOB) por transferencias COVID; ejecución cayó a 42% — *patrón típico de shock fiscal*.
+- 2022-2023: recuperación a 93-96% tras normalización.
+- *Servicios No Personales* es consistentemente el grupo con menor ejecución (46-79%) — indicador estructural de subejecución en compras.
+
+> **Nota crítica para el APER:** los datos por entidad de los **ministerios sectoriales** (MDRyT, INIAF, SENASAG, INRA) no están públicamente disponibles para 2009-2024 con el detalle requerido. La carta formal al MEFP (DS 28168) gestiona esta solicitud. Hasta que se reciba esa información, el benchmark MEFP funciona como **referencia comparativa** para los datos parciales obtenidos de RPC del MDRyT (74% financiero / 54% físico en 2024).
+
+## El cambio estructural: crédito subsidiado vs. inversión pública
+
+Desde la promulgación de la **Ley 393 de Servicios Financieros (julio 2014)**, que mandó cuotas mínimas de cartera productiva al sistema bancario, se observa una **sustitución parcial** entre inversión pública directa y crédito subsidiado al sector agropecuario.
+
+```{r}
+#| label: fig-credito-vs-inv
+#| fig-cap: "Inversión pública agropecuaria vs crédito bancario al sector agropecuario, Bolivia 2010-2024"
+panel_cred <- panel[year >= 2010 & year <= 2024,
+                     .(year,
+                       inv_agro = inv_agro_usd_mm,
+                       credito  = bcb_cred_agro_mm_usd)]
+panel_long <- melt(panel_cred, id.vars = "year",
+                   variable.name = "fuente", value.name = "valor",
+                   variable.factor = FALSE)
+panel_long[, fuente := fifelse(fuente == "inv_agro",
+                                "Inversión pública (VIPFE)",
+                                "Crédito bancario al sector (BCB)")]
+ggplot(panel_long[!is.na(valor)], aes(x = year, y = valor, color = fuente)) +
+  geom_line(linewidth = 1.3) +
+  geom_point(size = 2.5) +
+  geom_vline(xintercept = 2014, linetype = "dashed", color = WB_NAVY, alpha = 0.6) +
+  annotate("text", x = 2014.2, y = 3000, label = "Ley 393\n(julio 2014)",
+            color = WB_NAVY, hjust = 0, size = 3.2, fontface = "bold") +
+  scale_color_manual(values = c(WB_BLUE, WB_ORANGE)) +
+  scale_y_continuous(labels = label_dollar(suffix = " M")) +
+  labs(x = NULL, y = "USD millones", color = NULL,
+       caption = "Inversión: VIPFE / MEFP Informe Fiscal 2024.\nCrédito: BCB Boletín Estadístico Cuadro 3.02.") +
+  theme(legend.position = "bottom")
+```
+
+**Hallazgo central:**
+
+- **Inversión pública** cayó de **0.97% del PIB en 2015** a **0.38% en 2021** (USD 320 M → USD 130 M).
+- **Crédito agropecuario** subió de **5.1% del crédito total bancario en 2010** a **11.7% en 2024**.
+- En valores absolutos, el crédito al sector pasó de **USD 290 M (2010)** a **USD 3,397 M (2024)** — multiplicación ×11.7.
+- Esta **sustitución de instrumentos** transforma la naturaleza del apoyo público: del gasto fiscal directo a la *inducción regulatoria del crédito subsidiado*. La regresión panel del Capítulo 4 incluye un **dummy estructural `post_ley393`** para capturar este quiebre.
+
+## Distribución subnacional del gasto
+
+::: {layout-ncol=2}
+
+![Mapa: gasto agropecuario municipal 2020](`r fig("fig22_mapa_gasto_agro_2020")`){fig-alt="Mapa gasto"}
+
+![VIPFE vs Jubileo municipal](`r fig("fig18_vipfe_vs_jubileo_municipal")`){fig-alt="VIPFE vs Jubileo"}
+
+:::
+
+::: {layout-ncol=2}
+
+![Composición del gasto Jubileo (programa)](`r fig("fig19_jubileo_composition")`){fig-alt="Jubileo"}
+
+![Mapa de gasto agropecuario subnacional](`r fig("fig32_mapa_p10_agropecuario")`){fig-alt="Mapa P10"}
+
+:::
+
+**Distribución observada:**
+
+- **Santa Cruz** concentra el mayor gasto agropecuario absoluto pero el más bajo *per cápita rural* (paradoja de la concentración).
+- Los municipios pequeños del altiplano y valles tienen el **mayor gasto per cápita**, reflejando arreglos de coparticipación tributaria + IDH.
+- El gasto agropecuario subnacional (Programa 10) representa entre **2-8% del presupuesto total municipal** — espacio limitado para programas locales de extensión.
+
+## Síntesis del capítulo
+
+| Dimensión | Hallazgo | Implicación |
+|-----------|----------|-------------|
+| **Magnitud** | Bolivia nunca alcanzó meta Maputo (10%); máx. histórico 3.48% (1990) | El sector está sub-financiado relativo al consenso regional |
+| **Tendencia** | Inversión 1990-2024: ascendente con quiebre 2015 | Boom 2010-2015, contracción post-2020 |
+| **Composición** | Gasto corriente domina; capital crece con BOOST 1996-2008 | Fortalecimiento de programas de inversión |
+| **Ejecución** | Tasa MEFP 42-96%, mejora reciente; MDRyT 74% (2024) | Capacidad de absorción aceptable pero heterogénea |
+| **Estructural** | Crédito BCB sustituye inversión pública post-Ley 393 (2014) | Cambio de instrumento de apoyo: fiscal → crédito |
+| **Institucional** | Riego fragmentado entre MDRyT y MMAyA | Incentivo a coordinación intersectorial débil |
+| **Subnacional** | Concentración en Santa Cruz / dispersión altiplano | Necesidad de diferenciar gasto por contexto regional |
+
+El nivel y composición del gasto agropecuario boliviano se caracteriza por ser **persistentemente bajo** en términos relativos, **crecientemente dependiente de instrumentos crediticios** post-2014, y **fragmentado institucionalmente** entre múltiples ministerios y empresas públicas. Estos elementos motivan el análisis de eficiencia y retornos del Capítulo 4, donde se documenta empíricamente que la elasticidad TFP-inversión es positiva pero modesta.

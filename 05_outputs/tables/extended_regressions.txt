@@ -1,0 +1,189 @@
+Bolivia Agricultural PER — Extended Regressions
+2026-04-27 14:10
+
+=== NACIONAL: TFP ===
+OLS estimation, Dep. Var.: ln_tfp
+Observations: 34
+Standard-errors: IID 
+            Estimate Std. Error  t value   Pr(>|t|)    
+(Intercept) 4.072839   0.053744 75.78156  < 2.2e-16 ***
+ln_inv_agro 0.088523   0.011927  7.42199 1.9121e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.057164   Adj. R2: 0.621064
+
+OLS estimation, Dep. Var.: ln_tfp
+Observations: 34
+Standard-errors: IID 
+              Estimate Std. Error   t value   Pr(>|t|)    
+(Intercept)   4.798676   0.547325  8.767513 8.9163e-10 ***
+ln_inv_agro  -0.006172   0.021543 -0.286503 7.7646e-01    
+ln_lc_antrop -0.276980   0.312428 -0.886541 3.8238e-01    
+time_trend    0.016380   0.009121  1.795896 8.2590e-02 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.041875   Adj. R2: 0.7831
+
+OLS estimation, Dep. Var.: ln_tfp
+Observations: 18
+Standard-errors: IID 
+              Estimate Std. Error   t value   Pr(>|t|)    
+(Intercept)   3.901045   0.882888  4.418504 0.00069363 ***
+ln_inv_agro   0.072775   0.037431  1.944270 0.07382479 .  
+ln_lc_antrop  0.094922   0.512477  0.185221 0.85591394    
+time_trend    0.001982   0.018126  0.109332 0.91460844    
+PSEP_pct     -0.003842   0.001236 -3.108858 0.00830397 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.029077   Adj. R2: 0.620072
+
+OLS estimation, Dep. Var.: ln_tfp
+Observations: 33
+Standard-errors: IID 
+              Estimate Std. Error   t value   Pr(>|t|)    
+(Intercept)   4.987210   0.567368  8.790075 1.1302e-09 ***
+ln_inv_L1    -0.017652   0.022265 -0.792783 4.3434e-01    
+ln_lc_antrop -0.371957   0.323202 -1.150853 2.5919e-01    
+time_trend    0.019907   0.009544  2.085701 4.5913e-02 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.041968   Adj. R2: 0.775661
+
+OLS estimation, Dep. Var.: ln_tfp
+Observations: 32
+Standard-errors: IID 
+              Estimate Std. Error   t value   Pr(>|t|)    
+(Intercept)   4.963456   0.559611  8.869474 1.2687e-09 ***
+ln_inv_L2    -0.017596   0.022484 -0.782583 4.4044e-01    
+ln_lc_antrop -0.357751   0.320705 -1.115515 2.7411e-01    
+time_trend    0.019494   0.009463  2.060047 4.8798e-02 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.042552   Adj. R2: 0.755309
+
+OLS estimation, Dep. Var.: ln_tfp
+Observations: 23
+Standard-errors: IID 
+              Estimate Std. Error   t value   Pr(>|t|)    
+(Intercept)   4.632864   1.075036  4.309495 0.00042212 ***
+ln_inv_agro   0.032563   0.048342  0.673593 0.50912798    
+ln_lc_antrop -0.220720   0.501127 -0.440447 0.66485710    
+ln_defor     -0.006115   0.037115 -0.164746 0.87097958    
+time_trend    0.013015   0.017759  0.732884 0.47306606    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.042385   Adj. R2: 0.61868
+
+=== SUBNACIONAL: PIB agropecuario ===
+OLS estimation, Dep. Var.: ln_pib
+Observations: 45
+Standard-errors: IID 
+            Estimate Std. Error  t value   Pr(>|t|)    
+(Intercept) 6.085105   0.562942 10.80947 7.7144e-14 ***
+ln_gasto    0.396481   0.156473  2.53386 1.5006e-02 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.893615   Adj. R2: 0.109681
+
+OLS estimation, Dep. Var.: ln_pib
+Observations: 45
+Fixed-effects: dept_upper: 9
+Standard-errors: IID 
+          Estimate Std. Error   t value Pr(>|t|) 
+ln_gasto -0.007792   0.025173 -0.309546  0.75874 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.056047     Adj. R2: 0.995697
+                 Within R2: 0.00273 
+
+OLS estimation, Dep. Var.: ln_pib
+Observations: 45
+Fixed-effects: dept_upper: 9,  year: 5
+Standard-errors: IID 
+          Estimate Std. Error   t value Pr(>|t|) 
+ln_gasto -0.015263   0.019438 -0.785228  0.43828 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.036381     Adj. R2: 0.997953
+                 Within R2: 0.019502
+
+OLS estimation, Dep. Var.: ln_pib
+Observations: 37
+Fixed-effects: dept_upper: 8,  year: 5
+Standard-errors: IID 
+          Estimate Std. Error   t value Pr(>|t|) 
+ln_gasto -0.011540   0.014281 -0.808020  0.42736 
+ln_defor  0.000499   0.018591  0.026829  0.97883 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.024321     Adj. R2: 0.998837
+                 Within R2: 0.027794
+
+OLS estimation, Dep. Var.: ln_pib
+Observations: 40
+Fixed-effects: dept_upper: 8,  year: 5
+Standard-errors: IID 
+           Estimate Std. Error   t value Pr(>|t|)    
+ln_gasto  -0.004956   0.020879 -0.237355 0.814242    
+ln_antrop  0.594679   0.317798  1.871251 0.072604 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.035233     Adj. R2: 0.998095
+                 Within R2: 0.138422
+
+=== SUBNACIONAL: Produccion INE ===
+OLS estimation, Dep. Var.: ln_prod
+Observations: 81
+Standard-errors: IID 
+             Estimate Std. Error  t value  Pr(>|t|)    
+(Intercept) 11.330838   0.753767 15.03228 < 2.2e-16 ***
+ln_gasto     0.613138   0.196127  3.12622 0.0024779 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 1.4058   Adj. R2: 0.098828
+
+OLS estimation, Dep. Var.: ln_prod
+Observations: 81
+Fixed-effects: dept_upper: 9
+Standard-errors: IID 
+          Estimate Std. Error  t value  Pr(>|t|)    
+ln_gasto -0.083022   0.029234 -2.83987 0.0058834 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.104702     Adj. R2: 0.994438
+                 Within R2: 0.102003
+
+OLS estimation, Dep. Var.: ln_prod
+Observations: 81
+Fixed-effects: dept_upper: 9,  year: 9
+Standard-errors: IID 
+         Estimate Std. Error  t value Pr(>|t|) 
+ln_gasto 0.016697   0.024582 0.679236  0.49948 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.060266     Adj. R2: 0.997923
+                 Within R2: 0.00727 
+
+OLS estimation, Dep. Var.: ln_prod
+Observations: 72
+Fixed-effects: dept_upper: 9,  year: 8
+Standard-errors: IID 
+         Estimate Std. Error t value Pr(>|t|) 
+gasto_L1 0.013905   0.028731 0.48396  0.63034 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RMSE: 0.05747     Adj. R2: 0.998081
+                Within R2: 0.00424 
+
+=== EFICIENCIA TECNICA (2017-2021) ===
+      dept_upper   eff_mean     eff_sd ratio_mean pib_mean_mm gasto_mean_mm
+          <char>      <num>      <num>      <num>       <num>         <num>
+1:    SANTA CRUZ 1.00000000 0.00000000  377.72886  11026.4506     32.228774
+2:          BENI 0.48742255 0.21383393  163.34416   1438.1794      9.038975
+3:    COCHABAMBA 0.27856477 0.24066306   85.38853   5242.0154     81.922867
+4:         PANDO 0.21407573 0.04394643   76.74352    817.4809     10.892552
+5:        LA PAZ 0.13272410 0.04153031   53.16430   3769.8391     94.071101
+6:         ORURO 0.08291287 0.05514388   27.44639    468.0560     19.175858
+7:    CHUQUISACA 0.08232579 0.05880474   26.74806   1232.2708     57.915496
+8: POTOS<U+00CD> 0.07740654 0.05271716   25.48429    938.2447     40.907747
+9:        TARIJA 0.05040282 0.02855095   16.95859   1143.8367     73.477697

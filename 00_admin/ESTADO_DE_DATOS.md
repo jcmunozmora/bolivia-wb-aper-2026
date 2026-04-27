@@ -1,8 +1,10 @@
 # Estado de datos del proyecto — WB Bolivia APER 2026
 
-**Última actualización:** 2026-04-22 (sesión 8 — cierre)
-**Panel nacional v11:** `01_data/processed/spending_panel_v11.rds` (35 años × 179 variables) ⭐⭐ NEW
-**Panel nacional v10:** `01_data/processed/spending_panel_v10.rds` (35 años × 143 variables) ⭐⭐
+**Última actualización:** 2026-04-23 (sesión 9 — refactor Cap 2-3 Quarto)
+**Panel nacional v12 (CANÓNICO):** `01_data/processed/spending_panel_v12.rds` (35 años × 176 variables limpias) ⭐⭐⭐ NEW
+**Diccionario panel v12:** `01_data/processed/spending_panel_v12_dictionary.csv` (176 vars × 5 cols, 17 grupos) ⭐ NEW
+**Panel nacional v11:** `01_data/processed/spending_panel_v11.rds` (35 años × 179 variables) [con 3 bugs — usar v12]
+**Panel nacional v10:** `01_data/processed/spending_panel_v10.rds` (35 años × 143 variables) [legacy]
 **Panel subnacional v2:** `01_data/processed/subnacional_panel_v2.rds` (90 × 36 vars)
 **Panel municipal v3:** `01_data/processed/municipal_panel_v3.rds` (3,368 × 70 vars) ⭐⭐
 **DEA-ready:** `01_data/processed/dea_dataset.rds` (81 DMUs × 32 vars)
@@ -492,7 +494,8 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 | `spending_panel_v8.rds` | 123 | + IFPRI SPEED ag_pctgdp/pctexp/pctaggdp/con_usd/con_ppp |
 | `spending_panel_v9.rds` | 131 | + BCB crédito agrop sectorial (2010-2024) × 8 vars |
 | `spending_panel_v10.rds` | 143 | + FAOSTAT PP domésticos + NRP 1991-2023 × 12 vars |
-| **`spending_panel_v11.rds`** ⭐ | **179** | + MapBiomas nacional LC + Hansen + WDI extendido + BOOST × 36 vars |
+| `spending_panel_v11.rds` | 179 | + MapBiomas nacional LC + Hansen + WDI extendido + BOOST × 36 vars |
+| **`spending_panel_v12.rds`** ⭐⭐⭐ | **176** | Bugs fixed: nombres MapBiomas (mb_natural, mb_antropico, mb_no_definido), eliminados 3 duplicados WDI≡otros, renombrados cereales por fuente (fao_/ine_/wdi_) |
 
 ---
 
@@ -539,7 +542,8 @@ Haití 20.4% → Nicaragua 15.9% → Honduras 12.2% → **Bolivia 9.1% (6to)** �
 40:     process_ena_2015.R             ENA 2015 (Hogar + Agrícola + Bovinos) → UPA + comparación 2008/2015
 41:     process_faostat_pp.R           FAOSTAT PP Americas + WB Pink Sheet → NRP 1991-2023 + panel_v10
 42:     process_mefp_ejecucion.R       MEFP Ejecucion_YYYY.pdf 2015-2023 → tasas ejecución MEFP Ent 035
-43:     panel_v11_consolidate.R        panel v10 + MapBiomas nacional + Hansen + WDI ext + BOOST → panel v11 ⭐ NEW
+43:     panel_v11_consolidate.R        panel v10 + MapBiomas nacional + Hansen + WDI ext + BOOST → panel v11
+44:     panel_v12_fix_bugs.R           Fix bugs nombres MapBiomas + duplicados WDI + renombrado cereales → panel v12 ⭐ NEW
 ```
 
 ### `02_code/03_analysis/` (3 scripts activos)

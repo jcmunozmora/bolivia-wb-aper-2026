@@ -31,9 +31,9 @@ sep <- function(titulo) {
 # ══════════════════════════════════════════════════════════
 sep("SECCIÓN 1: REGRESIONES NACIONALES — TFP")
 
-nat <- readRDS(file.path(proc, "spending_panel_v7.rds"))
+nat <- readRDS(file.path(proc, "spending_panel_v12.rds"))
 setDT(nat)
-cat("Usando panel_v7 (35 años × 118 vars)\n")
+cat(sprintf("Usando spending_panel_v12 (%d años × %d vars)\n", nrow(nat), ncol(nat)))
 
 # Hansen nacional: sumar depts si no viene ya en el panel
 if (!"defor_nacional_ha" %in% names(nat)) {

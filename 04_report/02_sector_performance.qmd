@@ -4,87 +4,214 @@ title: "Desempeño del Sector Agropecuario"
 
 ```{r}
 #| include: false
+suppressPackageStartupMessages({
+  library(data.table)
+  library(ggplot2)
+  library(scales)
+  library(gt)
+})
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
-library(tidyverse)
 
-panel   <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
-prod    <- readRDS(here::here("01_data", "processed", "production_by_commodity.rds"))
+panel <- as.data.table(readRDS(here::here("01_data", "processed", "spending_panel_v12.rds")))
+mb    <- as.data.table(readRDS(here::here("01_data", "processed", "mapbiomas_national_annual.rds")))
+ena_cmp <- as.data.table(readRDS(here::here("01_data", "processed", "ena_comparacion_2008_2015.rds")))
+eh_nac  <- as.data.table(readRDS(here::here("01_data", "processed", "eh_nacional_anual.rds")))
+
+FIG_DIR <- here::here("05_outputs", "figures")
+fig <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
 ```
 
-## Perspectiva Histórica
+## Resumen ejecutivo del capítulo
 
-El sector agropecuario boliviano ha experimentado transformaciones estructurales profundas en las últimas dos décadas. La expansión de la frontera agrícola en el oriente del país —particularmente en Santa Cruz— ha convertido a Bolivia en un exportador relevante de soya y sus derivados en el mercado regional, mientras que los cultivos andinos (quinua, papa, maíz) mantienen su importancia para la seguridad alimentaria y los medios de vida rurales.
+El sector agropecuario boliviano ha experimentado dos décadas de transformaciones estructurales profundas: expansión de la frontera agrícola en el oriente, consolidación del altiplano alrededor de la quinua y el ganado camélido, y un patrón de productividad que ha crecido más lentamente que la inversión pública. Este capítulo documenta los principales indicadores de desempeño 1990-2024, identifica las trayectorias diferenciadas por departamento y commodity, y prepara el terreno para el análisis de eficiencia del gasto en el Capítulo 4.
+
+## Contribución macroeconómica del sector
 
 ```{r}
-#| label: fig-agr-gdp
-#| fig-cap: "PIB agropecuario como porcentaje del PIB total, Bolivia 2000–2023"
-panel |>
-  filter(!is.na(agr_value_added_pct_gdp)) |>
-  ggplot(aes(x = year, y = agr_value_added_pct_gdp)) +
-  geom_ribbon(aes(ymin = 0, ymax = agr_value_added_pct_gdp),
-              fill = WB_BLUE, alpha = 0.15) +
-  geom_line(color = WB_BLUE, linewidth = 1.2) +
-  scale_y_continuous(labels = scales::percent_format(scale = 1),
-                     limits = c(0, NA)) +
-  labs(x = NULL, y = "% del PIB",
-       caption = "Fuente: WDI, Banco Mundial. Elaboración propia.")
+#| label: tbl-macro
+#| tbl-cap: "Indicadores macroeconómicos del sector agropecuario boliviano (años seleccionados)"
+panel[year %in% c(2000, 2005, 2010, 2015, 2020, 2023),
+      .(Año                                    = year,
+        `PIB agrop. (% PIB)`                   = round(agr_value_added_pct_gdp, 1),
+        `Empleo agrop. (% PEA)`                = round(agr_employment_pct, 1),
+        `Población rural (% total)`             = round(rural_pop_pct, 1),
+        `Subalimentación (%)`                   = round(undernourishment_pct, 1),
+        `Rendimiento cereal (kg/ha, INE)`       = round(ine_cereal_yield_kg_ha, 0),
+        `Rendimiento cereal (kg/ha, FAO)`       = round(fao_cereal_yield_kg_ha, 0))] |>
+  gt() |>
+  tab_source_note("Fuentes: WDI (Banco Mundial), INE Bolivia, FAOSTAT/OWID. Panel maestro v12.") |>
+  opt_stylize(style = 1)
 ```
 
-## Perspectiva de Políticas
+::: {layout-ncol=2}
 
-La política agropecuaria boliviana ha evolucionado significativamente bajo la Constitución de 2009 y el enfoque del Estado Plurinacional. Los ejes principales han sido:
+![PIB agropecuario como % del PIB total](`r fig("fig01_agr_value_added_pct_gdp")`){fig-alt="Serie de PIB agrop como % del PIB"}
 
-- **Soberanía alimentaria**: prioridad a la producción interna de alimentos básicos (EMAPA, programa de granos)
-- **Desarrollo productivo comunitario**: apoyo a comunidades indígenas y pequeños agricultores (Fondo de Desarrollo Indígena)
-- **Industrialización agropecuaria**: incentivos para la transformación de materia prima (soya, azúcar, leche)
-- **Gestión del agua**: expansión de infraestructura de microriego (Programa Mi Agua)
+![Tendencias de outcomes seleccionados (yields, comercio, empleo)](`r fig("fig04_outcomes_trends")`){fig-alt="Tendencias outcomes"}
 
-## Perspectiva Económica
+:::
 
-### Contribución al PIB
+**Hallazgos clave:**
+
+- En 2020 Bolivia ranquea **6° en LAC** en participación del valor agregado agropecuario en el PIB (9.1%), por encima de Chile (4.0%) y México (3.7%).
+- El **empleo agropecuario** ha caído lentamente: 30% (2010) → 25% (2023) — diversificación más gradual que el promedio LAC.
+- **Subalimentación**: ~17% en años recientes — uno de los más altos de Sudamérica.
+- **Rendimiento cereal**: 1,427 kg/ha (1990) → ~2,200 kg/ha (2020), +53% en 30 años.
+
+## Productividad total de factores (TFP)
+
+::: {layout-ncol=2}
+
+![TFP agrícola Bolivia 1961-2023 (USDA ERS)](`r fig("fig06_tfp_bolivia_1961_2023")`){fig-alt="TFP Bolivia"}
+
+![Comparación TFP — Bolivia vs LAC](`r fig("fig07_tfp_latam_comparison")`){fig-alt="TFP LATAM"}
+
+:::
+
+::: {layout-ncol=2}
+
+![Descomposición TFP: contribución de outputs vs inputs](`r fig("fig08_tfp_decomposition_bolivia")`){fig-alt="Descomp TFP"}
+
+![Índices de inputs Bolivia (USDA ERS)](`r fig("fig09_input_indices_bolivia")`){fig-alt="Indices inputs"}
+
+:::
 
 ```{r}
-#| label: tbl-sector-macro
-#| tbl-cap: "Indicadores macroeconómicos del sector agropecuario boliviano"
-panel |>
-  filter(year %in% c(2000, 2005, 2010, 2015, 2020, YEAR_END)) |>
-  select(
-    Año = year,
-    `PIB agrop. (% PIB)` = agr_value_added_pct_gdp,
-    `Índice producción alimentaria` = agr_food_prod_index,
-    `Rendimiento cereal (kg/ha)` = cereal_yield_kg_ha,
-    `Subalimentación (%)` = undernourishment_pct
-  ) |>
-  gt::gt() |>
-  gt::fmt_number(columns = 2:5, decimals = 1) |>
-  gt::opt_stylize(style = 1) |>
-  gt::tab_source_note("Fuente: WDI, FAOSTAT. Elaboración propia.")
+#| label: fig-tfp-vs-inv
+#| fig-cap: "Inversión pública agropecuaria vs índice de TFP, Bolivia 1990-2023"
+panel[!is.na(inv_agro_usd_mm) & !is.na(tfp_index)] |>
+  ggplot(aes(x = year)) +
+  geom_col(aes(y = inv_agro_usd_mm), fill = WB_BLUE, alpha = 0.45) +
+  geom_line(aes(y = tfp_index * 3),  color = WB_ORANGE, linewidth = 1.2) +
+  scale_y_continuous(
+    name = "Inversión agropecuaria (USD millones)",
+    sec.axis = sec_axis(~ . / 3, name = "Índice TFP (1961=100)")
+  ) +
+  labs(x = NULL,
+       caption = "Azul: VIPFE inversión agrop USD MM. Naranja: TFP USDA ERS.\nFuente: VIPFE + USDA ERS.")
 ```
 
-### Producción por Commodity
+**Observación crítica para el reporte:** la inversión pública agropecuaria se multiplicó por **~10 entre 2000 y 2015**, mientras la TFP creció apenas **30%** en el mismo período. Este desacople es el problema central que motiva el análisis de eficiencia (Capítulo 4).
 
-Los commodities de mayor valor en la canasta productiva boliviana son la soya (orientada a exportación), la caña de azúcar, el ganado bovino, y los tubérculos andinos (papa). La quinua, aunque de menor volumen, ha ganado relevancia por sus altos precios internacionales y su importancia para productores del altiplano.
+## Estructura productiva por commodity y región
+
+### Soya — el motor exportador
+
+La superficie sembrada de soya pasó de **563 mil ha (2008)** a **1.32 millones ha (2015)** — una expansión de **+131% en 7 años**, concentrada en Santa Cruz. Esta expansión es el principal driver del cambio de uso de suelo y deforestación documentado en este capítulo.
+
+### Comparación estructural ENA 2008 vs 2015
 
 ```{r}
-#| label: fig-commodity-share
-#| fig-cap: "Valor de producción por commodity principal, Bolivia"
-prod |>
-  filter(!is.na(production_value_usd), year >= 2010) |>
-  group_by(year, item) |>
-  summarise(value = sum(production_value_usd, na.rm=TRUE), .groups="drop") |>
-  group_by(year) |>
-  mutate(share = value / sum(value) * 100) |>
-  filter(share >= 2) |>
-  ggplot(aes(x = year, y = share, fill = item)) +
-  geom_area(position = "stack", alpha = 0.85) +
-  scale_fill_manual(values = WB_PALETTE) +
-  scale_y_continuous(labels = scales::percent_format(scale=1)) +
-  labs(x = NULL, y = "% del valor total", fill = "Producto",
-       caption = "Fuente: FAOSTAT, precios FAO. Elaboración propia.") +
+#| label: tbl-ena
+#| tbl-cap: "Cambio estructural en el sector agropecuario boliviano por departamento, 2008-2015"
+ena_cmp[, .(
+  Departamento     = dept_name,
+  `UPAs 2008`      = format(round(upa_2008), big.mark=","),
+  `UPAs 2015`      = format(round(upa_2015), big.mark=","),
+  `Δ UPAs (%)`     = round(upa_cambio_pct, 1),
+  `Bovinos 2008 (mil)` = round(bov_2008/1000, 0),
+  `Bovinos 2015 (mil)` = round(bov_2015/1000, 0),
+  `Δ Bovinos (%)`  = round(bov_cambio_pct, 1)
+)] |>
+  gt() |>
+  tab_source_note("Fuente: ENA 2008 + ENA 2015 (INE Bolivia). Microdatos procesados.") |>
+  opt_stylize(style = 1) |>
+  data_color(columns = c(`Δ UPAs (%)`, `Δ Bovinos (%)`),
+              palette = c(WB_RED, "white", WB_BLUE),
+              domain = c(-50, 0, 100))
+```
+
+**Patrón departamental observado:**
+
+- **Altiplano y valles** (Chuquisaca, Cochabamba, La Paz, Potosí): caída de UPAs entre **−22% y −38%** — consolidación / migración rural.
+- **Llanos** (Santa Cruz, Beni, Pando): expansión **+15% a +47%** — frontera agrícola activa.
+- **Bovinos Santa Cruz**: +65% (2.2M → 3.7M cabezas) — boom ganadero del oriente.
+- **Bovinos Beni**: −18% — posible impacto climático y cambio de tenencia.
+
+## Cambio de uso de suelo
+
+::: {layout-ncol=2}
+
+![Cobertura nacional MapBiomas Bolivia 1985-2024](`r fig("fig33_cobertura_nacional_mapbiomas")`){fig-alt="MapBiomas nacional"}
+
+![Mapa de uso antrópico del suelo 2024](`r fig("fig34_mapa_antropico_2024")`){fig-alt="Mapa antrópico"}
+
+:::
+
+```{r}
+#| label: tbl-mb
+#| tbl-cap: "Cobertura del suelo en Bolivia — comparación 1985 vs 2024 (MapBiomas Col. 3)"
+mb_wide <- dcast(mb, year ~ level_0, value.var = "area_ha", fun.aggregate = sum)
+setnames(mb_wide, c("year", "ant_ha", "nat_ha", "und_ha"))
+ref <- mb_wide[year %in% c(1985, 2024)]
+delta <- ref[year == 2024, .(ant_ha, nat_ha)] - ref[year == 1985, .(ant_ha, nat_ha)]
+data.table(
+  Categoría             = c("Antrópico", "Natural"),
+  `1985 (millones ha)`   = c(round(ref[year==1985, ant_ha]/1e6, 2),
+                              round(ref[year==1985, nat_ha]/1e6, 2)),
+  `2024 (millones ha)`   = c(round(ref[year==2024, ant_ha]/1e6, 2),
+                              round(ref[year==2024, nat_ha]/1e6, 2)),
+  `Δ 1985-2024 (M ha)`   = c(round(delta$ant_ha/1e6, 2),
+                              round(delta$nat_ha/1e6, 2)),
+  `Δ relativo (%)`       = c(round(delta$ant_ha/ref[year==1985, ant_ha]*100, 1),
+                              round(delta$nat_ha/ref[year==1985, nat_ha]*100, 1))
+) |> gt() |> tab_source_note("Fuente: MapBiomas Bolivia Colección 3.") |> opt_stylize(style=1)
+```
+
+::: {layout-ncol=2}
+
+![Cambio de cobertura por departamento](`r fig("fig35_cambio_cobertura_dept")`){fig-alt="Cambio dept"}
+
+![Evolución LC antrópica por departamento](`r fig("fig36_lineas_antropico_dept")`){fig-alt="Líneas dept"}
+
+:::
+
+**Bolivia perdió ~9.4 millones de ha de cobertura natural en 40 años**, con Santa Cruz concentrando el 64% de la expansión agrícola. Esta huella ambiental es central para el análisis de sostenibilidad y el debate sobre los costos no monetarios del modelo agropecuario.
+
+## Pobreza rural y seguridad alimentaria
+
+```{r}
+#| label: fig-pov-fies
+#| fig-cap: "Pobreza rural y prevalencia de inseguridad alimentaria (FIES), Bolivia 2012-2024"
+eh_rural <- eh_nac[area == "rural"]
+eh_long <- melt(eh_rural[, .(year, pov = pov_rate, ext = extpov_rate,
+                              fies = fies_insecure_pct)],
+                id.vars = "year",
+                variable.name = "indicator", value.name = "value",
+                variable.factor = FALSE)
+eh_long[, indicator := fcase(
+  indicator == "pov",  "Pobreza rural",
+  indicator == "ext",  "Pobreza extrema rural",
+  indicator == "fies", "Inseguridad alimentaria (FIES ≥1)"
+)]
+ggplot(eh_long[!is.na(value)], aes(x = year, y = value, color = indicator)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c(WB_NAVY, WB_RED, WB_ORANGE)) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  labs(x = NULL, y = "% de la población rural", color = NULL,
+       caption = "Fuente: Encuesta de Hogares INE Bolivia 2012-2024 (autoría propia).\nFIES disponible 2019, 2021-2024.") +
   theme(legend.position = "bottom")
 ```
 
-### Empleo y Pobreza Rural
+**Tendencias preocupantes (2012-2024):**
 
-El sector agropecuario emplea a un porcentaje significativamente mayor de la fuerza laboral en Bolivia que el promedio LAC, con una alta concentración de agricultores de subsistencia en los departamentos andinos. Esta realidad es central al analizar la equidad distributiva del gasto público agropecuario (Capítulo 5).
+- **Pobreza rural**: 55% (2012) → 40% (2021) → **45% (2024)** — *reversión post-2021* después de una década de mejora.
+- **Pobreza extrema rural**: 36% (2012) → 17% (2021) → **22% (2024)**.
+- **Inseguridad alimentaria FIES (mild+)**: 49% (2019) → **74% (2024)** — *tendencia alarmante*.
+- Los departamentos más afectados en 2024 son **Chuquisaca (64% pobreza rural), Oruro y Potosí (54%)**.
+
+## Síntesis del capítulo
+
+| Dimensión | Indicador clave | Tendencia | Implicación para el APER |
+|-----------|----------------|-----------|--------------------------|
+| Macroeconómica | PIB agrop. % PIB | 9.1% (2020) — alto en LAC | Sector relevante para política fiscal |
+| Productividad | TFP vs inversión | Inversión ×10, TFP ×1.3 | **Problema de eficiencia del gasto** |
+| Estructural | Soya 2008→2015 | +131% superficie | Driver de uso de suelo y exportaciones |
+| Estructural | UPAs altiplano | −22% a −38% (2008→2015) | Migración rural y consolidación |
+| Ambiental | Cobertura natural | −9.4 M ha en 40 años | 64% en Santa Cruz |
+| Social | Pobreza rural 2024 | 45% (reversión) | Necesidad de reorientar gasto a equidad |
+| Social | FIES ≥1 (2024) | 74% | Crisis de acceso alimentario |
+
+El sector agropecuario boliviano combina contribución macroeconómica relevante con productividad estancada, expansión de frontera con costos ambientales altos, y reversión reciente en indicadores sociales. Estos elementos motivan los análisis de gasto público (Capítulo 3), eficiencia y equidad (Capítulo 4) y recomendaciones de reorientación (Capítulo 6).
