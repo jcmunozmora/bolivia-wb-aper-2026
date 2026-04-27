@@ -38,19 +38,45 @@ Presentación inicial de los avances de la actualización del APER. Repasa el re
 [Abrir deck en pestaña nueva](downloads/slides/2026-04-27_kickoff_BM.html){.download-btn target="_blank"}
 [Ver fuente Quarto en GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/slides/2026-04-27_kickoff/01_kickoff_BM_avances.qmd){.download-btn}
 
-### Hoja de ruta del deck
+### Hoja de ruta del deck (20 láminas)
 
-1. **Punto de partida** — APER 2011, alcance, fuentes, mensajes centrales.
-2. **Lo que actualizamos** — el esfuerzo de datos en una lámina; cobertura por capítulo 2011 vs 2026.
-3. **Lo nuevo en 2026** — métodos OECD, DEA, crédito BCB, clima/MapBiomas, microdatos hogares y UPAs.
-4. **Análisis preliminares** — ocho hallazgos cuantitativos para discusión.
-5. **Cierre** — gaps abiertos (Tier A/B/C) y próximos pasos.
+**Parte I · Punto de partida — APER 2011**
+
+1. Hoja de ruta
+2. ¿Por qué partimos del APER 2011?
+3. Estructura del APER 2011
+4. Fuentes de datos del APER 2011
+5. Mensajes centrales del APER 2011
+
+**Parte II · Lo actualizado**
+
+6. El esfuerzo de datos en una sola lámina
+7. Cobertura por capítulo: 2011 vs 2026
+8. Mapa de fuentes — Bolivia e internacional
+9. Cinco adiciones metodológicas que el 2011 no tenía
+10. Lo que se mantiene del APER 2011
+
+**Parte III · Ocho hallazgos cuantitativos**
+
+11. Inversión ×10 pero TFP estancada
+12. PSE Bolivia 5.8 % (5.º en LAC)
+13. Patrón dual de protección (NRP) — taxa exportables, protege seguridad alimentaria
+14. Bolivia nunca alcanzó la meta de Maputo
+15. Sustitución gasto público → crédito subsidiado (Ley 393)
+16. Pobreza rural se revierte tras 2021
+17. Ejecución MDRyT 2024 y la señal del PAR III (16 % financiero)
+18. La frontera agropecuaria avanza sobre el bosque (9.4 M ha en 40 años)
+
+**Parte IV · Cierre**
+
+19. Gaps abiertos y la carta MEFP
+20. Lo que necesitamos del Banco Mundial
 
 ## Inventario de presentaciones
 
-| Fecha | Evento | Audiencia | Deck | Tamaño |
-|-------|--------|-----------|------|:------:|
-| 2026-04-27 | Kickoff BM | Banco Mundial Bolivia | [HTML](downloads/slides/2026-04-27_kickoff_BM.html) | 3.8 MB |
+| Fecha | Evento | Audiencia | Láminas | Deck | Tamaño |
+|-------|--------|-----------|:------:|------|:------:|
+| 2026-04-27 | Kickoff BM | Banco Mundial Bolivia | 20 | [HTML](downloads/slides/2026-04-27_kickoff_BM.html) | 3.8 MB |
 
 ## Convenciones del repositorio de slides
 
