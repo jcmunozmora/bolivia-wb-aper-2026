@@ -74,7 +74,12 @@ tmp/
 .cache/
 
 # ── Claude / AI tools metadata ──────────────────────────────────────────────
-.claude/
+# Trackear configuración compartida del proyecto (settings, commands, agents,
+# skills, hooks). Ignorar sólo overrides personales y caché local.
+.claude/settings.local.json
+.claude/cache/
+.claude/logs/
+.claude/*.log
 
 # ── Binarios grandes (doble seguro) ─────────────────────────────────────────
 *.sav
@@ -91,3 +96,38 @@ tmp/
 !01_data/external/**/*.shx
 !01_data/external/**/*.dbf
 !01_data/external/**/*.prj
+
+# ── ToRs y documentos internos (NO versionar — uso interno solamente) ───────
+# Decisión sesión 12: los ToRs son documentos internos de la consultoría
+00_Tor/
+
+# ── Literatura: PDFs (1.0 GB) — re-descargables; metadata YES, binarios NO ──
+# Mantener fichas .md, references_master.bib, evidence_map, README
+# Excluir solo los PDFs binarios pesados
+03_literature/pdfs/
+03_literature/**/*.pdf
+
+# ── Datos procesados: archivos grandes (>5 MB) ──────────────────────────────
+# Estrategia: panel v12 canónico (RDS + CSV gemelo) SÍ se versiona porque es
+# la fuente de verdad; encuestas EH originales (CSV grandes) NO porque son
+# regenerables desde 01_data/raw/ vía scripts.
+01_data/processed/eh_*.csv
+01_data/processed/eh_*.rds
+01_data/processed/eh_panel_2012_2024.*
+01_data/processed/jubileo_municipal_full_*.csv
+01_data/processed/adm3_muni_con_datos_*.rds
+
+# Excepción: panel maestro v12 y diccionario, derivados MAFAP y PSE
+!01_data/processed/spending_panel_v12.rds
+!01_data/processed/spending_panel_v12.csv
+!01_data/processed/spending_panel_v12_dictionary.csv
+!01_data/processed/mafap_categories.csv
+!01_data/processed/mafap_bolivia.rds
+!01_data/processed/mafap_bolivia.csv
+!01_data/processed/crosswalk_mafap_oecd_cofog.csv
+!01_data/processed/pse_*.rds
+!01_data/processed/pse_*.csv
+!01_data/processed/idb_agrimonitor_lac_full.rds
+!01_data/processed/dea_dataset.rds
+!01_data/processed/panel_subnacional_v2.rds
+!01_data/processed/panel_municipal_v3.rds

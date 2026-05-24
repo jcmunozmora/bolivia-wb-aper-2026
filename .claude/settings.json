@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_comment_about_this_file": "Configuración compartida de Claude Code para el APER Bolivia 2026. Trackeada en git. Para overrides personales (paths absolutos, env vars locales) usar .claude/settings.local.json (gitignored). Ver .claude/README.md.",
+
+  "env": {
+    "LANG": "en_US.UTF-8",
+    "LC_ALL": "en_US.UTF-8",
+    "QUARTO_LOG_LEVEL": "warning"
+  },
+
+  "permissions": {
+    "allow": [
+      "Read(*)",
+
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(cat *)",
+      "Bash(file *)",
+      "Bash(stat *)",
+      "Bash(awk *)",
+      "Bash(sed -n *)",
+      "Bash(tr *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(cut *)",
+
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(git remote*)",
+      "Bash(git config --get*)",
+      "Bash(git ls-files*)",
+      "Bash(git blame*)",
+      "Bash(git stash list*)",
+      "Bash(git rev-parse*)",
+
+      "Bash(Rscript *)",
+      "Bash(R --version)",
+      "Bash(R -e *)",
+      "Bash(quarto --version)",
+      "Bash(quarto check*)",
+      "Bash(quarto render *)",
+      "Bash(quarto preview *)",
+
+      "Bash(python3 -c *)",
+      "Bash(python3 -m http.server*)",
+      "Bash(python3 -m json.tool*)",
+      "Bash(python3 *)",
+
+      "Bash(mkdir -p *)",
+      "Bash(touch *)",
+      "Bash(chmod +x *)"
+    ],
+
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(sudo *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push --no-verify*)",
+      "Bash(git commit --no-verify*)",
+      "Bash(git commit --amend*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -fd*)",
+      "Bash(git branch -D*)",
+      "Bash(git checkout -- *)",
+      "Bash(git restore .*)",
+      "Bash(npm publish*)",
+      "Bash(curl * | bash*)",
+      "Bash(curl * | sh*)",
+      "Bash(wget * | bash*)"
+    ]
+  },
+
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-qmd-edit.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-citations.sh"
+          }
+        ]
+      }
+    ],
+
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/governance-zone-warn.sh"
+          }
+        ]
+      }
+    ],
+
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-close-prompt.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/git-commit-push-status.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
