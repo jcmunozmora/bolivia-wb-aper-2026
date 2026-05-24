@@ -1,0 +1,171 @@
+---
+title: "Apéndice C — Glosario MAFAP bilingüe ES/EN"
+subtitle: "Clasificación del gasto público en alimentación y agricultura — categorías A–E"
+lang: es
+bibliography: ../references.bib
+crossref:
+  appendix-title: "Apéndice"
+  appendix-delim: "·"
+---
+
+::: {.callout-note appearance="simple"}
+**Fuente canónica:** FAO MAFAP — *Monitoring and Analysing Food and Agricultural Policies* Programme. Manual Volumen II: *Methodology for monitoring food and agricultural policies* [@ghins2013mafap].
+
+**Operacionalización Bolivia:** este apéndice formaliza la taxonomía aplicada en los capítulos 3 y 4 del APER 2026 ([ADR-0009](../../.agent/decisions/ADR-0009_mafap_narrow_full.md)) y se acompaña del crosswalk a OECD-PSE, COFOG y clasificación funcional MEFP del Apéndice D ([ADR-0010](../../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md)).
+
+**Diccionario CSV autoritativo:** [`01_data/processed/mafap_categories.csv`](../../01_data/processed/mafap_categories.csv) — 33 códigos × definiciones ES/EN. Esta versión `.qmd` se mantiene sincronizada con el CSV.
+:::
+
+## C.1 · Conceptos previos
+
+**MAFAP** (*Monitoring and Analysing Food and Agricultural Policies*) es el marco de la FAO para medir el gasto público sectorial agropecuario en países en desarrollo. Su diseño cubre **todo el gasto sectorial** —no solo el apoyo al productor— y permite comparabilidad internacional para compromisos como Maputo/CAADP.
+
+El marco distingue **dos definiciones del gasto agrícola público**:
+
+- **Narrow:** categorías A + B + C + D (apoyo al productor + consumidor + otros agentes + apoyo general al sector). Se usa para comparaciones Maputo/CAADP.
+- **Full:** narrow + E (gasto agropecuario-soporte: caminos rurales, electrificación, agua, educación y salud rural). Se usa para capturar el gasto rural total.
+
+El APER Bolivia 2026 reporta **ambas cifras en paralelo** en los capítulos 3, 4 y resumen ejecutivo (ver [ADR-0009](../../.agent/decisions/ADR-0009_mafap_narrow_full.md)).
+
+::: {.callout-tip}
+**Diferencia operativa con OECD-PSE.** El marco OECD-PSE (cap 5 del APER) mide *solo* el apoyo transferido al productor (PSE) y al sector vía servicios públicos (GSSE). MAFAP es más amplio: incluye el apoyo al consumidor (B), a otros agentes (C) y el gasto rural-soporte (E) que OECD-PSE no captura. **No son sustitutos sino complementos**; el Apéndice D establece el crosswalk operacional.
+:::
+
+## C.2 · Categoría A — Apoyo al productor / *Producer support*
+
+Transferencias **a productores agrícolas** identificables y cuantificables.
+
+| Código | ES | EN | Definición operativa |
+|:-:|---|---|---|
+| **A1** | Subsidios de producción basados en outputs | Production subsidies based on outputs | Transferencias a productores en función de la producción de un commodity específico. *Ejemplo Bolivia:* compras públicas EMAPA al productor con precio sostén. |
+| **A2** | Subsidios de producción basados en insumos | Production subsidies based on input use | Transferencias que reducen el costo de insumos en la granja. *Ejemplo Bolivia:* subsidio fertilizantes; subsidio implícito en crédito BDP. |
+| A2.1 | Fertilizantes | Fertilizers | Subsidios específicos al costo de fertilizantes en la granja. |
+| A2.2 | Otros insumos variables | Other variable inputs | Semillas, energía, **crédito subsidiado**, combustible agrícola. *Bolivia:* crédito BDP entra acá cuando el subsidio se mide como diferencia de tasa de interés ([ADR-0010](../../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md)). |
+| A2.3 | Capital | Capital | Subsidios a inversión en edificios, equipos, plantaciones, riego *en finca*, drenaje, mejoras del suelo. |
+| A2.4 | Servicios on-farm | On-farm services | Asistencia técnica y capacitación dirigida específicamente a un productor (no servicio público). |
+| **A3** | Apoyo al ingreso | Income support | Transferencias en función del nivel de ingreso del productor. *Ejemplo:* bonos rurales con test de elegibilidad por ingreso. |
+| **A4** | Apoyo al productor no clasificado | Non-classified support to producers | Residual cuando no hay información para asignar a A1–A3. |
+
+## C.3 · Categoría B — Apoyo al consumidor / *Consumer support*
+
+Transferencias **a consumidores** para incrementar acceso o reducir costo de alimentos.
+
+| Código | ES | EN | Definición operativa |
+|:-:|---|---|---|
+| **B1** | Ayuda alimentaria | Food aid | Transferencias para reducir el costo de los alimentos al consumidor. *Ejemplo Bolivia:* EMAPA cuando vende a precio subsidiado al consumidor. |
+| **B2** | Transferencias monetarias | Cash transfers | Transferencias monetarias dirigidas a incrementar el gasto en consumo de alimentos. *Bolivia:* componente alimentario de bonos sociales. |
+| **B3** | Programas de alimentación escolar | School feeding programs | Alimentos gratuitos o de costo reducido en escuelas. *Bolivia:* desayuno escolar municipal. |
+| **B4** | Apoyo al consumidor no clasificado | Non-classified support to consumers | Residual. |
+
+## C.4 · Categoría C — Apoyo a otros agentes / *Support to other agents*
+
+Transferencias a agentes del sector que **no son** productores ni consumidores finales (procesadores, transportistas, comerciantes, otros eslabones).
+
+| Código | ES | EN | Definición operativa |
+|:-:|---|---|---|
+| **C1** | Pagos a proveedores de insumos | Payments to input suppliers | Transferencias a proveedores de fertilizantes, semillas, etc. (no al productor). |
+| **C2** | Pagos a transportistas | Payments to transporters | Subsidios al transporte agrícola; mejora caminos privados rurales. |
+| **C4** | Pagos a comerciantes | Payments to traders | Subsidios al margen de comercialización mayorista o minorista. |
+| **C5** | Pagos a otros agentes | Payments to other agents | Residual. |
+
+::: {.callout-note}
+**Nota operativa Bolivia.** La categoría C tiene poca cobertura en BOOST; cuando una partida puede atribuirse al beneficiario final (productor o consumidor), se asigna a A o B siguiendo la regla 2 de [ADR-0010 §2](../../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md).
+:::
+
+## C.5 · Categoría D — Apoyo general al sector / *General Sector support*
+
+Gasto sectorial que beneficia al sector en su conjunto como **bien público** (no transferible a productor individual). **Equivale aproximadamente al GSSE de OECD-PSE.** Esta es la categoría clave para escenarios de repurposing.
+
+| Código | ES | EN | Definición operativa |
+|:-:|---|---|---|
+| **D1** | Investigación agrícola | Agricultural research | I+D público sectorial. *Bolivia:* INIAF investigación. |
+| **D2** | Asistencia técnica | Technical assistance | Extensión-asistencia técnica como servicio público. *Bolivia:* INIAF extensión, SENASAG asistencia. |
+| **D3** | Capacitación | Training | Extensión-formación. |
+| **D4** | Extensión | Extension | Servicios de extensión rural. |
+| **D5** | Inspección | Inspection | Control de calidad e inocuidad de alimentos e insumos. *Bolivia:* **SENASAG**. |
+| **D6** | Infraestructura agrícola | Agricultural infrastructure | Infraestructura sectorial pública. |
+| D6.1 | Caminos secundarios (productivos) | Feeder roads | Caminos para acceso productivo agrícola (distinguir de E3.1 caminos rurales generales). |
+| D6.2 | Riego off-farm | Off farm Irrigation | Sistemas de riego públicos (distinguir de A2.3 riego en finca). |
+| D6.3 | Otra infraestructura | Other | Centros de acopio públicos, mercados mayoristas. |
+| **D7** | Almacenamiento público | Storage/public stockholding | Stocks estabilizadores **no MPS**. |
+| **D8** | Marketing | Marketing | Asistencia a la comercialización agroalimentaria. |
+| **D9** | Costos administrativos | Administrative costs | Gasto operativo de ministerios sin asignación específica + formulación y coordinación de políticas. *Bolivia:* parte del gasto operativo MDRyT. |
+| **D10** | Otro apoyo sectorial | Other sector support | Sistemas de alerta temprana, gestión forestal general, agro-procesamiento (cuando no se puede clasificar). |
+
+## C.6 · Categoría E — Gasto agropecuario-soporte / *Agriculture-supportive expenditure*
+
+Gasto **rural** (no estrictamente sectorial agrícola) que sostiene la actividad agropecuaria por habilitar condiciones de vida rural. **Esta categoría diferencia MAFAP narrow (excluye E) de MAFAP full (incluye E).**
+
+| Código | ES | EN | Definición operativa |
+|:-:|---|---|---|
+| **E1** | Educación rural | Rural Education | Escuelas rurales primaria/secundaria; alfabetización rural. |
+| **E2** | Salud rural | Rural Health | Centros de salud rurales; campañas rurales. |
+| **E3** | Infraestructura rural | Rural Infrastructure | Caminos, agua, energía rural general. |
+| E3.1 | Caminos rurales | Roads | Caminos rurales generales (distinguir de D6.1 caminos productivos agrícolas). |
+| E3.2 | Agua y saneamiento rural | Water and Sanitation | Agua potable rural, saneamiento básico. |
+| E3.3 | Energía rural | Energy | Electrificación rural. |
+| E3.4 | Otra infraestructura rural | Other | Residual. |
+
+::: {.callout-warning}
+**Comparabilidad Maputo/CAADP.** El compromiso Maputo (10% del gasto público a agricultura) se evalúa con **MAFAP narrow** (A+B+C+D), no full. Hallazgo F04 del APER 2026 (máx 3.48% en 1990) usa narrow.
+:::
+
+## C.7 · Notas operativas Bolivia
+
+Decisiones de mapeo específicas para el contexto boliviano, fijadas en [ADR-0010 §3](../../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md):
+
+1. **Crédito BDP subsidiado** → MAFAP A2.2 (input subsidy) cuando el subsidio se mide como diferencia de tasa de interés. No se cuenta el monto total del crédito; solo el costo fiscal del subsidio implícito.
+2. **EMAPA** se divide:
+   - Compras al productor con precio sostén → A1 (MPS).
+   - Ventas al consumidor con precio subsidiado → B1 (food aid).
+   - Gasto operativo administrativo de EMAPA → D9 (administrative costs).
+3. **Caminos rurales** se separan:
+   - D6.1 cuando son específicamente productivos agrícolas (acceso a parcelas, conexión con mercados agropecuarios).
+   - E3.1 cuando son caminos rurales generales sin destino productivo específico.
+4. **Riego** se separa:
+   - A2.3 cuando es riego en finca (capital privado del productor).
+   - D6.2 cuando es infraestructura pública no rival (sistemas grandes).
+5. **Cooperación internacional** registrada en BOOST se clasifica según el destino final del gasto, no según el origen del financiamiento.
+
+## C.8 · Coexistencia con OECD-PSE
+
+El capítulo 5 del APER 2026 usa OECD-PSE para benchmarking LAC. La tabla siguiente muestra equivalencias aproximadas:
+
+| MAFAP | OECD-PSE equivalente | Notas |
+|---|---|---|
+| A1 | PSE MPS (Market Price Support) | Mapeo directo |
+| A2 | PSE BOT — input use | Mapeo directo |
+| A3 | PSE BOT — income | Mapeo directo |
+| A4 | PSE BOT — unclassified | Residual en ambos marcos |
+| B | CSE (Consumer Support Estimate) | OECD-PSE agrega; MAFAP desagrega B1–B4 |
+| C | No mapeo directo | OECD asigna al beneficiario final |
+| D1 | GSSE A — research | Mapeo directo |
+| D2–D4 | GSSE B — extension/training | OECD agrega; MAFAP desagrega |
+| D5 | GSSE C — inspection | Mapeo directo |
+| D6 | GSSE D — infrastructure | Mapeo directo |
+| D7 | GSSE F — stockholding | Mapeo directo |
+| D8 | GSSE E — marketing | Mapeo directo |
+| D9–D10 | GSSE G — miscellaneous | OECD agrega |
+| **E** | **No equivalente en OECD-PSE** | Diferencia narrow/full |
+
+Tabla completa en el Apéndice D del crosswalk.
+
+## C.9 · Citación de este glosario
+
+Cuando un capítulo del APER 2026 cita una categoría MAFAP, debe usar el formato:
+
+```text
+"Bajo la clasificación MAFAP categoría D1 (investigación agrícola — INIAF) se identifica..."
+"... del gasto MAFAP narrow (A+B+C+D, excluye rural-soporte) ..."
+"... del gasto MAFAP full (incluye E rural-soporte) ..."
+```
+
+Para citas externas:
+
+> Ghins, L., Ilicic-Komorowska, J., & Mas Aparisi, A. (2013). *Methodology for monitoring food and agricultural policies* (MAFAP Methodological Implementation Guide, Volume II). FAO. [@ghins2013mafap]
+
+---
+
+::: {.callout-note appearance="minimal"}
+**Mantenimiento.** Este glosario se actualiza en sincronía con [`01_data/processed/mafap_categories.csv`](../../01_data/processed/mafap_categories.csv). Cambios en taxonomía requieren bump del CSV y del script `02_code/02_classification/11_mafap_classification.R`, además de actualización del Apéndice D crosswalk. Ver protocolo en [`.agent/08_CONTROL.md §4`](../../.agent/08_CONTROL.md).
+:::

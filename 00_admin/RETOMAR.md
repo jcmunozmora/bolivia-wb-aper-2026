@@ -1,7 +1,201 @@
 # Cómo retomar el proyecto — APER Bolivia 2026
 
-**Última sesión:** 2026-04-27 (sesión 9 cerrada)
-**Estado global:** ✅ Datos consolidados · ✅ Sitio público live · 🟡 Reporte técnico pendiente · 📨 Carta MEFP lista
+**Última sesión:** 2026-05-24 (sesión 12 cerrada — gobernanza canónica completa + 6 bloqueadores MAFAP + corpus literatura integrado)
+**Estado global:** ✅ Datos consolidados · ✅ Sitio público live · ✅ Gobernanza centralizada (21 docs + 3 ADRs) · ✅ MAFAP listo para ejecutar · ✅ Corpus literatura integrado · 🟡 Reporte técnico pendiente redacción · 📨 Carta MEFP lista · 🔴 Corpus literatura requiere remediación TBV
+
+---
+
+## 0. Sesión 12 (2026-05-24) — Gobernanza canónica completa + 6 bloqueadores MAFAP cerrados + corpus literatura integrado
+
+**Tipo de cambio:** 🔴 ROJO (3 ADRs nuevos; toca METODOLOGIA, HALLAZGOS, CONTROL, AUDITORIA + decisión metodológica MAFAP dual)
+**Archivos modificados:** ~25 (21 docs canónicos en `.agent/`, 3 ADRs, 1 CSV crosswalk, 2 scripts R, 1 qmd apéndice)
+**Tests ejecutados:** ninguno (scripts MAFAP listos pero pendientes de ejecutar)
+**ADR requerido:** sí — **ADR-0008** (Master v0.4.0), **ADR-0009** (MAFAP narrow+full), **ADR-0010** (crosswalk clasificaciones) — los tres creados en esta sesión
+
+### Qué se hizo
+
+1. Construida gobernanza completa en `.agent/` (21 docs canónicos numerados 00–21 + README + 3 ADRs en decisions/).
+2. **MASTER_PROMPT bumpeado a v0.4.0** (ADR-0008) integrando bloque D + paleta híbrida + naming dual figuras + ventana canónica **2008–2024** + MAFAP Group I/II + 5 shocks explícitos (commodity, COVID, sequía 2023, Ley 393) + RQ2 mapping F08/F01/F06.
+3. **6 bloqueadores MAFAP cerrados**: ADR-0009 adopción narrow+full; ADR-0010 crosswalk; `crosswalk_mafap_oecd_cofog.csv` (41 entradas 4-way); `C_glosario_mafap.qmd` (171 líneas, 9 secciones); `17_mafap_classification.R` (270 líneas, 5 tests); `11_figures_mafap.R` (243 líneas, 5 figuras).
+4. **Alineación con dos ToR**: nuevo `.agent/21_COORDINACION_STC.md` con división operativa JC↔Hector + cronograma 7 sem + protocolo de integración + 5 riesgos R-014–R-018.
+5. **20_CONTENIDO_REPORTE bumpeado v0.1 → v0.5**: 8 apéndices A–H, 6 bloqueadores MAFAP cerrados, ToRs integrados, **§23 Integración corpus literatura** con mapeo evidencia↔caps + reglas citación + 10 vacíos + 6 patrones transversales.
+6. Corpus literatura: 11 entries → **359 BibTeX + 325 fichas + 11 carpetas temáticas + 163 PDFs (434 MB)**.
+
+### Cifras tocadas (con trazabilidad)
+
+Ninguna cifra publicada modificada — sesión de infraestructura. Toda cifra concreta del MAFAP/PSE quedará disponible al ejecutar `17_mafap_classification.R` sobre panel v12.
+
+### Hallazgos afectados
+
+- **F04** (Maputo) — clarificada cita explícita a MAFAP narrow (Group I) según ADR-0009.
+- **F01–F08** — todos ahora mapeados a fuentes ancla del corpus de literatura (§23.4 del 20_CONTENIDO).
+
+### Capítulos del book afectados
+
+- Plan operativo de **los 6 caps + 8 apéndices** actualizado en `20_CONTENIDO_REPORTE.md` v0.5.0.
+- Cap 0 longitud ajustada **6-8 → 4-6 pp** (alineación TOR JC D4).
+- Caps 5, 6 marcados con dependencia explícita de outputs Hector.
+- Cap 4 H2.2 desagregado con Santa Cruz / La Paz / Cochabamba explícitos.
+- Bloques "Citas requeridas" reescritos en caps 5–10 con fuentes ancla concretas.
+
+### Slides / web actualizadas
+
+Ninguna esta sesión.
+
+### Impacto en panel / metodología
+
+- `panel_version`: **v12 (sin cambio)** — solo se prepararon scripts derivados.
+- `methodology_version`: **m0.1.0 (sin cambio explícito)** — METODOLOGIA expandida con MAFAP G I/II pero sin re-cálculo retroactivo.
+
+### Impacto en MEFP handoff
+
+- **Clasificación dual MAFAP** lista para presentar en mesa técnica (preparada doc + scripts).
+- **Coordinación formal con Hector** documentada (división operativa, cronograma, protocolo).
+- **Carta MEFP sigue pendiente de envío** (R-001).
+
+### Riesgos pendientes
+
+- **R-001** Carta MEFP sin respuesta (sigue abierto).
+- **R-003** IADB AgriMonitor feb-2026 (sigue abierto).
+- **R-014 a R-018** (coordinación Hector) — pendientes de registrar formalmente en `10_RIESGOS.md`.
+- **Disco al 95%** — operacional, atendido en sesión.
+
+### Siguientes pasos
+
+1. **Ejecutar scripts MAFAP**: `Rscript 02_code/02_cleaning/17_mafap_classification.R` + `Rscript 02_code/04_visualization/11_figures_mafap.R`.
+2. **Sincronizar biblio**: `cp 03_literature/references_master.bib 04_report/references.bib`.
+3. **Enviar carta MEFP** (R-001).
+4. **Confirmar fechas reales** de outputs Hector (H1–H4) en sesión 1:1.
+5. **Registrar R-014–R-018** en `10_RIESGOS.md`.
+6. **Activar `/write-section` Cap 1** (el más dependiente de literatura externa).
+
+---
+
+## 0bis. Sesión 11 (2026-05-23) — Revisión sistemática de literatura + auditoría anti-alucinación
+
+**Tipo de cambio:** 🟡 AMARILLO (expansión del corpus + nuevo gate de auditoría); seguido de 🔴 ROJO al detectar problemas de calidad
+
+### Qué se hizo
+1. **Estructura expandida** en `03_literature/` con 10 carpetas temáticas:
+   - `01_systematic_reviews/` · `02_public_spending/` · `03_productivity_efficiency/` · `04_climate_food_security/` · `05_value_chains/` · `06_smallholder_indigenous/` · `07_subsidies_repurposing/` · `08_institutions_programs/` · `09_methods_per_pse/` · `10_macro_growth_poverty/`
+   - Template ficha externa (`_template_external.md`) con frontmatter YAML + 14 secciones
+
+2. **10 agentes de búsqueda paralelos** (3 lotes) recorrieron WB / IDB / FAO / IFPRI / OECD / NBER / Google Scholar / RePEC:
+   - **317 fichas externas** creadas + 7 MDRyT + 1 PER = **325 totales**
+   - **149 PDFs** descargados (~434 MB) — pero 11 resultaron ser HTMLs landing pages
+   - **313 entradas BibTeX únicas** en [`03_literature/references_master.bib`](../03_literature/references_master.bib)
+
+3. **Evidence map maestro** generado en [`03_literature/evidence_map.md`](../03_literature/evidence_map.md): mapa por capítulo APER (Cap 1–6) con fuentes ancla, hallazgos transversales, vacíos detectados
+
+4. **Auditoría anti-alucinación en 2 fases** (a petición del usuario):
+   - **Fase 1 (estructural)**: 11 PDFs falsos (HTMLs) → cuarentena en `_audit/quarantine_fake_pdfs/`; 2 fichas BID corregidas; **0 huérfanos** en cross-reference fichas↔BibTeX; **0 placeholder DOIs**
+   - **Fase 2 (contenido)**: 5 agentes paralelos leyeron PDFs reales y compararon con fichas:
+     - **93 fichas auditadas** (29% del corpus)
+     - **39 rojas** (42% — alucinación crítica confirmada)
+     - **30 amarillas** (32% — inconsistencias menores)
+     - **24 verdes** (26% — confirmadas limpias)
+
+5. **Patrón sistémico detectado:** los agentes de búsqueda crearon fichas con base en snippets de WebSearch + memoria del LLM sin leer el PDF. Resultado: citas verbatim fabricadas, cifras inventadas, autores incorrectos, PDFs descargados que no corresponden al paper de la ficha. Ver [`03_literature/_audit/AUDIT_REPORT.md`](../03_literature/_audit/AUDIT_REPORT.md) y [`03_literature/_audit/RED_FLAGS.md`](../03_literature/_audit/RED_FLAGS.md).
+
+6. **Remediación automática aplicada:**
+   - Campo `audit_status` añadido al frontmatter de las **317 fichas** (red/yellow/green/unverified)
+   - 11 HTMLs falsos en cuarentena
+   - Lista pública de las 39 rojas con tipo de problema documentado
+   - **Gate nuevo en `.agent/09_AUDITORIA.md` §13B**: "Una ficha sólo puede citarse en `04_report/*.qmd` si `audit_status ∈ {green, yellow}`"
+
+### Productos clave de sesión 11
+- [`03_literature/README.md`](../03_literature/README.md) — índice maestro con aviso de auditoría
+- [`03_literature/evidence_map.md`](../03_literature/evidence_map.md) — mapa de evidencia por capítulo
+- [`03_literature/references_master.bib`](../03_literature/references_master.bib) — **359 entradas únicas** (post-carpeta 11)
+- [`03_literature/_audit/AUDIT_REPORT.md`](../03_literature/_audit/AUDIT_REPORT.md) — reporte consolidado final
+- [`03_literature/_audit/RED_FLAGS.md`](../03_literature/_audit/RED_FLAGS.md) — lista pública de 83 alucinaciones
+- [`03_literature/_audit/_green_list_final.md`](../03_literature/_audit/_green_list_final.md) — 44 fichas verdes citables
+- 10 reportes Fase 2 + 10 reportes Fase 3 + 2 reportes Carpeta 11 en `03_literature/_audit/`
+- [`.agent/09_AUDITORIA.md`](../.agent/09_AUDITORIA.md) §13B — gate de literatura
+
+### 🆕 Carpeta 11 — `11_local_multilateral_bolivia/` (creada sesión 11)
+
+**46 fichas + 48 PDFs reales** (585 MB total entre todas las carpetas), creadas con protocolo estricto anti-alucinación:
+- **Multilaterales** (21 fichas, 3 green + 18 yellow): CAF, IICA, CAN, FAO Bolivia (5), IFAD/FIDA, WFP, UNDP/PNUD (HDR + INDH), UNODC, UE (MIP), AECID (×2), COSUDE, GIZ-PROAGRO, GCF (RECEM-Valles), GRUS, BIVICA, RedUnitas
+- **Bolivia local** (18 fichas, 17 green + 1 yellow): CEDLA, IISEC-UCB, Fundación Milenio (×2), CEBEM, INESAD (×4 incluye SimPachamama), CIPCA (×2), TIERRA (×2), Solón, AGRECOL, IBCE (×2), CAO, INE (Censo 2013), BCB, UDAPE, EMAPA
+- **0 fichas red** — el protocolo estricto funcionó
+
+### 🔴 Resultado de auditoría sesión 11 (consolidado FINAL post-recovery)
+
+| `audit_status` | # fichas | Citable? | Comentario |
+|----------------|:------:|:------:|------------|
+| 🟢 green | **126** | Sí | PDF leído y verificado |
+| 🟡 yellow | 124 | Sí con caveat | Metadata OK, cifras pendientes |
+| 🔴 red | 89 | NO | Alucinación confirmada — re-verificar antes |
+| ⏳ unverified | 0 | — | Todo auditado |
+
+**Δ vs estado inicial post-Fase 3:** +82 green (44→126), -88 yellow, +6 red (PDFs ≠ paper detectados durante promoción), +83 PDFs (186→269 = 1.0 GB)
+
+**Tipología de alucinaciones detectadas:**
+- 16 fichas con PDF descargado ≠ paper de la ficha (modo de falla más severo)
+- 8 DOIs incorrectos que apuntan a otro paper
+- 12 autores fabricados o atribución institucional vs individual mal
+- 12 años/issues/pages incorrectos
+- 25 cifras inventadas en §6
+- 50+ citas verbatim "p. X" fabricadas (eliminadas en bloque via Opción B)
+
+### Próximos pasos al cierre de sesión 11
+
+Opciones B (eliminar §8) y C (Fase 3 completa) **ya ejecutadas**. Estado para empezar a redactar:
+
+1. **256 fichas citables** (44 green + 212 yellow) cubren todos los capítulos del APER
+2. **83 fichas rojas** documentadas y bloqueadas por gate §13B
+3. **Carpeta 11 nueva con cero red** ofrece base sólida para citar instituciones bolivianas + multilaterales
+
+### Decisiones operativas para redactar el reporte
+
+1. **Antes de cada `/write-section`**: consultar `_audit/_green_list_final.md` (44 verdes seguras) + `_audit/RED_FLAGS.md` (83 rojas evitables)
+2. **Gate §13B** enforced: no citar `red` o `unverified` (esta última en 0)
+3. **Para cifras críticas del reporte**: usar fichas green primero; si solo yellow disponible, verificar la cifra específica abriendo el PDF antes de citar
+4. **Workflow nuevo para futuras búsquedas**: descargar PDF → validar header `%PDF-` → abrir y leer con Read tool → componer ficha solo con lo verificado → §8 PROHIBIDA (sin citas verbatim "p. X")
+
+---
+
+> **Antes de cualquier acción:** lee [`AGENTS.md`](../AGENTS.md) (raíz, thin pointer) y luego [`.agent/00_MASTER_PROMPT.md`](../.agent/00_MASTER_PROMPT.md) (fuente única de gobernanza editorial v0.3.0).
+
+## Orden de lectura canónico de gobernanza (en `.agent/`)
+1. [`00_MASTER_PROMPT.md`](../.agent/00_MASTER_PROMPT.md) — spec maestro
+2. [`01_METODOLOGIA.md`](../.agent/01_METODOLOGIA.md) — cómo se calcula
+3. [`02_INDICADORES.md`](../.agent/02_INDICADORES.md) — qué se calcula (panel v12)
+4. [`03_FUENTES.md`](../.agent/03_FUENTES.md) — de dónde viene
+5. [`04_HALLAZGOS.md`](../.agent/04_HALLAZGOS.md) — qué se encontró (F01–F08)
+6. [`05_ESTILO_NARRATIVO.md`](../.agent/05_ESTILO_NARRATIVO.md) — cómo se escribe
+7. [`06_NEUTRALIDAD.md`](../.agent/06_NEUTRALIDAD.md) — qué palabras se usan
+8. [`07_CONTROL.md`](../.agent/07_CONTROL.md) — cómo se cambia algo
+9. [`08_AUDITORIA.md`](../.agent/08_AUDITORIA.md) — cómo se verifica
+
+---
+
+## 0. Sesión 10 (2026-05-23) — Centralización de gobernanza
+
+**Tipo de cambio:** 🔴 ROJO (reorganización estructural)
+**MASTER_PROMPT.md:** v0.2.0 → v0.3.0 (movido de `04_report/` a `.agent/`)
+
+### Qué se hizo
+1. **Sesión actual:** revisión del estado del proyecto + plan editorial.
+2. **`04_report/MASTER_PROMPT.md`** creado (v0.1) — blueprint vivo con plan sección × sección.
+3. **MASTER_PROMPT** fusionado con `Master_Prompt_APER2026_v0_1_0.md` (v0.1.0 spec) → v0.2.0/v0.2.1/v0.2.2.
+4. **Ficha PER** creada en [`03_literature/Informacion_PER/FICHA_LECTURA.md`](../03_literature/Informacion_PER/FICHA_LECTURA.md) (5 docs leídos: manual MAFAP, PER Filipinas, PER SSA, PER EXAMPLES, PNIA xlsx).
+5. **Glosario MAFAP bilingüe ES/EN** generado en [`04_report/appendix/glosario_mafap_es_en.md`](../04_report/appendix/glosario_mafap_es_en.md) + CSV reproducible [`01_data/processed/mafap_categories.csv`](../01_data/processed/mafap_categories.csv).
+6. **Decisión metodológica:** clasificación dual MAFAP (Caps 3-4) + PSE/OECD (Cap 5).
+7. **Gobernanza centralizada en `.agent/`** (v0.3.0): MASTER_PROMPT.md + ESTILO_NARRATIVO + NEUTRALIDAD + CONTROL + stubs (HALLAZGOS, METODOLOGIA, FUENTES, INDICADORES) + subcarpetas operativas (policies, checklists, prompts, protocols, decisions, schemas) + legacy archivado.
+8. `EJEMPLO_BORRAR.md` eliminado.
+9. `AGENTS.md` y `CLAUDE.md` (raíz) reducidos a thin pointers a `.agent/`.
+
+### Próximos pasos (orden sugerido)
+1. **Poblar stubs** de `.agent/` según se vayan necesitando (especialmente HALLAZGOS con contratos JSON completos).
+2. **Re-correr regresiones** sobre panel v12 (script `08_extended_regressions.R`) — desbloquea Cap 5.
+3. **DEA Simar-Wilson** sobre `dea_dataset.rds`.
+4. **Generar script** `02_code/03_analysis/11_mafap_classification.R` (clasifica BOOST + VIPFE → `mafap_bolivia.rds`).
+5. **Enviar carta MEFP** (completar 5 campos).
+6. **Activar `/write-section` para Cap 2 o Cap 3** (los más autónomos).
+
+---
 
 ---
 
