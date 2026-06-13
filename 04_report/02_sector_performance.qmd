@@ -1,5 +1,5 @@
 ---
-title: "Desempeño del Sector Agropecuario"
+title: "Desempeño del sector agropecuario"
 ---
 
 ```{r}
@@ -9,171 +9,148 @@ suppressPackageStartupMessages({
   library(ggplot2)
   library(scales)
   library(gt)
+  library(tidyverse)
 })
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
 
-panel <- as.data.table(readRDS(here::here("01_data", "processed", "spending_panel_v12.rds")))
-mb    <- as.data.table(readRDS(here::here("01_data", "processed", "mapbiomas_national_annual.rds")))
-ena_cmp <- as.data.table(readRDS(here::here("01_data", "processed", "ena_comparacion_2008_2015.rds")))
-eh_nac  <- as.data.table(readRDS(here::here("01_data", "processed", "eh_nacional_anual.rds")))
+panel  <- as.data.table(readRDS(here::here("01_data", "processed", "spending_panel_v12.rds")))
+mb     <- as.data.table(readRDS(here::here("01_data", "processed", "mapbiomas_national_annual.rds")))
+eh_nac <- as.data.table(readRDS(here::here("01_data", "processed", "eh_nacional_anual.rds")))
 
 FIG_DIR <- here::here("05_outputs", "figures")
 fig <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
 ```
 
-## Resumen ejecutivo del capítulo
+::: {.callout-note appearance="minimal"}
+**Pregunta de política del capítulo.** ¿Por qué la inversión agropecuaria boliviana se multiplicó por diez entre 2000 y 2015 sin un movimiento equivalente en la productividad total de factores (TFP), y qué consecuencias sociales y ambientales acompañaron ese desacople?
 
-El sector agropecuario boliviano ha experimentado dos décadas de transformaciones estructurales profundas: expansión de la frontera agrícola en el oriente, consolidación del altiplano alrededor de la quinua y el ganado camélido, y un patrón de productividad que ha crecido más lentamente que la inversión pública. Este capítulo documenta los principales indicadores de desempeño 1990-2024, identifica las trayectorias diferenciadas por departamento y commodity, y prepara el terreno para el análisis de eficiencia del gasto en el Capítulo 4.
+**Mensajes clave:**
 
-## Contribución macroeconómica del sector
+- La inversión pública sectorial se multiplicó por diez (2000–2015) mientras la TFP creció 30% (F01).
+- La pobreza rural revirtió a 45% en 2024 y la inseguridad alimentaria FIES pasó de 49% (2019) a 74% (2024) (F06).
+- La frontera agropecuaria avanzó 9.4 M ha de cobertura natural perdida (1985–2024), 64% concentrada en Santa Cruz (F08).
+
+<!-- TODO_BILINGUAL: bloque paralelo "Key messages" (EN) pendiente de redacción bilingüe — ver dossier. -->
+
+**Hallazgos centrales:** F01 (inversión ×10 vs TFP +30%), F06 (reversión de pobreza rural y deterioro de FIES 49→74%), F08 (frontera agropecuaria 9.4 M ha 1985–2024, 64% en Santa Cruz).
+
+**Ventana canónica:** 2008–2024 (extensión histórica 1990–2007 como contexto, ver `01_METODOLOGIA.md` §5.3).
+:::
+
+## 2.1 Importancia macro del sector
+
+### 2.1.1 Valor agregado y empleo
+
+El sector agropecuario aportó entre 9% y 12% del PIB de Bolivia durante 2008–2024 y concentró aproximadamente 28% del empleo en el periodo, niveles altos para el promedio latinoamericano [@WorldBank2021_TappingBolivia]. La figura 2.1 reporta la evolución del valor agregado agropecuario como porcentaje del PIB total entre 1990 y 2024 a partir del panel v12, construido sobre WDI e INE. El ratio se mantiene en una banda relativamente estable, con descensos transitorios durante años de choques (sequía 2023, COVID-19 2020) y recuperaciones graduales en los años siguientes.
+
+```{r}
+#| label: fig-01
+#| fig-cap: "Valor agregado del sector agropecuario como porcentaje del PIB, Bolivia 1990–2024. Fuente: panel v12 sobre WDI + INE."
+knitr::include_graphics(fig("fig01_agr_value_added_pct_gdp"))
+```
 
 ```{r}
 #| label: tbl-macro
-#| tbl-cap: "Indicadores macroeconómicos del sector agropecuario boliviano (años seleccionados)"
-panel[year %in% c(2000, 2005, 2010, 2015, 2020, 2023),
-      .(Año                                    = year,
-        `PIB agrop. (% PIB)`                   = round(agr_value_added_pct_gdp, 1),
-        `Empleo agrop. (% PEA)`                = round(agr_employment_pct, 1),
-        `Población rural (% total)`             = round(rural_pop_pct, 1),
-        `Subalimentación (%)`                   = round(undernourishment_pct, 1),
-        `Rendimiento cereal (kg/ha, INE)`       = round(ine_cereal_yield_kg_ha, 0),
-        `Rendimiento cereal (kg/ha, FAO)`       = round(fao_cereal_yield_kg_ha, 0))] |>
+#| tbl-cap: "Indicadores macroeconómicos del sector agropecuario, años seleccionados 2008–2023"
+panel[year %in% c(2008, 2012, 2015, 2018, 2020, 2023),
+      .(Año                                  = year,
+        `PIB agrop. (% PIB)`                 = round(agr_value_added_pct_gdp, 1),
+        `Empleo agrop. (% PEA)`              = round(agr_employment_pct, 1),
+        `Población rural (% total)`          = round(rural_pop_pct, 1),
+        `Subalimentación (%)`                = round(undernourishment_pct, 1),
+        `Rendimiento cereal (kg/ha, INE)`    = round(ine_cereal_yield_kg_ha, 0))] |>
   gt() |>
-  tab_source_note("Fuentes: WDI (Banco Mundial), INE Bolivia, FAOSTAT/OWID. Panel maestro v12.") |>
+  tab_source_note("Fuente: panel v12 sobre WDI (Banco Mundial), INE Bolivia, FAOSTAT.") |>
   opt_stylize(style = 1)
 ```
 
-::: {layout-ncol=2}
+La participación del empleo agropecuario en la población económicamente activa descendió de aproximadamente 30% en 2010 a cerca de 25% en 2023 (panel v12, variable `agr_employment_pct`). Este descenso es más gradual que el observado en países andinos comparables del mismo periodo [@WorldBank2021_TappingBolivia]. La diferencia entre la caída del empleo y la estabilidad del valor agregado implica un incremento de la productividad media del trabajo, pero no informa sobre la productividad total de los factores, que se analiza en §2.2. La ventana 2008–2024 contiene además dos transiciones estructurales: la promulgación de la Ley 393/2014 de Servicios Financieros y el ciclo de precios internacionales de commodities cuyo efecto sobre los sistemas alimentarios regionales reporta la FAO [-@FAO2024_SOFI].
 
-![PIB agropecuario como % del PIB total](`r fig("fig01_agr_value_added_pct_gdp")`){fig-alt="Serie de PIB agrop como % del PIB"}
+El peso macroeconómico del sector no se distribuye de manera homogénea. La actividad agropecuaria se reparte entre dos modelos productivos diferenciados: una agricultura comercial intensiva en capital en el oriente, dominada por soya, sorgo, girasol, caña y ganadería extensiva en Santa Cruz, Beni y parte del Chaco; y una agricultura familiar campesina e indígena en el altiplano y los valles, con producción diversificada de papa, quinua, maíz, hortalizas, camélidos y ovinos. El INE [-@INE2015_Censo] documenta esta heterogeneidad estructural en el Censo Agropecuario 2013, con diferencias por orden de magnitud en superficie cultivada media por unidad productiva entre Santa Cruz y los departamentos del altiplano. Esta segmentación productiva atraviesa todos los capítulos del reporte: el capítulo 3 documenta la asignación funcional del gasto entre apoyos al productor comercial y bienes públicos para la agricultura familiar; el capítulo 4 examina la distribución territorial de la ejecución; el capítulo 5 mide la protección efectiva por commodity (hallazgo F03).
 
-![Tendencias de outcomes seleccionados (yields, comercio, empleo)](`r fig("fig04_outcomes_trends")`){fig-alt="Tendencias outcomes"}
+### 2.1.2 Exportaciones agropecuarias
 
-:::
+Las exportaciones agropecuarias bolivianas combinan dos patrones de especialización opuestos en la ventana del reporte: un complejo soya–oleaginosas concentrado en Santa Cruz y un nicho de exportación de productos de origen andino (quinua, café, cacao). Bolivia mantiene una participación de exportaciones agropecuarias en exportaciones totales [TODO_TRACE: variable `wdi_agr_export_pct`, panel v12, ventana 2008–2024 — confirmar serie y rango]. El IBCE [-@IBCE2024] documenta la importancia del complejo soya como principal rubro de divisas no extractivas. Esta dualidad exportadora se acentúa por el patrón de protección efectiva, que el capítulo 5 analiza con la métrica NRP (F03): exportables taxados, alimentos básicos protegidos.
 
-**Hallazgos clave:**
+## 2.2 Productividad — TFP y descomposición
 
-- En 2020 Bolivia ranquea **6° en LAC** en participación del valor agregado agropecuario en el PIB (9.1%), por encima de Chile (4.0%) y México (3.7%).
-- El **empleo agropecuario** ha caído lentamente: 30% (2010) → 25% (2023) — diversificación más gradual que el promedio LAC.
-- **Subalimentación**: ~17% en años recientes — uno de los más altos de Sudamérica.
-- **Rendimiento cereal**: 1,427 kg/ha (1990) → ~2,200 kg/ha (2020), +53% en 30 años.
+### 2.2.1 TFP USDA-ERS 1990–2023
 
-## Productividad total de factores (TFP)
+La productividad total de factores (TFP) del sector agropecuario boliviano creció aproximadamente 30% entre 2000 y 2015, frente a un aumento de la inversión pública sectorial cercano a un factor de diez en el mismo periodo (panel v12, variables `tfp_index` y `inv_agro_usd_mm`; hallazgo F01). La figura 2.2 reporta el índice TFP USDA-ERS para Bolivia entre 1961 y 2023, con la serie 1990–2023 destacada como ventana del reporte. La tasa media anual de crecimiento de la TFP en 1990–2023 se ubica por debajo del promedio latinoamericano estimado por Ludeña [-@Ludena2010] y por Fuglie [-@Fuglie2024] para la región.
 
-::: {layout-ncol=2}
+```{r}
+#| label: fig-tfp
+#| fig-cap: "Índice de productividad total de factores agropecuarios, Bolivia 1961–2023 (base 1961=100). Fuente: USDA-ERS International Agricultural Productivity 2024."
+knitr::include_graphics(fig("fig06_tfp_bolivia_1961_2023"))
+```
 
-![TFP agrícola Bolivia 1961-2023 (USDA ERS)](`r fig("fig06_tfp_bolivia_1961_2023")`){fig-alt="TFP Bolivia"}
+### 2.2.2 Descomposición input vs output
 
-![Comparación TFP — Bolivia vs LAC](`r fig("fig07_tfp_latam_comparison")`){fig-alt="TFP LATAM"}
+La descomposición de la TFP entre crecimiento del producto y crecimiento de inputs muestra que la expansión del producto agropecuario boliviano se apoyó de manera predominante en la incorporación de tierra y, en menor medida, de capital, más que en ganancias de eficiencia (figura 2.3). El índice de inputs (figura 2.4) crece a una tasa promedio comparable o superior al índice de producto en varios subperiodos, lo que reduce el residuo Solow asignable a la TFP. Fuglie y Rada [-@FuglieRada2013] documentan un patrón similar en otras economías andinas: la expansión extensiva de la frontera explica una proporción mayor del crecimiento sectorial que el cambio técnico. En Brasil y otras economías del Cono Sur el aporte de la TFP es mayor [@Arias2017Brazil].
 
-:::
+```{r}
+#| label: fig-tfp-decomp
+#| fig-cap: "Descomposición de la TFP agropecuaria boliviana: contribución de outputs vs inputs, 1961–2023. Fuente: USDA-ERS 2024, cálculos propios sobre panel v12."
+knitr::include_graphics(fig("fig08_tfp_decomposition_bolivia"))
+```
 
-::: {layout-ncol=2}
+```{r}
+#| label: fig-inputs
+#| fig-cap: "Índices de inputs agropecuarios bolivianos (tierra, mano de obra, capital, fertilizante), 1961–2023. Fuente: USDA-ERS 2024."
+knitr::include_graphics(fig("fig09_input_indices_bolivia"))
+```
 
-![Descomposición TFP: contribución de outputs vs inputs](`r fig("fig08_tfp_decomposition_bolivia")`){fig-alt="Descomp TFP"}
+Una proporción del crecimiento del producto sectorial 2008–2024 atribuible a expansión de área cultivada (intensivo en uso de suelo) puede leerse en paralelo con la sección §2.4: el componente extensivo del crecimiento del output coincide temporal y geográficamente con la pérdida de cobertura natural reportada por MapBiomas. La interpretación causal estricta requiere especificación adicional (apéndice B), pero la correlación entre expansión de área en Santa Cruz y pérdida forestal documentada por Hansen GFC es directa.
 
-![Índices de inputs Bolivia (USDA ERS)](`r fig("fig09_input_indices_bolivia")`){fig-alt="Indices inputs"}
+### 2.2.3 Comparación con LAC
 
-:::
+Bolivia se ubica por debajo del promedio de crecimiento de TFP de la región andina en la ventana 1990–2023 (figura 2.5). Perú, Colombia y Ecuador registran tasas anuales medias de TFP superiores a las de Bolivia para el mismo periodo según las estimaciones armonizadas de USDA-ERS [@Fuglie2024]. La brecha es persistente: no se cierra en ningún subperiodo del rango. El patrón se mantiene cuando se cambia el año base (1961 o 1990) y cuando se excluyen los años de choque (2020, 2023) del cálculo de la tasa de crecimiento.
+
+```{r}
+#| label: fig-tfp-lac
+#| fig-cap: "Comparación de la TFP agropecuaria: Bolivia frente a comparadores andinos (Perú, Colombia, Ecuador), 1961–2023. Fuente: USDA-ERS 2024."
+knitr::include_graphics(fig("fig07_tfp_latam_comparison"))
+```
+
+### 2.2.4 Inversión y TFP: hipótesis sobre el desacople
+
+El desacople entre inversión sectorial y TFP es la pregunta motivadora del reporte. La figura 2.6 superpone la inversión pública agropecuaria (eje izquierdo, USD millones VIPFE) y el índice TFP (eje derecho, USDA-ERS): la inversión crece de manera sostenida desde 2006 mientras la TFP se mueve en una banda estrecha. El capítulo 3 documenta la composición de ese gasto bajo la clasificación MAFAP [@MAFAP2013_MethodGuideVolI]. La proposición técnica del reporte es que la composición (no el nivel) del gasto es consistente con el desacople observado, hipótesis que el capítulo 3 contrasta con la descomposición MAFAP y el capítulo 5 con OECD-PSE: el peso de las transferencias genéricas y los apoyos a empresas estatales en el agregado convive con una participación baja de los bienes públicos sectoriales (I+D vía INIAF, sanidad vía SENASAG, extensión, riego). La literatura comparada sobre retornos del gasto agrícola público estima retornos sociales del I+D y la extensión consistentemente superiores a los de las transferencias [@Mogues2012; @Alston2000; @GoyalNash2017].
+
+Otros mecanismos no excluyentes complementan la lectura compositiva. El primero es de asignación temporal: una proporción del incremento de la inversión 2006–2014 corresponde a infraestructura de riego, electrificación rural y caminos, cuyo efecto sobre la TFP opera con rezagos de varios años y depende del nivel de mantenimiento posterior; el Banco Mundial [-@WorldBank2021_TappingBolivia] documenta brechas de mantenimiento en infraestructura productiva rural y desafíos de operación post-construcción. A este se suman dos mecanismos adicionales:
+
+1. **Asignación territorial.** El gasto sectorial puede no concentrarse en las zonas con mayor brecha de productividad. Si el gasto se asigna principalmente al oriente comercial (ya productivo) el efecto marginal sobre la TFP nacional es menor que el que produciría una asignación con foco en la agricultura familiar del occidente, donde los rendimientos por hectárea son más bajos. El capítulo 4 examina la distribución territorial del gasto.
+2. **Sustitución gasto → crédito post-2014.** La Ley 393/2014 reorganiza el marco de crédito al sector y modifica los instrumentos de apoyo financiero (hallazgo F05, capítulo 3). Parte del apoyo agropecuario migra del balance fiscal al balance del sistema financiero, lo que reduce la elasticidad observada de la TFP al gasto público estricto a partir de 2014.
+
+Goyal y Nash [-@GoyalNash2017] estiman, para América Latina, una elasticidad de la productividad agropecuaria al gasto en bienes públicos sectoriales entre 0.1 y 0.3, frente a elasticidades menores y a veces negativas para las transferencias genéricas. Mogues et al. [-@Mogues2012] reportan resultados consistentes para una muestra más amplia de países en desarrollo. Alston et al. [-@Alston2000] estiman tasas internas de retorno del I+D agropecuario por encima del 30% en estudios meta-analíticos. Estas magnitudes son insumos para los escenarios de repurposing del capítulo 6 y para la calibración del consultor STC (sinergia documentada en `00_admin/SINERGIA_ToR_PSE_Repurposing.md`).
 
 ```{r}
 #| label: fig-tfp-vs-inv
-#| fig-cap: "Inversión pública agropecuaria vs índice de TFP, Bolivia 1990-2023"
-panel[!is.na(inv_agro_usd_mm) & !is.na(tfp_index)] |>
-  ggplot(aes(x = year)) +
-  geom_col(aes(y = inv_agro_usd_mm), fill = WB_BLUE, alpha = 0.45) +
-  geom_line(aes(y = tfp_index * 3),  color = WB_ORANGE, linewidth = 1.2) +
-  scale_y_continuous(
-    name = "Inversión agropecuaria (USD millones)",
-    sec.axis = sec_axis(~ . / 3, name = "Índice TFP (1961=100)")
-  ) +
-  labs(x = NULL,
-       caption = "Azul: VIPFE inversión agrop USD MM. Naranja: TFP USDA ERS.\nFuente: VIPFE + USDA ERS.")
+#| fig-cap: "Inversión pública agropecuaria (USD millones, VIPFE) e índice TFP (USDA-ERS), Bolivia 1990–2023."
+knitr::include_graphics(fig("fig12_inversion_vs_tfp"))
 ```
 
-**Observación crítica para el reporte:** la inversión pública agropecuaria se multiplicó por **~10 entre 2000 y 2015**, mientras la TFP creció apenas **30%** en el mismo período. Este desacople es el problema central que motiva el análisis de eficiencia (Capítulo 4).
+::: {.callout-note}
+**Caja 2.1 — TFP en el APER 2011 vs hoy: qué cambió.**
 
-## Estructura productiva por commodity y región
+El APER Bolivia 2011 (WB Report N° 59696-BO) reportaba la TFP agropecuaria como uno de los principales indicadores de desempeño sectorial y documentaba retornos sociales del I+D agropecuario por encima de los retornos del gasto en transferencias [@WB2011_BoliviaAgPER]. En la actualización 2026:
 
-### Soya — el motor exportador
+- la serie TFP USDA-ERS está disponible para 1961–2023 (vs. 1961–2008 en el APER 2011);
+- el desacople entre inversión y TFP se acentúa: el factor de inversión ×10 (2000–2015) es mayor al observado al cierre del APER 2011, mientras la TFP mantiene su trayectoria 2008–2023 dentro de la misma banda;
+- la composición del gasto se documenta bajo MAFAP (FAO 2013), no disponible en 2011, permitiendo distinguir entre apoyo al productor, consumidor, otros agentes y apoyo general al sector (`@MAFAP2013_MethodGuideVolI`).
 
-La superficie sembrada de soya pasó de **563 mil ha (2008)** a **1.32 millones ha (2015)** — una expansión de **+131% en 7 años**, concentrada en Santa Cruz. Esta expansión es el principal driver del cambio de uso de suelo y deforestación documentado en este capítulo.
-
-### Comparación estructural ENA 2008 vs 2015
-
-```{r}
-#| label: tbl-ena
-#| tbl-cap: "Cambio estructural en el sector agropecuario boliviano por departamento, 2008-2015"
-ena_cmp[, .(
-  Departamento     = dept_name,
-  `UPAs 2008`      = format(round(upa_2008), big.mark=","),
-  `UPAs 2015`      = format(round(upa_2015), big.mark=","),
-  `Δ UPAs (%)`     = round(upa_cambio_pct, 1),
-  `Bovinos 2008 (mil)` = round(bov_2008/1000, 0),
-  `Bovinos 2015 (mil)` = round(bov_2015/1000, 0),
-  `Δ Bovinos (%)`  = round(bov_cambio_pct, 1)
-)] |>
-  gt() |>
-  tab_source_note("Fuente: ENA 2008 + ENA 2015 (INE Bolivia). Microdatos procesados.") |>
-  opt_stylize(style = 1) |>
-  data_color(columns = c(`Δ UPAs (%)`, `Δ Bovinos (%)`),
-              palette = c(WB_RED, "white", WB_BLUE),
-              domain = c(-50, 0, 100))
-```
-
-**Patrón departamental observado:**
-
-- **Altiplano y valles** (Chuquisaca, Cochabamba, La Paz, Potosí): caída de UPAs entre **−22% y −38%** — consolidación / migración rural.
-- **Llanos** (Santa Cruz, Beni, Pando): expansión **+15% a +47%** — frontera agrícola activa.
-- **Bovinos Santa Cruz**: +65% (2.2M → 3.7M cabezas) — boom ganadero del oriente.
-- **Bovinos Beni**: −18% — posible impacto climático y cambio de tenencia.
-
-## Cambio de uso de suelo
-
-::: {layout-ncol=2}
-
-![Cobertura nacional MapBiomas Bolivia 1985-2024](`r fig("fig33_cobertura_nacional_mapbiomas")`){fig-alt="MapBiomas nacional"}
-
-![Mapa de uso antrópico del suelo 2024](`r fig("fig34_mapa_antropico_2024")`){fig-alt="Mapa antrópico"}
-
+El cambio más relevante respecto a 2011 es que el reporte 2026 puede cuantificar la composición del gasto que el APER 2011 solo describía cualitativamente. [TODO_TRACE: verificar TFP del APER 2011 contra `03_literature/APER_2011/` para reportar magnitud exacta]
 :::
 
-```{r}
-#| label: tbl-mb
-#| tbl-cap: "Cobertura del suelo en Bolivia — comparación 1985 vs 2024 (MapBiomas Col. 3)"
-mb_wide <- dcast(mb, year ~ level_0, value.var = "area_ha", fun.aggregate = sum)
-setnames(mb_wide, c("year", "ant_ha", "nat_ha", "und_ha"))
-ref <- mb_wide[year %in% c(1985, 2024)]
-delta <- ref[year == 2024, .(ant_ha, nat_ha)] - ref[year == 1985, .(ant_ha, nat_ha)]
-data.table(
-  Categoría             = c("Antrópico", "Natural"),
-  `1985 (millones ha)`   = c(round(ref[year==1985, ant_ha]/1e6, 2),
-                              round(ref[year==1985, nat_ha]/1e6, 2)),
-  `2024 (millones ha)`   = c(round(ref[year==2024, ant_ha]/1e6, 2),
-                              round(ref[year==2024, nat_ha]/1e6, 2)),
-  `Δ 1985-2024 (M ha)`   = c(round(delta$ant_ha/1e6, 2),
-                              round(delta$nat_ha/1e6, 2)),
-  `Δ relativo (%)`       = c(round(delta$ant_ha/ref[year==1985, ant_ha]*100, 1),
-                              round(delta$nat_ha/ref[year==1985, nat_ha]*100, 1))
-) |> gt() |> tab_source_note("Fuente: MapBiomas Bolivia Colección 3.") |> opt_stylize(style=1)
-```
+## 2.3 Pobreza rural y seguridad alimentaria
 
-::: {layout-ncol=2}
+### 2.3.1 Pobreza rural — serie y reversión 2012–2024
 
-![Cambio de cobertura por departamento](`r fig("fig35_cambio_cobertura_dept")`){fig-alt="Cambio dept"}
-
-![Evolución LC antrópica por departamento](`r fig("fig36_lineas_antropico_dept")`){fig-alt="Líneas dept"}
-
-:::
-
-**Bolivia perdió ~9.4 millones de ha de cobertura natural en 40 años**, con Santa Cruz concentrando el 64% de la expansión agrícola. Esta huella ambiental es central para el análisis de sostenibilidad y el debate sobre los costos no monetarios del modelo agropecuario.
-
-## Pobreza rural y seguridad alimentaria
+La pobreza rural en Bolivia descendió de aproximadamente 55% en 2012 a cerca de 40% en 2021, y subió a 45% en 2024 (hallazgo F06; Encuesta de Hogares INE, panel v12 variable `pov_rate` en `eh_nacional_anual.rds`). La reversión post-2021 interrumpe una década de mejora sostenida. La pobreza extrema rural muestra el mismo patrón en magnitud comparable: descenso de 36% en 2012 a 17% en 2021, con repunte a 22% en 2024.
 
 ```{r}
 #| label: fig-pov-fies
-#| fig-cap: "Pobreza rural y prevalencia de inseguridad alimentaria (FIES), Bolivia 2012-2024"
+#| fig-cap: "Pobreza rural, pobreza extrema rural e inseguridad alimentaria (FIES) en población rural, Bolivia 2012–2024. Fuente: panel v12 sobre Encuesta de Hogares INE Bolivia."
 eh_rural <- eh_nac[area == "rural"]
 eh_long <- melt(eh_rural[, .(year, pov = pov_rate, ext = extpov_rate,
                               fies = fies_insecure_pct)],
@@ -191,27 +168,151 @@ ggplot(eh_long[!is.na(value)], aes(x = year, y = value, color = indicator)) +
   scale_color_manual(values = c(WB_NAVY, WB_RED, WB_ORANGE)) +
   scale_y_continuous(labels = label_percent(scale = 1)) +
   labs(x = NULL, y = "% de la población rural", color = NULL,
-       caption = "Fuente: Encuesta de Hogares INE Bolivia 2012-2024 (autoría propia).\nFIES disponible 2019, 2021-2024.") +
+       caption = "Fuente: Encuesta de Hogares INE Bolivia 2012–2024.\nFIES disponible 2019, 2021–2024.") +
   theme(legend.position = "bottom")
 ```
 
-**Tendencias preocupantes (2012-2024):**
+La interpretación técnica de la reversión 2021–2024 admite varios mecanismos no excluyentes: choque de precios de alimentos importados (2021–2023), sequía 2023 con caída de producción y de ingresos agropecuarios, y efectos rezagados del shock COVID-19 sobre ingresos no agrícolas en hogares rurales. Vargas y Garriga [-@Vargas_Garriga2015_Inequality] documentan la elevada elasticidad de la pobreza rural boliviana a choques de precios y de producción.
 
-- **Pobreza rural**: 55% (2012) → 40% (2021) → **45% (2024)** — *reversión post-2021* después de una década de mejora.
-- **Pobreza extrema rural**: 36% (2012) → 17% (2021) → **22% (2024)**.
-- **Inseguridad alimentaria FIES (mild+)**: 49% (2019) → **74% (2024)** — *tendencia alarmante*.
-- Los departamentos más afectados en 2024 son **Chuquisaca (64% pobreza rural), Oruro y Potosí (54%)**.
+La OPHI [-@OPHI2024_BoliviaBriefing] reporta, sobre la base del Índice de Pobreza Multidimensional, una desaceleración del descenso del IPM en el mismo periodo. La medición de pobreza por línea monetaria del INE convive con la medición multidimensional de la OPHI: el primer indicador es más sensible a choques de ingresos corrientes, el segundo agrega dimensiones de educación, salud y vivienda con menor variabilidad anual. El que ambos indicadores muestren desaceleración en el mismo periodo (2021–2024) es consistente con una reversión efectiva y no con un artefacto de medición.
 
-## Síntesis del capítulo
+La distribución departamental de la pobreza rural en 2024 mantiene un patrón consistente con la dualidad oriente–occidente. Los departamentos del altiplano y los valles concentran las prevalencias más altas, mientras Santa Cruz, Beni y Pando se ubican por debajo del promedio nacional rural [TODO_TRACE: tabla de pobreza rural por departamento 2024 — variable `pov_rate` × `dept_name` en panel EH INE]. La heterogeneidad territorial es relevante para el diseño de instrumentos: una política de transferencias focalizadas por hogar y una política de bienes públicos sectoriales focalizada por territorio producen incidencias distintas. El capítulo 4 examina la distribución territorial del gasto agropecuario y su correlación con los indicadores de pobreza rural (hallazgo F07).
 
-| Dimensión | Indicador clave | Tendencia | Implicación para el APER |
-|-----------|----------------|-----------|--------------------------|
-| Macroeconómica | PIB agrop. % PIB | 9.1% (2020) — alto en LAC | Sector relevante para política fiscal |
-| Productividad | TFP vs inversión | Inversión ×10, TFP ×1.3 | **Problema de eficiencia del gasto** |
-| Estructural | Soya 2008→2015 | +131% superficie | Driver de uso de suelo y exportaciones |
-| Estructural | UPAs altiplano | −22% a −38% (2008→2015) | Migración rural y consolidación |
-| Ambiental | Cobertura natural | −9.4 M ha en 40 años | 64% en Santa Cruz |
-| Social | Pobreza rural 2024 | 45% (reversión) | Necesidad de reorientar gasto a equidad |
-| Social | FIES ≥1 (2024) | 74% | Crisis de acceso alimentario |
+### 2.3.2 FIES — inseguridad alimentaria 2019–2024
 
-El sector agropecuario boliviano combina contribución macroeconómica relevante con productividad estancada, expansión de frontera con costos ambientales altos, y reversión reciente en indicadores sociales. Estos elementos motivan los análisis de gasto público (Capítulo 3), eficiencia y equidad (Capítulo 4) y recomendaciones de reorientación (Capítulo 6).
+La prevalencia de inseguridad alimentaria moderada o severa (FIES ≥1) en la población rural pasó de 49% en 2019 a 74% en 2024 (panel v12, variable `fies_insecure_pct`; hallazgo F06). El aumento de 25 puntos porcentuales en cinco años es mayor al observado en la serie de pobreza rural medida por línea monetaria. La FAO [-@FAO2024_SOFI] reporta para Bolivia una de las prevalencias más altas de inseguridad alimentaria en América del Sur al cierre del periodo. La diferencia entre el deterioro de FIES y el deterioro más moderado de la pobreza monetaria sugiere que el componente de acceso a alimentos (precio, disponibilidad) pesa más que el componente de ingreso en el patrón observado.
+
+El WFP [-@WFP2022_BoliviaACR] documenta, en su evaluación de seguridad alimentaria 2022, que los departamentos del altiplano (Chuquisaca, Potosí, Oruro) concentran las mayores prevalencias de inseguridad alimentaria moderada o severa. La heterogeneidad territorial coincide con el patrón de pobreza rural reportado por la Encuesta de Hogares INE y con el patrón productivo de §2.2: zonas con menor crecimiento de TFP y mayor exposición climática.
+
+### 2.3.3 Cross-section: pobreza × producción
+
+Pacheco [-@Pacheco2006] documenta la dualidad oriente–occidente: la sección cruzada departamental 2024 muestra una correlación negativa entre tasa de pobreza rural y producción agropecuaria per cápita rural [TODO_TRACE: scatter o small multiples por departamento — variable producción agro per cápita rural vs `pov_rate` por departamento, 2024]. Los departamentos del oriente, con mayor producción comercial, registran menor prevalencia de pobreza rural; los del occidente, con producción campesina de subsistencia, concentran las brechas. El patrón replica la heterogeneidad estructural del Censo Agropecuario 2013 documentada en §2.1.1 [-@INE2015_Censo].
+
+## 2.4 Cobertura del suelo y frontera agropecuaria
+
+### 2.4.1 MapBiomas — antrópico vs natural
+
+Bolivia perdió aproximadamente 9.4 millones de hectáreas de cobertura natural entre 1985 y 2024, con un aumento de igual magnitud en el área antrópica (hallazgo F08; MapBiomas Bolivia Colección 3 vía panel v12, variables `lc_antropico` y `lc_natural`). La figura 2.8 reporta la evolución anual de ambas categorías a nivel nacional. La tasa de pérdida muestra dos aceleraciones: 2000–2010 y 2015–2024.
+
+```{r}
+#| label: fig-mb-nac
+#| fig-cap: "Cobertura del suelo en Bolivia, área antrópica vs área natural 1985–2024 (millones de hectáreas). Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig33_cobertura_nacional_mapbiomas"))
+```
+
+```{r}
+#| label: tbl-mb
+#| tbl-cap: "Cobertura del suelo en Bolivia, comparación 1985 vs 2024 (MapBiomas Col. 3)"
+mb_wide <- dcast(mb, year ~ level_0, value.var = "area_ha", fun.aggregate = sum)
+setnames(mb_wide, c("year", "ant_ha", "nat_ha", "und_ha"))
+ref <- mb_wide[year %in% c(1985, 2024)]
+delta <- ref[year == 2024, .(ant_ha, nat_ha)] - ref[year == 1985, .(ant_ha, nat_ha)]
+data.table(
+  Categoría             = c("Antrópico", "Natural"),
+  `1985 (millones ha)`  = c(round(ref[year==1985, ant_ha]/1e6, 2),
+                             round(ref[year==1985, nat_ha]/1e6, 2)),
+  `2024 (millones ha)`  = c(round(ref[year==2024, ant_ha]/1e6, 2),
+                             round(ref[year==2024, nat_ha]/1e6, 2)),
+  `Δ 1985–2024 (M ha)` = c(round(delta$ant_ha/1e6, 2),
+                                      round(delta$nat_ha/1e6, 2)),
+  `Δ relativo (%)` = c(round(delta$ant_ha/ref[year==1985, ant_ha]*100, 1),
+                             round(delta$nat_ha/ref[year==1985, nat_ha]*100, 1))
+) |> gt() |> tab_source_note("Fuente: MapBiomas Bolivia Colección 3, panel v12.") |> opt_stylize(style=1)
+```
+
+```{r}
+#| label: fig-mb-mapa
+#| fig-cap: "Distribución espacial del uso antrópico del suelo, Bolivia 2024. Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig34_mapa_antropico_2024"))
+```
+
+### 2.4.2 Hansen GFC — pérdida forestal
+
+La pérdida de cobertura forestal documentada por Hansen Global Forest Change para Bolivia muestra una trayectoria consistente con el patrón MapBiomas (panel v12, variable `hansen_defor_ha`). [TODO_TRACE: cifra acumulada Hansen GFC 2001–2024 y tasa anual media en el periodo — verificar contra `01_data/processed/hansen_*.rds`]. Las dos fuentes coinciden en identificar el oriente boliviano como zona de mayor pérdida y en señalar 2016–2024 como periodo de aceleración. La metodología Hansen GFC captura la pérdida forestal estricta, mientras MapBiomas distingue entre conversiones a uso antrópico (cultivo, pasto, urbano) y dinámicas dentro de la categoría natural.
+
+### 2.4.3 Distribución departamental — 64% en Santa Cruz
+
+La expansión antrópica se concentra geográficamente: Santa Cruz acumula aproximadamente 64% del incremento de área antrópica nacional 1985–2024 (panel v12, MapBiomas departamental; hallazgo F08). La concentración refleja la localización de la frontera agrícola activa y la dotación de tierra apta del oriente, documentada por Pacheco [-@Pacheco2006], y no constituye una atribución sobre el modelo productivo departamental. La figura 2.10 reporta el cambio de cobertura por departamento, y la figura 2.11 documenta la evolución temporal de la cobertura antrópica para cada uno de los nueve departamentos.
+
+```{r}
+#| label: fig-mb-dept
+#| fig-cap: "Cambio de cobertura del suelo por departamento, 1985–2024 (millones de hectáreas). Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig35_cambio_cobertura_dept"))
+```
+
+```{r}
+#| label: fig-mb-dept-lines
+#| fig-cap: "Evolución del área antrópica por departamento, 1985–2024. Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig36_lineas_antropico_dept"))
+```
+
+La dinámica municipal es aún más concentrada: la figura 2.12 identifica los 15 municipios con mayor expansión absoluta de área antrópica 1985–2024, todos ubicados en el departamento de Santa Cruz. La figura 2.13 mapea la expansión a nivel municipal y la figura 2.14 reporta la fracción de área municipal bajo uso antrópico al cierre del periodo.
+
+```{r}
+#| label: fig-mb-muni-top
+#| fig-cap: "Quince municipios con mayor expansión absoluta de área antrópica, Bolivia 1985–2024. Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig37_top15_muni_expansion"))
+```
+
+```{r}
+#| label: fig-mb-muni-mapa
+#| fig-cap: "Expansión municipal de área antrópica 1985–2024. Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig38_mapa_muni_expansion_1985_2024"))
+```
+
+```{r}
+#| label: fig-mb-share
+#| fig-cap: "Fracción del área municipal bajo uso antrópico, 2024. Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig39_mapa_muni_antropico_share"))
+```
+
+```{r}
+#| label: fig-mb-top6
+#| fig-cap: "Series temporales de cobertura antrópica para los seis municipios con mayor expansión absoluta, 1985–2024. Fuente: MapBiomas Bolivia Colección 3."
+knitr::include_graphics(fig("fig40_series_top6_muni_antropico"))
+```
+
+Pacheco [-@Pacheco2006] documenta el dualismo oriente–occidente como característica estructural del modelo agropecuario boliviano: el oriente concentra la producción comercial de gran escala y la frontera agrícola activa, el occidente concentra agricultura familiar campesina con baja escala. Urioste [-@Urioste2011] reporta la asimetría de acceso a tierra y la presión sobre las tierras comunitarias en el oriente con base en la información de tenencia consolidada por el INRA [@INRA1996; @Ley3545_2006]. El INE [-@INE2015_Censo] documenta, en el Censo Agropecuario 2013, que la superficie media por unidad de producción agropecuaria en Santa Cruz supera por más de un orden de magnitud a la observada en los departamentos del altiplano. [TODO_TRACE: cifra exacta de superficie media por UPA en Santa Cruz vs Potosí/Oruro/La Paz, Censo Agropecuario 2013].
+
+### 2.4.4 Implicaciones climáticas
+
+La conversión de cobertura natural a uso antrópico es la principal fuente de emisiones agropecuarias de Bolivia. [TODO_TRACE: cifra de emisiones GEI agropecuarias 2008–2024 con desagregación deforestación / uso del suelo / ganadería — verificar panel v12 y NDC Bolivia 2022]. La Contribución Nacional Determinada [@BoliviaNDC2022] reconoce el peso del cambio de uso del suelo en el balance de emisiones nacional. La literatura climática regional [@IPCC2022_Ch12; @Rabatel2013] documenta el aumento de la frecuencia de eventos extremos (sequía, helada, granizo) que afectan a la producción agropecuaria, con impacto diferencial sobre la agricultura familiar del altiplano y los valles. Andersen y Verner [-@AndersenVerner2009] reportan, para Bolivia, una elasticidad significativa de los rendimientos al clima en el modelo Ricardiano que estiman. El IPCC [-@IPCC2022_Ch5] documenta la vulnerabilidad de los sistemas alimentarios andinos al cambio climático.
+
+## 2.5 Ciclos políticos y choques (transversal)
+
+### 2.5.1 Eventos estructurales — Ley 393/2014
+
+La Ley 393 de Servicios Financieros (2014) reorganiza el marco de crédito al sector agropecuario, introduce categorías de cartera obligatoria por sector productivo y modifica los instrumentos de apoyo financiero al pequeño y mediano productor [TODO_TRACE: cita oficial Ley 393/2014 Gaceta Oficial]. La dummy estructural `post_ley393` (panel v12, métodos §5.3) marca el cambio de régimen para el análisis del capítulo 3 (hallazgo F05, sustitución gasto → crédito). La reforma persiguió ampliar la cobertura y profundización del crédito al pequeño y mediano productor mediante cartera obligatoria por sector (alcance que el capítulo 3 cuantifica, hallazgo F05); en términos de registro fiscal, parte del apoyo migra del balance público al del sistema financiero. En el contexto del presente capítulo, la Ley 393 actúa como evento estructural que reordena los flujos financieros hacia el sector y modifica la composición de los apoyos sectoriales registrados.
+
+### 2.5.2 Eventos coyunturales — commodity boom, COVID-19, sequía 2023
+
+El **ciclo de precios internacionales 2008–2014** elevó los precios de soya, maíz y trigo a niveles superiores al promedio de la década previa. El IBCE [-@IBCE2024] documenta la respuesta de la superficie sembrada y las exportaciones agropecuarias del oriente boliviano en ese ciclo. La fase coincide con la primera mitad del incremento de la inversión pública sectorial (§2.2.4) y con el primer subperiodo de expansión acelerada de la frontera agropecuaria documentado por MapBiomas (§2.4.1). La superposición temporal sugiere que precios externos altos, gasto público creciente y disponibilidad de crédito reforzaron el componente extensivo del crecimiento del output.
+
+El **choque COVID-19 (2020)** produjo una contracción del PIB nacional y una caída del valor agregado agropecuario concentrada en el segundo y tercer trimestre de 2020, con recuperación parcial en 2021. La serie INE de pobreza rural no muestra un quiebre en 2020 pero sí una desaceleración del descenso previo (§2.3.1). El efecto sobre los ingresos no agrícolas de hogares rurales —remesas internas, trabajo asalariado urbano, transferencias— fue más persistente que el efecto sobre los ingresos agropecuarios, y se rezaga hasta 2021–2022 en la medición de la encuesta.
+
+La **sequía 2023** afecta a la producción cerealera y a los rendimientos en el altiplano y los valles. Coincide con el repunte de la pobreza rural a 45% y de la inseguridad alimentaria FIES a 74% en 2024 (§2.3.2). La literatura climática regional [@IPCC2022_Ch12; @Rabatel2013] documenta el aumento de la probabilidad de sequías en los Andes tropicales en relación con el cambio climático antropogénico. La sequía 2023 coincide con caídas de producción cerealera y de ingresos concentradas en la agricultura familiar campesina del altiplano y los valles, consistentes con la elasticidad rendimiento-clima estimada por Andersen y Verner [-@AndersenVerner2009]. Andersen y Verner [-@AndersenVerner2009] estiman, para Bolivia, una elasticidad negativa y significativa de los rendimientos a aumentos de temperatura y a déficits de precipitación, consistente con el patrón 2023–2024.
+
+La superposición de los tres ciclos con la Ley 393 explica, en lectura descriptiva, parte de la heterogeneidad temporal del desempeño sectorial documentado en §§2.1–2.4. Aislar el efecto de cada choque exige el modelo de panel con efectos fijos del apéndice E. La interpretación que el reporte mantiene es que la heterogeneidad temporal y geográfica del desempeño sectorial no es ruido: contiene información sobre la asignación de los apoyos sectoriales que el capítulo 4 examina en detalle.
+
+## 2.6 Síntesis del capítulo
+
+El capítulo documenta tres patrones que estructuran el resto del reporte. Los tres describen un crecimiento sectorial apoyado en la incorporación extensiva de tierra y crédito más que en eficiencia, que coincide en el tiempo con la reversión de los indicadores sociales rurales y con la pérdida de cobertura natural.
+
+- **Desacople inversión–TFP (F01).** Entre 2000 y 2015, la inversión pública agropecuaria se multiplicó por diez y la TFP creció 30%. El desacople persiste 2015–2023 en una banda estrecha de TFP. La hipótesis técnica del reporte es que la composición del gasto, no su nivel, explica el desacople; el capítulo 3 cuantifica la composición bajo MAFAP y el capítulo 5 mide el apoyo al productor con OECD-PSE.
+- **Reversión social y deterioro de FIES (F06).** La pobreza rural revirtió de 40% en 2021 a 45% en 2024, y la inseguridad alimentaria moderada-o-severa pasó de 49% en 2019 a 74% en 2024. La interpretación técnica admite mecanismos de precios, choque climático 2023 y rezago COVID-19; el capítulo 5 examina la relación entre composición del gasto y FIES.
+- **Expansión de frontera agropecuaria (F08).** Bolivia perdió 9.4 M ha de cobertura natural 1985–2024, con 64% concentrado en Santa Cruz. La concentración municipal es aún mayor. La expansión coincide temporalmente con el componente extensivo del crecimiento del output (§2.2.2) y con las emisiones agropecuarias documentadas por la NDC.
+
+Los tres patrones alimentan la pregunta de política central del APER 2026: qué oportunidades técnicas existen de repurposing del gasto sectorial bajo techo fiscal constante (capítulo 6). El capítulo 3 examina la composición presupuestaria que el capítulo presente identifica como hipótesis. El capítulo 4 desagrega la ejecución por nivel de gobierno. El capítulo 5 mide la eficiencia y el apoyo al productor con metodologías comparables internacionalmente.
+
+::: {.callout-note appearance="minimal"}
+**Trazabilidad de cifras del capítulo.** Las cifras centrales del capítulo proceden del panel v12 (`01_data/processed/spending_panel_v12.rds`), MapBiomas Bolivia Colección 3 (`01_data/processed/mapbiomas_national_annual.rds`), Encuesta de Hogares INE (`01_data/processed/eh_nacional_anual.rds`) y serie USDA-ERS de TFP. Las cifras centrales corresponden a los hallazgos F01, F06 y F08 documentados en `.agent/04_HALLAZGOS.md`. Los `[TODO_TRACE]` del capítulo se resuelven contra `02_INDICADORES.md` y los scripts de `02_code/03_analysis/`.
+:::
+
+<!--
+draft_status: v0.1
+written_by: aper-writer (sesión 13)
+date: 2026-05-24
+ventana_canonica: 2008-2024
+pending: validación cifras panel v12 + auditoría citas (gate §13B) + resolución P0 (RDS fantasma + drift F06)
+figuras_OK: 14 figuras referenciadas (fig01, fig06-fig09, fig12, fig33-fig40) existen como PNG en 05_outputs/figures/
+-->

@@ -1,5 +1,5 @@
 ---
-title: "Introducción"
+title: "Introducción, alcance y metodología"
 ---
 
 ```{r}
@@ -8,53 +8,120 @@ source(here::here("02_code", "00_setup", "01_constants.R"))
 library(tidyverse)
 ```
 
-## Objetivo del Estudio
+El Agricultural Public Expenditure Review (APER) 2026 actualiza, quince años después, el diagnóstico técnico del gasto público agropecuario boliviano que el Banco Mundial produjo en 2011 (Reporte N° 59696-BO) [@WB2011_BoliviaAgPER]. La ventana temporal canónica de esta actualización es 2008–2024, con extensión a 2025 para datos preliminares y comparación de contexto histórico con la serie 1990–2007 disponible en el panel reproducible v12.
 
-Este análisis tiene como objetivo proveer una evaluación rigurosa y actualizada del gasto público en el sector agropecuario de Bolivia para el período `r YEAR_START`–`r YEAR_END`. El estudio busca:
+El capítulo define los objetivos analíticos del reporte, justifica la actualización en 2026, delimita su alcance sectorial e institucional, sintetiza las cuatro herramientas analíticas y mapea las fuentes principales. El detalle técnico de cada método vive en el Apéndice B; el inventario completo de datasets vive en el Apéndice A.
 
-1. Describir el nivel, composición y evolución temporal del gasto público agropecuario a nivel nacional y subnacional.
-2. Evaluar la eficiencia técnica y asignativa de dicho gasto en relación con los resultados del sector.
-3. Analizar la relación entre el gasto agropecuario y la seguridad alimentaria de la población boliviana.
-4. Formular recomendaciones de política basadas en evidencia para mejorar la efectividad del gasto.
+## Objetivos del APER 2026
 
-## Justificación
+### Pregunta central
 
-El sector agropecuario boliviano enfrenta desafíos estructurales que hacen especialmente relevante este análisis:
+El reporte responde una pregunta de política agregada y cinco preguntas operativas. La pregunta agregada es: ¿cuánto, en qué, cómo, dónde y con qué resultado se gasta hoy en el sector agropecuario boliviano, y qué oportunidades existen de **repurposing** hacia instrumentos de mayor retorno social, productivo y climático? El término repurposing se usa en su acepción técnica OECD–FAO: reasignación de la composición del apoyo público al sector manteniendo el techo fiscal agregado constante, sin pronunciarse sobre el nivel óptimo de ese techo.
 
-- **Alta dependencia** del sector en la generación de empleo rural e ingreso de los hogares más pobres
-- **Volatilidad climática** creciente que amenaza la producción en las regiones andinas y del altiplano
-- **Brecha de productividad** respecto a los pares regionales, particularmente en cultivos de subsistencia
-- **Presiones fiscales** que obligan a optimizar la asignación del gasto público
+Las cinco preguntas operativas se derivan de la agregada y estructuran los capítulos 2 a 6: (i) ¿cuál es el nivel y la composición del gasto público agropecuario en 2008–2024?; (ii) ¿cómo se reparte ese gasto entre niveles de gobierno y entre instrumentos?; (iii) ¿qué tan eficiente es ese gasto al transformarse en productividad y en resultados sociales?; (iv) ¿qué tipo de apoyo predomina cuando se mide con métricas internacionales comparables (PSE/CSE)?; (v) ¿qué opciones técnicas de repurposing son consistentes con la evidencia internacional y con la estructura institucional vigente?
 
-Bolivia ha incrementado sustancialmente su inversión pública en el sector desde 2006, en el marco del Plan de Desarrollo Económico y Social (PDES). Sin embargo, la literatura existente señala que el incremento en recursos no ha sido acompañado por mejoras proporcionales en eficiencia institucional ni en los resultados productivos esperados [@worldbank2020; @ifpri2019].
+### Audiencias y uso esperado
 
-## Alcance y Delimitación
+La audiencia primaria es el equipo del Banco Mundial Bolivia (Country Office), que usa el diagnóstico para preparar diálogo de política y operaciones futuras. Le siguen las contrapartes gubernamentales —el MEFP y el MDRyT— y las prácticas globales operacionales del Banco (Agricultura, Macro-Fiscal, Pobreza), que diseñan préstamos e indicadores de programa. La comunidad técnica externa de la región (IFPRI, FAO, BID AgriMonitor, CEPAL, academia) y, vía el sitio público y briefs ejecutivos, la sociedad civil boliviana que sigue temas fiscales y agropecuarios (Fundación Jubileo, CIPCA, IBCE) completan las audiencias.
 
-El análisis cubre:
+El uso esperado es **diagnóstico técnico reproducible**, no plan de gobierno. Cada cifra del reporte se reconstruye desde el panel v12 (`01_data/processed/spending_panel_v12.rds`) y los scripts de `02_code/`. Los escenarios de repurposing se presentan como opciones técnicas para consideración del MEFP, no como prescripciones vinculantes (ver §2.4 y capítulo 6).
 
-- **Período**: `r YEAR_START`–`r YEAR_END` para análisis de tendencias; período más corto para análisis econométrico según disponibilidad de datos
-- **Nivel de análisis**: Nacional (serie de tiempo) y subnacional (panel de 9 departamentos)
-- **Instituciones cubiertas**: MDRyT, INIAF, SENASAG, EMAPA, BDP, INRA/Fondo Tierra, MMAyA (componente riego)
-- **Commodities PSE**: Soya, quinua, papa, maíz, trigo, arroz, ganado bovino, pollo
+## Justificación: por qué actualizar ahora
 
-Se excluyen del análisis: el sector forestal (cubierto en análisis separado del MMAyA), la pesca artesanal, y los programas de desarrollo rural integrado no específicamente agropecuarios.
+### Brecha temporal frente al APER 2011
 
-## Metodología
+El APER previo del Banco Mundial cubrió la ventana 1996–2008 [@WB2011_BoliviaAgPER]. Quince años de brecha temporal acumulan dos generaciones de datos administrativos (BOOST extendido a series anuales 1996–2024), un censo agropecuario completo en 2013 [@INE2015_Censo], y nuevas referencias internacionales sobre apoyo al sector (manual OECD–FAO actualizado [@OECD_PSE_Manual; @MAFAP2013_MethodGuideVolI], iteraciones del IDB AgriMonitor, y revisiones sistemáticas de retornos a bienes públicos agrícolas). El reporte previo no incorporó las metodologías PSE/CSE ni Data Envelopment Analysis (DEA), que hoy son estándar en revisiones de gasto sectorial comparables. La actualización es, en primer lugar, una actualización **de datos y de método** (ver §2.4).
 
-El análisis utiliza cuatro herramientas complementarias:
+### Cambios estructurales y choques entre 2011 y 2024
 
-**1. Revisión del Gasto Público (PER)**
-Siguiendo la metodología del Banco Mundial [@worldbank_per_manual], se analiza el gasto en cuatro dimensiones: nivel, composición, eficiencia y equidad. Los datos provienen principalmente del sistema BOOST Bolivia y del SIIF (Sistema Integrado de Información Financiera).
+El sector agropecuario boliviano atravesó en este intervalo tres tipos de cambio que el APER 2011 no podía observar. Primero, la Ley 393 de Servicios Financieros (2014) introdujo cuotas mínimas de cartera productiva para la banca, con efectos sobre el crédito agropecuario que el reporte documenta como un aumento ×11,7 del stock de crédito agropecuario en 2010–2024 (cifra del hallazgo F05, trazada a la serie BCB (`bcb_credito_sectorial_anual.rds`) — ver capítulo 3). La pandemia de COVID-19 (2020) produjo luego una contracción del PIB boliviano con efectos heterogéneos sobre cadenas agroalimentarias internas y exportables. A ese choque económico se sumó uno climático: la sequía de 2023, asociada al ciclo ENSO, afectó la producción andina y oriental [@IPCC2022_Ch12].
 
-**2. Producer Support Estimates (PSE)**
-Se aplica la metodología de la OCDE [@oecd_pse_manual] para cuantificar el apoyo total al productor agropecuario, incluyendo tanto las transferencias de mercado (MPS) como las transferencias presupuestales directas e indirectas.
+Estos tres cambios se reflejan en los resultados sociales y ambientales del sector que motivan el reporte. La inseguridad alimentaria moderada o severa medida por la escala FIES (FAO) pasó de 49% en el promedio 2014–2016 a 74% en el promedio 2022–2024 según la serie consolidada del panel v12 (cifra del hallazgo F06; ver capítulo 2 y figura 4.1) [@WFP2022_BoliviaACR]. La pobreza rural, que había descendido a 40% en torno a 2018, revirtió a 45% en 2024 (cifra del hallazgo F06; ver capítulo 2). La frontera agropecuaria boliviana, medida con cartografía MapBiomas y Hansen Global Forest Change, registra una expansión acumulada de 9,4 millones de hectáreas entre 1985 y 2024, con 64% concentrado en el departamento de Santa Cruz (cifra del hallazgo F08; ver capítulo 2). Estos tres indicadores (FIES, pobreza rural y frontera) constituyen la justificación material del reporte: el gasto público agropecuario opera en un sector cuyos resultados sociales y ambientales se han desplazado en direcciones que la política sectorial necesita evaluar con evidencia actualizada.
 
-**3. Data Envelopment Analysis (DEA)**
-Se estima la eficiencia técnica relativa de los departamentos bolivianos en la transformación del gasto agropecuario en resultados productivos, utilizando un modelo de panel DEA con bootstrap Simar-Wilson para intervalos de confianza estadísticamente válidos [@simar_wilson1998].
+La caja comparativa "Lo que cubrió el APER 2011 y lo que añade esta actualización" (capítulo 2) detalla el contraste analítico. El APER 2011 documentó una composición del gasto sesgada hacia gasto corriente sobre inversión [@WB2011_BoliviaAgPER]; esta actualización incorpora seis dimensiones nuevas (clasificación dual MAFAP + PSE, panel subnacional municipal, DEA Simar-Wilson, panel FE econométrico, ventana extendida a 2024 y mapeo de cobertura del suelo).
 
-**4. Análisis econométrico de panel**
-Se estiman los efectos del gasto agropecuario sobre indicadores de producción y seguridad alimentaria usando el estimador de efectos fijos de alta dimensión (`fixest`) con errores estándar clusterizados por departamento.
+## Alcance y delimitación
 
-## Fuentes de Datos
+### Qué cubre el reporte
 
-Las fuentes primarias son: BOOST Bolivia (Banco Mundial), SIIF (MEFP), FAOSTAT, WDI (Banco Mundial), OECD PSE Database, INE Bolivia y CEPALSTAT. Los detalles metodológicos y de fuentes se presentan en el Apéndice A y B.
+Cobertura sectorial. El reporte cubre el gasto público registrado en el sector agropecuario boliviano bajo dos clasificaciones complementarias (ver §2.4.5 y Apéndices C–D). En la clasificación MAFAP (FAO, 2013) [@MAFAP2013_MethodGuideVolI], el reporte distingue cinco categorías: A apoyo al productor, B apoyo al consumidor, C apoyo a otros agentes, D apoyo general al sector, y E gasto agropecuario-soporte (caminos rurales, electrificación, agua, educación y salud rurales). La cifra principal del PER se reporta en versión **narrow** (MAFAP Grupo I = A+B+C+D); la versión **full** (A+B+C+D+E) se reporta como complemento en el capítulo 3. En la clasificación OECD-PSE [@OECD_PSE_Manual], el reporte produce las cuatro métricas estándar (Total Support Estimate o TSE, Producer Support Estimate o PSE, General Services Support Estimate o GSSE, y Consumer Support Estimate o CSE) para benchmarking con la región (capítulo 5).
+
+Cobertura temporal. Ventana canónica 2008–2024 para series principales del reporte, con extensión a 2025 cuando los datos preliminares lo permiten. La ventana histórica 1990–2007 está disponible en el panel v12 y se utiliza como contexto para la caja comparativa con el APER 2011 [@WB2011_BoliviaAgPER] y para mostrar evolución de largo plazo del valor agregado agropecuario, pero **no** se utiliza como serie principal de los hallazgos cuantitativos.
+
+Cobertura institucional. El reporte cubre las entidades del sector con asignación presupuestaria registrada: Ministerio de Desarrollo Rural y Tierras (MDRyT) y entidades adscritas — Instituto Nacional de Innovación Agropecuaria y Forestal (INIAF), Servicio Nacional de Sanidad Agropecuaria e Inocuidad Alimentaria (SENASAG), Instituto Nacional de Reforma Agraria (INRA), Empresa de Apoyo a la Producción de Alimentos (EMAPA); Banco de Desarrollo Productivo (BDP); y el componente de riego del Ministerio de Medio Ambiente y Agua (MMAyA). Cubre los tres niveles de gobierno: central, departamental (9 gobernaciones) y municipal (339 municipios, panel municipal v3 cuando aplica).
+
+Cobertura geográfica subnacional. Panel subnacional v2 con cobertura completa de los 9 departamentos para 2012–2021; panel municipal v3 con cobertura de 339 municipios para 2013–2023. Los gaps de cobertura subnacional están documentados en `00_admin/ESTADO_DE_DATOS.md` y en el Apéndice A.
+
+Las nueve commodities con métricas PSE/NRP son soya, quinua, papa, maíz, trigo, arroz, caña de azúcar, ganado bovino y pollo (ver `01_constants.R`, variable `COMMODITIES_KEY`).
+
+### Qué no cubre el reporte
+
+El APER 2026, en línea con su mandato técnico y con [@WB2011_BoliviaAgPER], delimita su alcance frente a cuatro tipos de tarea que no le corresponden. En materia de mandato político y juicios sobre actores, el reporte no recomienda voto, no califica gobiernos ni evalúa actores políticos, no estima corrupción y no emite juicios sobre intención política. En materia de competencias institucionales, no sustituye al MEFP ni al MDRyT en sus funciones de política sectorial, no produce un Plan de Desarrollo Agropecuario, no audita contratos individuales, programas específicos o desempeño de funcionarios, y no impone una metodología única: propone clasificaciones y métricas que el MEFP valida, sin sustituir la consulta directa con productores, comunidades y territorios sobre prioridades sectoriales. En materia de alcance sectorial, no cubre el sector forestal (tratado en análisis separado del MMAyA), la pesca artesanal ni los programas de desarrollo rural integrado no específicamente agropecuarios. En materia de formato y nivel de detalle, no genera microsegmentación de productores ni se constituye en paper académico (no sigue estructura IMRAD ni busca contribución teórica). El reporte del consultor STC sobre PSE/Repurposing (`00_Tor/Secondary_TOR_Hector.pdf`) es producto coordinado pero distinto; la sinergia operativa se documenta en `00_admin/SINERGIA_ToR_PSE_Repurposing.md`.
+
+## Metodología — resumen
+
+Esta sección presenta las cuatro herramientas analíticas centrales del APER 2026 y la clasificación dual del gasto, en versión sintética. Las definiciones formales, las decisiones de calibración y los códigos de implementación viven en el Apéndice B (metodología detallada) y en `.agent/01_METODOLOGIA.md`.
+
+### Marco PER y adaptación boliviana
+
+El reporte se ancla en el marco estándar del Banco Mundial para Revisiones de Gasto Público (PER) aplicado al sector agropecuario: análisis del gasto en cuatro dimensiones (nivel, composición, eficiencia y equidad) sobre series administrativas oficiales. El insumo administrativo principal es BOOST Bolivia (sistematización del sistema SIGMA del MEFP), complementado con la base de Memorias de la Economía del MEFP, ejecución del VIPFE y las series sectoriales construidas por Fundación Jubileo. Para preguntas sobre subsidios cuasi-fiscales (capítulo 3), el reporte integra series del Banco Central de Bolivia (BCB) sobre cartera agropecuaria del sistema financiero y operaciones del BDP.
+
+La adaptación al caso boliviano introduce tres ajustes respecto al template PER genérico. Primero, la clasificación dual MAFAP+PSE como columna vertebral del análisis de composición (ver §2.4.5). Un segundo ajuste da tratamiento explícito al crédito subsidiado como instrumento de apoyo (capítulo 3, hallazgo F05), respondiendo al fenómeno de sustitución gasto → crédito post-Ley 393 [TODO_TRACE: documentación del cuasi-fiscal del crédito subsidiado en panel v12 — variable y método de imputación]. A esto se suma la cobertura subnacional municipal con 339 unidades, que amplía el alcance respecto al APER 2011 (limitado al nivel central y departamental).
+
+### Producer Support Estimate y Consumer Support Estimate
+
+Las métricas PSE/CSE [@OECD_PSE_Manual] cuantifican el apoyo total al sector agropecuario en términos comparables internacionalmente. El **PSE** mide las transferencias al productor desde dos fuentes: transferencias de mercado (Market Price Support, MPS, derivado del diferencial entre precio doméstico y precio de referencia internacional) y transferencias presupuestales (subsidios a insumos, pagos directos, crédito subsidiado). El **GSSE** mide el apoyo en bienes públicos al sector (I+D, sanidad, extensión, infraestructura). El **CSE** mide el apoyo neto al consumidor (incluye transferencias por subsidios al consumo). El **TSE** es la suma de los tres más transferencias a otros agentes.
+
+El reporte produce las cuatro métricas para Bolivia en 2006–2023 (panel `pse_gsse_bolivia.rds`), con series complementarias del Nominal Rate of Protection (NRP) por commodity para 1991–2024 sobre siete cultivos (`pse_nrp_extended.rds`). El benchmarking con la región usa la base AgriMonitor del BID (`idb_agrimonitor_lac_full.rds`, 10 países LAC, 1986–2024). La operacionalización metodológica está coordinada con el consultor STC de PSE/Repurposing (`.agent/21_COORDINACION_STC.md`).
+
+### Data Envelopment Analysis Simar-Wilson
+
+Sobre 81 DMUs (9 departamentos × 9 años, 2012–2020), el reporte estima la eficiencia técnica del gasto público agropecuario mediante DEA con bootstrap Simar-Wilson [@SimarWilson1998; @SimarWilson2007]. La técnica DEA produce una frontera de eficiencia no paramétrica a partir de combinaciones observadas de inputs (gasto, capital instalado) y outputs (producción, productividad, indicadores sociales) entre las unidades de decisión (DMUs). El bootstrap Simar-Wilson de doble etapa corrige el sesgo de los puntajes de eficiencia y permite construir intervalos de confianza estadísticamente válidos para la regresión en segunda etapa de los determinantes de la eficiencia.
+
+El panel correspondiente es `dea_dataset.rds` (32 variables). La especificación de inputs y outputs, las pruebas de robustez y los resultados detallados se reportan en el capítulo 5 y se documentan extensamente en el Apéndice F. El uso de Simar-Wilson como referencia metodológica para DEA en PERs agropecuarios sigue el precedente del PER África Subsahariana (FAO MAFAP 2021, Box 11) [@FAO2021_PEFoodAgricultureSSA].
+
+### Panel FE econométrico
+
+Para identificar relaciones entre gasto agropecuario y resultados (productividad, FIES, pobreza rural), el reporte estima modelos de efectos fijos de alta dimensión con la implementación `fixest` (R), errores estándar clusterizados por departamento, y especificaciones que incluyen el dummy estructural `post_ley393` (1 si año ≥ 2014, 0 en caso contrario). Las regresiones se reportan en el capítulo 5 y se detallan tabulares en el Apéndice E.
+
+Las especificaciones no buscan inferencia causal estricta. El reporte declara explícitamente que las estimaciones identifican **asociaciones condicionales** en presencia de efectos fijos de departamento y año, no efectos contrafactuales puros. Los caveats de identificación están listados en el Apéndice B.
+
+### Clasificación dual MAFAP + OECD-PSE
+
+El reporte clasifica el gasto bajo dos esquemas complementarios. **MAFAP (FAO, 2013)** [@MAFAP2013_MethodGuideVolI] estructura el gasto en cinco categorías (A–E) con sub-códigos operativos; permite distinguir gasto agricultura-específico (Grupo I = A+B+C+D, **narrow**) de gasto agropecuario-soporte (Grupo II = E, integrado en **full**). El glosario MAFAP bilingüe ES/EN está en el Apéndice C; el dataset operacional es `01_data/processed/mafap_bolivia.rds`. **OECD-PSE/BID-AgriMonitor** [@OECD_PSE_Manual] produce TSE/PSE/GSSE/CSE para benchmarking LAC. El **crosswalk operacional** entre MAFAP, OECD-PSE, COFOG (clasificación funcional internacional) y la clasificación funcional del MEFP está en el Apéndice D (`crosswalk_mafap_oecd_cofog.csv`).
+
+Cuando una recomendación de FAO MAFAP entra en tensión con OECD-PSE, el reporte adopta la siguiente regla operativa: **MAFAP prevalece para clasificación de gasto sectorial; OECD-PSE prevalece para medición de apoyo al productor** y benchmarking regional. Las decisiones específicas se documentan en ADRs metodológicos (Apéndice H).
+
+## Fuentes de datos — resumen
+
+El detalle de cada fuente, su cobertura, transformaciones y scripts de procesamiento está en el Apéndice A (`appendix/A_data_sources.qmd`). Esta sección presenta la arquitectura general.
+
+### Fuentes nacionales
+
+**BOOST Bolivia** (Banco Mundial sobre datos MEFP–SIGMA) es la fuente administrativa primaria del gasto público boliviano [TODO_TRACE: cita formal BOOST methodology paper]. Cobertura 1996–2024 a nivel de partida presupuestaria. **VIPFE** (Viceministerio de Inversión Pública y Financiamiento Externo) provee ejecución de inversión pública por sector, con cobertura desagregada por nivel de gobierno. **INE Bolivia** (Instituto Nacional de Estadística) aporta: el Censo Agropecuario 2013 [@INE2015_Censo] como base estructural de unidades productivas y tenencia de tierra; las Encuestas de Hogares (EH) anuales para pobreza y empleo rural; las series de cuentas nacionales y deflactores. **MDRyT** aporta series sectoriales propias (producción, superficie sembrada por cultivo) y memorias institucionales [TODO_TRACE: cobertura efectiva de Memorias MDRyT 2015–2023]. **BCB** (Banco Central de Bolivia) aporta cartera por destino económico del sistema financiero (crédito agropecuario por entidad y por departamento), insumo central del hallazgo F05 (capítulo 3). **Fundación Jubileo** aporta series consolidadas de gasto público sectorial 1996–2008 que el reporte usa como cross-check con BOOST en la ventana de empalme.
+
+### Fuentes internacionales
+
+**FAOSTAT** (FAO) aporta producción, rendimientos, escala FIES de inseguridad alimentaria, y prevalencia de subalimentación [@WFP2022_BoliviaACR]. **WDI** (Banco Mundial) aporta indicadores macro de contexto (valor agregado agropecuario % PIB, empleo agropecuario, exportaciones agroalimentarias, PIB per cápita, deflactor); el listado canónico vive en `WDI_INDICATORS` (`01_constants.R`). **USDA-ERS** aporta la serie TFP agropecuaria. **OECD** provee la metodología y las bases comparativas PSE [@OECD_PSE_Manual]. **BID AgriMonitor** provee PSE armonizado para 10 países LAC (`idb_agrimonitor_lac_full.rds`). **IPCC AR6** aporta el marco de evidencia climática regional, incluyendo proyecciones para los Andes tropicales y la Amazonia [@IPCC2022_Ch12]. **Banco Mundial** aporta el diagnóstico macro y de pobreza vía SCD Update 2023 [@WorldBank2021_SCDUpdate] y el diagnóstico sectorial 2021 [@WorldBank2021_TappingBolivia]. Las bases satelitales de cobertura del suelo (MapBiomas y Hansen Global Forest Change) alimentan el análisis de frontera agropecuaria del capítulo 2 (hallazgo F08).
+
+### Gaps documentados y caveats de cobertura
+
+El reporte identifica explícitamente tres tipos de gap de cobertura en sus fuentes (detalle completo en `00_admin/ESTADO_DE_DATOS.md` y en el Apéndice A). **Tier A** (cobertura sólida, panel v12 completo): gasto BOOST 1996–2024, WDI, FAOSTAT, OECD-PSE, AgriMonitor, USDA-ERS. **Tier B** (cobertura parcial, gap conocido a documentar): ejecución programática granular de MDRyT, INIAF y SENASAG; Memorias del MEFP 2015–2023; SIIF municipal con cobertura incompleta para algunos años; revenue foregone (concesiones tributarias agropecuarias y subsidio implícito del crédito BDP) no consolidado en el panel v12. **Tier C** (no cubierto en esta versión, documentado como futuro): microdatos de programas individuales del MDRyT, datos de extensión rural a nivel de productor, series de uso de agroquímicos y fertilizantes con cobertura nacional. Los gaps Tier B se marcan con sufijo `_rf` en variables del panel cuando se imputa revenue foregone, y con flag `_partial` cuando la cobertura territorial es incompleta.
+
+El reporte no oculta los gaps: cada cifra publicada lleva una declaración de incertidumbre (rango, sensibilidad a definición, dependencia de fuente) registrada en `04_HALLAZGOS.md` para los ocho hallazgos centrales del reporte (F01–F08). Cuando la cifra de una sub-sección depende de imputaciones o de cobertura Tier B, el texto lo declara en la oración correspondiente. La trazabilidad completa de cada cifra a su `rds_path`, `script_path`, `variable`, `filter`, `period` y `raw_source` se reporta capítulo por capítulo y se sintetiza en el Apéndice A.
+
+## Estructura del reporte
+
+El reporte se organiza en seis capítulos sustantivos más apéndices técnicos. El capítulo 2 (Desempeño del sector agropecuario) presenta el contexto macro, la productividad total de factores (TFP), pobreza rural y FIES, y cobertura del suelo (hallazgos F01, F06, F08). El capítulo 3 (Presupuestos e instituciones) cubre la arquitectura institucional, la evolución presupuestaria con clasificación dual MAFAP, el compromiso Maputo y la sustitución gasto → crédito post-Ley 393 (hallazgos F04, F05). El capítulo 4 (Organización del gasto) cubre la distribución entre niveles de gobierno y la heterogeneidad subnacional (hallazgo F07). El capítulo 5 (Análisis del gasto) presenta las métricas PSE/GSSE/CSE, el patrón dual NRP por commodity, la frontera DEA Simar-Wilson y las regresiones panel FE (hallazgos F02, F03). El capítulo 6 (Recomendaciones y opciones de política) sintetiza los hallazgos en escenarios técnicos de repurposing para consideración del MEFP, coordinados con el consultor STC.
+
+Los apéndices A a H proveen la base reproducible: fuentes de datos (A), metodología detallada (B), glosario MAFAP bilingüe (C), crosswalk de clasificaciones (D), tablas de regresión panel FE (E), resultados DEA Simar-Wilson (F), inventario de programas BM activos (G) y decisiones metodológicas registradas en ADRs (H).
+
+Este reporte presenta análisis técnico del gasto público agropecuario en Bolivia, producido por el Banco Mundial en diálogo con el MEFP. No constituye posición oficial del Estado Plurinacional de Bolivia. Las cifras son reproducibles desde el panel v12 y los scripts publicados; las opciones de repurposing son escenarios técnicos para consideración del MEFP, no recomendaciones vinculantes. La incertidumbre metodológica está declarada por hallazgo.
+
+<!--
+draft_status: v0.1
+written_by: aper-writer (sesión 13)
+date: 2026-05-24
+ventana_canonica: 2008-2024 (MASTER_PROMPT v0.4.0)
+pending: validación cifras contra panel v12 + auditoría citas (gate §13B)
+-->

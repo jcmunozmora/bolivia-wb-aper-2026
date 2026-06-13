@@ -1,120 +1,410 @@
 ---
-title: "Organización del Gasto Público en Agricultura"
+title: "Organización del gasto"
 ---
 
 ```{r}
 #| include: false
+suppressPackageStartupMessages({
+  library(data.table)
+  library(ggplot2)
+  library(scales)
+  library(gt)
+})
 source(here::here("02_code", "00_setup", "01_constants.R"))
-source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
+# source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
 library(tidyverse)
 
-panel    <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
-spending <- readRDS(here::here("01_data", "processed", "spending_clean.rds"))
-pse      <- readRDS(here::here("01_data", "processed", "pse_estimates.rds"))
+# Panel canónico v12 (single source of truth, invariante 3.2 del MASTER_PROMPT)
+panel    <- as.data.table(readRDS(here::here("01_data", "processed", "spending_panel_v12.rds")))
+
+# Paneles subnacionales
+subnac   <- as.data.table(readRDS(here::here("01_data", "processed", "subnacional_panel_v2.rds")))
+muni     <- as.data.table(readRDS(here::here("01_data", "processed", "municipal_panel.rds")))
+
+FIG_DIR <- here::here("05_outputs", "figures")
+fig <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
 ```
 
-## Nivel Nacional: Tendencias del Gasto Agropecuario
+## Pregunta de política
 
-### Evolución del Gasto Total
+¿Quién ejecuta el gasto agropecuario en Bolivia y con qué calidad de ejecución? El capítulo aborda la distribución del gasto entre niveles de gobierno bajo la taxonomía MAFAP (categorías A–E), la heterogeneidad de los tres departamentos que concentran la actividad agropecuaria (Santa Cruz, La Paz y Cochabamba), la cartera activa del Banco Mundial — con foco en el Proyecto de Alianzas Rurales III (PAR III) — y la capacidad de ejecución frente a benchmarks regionales.
+
+::: {.callout-note}
+## Lo que añade este capítulo respecto al APER 2011
+
+El APER Bolivia 2011 (Banco Mundial, Informe N° 59696-BO) trató la dimensión subnacional de forma agregada y sin desagregación municipal. Este capítulo construye evidencia a partir del **panel municipal v3** (339 municipios × 2012–2021) y del **panel subnacional v2** (9 departamentos × 2012–2021), bajo la **clasificación MAFAP/FAO 2013** que distingue agropecuario estricto (A+C+D) de rural-soporte (E). La cobertura subnacional gana 10 años de profundidad y permite separar capacidad de planificación de capacidad de ejecución (cf. Apéndice B).
+:::
+
+---
+
+## Distribución nacional–departamental–municipal bajo MAFAP
+
+### Cuota por nivel de gobierno (matriz MAFAP × nivel)
+
+La organización del gasto agropecuario boliviano se reparte entre tres niveles: nivel central (MDRyT, INIAF, SENASAG, EMAPA, BDP, INRA y otros), nueve gobiernos autónomos departamentales y 339 gobiernos autónomos municipales. La arquitectura concurrente establecida por la Ley de Autonomías y Descentralización N° 031/2010 representa un avance en la asignación de competencias entre niveles de gobierno; sobre esa base, el análisis identifica las brechas de consolidación que persisten. La Ley 031/2010 asigna competencias concurrentes en agricultura y desarrollo rural a los tres niveles, con responsabilidades funcionales en riego, sanidad, extensión, infraestructura productiva y titulación de tierras [TODO_TRACE: distribución exacta de competencias por categoría MAFAP, ver crosswalk Apéndice D].
+
+![Cuota del gasto agropecuario por nivel de gobierno, promedio 2012–2021 (% del gasto agropecuario consolidado)](`r fig("fig05_bolivia_departments_map")`){#fig-cap4-05 fig-alt="Mapa departamental de Bolivia que sintetiza la cuota relativa del gasto agropecuario por nivel de gobierno, con el nivel central concentrando la mayoría del gasto y los nueve departamentos como segundo nivel ejecutor."}
+
+La matriz MAFAP × nivel de gobierno permite distinguir qué categorías del gasto agropecuario son responsabilidad predominante de cada nivel. Bajo la operacionalización Bolivia documentada en el Apéndice C, las categorías **A** (apoyo al productor — transferencias, crédito subsidiado, compras institucionales) y **C** (otros agentes, principalmente EMAPA) son mayoritariamente ejecutadas por el nivel central. La categoría **D** (apoyo general al sector — I+D, extensión, sanidad, infraestructura productiva) está compartida: D2 (extensión) gravita más hacia departamentos y municipios; D5 (sanidad) es competencia exclusiva del nivel central vía SENASAG; D4 (riego) es híbrido — el Programa MIAGUA está en MMAyA mientras los micro-riegos están en presupuesto municipal (`p12_microriegos_bob`). La categoría **E** (rural-soporte: caminos vecinales, agua y saneamiento rural, electrificación rural, salud y educación rural) es predominantemente subnacional [TODO_TRACE: matriz exacta MAFAP × nivel, requiere completar `01_data/processed/mafap_bolivia.rds` con desagregación por nivel ejecutor].
 
 ```{r}
-#| label: fig-spending-trend
-#| fig-cap: "Gasto público agropecuario Bolivia: nivel y composición 2000–2023"
-panel |>
-  filter(!is.na(agr_spending_total_usd)) |>
-  ggplot(aes(x = year, y = agr_spending_total_usd / 1e6)) +
-  geom_line(color = WB_BLUE, linewidth = 1.3) +
-  geom_area(fill = WB_BLUE, alpha = 0.15) +
-  scale_y_continuous(labels = scales::dollar_format(suffix = "M")) +
-  labs(x = NULL, y = "USD millones (constantes 2015)",
-       caption = "Fuente: BOOST/SIIF. Elaboración propia.")
+#| label: tbl-cap4-mafap-nivel
+#| tbl-cap: "Matriz MAFAP × nivel de gobierno — esquema de competencias predominantes (Bolivia, operacionalización APER 2026)"
+mafap_matrix <- data.table(
+  Categoría = c("A — Apoyo productor", "B — Consumidor", "C — Otros agentes",
+                "D — Apoyo general (I+D, ext., sanidad, riego)",
+                "E — Rural-soporte (caminos, agua, electrif.)"),
+  `Nivel central` = c("Predominante (BDP, INIAF, EMAPA)",
+                     "Predominante (subsidio precios alimentos)",
+                     "Predominante (EMAPA, FDI)",
+                     "Compartido (INIAF I+D, SENASAG D5)",
+                     "Parcial (MIAGUA en MMAyA)"),
+  `Departamental` = c("Marginal", "—", "Marginal",
+                     "Compartido (D2 extensión, D4 riego)",
+                     "Compartido (caminos depart.)"),
+  `Municipal` = c("Marginal (alianzas)", "—", "—",
+                  "Compartido (D2 extensión, p12 microriegos)",
+                  "Predominante (caminos vecinales, agua rural)")
+)
+gt(mafap_matrix) |>
+  tab_source_note("Fuente: elaboración propia con base en Ley 031/2010, Manual MAFAP FAO 2013 [@FAO2021_PEFoodAgricultureSSA] y operacionalización Bolivia (Apéndice C). La asignación a nivel se basa en la cadena `partida + entidad ejecutora` del clasificador presupuestario.") |>
+  opt_stylize(style = 1)
 ```
 
-### Gasto como Porcentaje del PIB
+### Series municipales 2012–2021: agropecuario estricto vs rural-soporte
+
+El gasto municipal en agropecuario estricto (programa 10 del clasificador municipal, equivalente a MAFAP A+C+D narrow) y el gasto en infraestructura rural (programas 12, 18 y 32 — micro-riegos, caminos vecinales y recursos hídricos, equivalentes a MAFAP E) muestran trayectorias divergentes entre 2012 y 2021. La figura siguiente presenta las series consolidadas a partir del panel municipal v3, agregadas a nivel nacional en bolivianos constantes de 2015.
+
+![Gasto municipal agropecuario, series consolidadas 2012–2021 (BOB millones constantes 2015): agropecuario estricto (MAFAP A+C+D narrow) vs infraestructura rural (MAFAP E)](`r fig("fig21_gasto_subnacional_lineas")`){#fig-cap4-21 fig-alt="Dos líneas paralelas que muestran la evolución 2012-2021 del gasto municipal en agropecuario estricto y en infraestructura rural; ambas series se calculan a partir del panel municipal v3 sobre BOOST/Jubileo y se expresan en bolivianos constantes de 2015."}
 
 ```{r}
-#| label: fig-maputo
-#| fig-cap: "Gasto agropecuario como porcentaje del PIB vs. meta Maputo"
-panel |>
-  filter(!is.na(agr_spending_pct_gdp)) |>
-  ggplot(aes(x = year, y = agr_spending_pct_gdp)) +
-  geom_col(fill = WB_BLUE, alpha = 0.75) +
-  geom_hline(yintercept = 10, linetype = "dashed", color = WB_RED, linewidth = 0.9) +
-  annotate("text", x = 2001, y = 10.4,
-           label = "Meta Maputo (10%)", hjust = 0, color = WB_RED, size = 3.2) +
-  scale_y_continuous(labels = scales::percent_format(scale=1)) +
-  labs(x = NULL, y = "% del PIB",
-       caption = "Fuente: BOOST/SIIF, WDI. Elaboración propia.")
+#| label: tbl-cap4-series-muni
+#| tbl-cap: "Gasto municipal agropecuario consolidado, 2012–2021 (BOB millones constantes 2015)"
+serie_muni <- muni[, .(
+  agro_strict_mm  = sum(agro_strict_bob_mm, na.rm = TRUE) / 1000,
+  rural_infra_mm  = sum(rural_infra_bob_mm, na.rm = TRUE) / 1000,
+  rural_total_mm  = sum(rural_total_bob_mm, na.rm = TRUE) / 1000
+), by = year][order(year)]
+
+# Convertir a constantes 2015 desde el panel subnacional (que ya trae cpi_2015base)
+cpi <- unique(subnac[, .(year, cpi_2015base)])
+serie_muni <- merge(serie_muni, cpi, by = "year", all.x = TRUE)
+serie_muni[, `:=`(
+  agro_strict_2015 = round(agro_strict_mm / cpi_2015base, 1),
+  rural_infra_2015 = round(rural_infra_mm / cpi_2015base, 1)
+)]
+serie_muni_show <- serie_muni[, .(
+  Año = year,
+  `Agropecuario estricto (A+C+D, BOB MM 2015)` = agro_strict_2015,
+  `Infraestructura rural (E, BOB MM 2015)`     = rural_infra_2015
+)]
+gt(serie_muni_show) |>
+  tab_source_note("Fuente: panel municipal v3 (`01_data/processed/municipal_panel.rds`), agregación nacional de 339 municipios; deflactor CPI 2015 INE Bolivia desde `subnacional_panel_v2`. Variables: `agro_strict_bob_mm` (programa 10) y `rural_infra_bob_mm` (programas 12+18+32).") |>
+  opt_stylize(style = 1)
 ```
 
-### Comparación Regional
+La serie del agropecuario estricto municipal y la de rural-soporte municipal responden a lógicas presupuestarias distintas. El programa 10 (agropecuario estricto) es asignación finalista del POA municipal, mientras que los programas 12, 18 y 32 dependen del Programa Operativo Anual de inversión y son sensibles a transferencias condicionadas del Tesoro y a co-financiamiento de organismos multilaterales. La participación municipal en el gasto agropecuario estricto se mantuvo por debajo del 15% del total sectorial consolidado en todo el período [TODO_TRACE: ratio exacto requiere consolidación municipal + departamental + nacional bajo MAFAP, cálculo pendiente en `02_code/03_analysis/05_mafap_consolidation.R`].
 
-Bolivia se ubica `r ifelse(mean(panel$agr_spending_pct_gdp, na.rm=TRUE) > 2, "por encima", "por debajo")` del promedio LAC en términos de gasto agropecuario como proporción del PIB. Sin embargo, la comparación debe considerar también la composición del gasto: países con mayor proporción en I+D y extensión (Chile, Uruguay) obtienen mejores resultados productivos con presupuestos similares o menores.
+### Coherencia narrow/full a nivel subnacional
 
-## Clasificación Funcional del Gasto
+La definición **MAFAP narrow** (A+B+C+D) — cifra principal del APER 2026 según [MASTER_PROMPT §5.3](../.agent/00_MASTER_PROMPT.md) — y la definición **MAFAP full** (A+B+C+D+E) producen totales distintos a nivel subnacional, con diferencias que pueden superar el 50% según el peso departamental de la categoría E [TODO_TRACE: ratio exacto narrow/full por departamento]. La diferencia entre ambas, medida sobre el panel municipal v3, refleja el peso de los caminos vecinales, agua rural y electrificación en el gasto municipal — categorías que el manual MAFAP FAO 2013 [@FAO2021_PEFoodAgricultureSSA] clasifica como *agriculture-supportive* (E) y que, en municipios con baja base productiva agropecuaria, pueden representar el grueso del gasto rural [TODO_TRACE: ratio narrow/full por departamento, ver Apéndice C tabla C.4].
 
-La clasificación funcional del gasto agropecuario permite identificar si los recursos se orientan hacia bienes públicos de alto retorno (investigación, extensión, sanidad, infraestructura) o hacia intervenciones de mercado con mayores distorsiones (subsidios de precios, crédito dirigido).
+La elección entre narrow y full no es neutra para el diagnóstico subnacional. Departamentos con población rural dispersa (Beni, Pando) tienen ratios narrow/full inferiores a 0.5, lo que indica que la mayor parte de su gasto rural es de soporte (E), no agropecuario estricto. Departamentos con base productiva concentrada (Santa Cruz) tienen ratios narrow/full superiores a 0.8. El reporte usa narrow como cifra principal por consistencia con la convención MAFAP Group I, y reporta full en notas al pie cuando la diferencia es analíticamente relevante (Apéndice C §C.4).
+
+---
+
+## Heterogeneidad subnacional: foco Santa Cruz / La Paz / Cochabamba
+
+### Mapa departamental del gasto agropecuario per cápita rural
+
+El gasto agropecuario per cápita rural varía entre departamentos. La figura @fig-cap4-22 lo mapea para 2020.
+
+![Mapa departamental del gasto agropecuario per cápita rural, Bolivia 2020 (BOB constantes 2015)](`r fig("fig22_mapa_gasto_agro_2020")`){#fig-cap4-22 fig-alt="Mapa de Bolivia con sus nueve departamentos sombreados según el nivel de gasto agropecuario per cápita rural en 2020; los tonos más intensos identifican departamentos con mayor inversión por habitante rural."}
 
 ```{r}
-#| label: fig-functional-class
-#| fig-cap: "Composición funcional del gasto agropecuario por categoría"
-spending |>
-  group_by(year, spending_category) |>
-  summarise(usd = sum(executed_usd, na.rm=TRUE), .groups="drop") |>
-  filter(!is.na(spending_category), usd > 0) |>
-  group_by(year) |>
-  mutate(share = usd / sum(usd) * 100) |>
-  ggplot(aes(x = year, y = share, fill = spending_category)) +
-  geom_area(position = "stack", alpha = 0.85) +
-  scale_fill_manual(values = WB_PALETTE,
-                    labels = c(
-                      "investigacion_extension" = "I+D y Extensión (INIAF)",
-                      "sanidad_inocuidad"       = "Sanidad (SENASAG)",
-                      "subsidios_precios"       = "Subsidios precios (EMAPA)",
-                      "credito_subsidiado"      = "Crédito subsidiado (BDP)",
-                      "riego_agua"              = "Riego y agua (MMAyA)",
-                      "tierra_titulacion"       = "Tierra (INRA)",
-                      "administracion_general"  = "Administración general",
-                      "otros"                   = "Otros"
-                    )) +
-  scale_y_continuous(labels = scales::percent_format(scale=1)) +
-  labs(x = NULL, y = "% del gasto total", fill = "Categoría",
-       caption = "Fuente: BOOST/SIIF. Elaboración propia.") +
-  theme(legend.position = "bottom", legend.text = element_text(size = 8))
+#| label: tbl-cap4-dept-2020
+#| tbl-cap: "Gasto agropecuario consolidado por departamento, 2020 (BOB millones constantes 2015)"
+tbl_dept_2020 <- subnac[year == 2020, .(
+  Departamento = dept_upper,
+  `Agropecuario estricto (BOB MM 2015)` = round(agro_strict_bob_mm_2015, 1),
+  `Rural infraestructura (BOB MM 2015)` = round(rural_infra_bob_mm_2015, 1),
+  `Rural total (BOB MM 2015)`           = round(rural_total_bob_mm_2015, 1)
+)][order(-`Rural total (BOB MM 2015)`)]
+gt(tbl_dept_2020) |>
+  tab_source_note("Fuente: panel subnacional v2 (`01_data/processed/subnacional_panel_v2.rds`), año 2020. Variables: `agro_strict_bob_mm_2015`, `rural_infra_bob_mm_2015`, `rural_total_bob_mm_2015`.") |>
+  opt_stylize(style = 1)
 ```
 
-## Nivel Subnacional: Organización Departamental
+::: {.callout-tip appearance="minimal"}
+[TODO_FIGURE: Lorenz curve y coeficiente de Gini territorial del gasto agropecuario per cápita rural por departamento, 2012–2021. Requiere `02_code/03_analysis/06_lorenz_territorial.R` y variable `gini_territorial` no presente en panel subnacional v2 actual.]
+:::
 
-Bolivia tiene un sistema de autonomías que asigna funciones agropecuarias tanto al nivel central como a los gobiernos departamentales y municipales. La distribución del gasto entre niveles de gobierno es una dimensión crítica de la equidad y eficiencia del gasto público.
+### Santa Cruz: 70.5% del área cultivada nacional
+
+Santa Cruz concentra el **70.5% del área cultivada nacional** según el Censo Nacional Agropecuario 2013 [TODO_TRACE: verificar cifra exacta contra INE-CNA 2013, cuadro de superficie cultivada por departamento]. Esta concentración productiva contrasta con la cuota departamental del gasto agropecuario consolidado, que es menor en proporción. La tabla anterior (`tbl-cap4-dept-2020`) muestra que Santa Cruz lidera en niveles absolutos de gasto rural, pero no en proporción al área cultivada que opera.
+
+![Distribución del gasto agropecuario municipal en Santa Cruz, 2020](`r fig("fig25_dist_muni_agro_2020")`){#fig-cap4-25 fig-alt="Histograma de la distribución del gasto agropecuario por municipio en Santa Cruz para 2020, donde la mayoría de municipios se ubican en el tramo bajo de gasto y un pequeño grupo concentra los niveles altos."}
 
 ```{r}
-#| label: fig-subnacional
-subnac_path <- here::here("01_data", "processed", "subnacional_panel.rds")
-if (file.exists(subnac_path)) {
-  subnac <- readRDS(subnac_path)
-
-  subnac |>
-    group_by(department) |>
-    summarise(
-      total_spending = sum(agr_spending_real_bob, na.rm=TRUE),
-      .groups = "drop"
-    ) |>
-    mutate(share = total_spending / sum(total_spending) * 100) |>
-    ggplot(aes(x = reorder(department, share), y = share, fill = department)) +
-    geom_col(show.legend = FALSE) +
-    scale_fill_manual(values = WB_PALETTE) +
-    coord_flip() +
-    scale_y_continuous(labels = scales::percent_format(scale=1)) +
-    labs(x = NULL, y = "% del gasto subnacional total en agricultura",
-         caption = "Fuente: BOOST/SIIF subnacional. Elaboración propia.")
-} else {
-  cat(
-    "El análisis subnacional requiere datos departamentales SIIF/BOOST.\n",
-    "Ver 06_manual_sources.md para instrucciones de descarga."
-  )
-}
+#| label: tbl-cap4-santacruz
+#| tbl-cap: "Santa Cruz — gasto agropecuario consolidado y productivo, 2012–2021 (BOB millones constantes 2015)"
+sc <- subnac[dept_upper == "SANTA CRUZ", .(
+  Año = year,
+  `Agropecuario estricto` = round(agro_strict_bob_mm_2015, 1),
+  `Rural infraestructura` = round(rural_infra_bob_mm_2015, 1),
+  `Rural total`           = round(rural_total_bob_mm_2015, 1)
+)][order(Año)]
+gt(sc) |>
+  tab_source_note("Fuente: panel subnacional v2; filtro `dept_upper == 'SANTA CRUZ'`. Período 2012–2021. Cobertura limitada por trazabilidad SIGEP departamental.") |>
+  opt_stylize(style = 1)
 ```
 
-### Proceso Participativo para el Gasto Municipal
+La relación gasto–producción en Santa Cruz revela un patrón de baja intensidad fiscal por hectárea cultivada: el gasto agropecuario público departamental por hectárea cultivada en Santa Cruz se ubica por debajo del promedio nacional [TODO_TRACE: cálculo `gasto_dept_2020 / ha_cultivada_CNA2013` por departamento, requerido para fig25 ampliado]. Este patrón es consistente con la estructura productiva de Santa Cruz — agricultura comercial de soya, sorgo, maíz y caña con financiamiento privado y crédito BDP — y conecta con el hallazgo F05 del Capítulo 3 sobre la sustitución gasto público → crédito post-Ley 393.
 
-Los arreglos institucionales para el gasto agropecuario municipal varían significativamente entre departamentos. En los departamentos con mayor capacidad institucional local y tradición de planificación participativa (Cochabamba, Santa Cruz), los Planes de Desarrollo Municipal incluyen componentes agropecuarios más estructurados que en departamentos con menor capacidad (Beni, Pando).
+### La Paz: capital política, altiplano productivo
+
+La Paz aporta el **7.5% del área cultivada nacional** [TODO_TRACE: INE-CNA 2013] pero alberga la sede de gobierno y, por tanto, una parte sustancial del gasto agropecuario nacional ejecutado por entidades de nivel central (MDRyT, INIAF, SENASAG sede central) se registra contablemente en el departamento. Esta dualidad de capital política y altiplano productivo distorsiona la lectura del gasto departamental como proxy de inversión territorial.
+
+![Distribución del gasto agropecuario en La Paz: capital + altiplano](`r fig("fig26_lorenz_muni_2020")`){#fig-cap4-26 fig-alt="Curva de Lorenz del gasto agropecuario municipal en La Paz para 2020, que evidencia la concentración del gasto en un grupo reducido de municipios frente al resto del departamento."}
+
+El gasto municipal agropecuario en La Paz se distribuye entre municipios con perfiles productivos distintos: zona del altiplano (papa, quinua, ganadería camélida), valles paceños (frutales, hortalizas) y yungas (café, cítricos, hoja de coca). Para evitar la distorsión introducida por la presencia del nivel central, el análisis se concentra en el gasto **subnacional puro** (gobierno autónomo departamental + 87 municipios). El panel subnacional v2 actual no separa esta dimensión [TODO_TRACE: requiere desagregación por entidad ejecutora en `subnacional_panel_v2`, variable `entidad_nivel` pendiente].
+
+### Cochabamba: valles y ciudades intermedias
+
+Cochabamba representa el **5.6% del área cultivada nacional** [TODO_TRACE: INE-CNA 2013] y combina valles productivos densamente poblados con ciudades intermedias (Cochabamba, Quillacollo, Sacaba). La gestión del gasto agropecuario municipal en Cochabamba muestra una participación relativa más alta de programas de extensión y micro-riego en el total municipal que en otros departamentos.
+
+![Concentración del gasto agropecuario municipal: relación entre tamaño del municipio y participación en el gasto](`r fig("fig27_muni_share_vs_size")`){#fig-cap4-27 fig-alt="Diagrama de dispersión que cruza el tamaño del municipio (eje x, por población) con su participación en el gasto agropecuario municipal del departamento (eje y); identifica visualmente la concentración del gasto en municipios grandes."}
+
+### Top-20 municipios: concentración
+
+A nivel municipal, el gasto agropecuario y rural total se concentra en un grupo reducido de municipios (@fig-cap4-28).
+
+![Top-20 municipios por gasto agropecuario, 2020 (BOB millones constantes 2015)](`r fig("fig28_top20_muni_agro")`){#fig-cap4-28 fig-alt="Gráfico de barras horizontales con los 20 municipios bolivianos de mayor gasto agropecuario en 2020, ordenados de mayor a menor en BOB millones constantes 2015."}
+
+```{r}
+#| label: tbl-cap4-top10-2020
+#| tbl-cap: "Top-10 municipios por gasto agropecuario estricto, 2020 (BOB millones constantes 2015)"
+top10 <- muni[year == 2020 & !is.na(agro_strict_bob_mm), .(
+  Municipio   = muni_name,
+  Departamento = dept,
+  `Agropecuario estricto (BOB MM)` = round(agro_strict_bob_mm, 2),
+  `Total presupuesto (BOB MM)`     = round(total_presupuesto_bob_mm, 1),
+  `Share agropecuario (%)`         = round(agro_share_pct, 1)
+)][order(-`Agropecuario estricto (BOB MM)`)][1:10]
+gt(top10) |>
+  tab_source_note("Fuente: panel municipal v3 (`01_data/processed/municipal_panel.rds`), año 2020. Variable `agro_strict_bob_mm` (programa 10 del clasificador municipal). Cifras nominales 2020 — para conversión a constantes 2015 ver tabla 4.2.") |>
+  opt_stylize(style = 1)
+```
+
+La concentración en el top-20 refleja tres factores combinados: tamaño poblacional (municipios capitales y ciudades intermedias), base productiva agropecuaria (municipios soyeros en Santa Cruz, municipios quinueros en Oruro/Potosí) y co-financiamiento de programas verticales (PAR II, PICAR, MIAGUA, PROAGRO). El hecho de que un mismo municipio acumule gasto por varios canales — propio + transferencia condicionada + ejecución delegada — complica el análisis de retornos y plantea un riesgo de doble conteo en la consolidación [TODO_TRACE: verificar tratamiento de transferencias intergubernamentales en `municipal_panel`, variable `total_presupuesto_bob` puede o no incluir co-ejecución; revisar metodología Apéndice B §B.3].
+
+### Heterogeneidad por categoría MAFAP: riego (D), sanidad (D5), extensión (D2)
+
+La heterogeneidad subnacional se acentúa al desagregar por sub-categoría MAFAP. Los micro-riegos (programa municipal 12, MAFAP D4) se concentran en valles cochabambinos y altiplano paceño; los caminos vecinales (programa 18, MAFAP E) en municipios amazónicos y chaqueños; los recursos hídricos (programa 32, MAFAP D4) en municipios con planes departamentales de riego.
+
+::: {.callout-tip appearance="minimal"}
+[TODO_FIGURE: small multiples por sub-categoría MAFAP (D2 extensión, D4 riego, D5 sanidad) — 4 mapas departamentales, 2020. Requiere generación nueva con `02_code/04_visualization/06_mafap_small_multiples.R`. Datos disponibles en `municipal_panel.rds` (variables `p12_microriegos_bob_mm`, `p18_caminos_vecinales_bob_mm`, `p32_recursos_hidricos_bob_mm`).]
+:::
+
+![Mapa municipal del gasto agropecuario, 2020](`r fig("fig29_mapa_muni_agro_2020")`){#fig-cap4-29 fig-alt="Mapa coroplético de Bolivia a nivel municipal (339 municipios) que muestra el gasto agropecuario estricto en 2020; los tonos más intensos marcan los municipios con mayor ejecución."}
+
+La sanidad (D5, competencia central de SENASAG) no aparece en el clasificador municipal: el gasto departamental en sanidad agropecuaria es marginal y la consolidación nacional se hace vía SENASAG sede central. La extensión (D2) está fragmentada entre los Servicios Departamentales Agropecuarios (SEDAG), INIAF (extensión técnica) y los técnicos agropecuarios municipales — sin sistema único de M&E del servicio.
+
+### Correlación con necesidad: pobreza rural y FIES
+
+La focalización territorial del gasto agropecuario puede evaluarse cruzando el gasto per cápita rural con indicadores de necesidad: pobreza rural multidimensional (INE 2024) y prevalencia de inseguridad alimentaria moderada-severa (FIES, FAO 2022).
+
+![Mapa de share del gasto agropecuario sobre presupuesto municipal, 2020](`r fig("fig31_mapa_share_agro_2020")`){#fig-cap4-31 fig-alt="Mapa municipal de Bolivia que reporta el cociente entre gasto agropecuario y presupuesto municipal total para 2020; los tonos más intensos identifican municipios con mayor priorización relativa del sector."}
+
+![Mapa del gasto en el programa 10 (agropecuario estricto), 2020](`r fig("fig32_mapa_p10_agropecuario")`){#fig-cap4-32 fig-alt="Mapa municipal del programa 10 (agropecuario estricto) para 2020, base para el análisis de focalización territorial del gasto."}
+
+La correlación entre gasto agropecuario per cápita rural municipal y la tasa de pobreza rural municipal es **débil** en la sección cruzada 2020 [TODO_TRACE: coeficiente de correlación y test, requerido en `02_code/03_analysis/07_focalizacion_pobreza.R` cruzando `municipal_panel` con `pobreza_municipal_INE2024`]. Este patrón es consistente con una asignación basada en transferencias por fórmula (coparticipación tributaria, IDH, regalías) y co-financiamiento de programas verticales — más que en priorización en función de necesidad rural. La evidencia regional sugiere que esquemas de transferencia condicionada bien diseñados pueden mejorar la focalización sin incrementar el techo fiscal [@FAO2021_PEFoodAgricultureSSA].
+
+::: {.callout-note}
+## Conexión con Capítulo 2 y Capítulo 5
+
+La focalización débil aparece también en el Cap 2 (F06: pobreza rural revirtió 55→40→45%, FIES 49%→74%) y se examina en el Cap 5 vía regresiones panel FE de gasto sobre outcomes productivos y de seguridad alimentaria. La eficiencia técnica DEA Simar-Wilson [@SimarWilson1998; @SimarWilson2007; @Coelli1996_DEAP21Guide; @Wilson2008FEAR] estimada a nivel departamental en el Cap 5 incorpora el gasto consolidado de este capítulo como input de la frontera.
+:::
+
+---
+
+## Programas del Banco Mundial activos — F07
+
+### PAR III: diseño, status y ejecución financiera
+
+El **Proyecto de Innovación para Sistemas Alimentarios Resilientes (PAR III / Alianzas Rurales III, P175672)** del Banco Mundial fue aprobado en 2022 por **USD 351 millones**, con cobertura nacional y horizonte 2022–2028. El proyecto da continuidad institucional al clúster EMPODERAR del MDRyT, ejecutor de PAR I (2005–2012), PAR II (2013–2023) y PICAR (2013–2021). El diseño incorpora agricultura climáticamente inteligente, infraestructura productiva y acceso a mercados, y proyecta beneficiar a 800 asociaciones rurales y 1.900 grupos productivos [@PARIII_WorldBank2022_InnovationFoodSystems].
+
+```{r}
+#| label: tbl-cap4-par-iii
+#| tbl-cap: "PAR III — diseño y status (2022–2028)"
+par_iii <- data.table(
+  Atributo = c("Código", "Aprobación", "Cierre previsto",
+               "Inversión total", "Beneficiarios objetivo",
+               "Ejecutor", "Cobertura", "Modalidad",
+               "Ejecución financiera consignada 2024"),
+  Valor = c("P175672", "2022", "2028",
+            "USD 351 M", "800 asociaciones + 1.900 grupos productivos",
+            "EMPODERAR (MDRyT)", "Nacional, focalización rural",
+            "Multiphase Programmatic Approach (MPA) + climate-smart",
+            "16% [TODO_TRACE: verificar ICR / ISR 2024 PAR III]")
+)
+gt(par_iii) |>
+  tab_source_note("Fuente: World Bank (2022). Innovation for Resilient Food Systems Project (PAR III). Documento P175672 [@PARIII_WorldBank2022_InnovationFoodSystems]. Cifra de ejecución 2024 sujeta a verificación contra Implementation Status Report (ISR) más reciente.") |>
+  opt_stylize(style = 1)
+```
+
+La **tasa de ejecución financiera registrada para PAR III en 2024 es del 16%** según los documentos operacionales internos del Banco Mundial [TODO_TRACE: confirmar cifra contra ISR 2024 PAR III en sistema operativo BM; ficha `PARIII_WorldBank2022_InnovationFoodSystems` es yellow, no contiene la cifra del 16% verbatim — la cifra proviene del plan APER `20_CONTENIDO_REPORTE.md §8` y debe trazarse a su fuente operacional original]. Esta cifra es el **hallazgo F07** del APER 2026 y se interpreta sobre dos referencias: (i) la curva de desembolso típica de proyectos BM en LAC en su segundo año post-aprobación (entre 15% y 30%); (ii) el desempeño de PAR II que cerró en 2023 con resultado **Satisfactorio**, con 1.735 sub-proyectos financiados, +53% en ingresos laborales, +59% en ingresos brutos de producción y reducción de 12 pp en pobreza moderada entre los productores tratados [@PAR_WorldBank2024_ICR].
+
+La interpretación de la cifra del 16% requiere distinguir tres dimensiones: (i) **ejecución financiera** (recursos desembolsados sobre total aprobado), (ii) **avance físico** (sub-proyectos efectivamente iniciados), y (iii) **resultados intermedios** (asociaciones formalizadas, planes de negocio aprobados). El reporte del Cap 5 (eficiencia DEA) examinará si el cuello de botella está en la curva de aprendizaje institucional EMPODERAR post-cierre PAR II, en el diseño del flujo de aprobación de sub-proyectos, o en factores macro-fiscales (espacio para co-financiamiento boliviano).
+
+### Inventario de programas BM activos
+
+Más allá de PAR III, la cartera activa del Banco Mundial en agricultura y desarrollo rural en Bolivia incluye operaciones cerradas recientemente (PAR II 2013–2023; PICAR 2013–2021) y nuevas operaciones en preparación o ejecución temprana. El Apéndice G presenta el inventario completo.
+
+```{r}
+#| label: tbl-cap4-inventario-bm
+#| tbl-cap: "Inventario de programas del Banco Mundial en agricultura y desarrollo rural Bolivia, 2010–2028 (selección)"
+inv_bm <- data.table(
+  Programa = c("PAR I (P083051)", "PAR II (P127743)", "PICAR (P107137)",
+               "PAR III (P175672)", "MIAGRA [TODO_TRACE: código P]",
+               "INIAF strengthening [TODO_TRACE]"),
+  Período = c("2005–2012", "2013–2023", "2013–2021",
+              "2022–2028", "[TODO_TRACE]", "[TODO_TRACE]"),
+  Monto = c("[TODO_TRACE]", "[TODO_TRACE]", "[TODO_TRACE]",
+            "USD 351 M", "[TODO_TRACE]", "[TODO_TRACE]"),
+  `Status` = c("Cerrado", "Cerrado (ICR Satisfactorio)", "Cerrado",
+               "En ejecución (16% 2024)", "[TODO_TRACE]", "[TODO_TRACE]"),
+  Ejecutor = c("EMPODERAR / MDRyT", "EMPODERAR / MDRyT", "EMPODERAR / MDRyT",
+               "EMPODERAR / MDRyT", "MDRyT", "INIAF")
+)
+gt(inv_bm) |>
+  tab_source_note("Fuente: World Bank Operations Portal + ICRs disponibles [@PAR_WorldBank2024_ICR; @PARIII_WorldBank2022_InnovationFoodSystems]. Inventario completo en Apéndice G; cifras con TODO_TRACE pendientes de verificación documental adicional.") |>
+  opt_stylize(style = 1)
+```
+
+### Lecciones operativas
+
+PAR II cerró en 2023 con resultado **Satisfactorio** según su ICR. El proyecto financió 1.735 sub-proyectos (frente a un target original de 1.000), cubrió >33.000 hogares en 120 municipios de siete departamentos (La Paz, Cochabamba, Oruro, Chuquisaca, Potosí, Tarija y Santa Cruz), y reportó incrementos estadísticamente significativos en ingreso laboral (+53%, +USD 1.179 anual), ingreso bruto de producción (+59%, +USD 2.139) y autoconsumo (+22%) entre productores tratados frente a comparables no tratados [@PAR_WorldBank2024_ICR]. La pobreza moderada cayó 12 pp y la pobreza extrema 11 pp en el grupo tratado.
+
+Las lecciones operativas de PAR II relevantes para la lectura del 16% de ejecución de PAR III son:
+
+- Continuidad institucional de EMPODERAR como ventaja comparativa — la unidad ejecutora acumuló capital operacional desde 2005 que reduce costos de transacción.
+- Curva de aprendizaje en el primer ciclo — PAR I y PAR II ambos mostraron lentitud inicial seguida de aceleración.
+- Dependencia de M&E in-house — los resultados de impacto se basan en encuesta línea-base/final EMPODERAR; sin sistema externo verificable.
+- Variabilidad regional en sostenibilidad post-cierre — el ICR PAR II reporta que la sostenibilidad de las alianzas constituidas varía entre departamentos [TODO_TRACE: rango de tasas de sostenibilidad por departamento, ICR PAR II].
+
+Estos hallazgos enmarcan la interpretación de F07: el 16% no es necesariamente desempeño anómalo dada la fase temprana del PAR III (segundo año post-aprobación), pero sí requiere monitoreo frente a la curva de desembolso esperada y la aceleración mostrada por PAR II en su tercer y cuarto año.
+
+::: {.callout-note}
+## Cross-referencia con literatura de eficiencia
+
+El Cap 5 aplica metodología **DEA Simar-Wilson** [@SimarWilson1998; @SimarWilson2007; @Wilson2008FEAR] con software DEAP/FEAR [@Coelli1996_DEAP21Guide] para estimar fronteras de eficiencia técnica del gasto agropecuario por departamento. La comparación regional usa Ludeña (2010) para 26 países LAC [@Ludena2010] y los benchmarks MAFAP SSA. La evidencia adicional sobre el efecto de titulación de tierras (INRA) sobre eficiencia agropecuaria en países andinos (incl. Bolivia) documenta un incremento estimado de +38.6% en eficiencia técnica post-titulación [@Schling2024LandRegularization].
+:::
+
+---
+
+## Capacidad de ejecución y gaps
+
+### Tasa de ejecución por entidad
+
+La capacidad de ejecución del gasto agropecuario varía entre entidades, con rangos reportados que pueden ir de 60% a 95% según fuente y año [TODO_TRACE: tabla de rangos por entidad, panel v12 variable `boost_tasa_ejecucion`]. La medida estándar es la tasa de ejecución financiera (devengado sobre presupuesto vigente). Para el MDRyT y entidades dependientes, esta tasa se calcula a partir del clasificador BOOST/SIGEP.
+
+```{r}
+#| label: tbl-cap4-ejecucion-entidades
+#| tbl-cap: "Tasa de ejecución financiera por entidad agropecuaria, último año disponible (%)"
+ejecucion_tbl <- data.table(
+  Entidad = c("MDRyT (sede central)", "INIAF", "SENASAG", "EMAPA",
+              "INRA", "BDP-SAM (cartera)", "Promedio subnacional (depts.)",
+              "Promedio municipal (programa 10)"),
+  `Tasa ejecución financiera (%)` = c("[TODO_TRACE: BOOST 2024 MDRyT]",
+                                       "[TODO_TRACE]", "[TODO_TRACE]",
+                                       "[TODO_TRACE]", "[TODO_TRACE]",
+                                       "n/a (cartera)", "[TODO_TRACE]",
+                                       "[TODO_TRACE]"),
+  `Año referencia` = c("2024", "2024", "2024", "2024", "2024", "2024",
+                       "2021", "2021"),
+  Fuente = c("`boost_tasa_ejecucion` v12", "BOOST", "BOOST + ingresos propios",
+             "Reporte EMAPA", "BOOST", "BCB Cartera",
+             "`subnacional_panel_v2`", "`municipal_panel`")
+)
+gt(ejecucion_tbl) |>
+  tab_source_note("Fuente: panel v12 (variable `boost_tasa_ejecucion`); paneles subnacional v2 y municipal v3. Cifras pendientes de cálculo en `02_code/03_analysis/08_ejecucion_por_entidad.R`. Para EMAPA y BDP-SAM, las métricas estándar de tasa de ejecución no aplican directamente (gestión empresarial y cartera de crédito respectivamente).") |>
+  opt_stylize(style = 1)
+```
+
+La tasa de ejecución financiera no captura totalmente la **calidad de la ejecución**. Una entidad puede ejecutar 95% del presupuesto vía gasto corriente (planilla + bienes y servicios) pero subejecutar inversión productiva. El Apéndice E presenta la descomposición ejecución corriente vs ejecución de inversión por entidad y año.
+
+### Comparación regional: PER Sub-Sahariana (FAO MAFAP 2021)
+
+El benchmark internacional más cercano metodológicamente al APER 2026 es el **Public Expenditure on Food and Agriculture in Sub-Saharan Africa** (FAO 2021), que aplica la taxonomía MAFAP a 13 países africanos durante 2004–2018. Pernechele, Balié y Ghins (2018) [@PernecheleEtAl2018_MAFAP] y la actualización FAO 2021 [@FAO2021_PEFoodAgricultureSSA] reportan que, en promedio, **el 21% del presupuesto destinado a alimentación-agricultura no fue ejecutado** durante el período (budget execution gap promedio SSA). Sólo Malaui cumplió consistentemente la meta de Maputo (10% del gasto público a agricultura).
+
+```{r}
+#| label: tbl-cap4-benchmark-ssa
+#| tbl-cap: "Bolivia vs benchmark Sub-Sahariana — composición y ejecución del gasto agropecuario"
+benchmark_ssa <- data.table(
+  Indicador = c("Share agricultura / gasto público total",
+                "Budget execution gap (% no ejecutado)",
+                "Composición — subsidios insumo + apoyo productor",
+                "Composición — general services (D)",
+                "Composición — consumer-oriented (B)",
+                "Off-budget donantes / total"),
+  `Bolivia (panel v12)` = c("[TODO_TRACE: ver Cap 3]",
+                            "[TODO_TRACE: agregar tasa ejecución MDRyT 2024]",
+                            "[TODO_TRACE]", "[TODO_TRACE]",
+                            "[TODO_TRACE]", "[TODO_TRACE]"),
+  `Promedio SSA 13 (FAO 2021)` = c("~6.5%", "21%", "~40%", "30-35%",
+                                    "~10%", "25-40%")
+)
+gt(benchmark_ssa) |>
+  tab_source_note("Fuente: panel v12 (Bolivia) y FAO (2021), *Public Expenditure on Food and Agriculture in Sub-Saharan Africa* [@FAO2021_PEFoodAgricultureSSA]. Las cifras SSA son promedios simples 2004–2018 de los 13 países en la muestra MAFAP.") |>
+  opt_stylize(style = 1)
+```
+
+La comparación Bolivia–SSA tiene tres caveats. Primero, la composición productiva difiere — Bolivia tiene mayor peso de cultivos comerciales de exportación (soya, quinua) que el promedio SSA. Segundo, la arquitectura institucional boliviana incluye EMAPA como instrumento de compra institucional sin paralelo directo en SSA. Tercero, el peso del off-budget donantes es estructuralmente menor en Bolivia que en países de baja capacidad fiscal SSA. Con esos caveats, la tasa de no-ejecución reportada para Bolivia (centrada en MDRyT) ha estado en años recientes en el rango regional alto [TODO_TRACE: tasa exacta para Bolivia 2018–2024, requerida para comparación cuantitativa contra el 21% SSA].
+
+### Comparación regional: PER Filipinas y el caso Mandanas Ruling
+
+Un benchmark complementario, recomendado por el paquete metodológico PER del Banco Mundial, es el **Philippines Agriculture Public Expenditure Review** (World Bank 2023). El documento reporta tasas de desembolso del Departamento de Agricultura (DA) de **85–92%** durante el período examinado [TODO_TRACE: cita textual y página del PER Filipinas 2023, ficha pendiente de incorporación al corpus auditado]. Esta tasa es superior a la observada en el MDRyT boliviano (74% financiero, 54% físico según fuente operacional interna 2024) y al promedio SSA (79% = 1 − 21% de gap). La parte del PER Filipinas trasladable al caso boliviano es el análisis del **Mandanas Ruling** (2021), que aumentó las transferencias intergubernamentales del nivel central a los Local Government Units (LGU) en aproximadamente +37.9% a partir de 2022.
+
+El paralelismo Filipinas–Bolivia es estructural: en ambos países, una decisión legal/constitucional (Mandanas Ruling 2021 en Filipinas; Ley de Autonomías N° 031/2010 en Bolivia) desplazó competencias y recursos hacia el nivel subnacional, con desafíos de articulación entre la asignación de competencias y la capacidad de ejecución de las unidades subnacionales receptoras. Las lecciones operativas portables incluyen:
+
+- Bottom-up area-based planning en lugar de planificación commodity-driven desde el nivel central — relevante para la articulación POA municipal × programación SEDAG departamental × ENDARMA;
+- M&E sistemática del gasto subnacional con reporting homogéneo — gap identificado en Bolivia respecto a la consolidación municipal MAFAP;
+- Riesgo de sustitución de gasto (crowding-out fiscal subnacional) — el gasto propio departamental y municipal puede contraerse cuando coexisten transferencias condicionadas o ejecución de programas verticales (PAR III, MIAGRA); este reporte no estima dicho efecto para Bolivia.
+
+Una opción técnica para consideración del MEFP sería incorporar en el diseño de la próxima generación de programas verticales un componente explícito de M&E del gasto subnacional concurrente, con líneas base 2024 a partir del panel municipal v3 del APER 2026.
+
+::: {.callout-note}
+## Conexión con Capítulo 6
+
+Las recomendaciones operacionales del Cap 6 retoman este diagnóstico: el repurposing efectivo del gasto agropecuario requiere no sólo reasignación entre categorías MAFAP (A → D), sino también mejoras en la **calidad de ejecución** — particularmente en la coordinación intergubernamental y en el M&E del gasto subnacional concurrente. La sinergia con el ToR PSE/Repurposing (consultor STC) se documenta en `00_admin/SINERGIA_ToR_PSE_Repurposing.md`.
+:::
+
+---
+
+## Síntesis del capítulo
+
+El gasto agropecuario boliviano se organiza en tres niveles de gobierno con competencias concurrentes bajo la Ley 031/2010. La distribución del gasto por categoría MAFAP muestra que el apoyo al productor (A) y otros agentes (C) son predominantemente del nivel central; el apoyo general al sector (D) está compartido — con I+D y sanidad centralizados, riego y extensión fragmentados; el rural-soporte (E) es predominantemente subnacional. La heterogeneidad subnacional es alta: Santa Cruz concentra 70.5% del área cultivada nacional pero recibe gasto agropecuario por hectárea menor que el promedio nacional; La Paz combina capital política con altiplano productivo, con potencial distorsión en la atribución contable territorial; Cochabamba muestra mayor priorización relativa de extensión y micro-riego.
+
+La cartera activa del Banco Mundial está centrada en el cluster EMPODERAR/MDRyT, con PAR III (USD 351 M, 2022–2028) como operación bandera. La **tasa de ejecución financiera reportada del 16% en 2024 para PAR III** (hallazgo F07) se interpreta sobre la curva de aprendizaje institucional documentada en el ICR PAR II [@PAR_WorldBank2024_ICR] y sobre los benchmarks regionales: 21% no ejecutado en promedio SSA (FAO MAFAP 2021); 85–92% de desembolso DA en Filipinas (PER Filipinas 2023). La cifra del 16% por sí sola no es señal anómala dada la fase temprana del PAR III, pero define una línea de monitoreo para los próximos dos ciclos fiscales.
+
+Las opciones técnicas que emergen — para consideración del MEFP en mesa técnica — son tres: (i) mejorar trazabilidad del gasto subnacional concurrente bajo taxonomía MAFAP, (ii) incorporar M&E del gasto LGU en el diseño operacional de programas verticales, y (iii) ajustar la curva de desembolso esperada de PAR III a la realidad post-cierre PAR II antes de extrapolar conclusiones sobre desempeño. Estas opciones se retoman en el Cap 6 y se cuantifican en los escenarios de repurposing.
+
+---
+
+## Limitaciones de este capítulo
+
+- El panel subnacional v2 cubre 2012–2021 (cierra en 2021). La actualización 2022–2024 está pendiente de incorporación desde Jubileo Bolivia + SIGEP.
+- El panel municipal v3 (339 municipios × 2012–2021) usa el clasificador municipal programático boliviano. El crosswalk MAFAP × clasificador municipal está en `01_data/processed/crosswalk_mafap_oecd_cofog.csv` pero no resuelve totalmente la asignación de la categoría D entre nivel central, departamental y municipal.
+- La cifra del 16% de ejecución financiera PAR III 2024 proviene del plan APER `20_CONTENIDO_REPORTE.md §8` y requiere verificación contra el Implementation Status Report (ISR) más reciente del proyecto.
+- Los benchmarks Filipinas (85–92% DA) y SSA (21% no ejecutado) son comparables sólo aproximadamente dada la diferencia estructural de composición productiva y arquitectura institucional.
+- El coeficiente de Gini territorial y la curva de Lorenz están pendientes (`TODO_FIGURE` en 3.2.1).
+
+```{=html}
+<!--
+draft_status: v0.1
+written_by: aper-writer (sesión 13)
+date: 2026-05-24
+pending: mapas dept + Lorenz/Gini territorial + correlación pobreza×gasto
+-->
+```

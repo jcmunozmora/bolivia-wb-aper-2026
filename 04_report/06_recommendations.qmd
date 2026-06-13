@@ -1,112 +1,195 @@
 ---
-title: "Recomendaciones y Opciones de Política"
+title: "Recomendaciones y opciones de política"
 ---
 
 ```{r}
 #| include: false
 source(here::here("02_code", "00_setup", "01_constants.R"))
+library(tidyverse)
 ```
 
-## Marco para las Recomendaciones
+> Las opciones que se presentan en este capítulo son **escenarios técnicos para consideración del MEFP** ([Neutralidad §2.3](../.agent/06_NEUTRALIDAD.md)). No constituyen prescripciones del Banco Mundial ni posición oficial del Estado Plurinacional de Bolivia. Las cifras fiscales detalladas de los escenarios S01–S03 quedan sujetas al cierre del análisis del consultor STC en coordinación con el equipo APER ([21_COORDINACION_STC](../.agent/21_COORDINACION_STC.md)).
 
-Las recomendaciones se derivan directamente de los hallazgos empíricos de los capítulos anteriores y se estructuran según las cuatro dimensiones del PER (nivel, composición, eficiencia y equidad), así como por horizonte temporal de implementación.
+## 6.1 Mensajes de política
 
-La priorización considera: (1) magnitud del impacto esperado sobre productividad y seguridad alimentaria, (2) viabilidad institucional y política, (3) coherencia con el Plan de Desarrollo Económico y Social (PDES) y la política de soberanía alimentaria.
+### 6.1.1 Síntesis transversal de los ocho hallazgos
 
-## Recomendaciones por Dimensión
+Los ocho hallazgos del APER 2026 se condensan en tres mensajes de política. La síntesis se construye sobre la evidencia documentada en los capítulos 2 a 5 y conserva las magnitudes y períodos allí declarados; ninguna cifra se reformula en este capítulo (panel v12; ver `02_INDICADORES.md`).
 
-### Dimensión 1: Nivel del Gasto
+**Mensaje 1 — La efectividad del gasto agropecuario boliviano está limitada por su composición, no por su nivel.** Entre 1990 y 2015 la inversión pública agropecuaria se multiplicó por un factor cercano a diez en términos reales, antes de descender a USD 261 millones (constantes 2015) en 2024; en la misma ventana 1990–2015 la productividad total de los factores (TFP) creció aproximadamente 30 por ciento según USDA-ERS, una magnitud inferior al esfuerzo presupuestario y a la trayectoria observada en comparadores andinos (F01, capítulo 2). El nivel agregado de apoyo al productor (PSE de 5,8 por ciento del valor de producción en 2018) se ubica en el quinto puesto entre los diez países LAC con cobertura AgriMonitor (F02, capítulo 5), pero su composición está sesgada hacia transferencias precio-distorsionantes (MPS) y crédito subsidiado, en lugar de bienes públicos. El patrón dual del NRP en 2018–2023, de −37 por ciento para soya y +46 por ciento para maíz, confirma que el mismo instrumental fiscal sostiene objetivos contradictorios de promoción exportadora y seguridad alimentaria interna (F03, capítulo 5).
 
-::: {.policy-box}
-**R1 — Incrementar progresivamente el gasto en bienes públicos agropecuarios**
+**Mensaje 2 — El espacio fiscal para reformas se ha estrechado por la sustitución gasto-crédito, no por el techo macro.** Bolivia nunca alcanzó la meta de Maputo del 10% del presupuesto público en agricultura: el máximo histórico fue 3,48% en 1990 (F04, capítulo 3). A partir de la Ley 393/2014, la cartera de crédito agropecuario obligatorio del sistema financiero se multiplicó por 11,7, configurando una sustitución entre gasto presupuestario directo y crédito dirigido fuera del balance (F05, capítulo 3). Esta arquitectura genera un costo cuasi-fiscal (diferencial de tasa, garantías implícitas, exposición sectorial) que no aparece como gasto en el presupuesto y que requiere identificarse para discutir cualquier reasignación.
 
-Bolivia debería avanzar hacia la meta de Maputo (10% del presupuesto total en agricultura) pero con prioridad en la recomposición antes que en el incremento nominal. El presupuesto adicional debería asignarse exclusivamente a categorías de alto retorno social (I+D, extensión, sanidad, riego).
+**Mensaje 3 — Los retornos sociales del gasto se deterioran cuando la ejecución subnacional y la frontera ambiental no se gestionan.** La pobreza rural se redujo del 55 por ciento (2012) al 40 por ciento (2018) según la Encuesta de Hogares del INE, pero revirtió a aproximadamente 45 por ciento en 2024; en paralelo, la prevalencia de inseguridad alimentaria moderada o severa medida con la escala FIES de FAOSTAT pasó de 49 por ciento en el promedio 2014–2016 a 74 por ciento en el promedio 2022–2024 (F06, capítulo 2). La frontera agropecuaria se expandió aproximadamente 9,4 millones de hectáreas entre 1985 y 2024, con 64 por ciento del avance concentrado en Santa Cruz (F08, capítulo 2). En paralelo, programas de inversión con cofinanciamiento subnacional muestran ejecución financiera limitada: el PAR III registró 16 por ciento de ejecución acumulada al cierre de 2024 (F07, capítulo 4). La subejecución del gasto y el avance de frontera no ordenado actúan sobre el mismo margen: ambos acotan los retornos sociales y climáticos de las opciones de repurposing que explora §6.3.
 
-**Acciones**:
-- Establecer una senda fiscal plurianual para el gasto agropecuario en bienes públicos
-- Vincular el incremento presupuestal de INIAF al logro de metas de transferencia tecnológica
-- Reportar anualmente el cumplimiento de Maputo con metodología transparente y comparable
+### 6.1.2 Principios rectores para evaluar opciones de repurposing
+
+Las opciones que se exploran en §6.3 se construyen sobre cinco principios técnicos, alineados con la literatura comparada [@GautamLaborde2022; @WorldBank2024_RepurposingSupport; @Damania2023] y con la metodología MAFAP que organiza los capítulos 3 y 4 [@MAFAP2013_MethodGuideVolI; @PernecheleEtAl2018_MAFAP].
+
+**Principio P1 — Repurposing dentro de techo fiscal constante.** Las opciones no suponen ampliación del envelope de gasto agropecuario. Se exploran como recomposición entre instrumentos, no como expansión.
+
+**Principio P2 — Cuantificación ex-ante y ex-post de la composición.** Cada opción declara la composición observada en el período base (2018–2023, MAFAP narrow) y la composición simulada en el horizonte de cinco años, con la fuente de elasticidades explícita.
+
+**Principio P3 — Banda de incertidumbre por escenario.** Los rangos de efecto esperado se reportan con su sensibilidad a las elasticidades aplicadas, siguiendo la práctica del *Repurposing Recipe* [@GautamLaborde2022] y de los ejercicios comparables del *Detox Development* [@Damania2023]. No se reporta un punto único.
+
+**Principio P4 — Ajuste metodológico MIRR.** Los retornos a I+D agropecuaria citados habitualmente en la literatura son sensibles a la regla de reinversión asumida; usar la *Modified Internal Rate of Return* en lugar de la IRR estándar reduce las magnitudes estimadas [@Hurley2014]. Este capítulo aplica ese ajuste a toda referencia a tasas de retorno de I+D.
+
+**Principio P5 — Economía política de la reforma.** La experiencia comparada documenta que reformas de subsidios sin compensación territorial y temporal explícita generan reversiones; el caso boliviano del ajuste de precios de combustibles de 2010 está documentado como referencia regional [@Rentschler2017]. Toda opción técnica considerada incluye explícitamente la pregunta de secuenciación y compensación.
+
+## 6.2 Opciones técnicas por institución
+
+Cada opción declara la institución competente, el hallazgo que la motiva y la base de literatura que la sustenta; el ordenamiento sigue el mandato institucional, no el hallazgo. Las opciones se formulan en condicional para subrayar su carácter de escenario técnico para mesa con el MEFP, no de prescripción.
+
+### 6.2.1 MDRyT — INIAF y SENASAG
+
+**Opción O1 — Reorientación de transferencias hacia I+D agropecuaria y sanidad.** El hallazgo F02 (capítulo 5) sitúa al PSE boliviano en 5,8 por ciento del valor de producción en 2018, con composición dominada por MPS y transferencias atadas a producto. Una opción técnica consistente con la evidencia internacional sería reasignar una fracción del MPS hacia el presupuesto del INIAF (I+D, extensión, semillas) y del SENASAG (sanidad animal y vegetal, certificación, inocuidad). La literatura comparada documenta que el retorno social de los bienes públicos agropecuarios es superior al de las transferencias atadas a producto en países de ingreso medio [@AnriquezFosterOrtega2016; @AnriquezFosterOrtega2020_RuralSubsidiesLAC; @WorldBank2024_RepurposingSupport]. La magnitud de la reasignación que el panel v12 permite explorar bajo techo fiscal constante se especifica en §6.3.1 [TODO_TRACE: cifra fiscal pendiente coordinación STC].
+
+**Opción O2 — Métricas de desempeño del sistema de extensión.** Bajo la opción O1, una segunda dimensión consistirá en métricas de transferencia tecnológica del INIAF (productores asistidos, hectáreas con paquete tecnológico, variedades liberadas) reportadas bajo la taxonomía MAFAP categoría D [@MAFAP2013_MethodGuideVolI]. La caja "Recomendaciones del APER 2011" más adelante en §6.4 registra que el APER 2011 ya sugirió esta dirección; el seguimiento de implementación está pendiente [TODO_TRACE: revisar APER 2011 cap. 6 contra evidencia 2024].
+
+**Opción O3 — Cobertura del SENASAG en sanidad transfronteriza.** El hallazgo F08 (frontera 9.4 millones de hectáreas) eleva el riesgo sanitario en zonas de expansión reciente. La evidencia internacional sobre bienes públicos sanitarios sugiere que la inversión preventiva en sanidad animal y vegetal exhibe retornos superiores al gasto reactivo en emergencias sanitarias [@WorldBank2024_RepurposingSupport]. Una opción sería elevar la cobertura del SENASAG en municipios de frontera, financiada con una fracción del repurposing identificado en §6.3.
+
+### 6.2.2 MEFP — marco fiscal del sector
+
+**Opción O4 — Reporte explícito del *revenue foregone* del sector.** El hallazgo F05 documenta una sustitución entre gasto presupuestario y crédito dirigido obligatorio post-Ley 393. Como esta arquitectura involucra concesiones tributarias, diferencial de tasa entre crédito agropecuario y resto del sistema, y garantías estatales implícitas, el reporte de gasto sectorial subestima el apoyo total. La práctica internacional bajo el marco MAFAP recomienda integrar *revenue foregone* (concesiones tributarias, crédito subsidiado) en el cómputo del apoyo al sector cuando el panel lo permite [@MAFAP2013_MethodGuideVolI; @PernecheleEtAl2018_MAFAP]. Una opción técnica para el MEFP sería incorporar el cómputo de *revenue foregone* en el reporte presupuestario sectorial anual, con metodología armonizada con BCB y ASFI.
+
+**Opción O5 — Trayectoria fiscal sectorial plurianual.** El hallazgo F04 (Maputo máximo 3,48% en 1990) indica que el nivel agregado del gasto agropecuario sobre el presupuesto público ha sido históricamente bajo. Bajo techo fiscal constante (Principio P1), la opción no es ampliar el envelope sino fijar una trayectoria multianual de composición. Una opción consistente con el repurposing del *Recipe* [@GautamLaborde2022] sería declarar metas plurianuales de participación de bienes públicos (MAFAP D) en el gasto agropecuario total, sin compromiso de nivel adicional pero con compromiso de recomposición ex-post verificable.
+
+**Opción O6 — Identificación del costo cuasi-fiscal de la Ley 393.** El factor 11,7 de expansión de la cartera de crédito obligatorio post-Ley 393 (F05) genera exposición sistémica del sistema financiero al sector. Una opción técnica sería estimar e informar el costo cuasi-fiscal asociado (provisiones contingentes, diferencial de tasa, exposición de garantías), con metodología equivalente a la usada en la literatura sobre reforma de subsidios energéticos [@CoadyParry2019], adaptada al instrumental de crédito dirigido boliviano.
+
+### 6.2.3 BDP — instrumentos de crédito agropecuario
+
+**Opción O7 — Transparencia del subsidio implícito en el crédito BDP.** El hallazgo F05 documenta la expansión del BDP como instrumento central de apoyo sectorial. La literatura sobre instrumentos de apoyo en LAC documenta que el subsidio implícito vía tasa diferencial puede tener costo fiscal alto sin que ese costo aparezca en el presupuesto observable [@AnriquezFosterOrtega2020_RuralSubsidiesLAC]. Una opción técnica sería informar anualmente el subsidio implícito del BDP (cartera × diferencial respecto a curva de mercado), con metodología validada en mesa MEFP–BCB–ASFI.
+
+**Opción O8 — Diferenciación de instrumentos por segmento productivo.** El patrón dual del NRP (F03) sugiere que el sistema de apoyo trata de forma diferenciada a productores exportadores y a productores de seguridad alimentaria. Para mitigar el riesgo de captura que la literatura comparada documenta en esquemas de apoyo segmentado [@AndersonRausserSwinnen2013; @KruegerSchiffValdes1988], una opción sería diferenciar formalmente productos y condiciones del crédito BDP por segmento (pequeño productor de seguridad alimentaria vs. agroindustria exportadora), con criterios públicos y verificables.
+
+### 6.2.4 Gobiernos subnacionales — capacidad de ejecución
+
+**Opción O9 — Acompañamiento técnico a ejecutores subnacionales.** El hallazgo F07 (PAR III 16% de ejecución acumulada) indica que parte del gap de efectividad del gasto agropecuario no está en la asignación sino en la ejecución. La experiencia comparada de la *Mandanas Ruling* en Filipinas (devolución de mayores recursos fiscales a unidades subnacionales) documentó que el aumento de recursos sin acompañamiento técnico genera subejecución en el corto plazo [@WB2025_MalawiAgPER_Synthesis; @FAO2021_PEFoodAgricultureSSA, como referencias metodológicas comparables]. Una opción sería diseñar un componente de fortalecimiento técnico (formulación de proyectos, gestión de adquisiciones, M&E) acompañando cualquier reasignación territorial.
+
+**Opción O10 — Indicadores subnacionales de calidad del gasto.** Como complemento de O9, una opción técnica sería incorporar al sistema de seguimiento del MEFP un set acotado de indicadores subnacionales de calidad del gasto agropecuario (ejecución financiera, ejecución física, participación de bienes públicos, cobertura de extensión), reportados anualmente y comparables entre departamentos. La justificación metodológica para la batería de indicadores se discute en §6.4.2.
+
+## 6.3 Repurposing — opciones técnicas cuantificadas (S01, S02, S03)
+
+Mientras §6.2 presenta opciones por mandato institucional (qué actor hace qué), los tres escenarios siguientes agrupan subconjuntos de esas opciones en paquetes cuantificables bajo techo fiscal constante (cuánto se reasigna y con qué efecto esperado). Son **escenarios técnicos para consideración del MEFP**, no recomendaciones vinculantes. Operan bajo techo fiscal constante (P1) y se construyen con las elasticidades documentadas en la literatura comparada [@GautamLaborde2022; @Damania2023; @WorldBank2024_RepurposingSupport]; las elasticidades específicas y el cierre cuantitativo de costo fiscal son responsabilidad del consultor STC ([21_COORDINACION_STC §3](../.agent/21_COORDINACION_STC.md)).
+
+### 6.3.1 S01 — Reasignación de transferencias atadas hacia I+D y extensión
+
+**Descripción.** Reasignación de una fracción del MPS y de las transferencias atadas a producto observadas en el período base 2018–2023 (MAFAP categorías A, asignaciones específicas a productor) hacia el presupuesto operativo de INIAF y SENASAG (MAFAP categoría D, bienes públicos al sector). La fracción de referencia para esta exploración es de **30% del MPS** del período base.
+
+**Composición ex-ante / ex-post (panel v12 MAFAP narrow, 2018–2023 → horizonte 2025–2029).**
+
+[TODO_TRACE: tabla composición ex-ante/ex-post — pendiente outputs Hector + cierre cap 3 MAFAP narrow]
+
+**Banda de incertidumbre.** La literatura comparada que vincula reasignación de transferencias hacia I+D con crecimiento de TFP reporta rangos amplios, sensibles al horizonte y al país [@GautamLaborde2022; @AnriquezFosterOrtega2016]. El caveat MIRR (Principio P4) implica que los retornos a I+D reportados como IRR estándar sobreestiman la magnitud aplicable a un país de ingreso medio con instituciones de innovación en desarrollo [@Hurley2014]. La banda esperada para el ejercicio boliviano se reportará en `01_data/processed/scenarios_v12.rds` una vez calibrada con los outputs del consultor STC [TODO_TRACE: rango cuantitativo].
+
+**Supuestos operativos.** Techo fiscal sectorial constante; elasticidad de TFP a inversión en I+D ajustada por el factor MIRR; capacidad absorptiva del INIAF y del SENASAG suficiente para canalizar la reasignación sin pérdida de eficiencia en el primer año (este último supuesto justifica la opción O9 de acompañamiento).
+
+**Riesgo de implementación.** La reversibilidad observada de reformas de subsidios sin secuenciación adecuada [@Rentschler2017] es consistente con una transición gradual y acompañada de compensación territorial y temporal explícita.
+
+### 6.3.2 S02 — Desplazamiento gradual de la composición hacia bienes públicos
+
+**Descripción.** A diferencia de S01, que opera sobre un solo instrumento (MPS), S02 explora un desplazamiento más amplio de la composición del gasto sectorial: reducción simultánea de transferencias atadas (MAFAP A), crédito subsidiado (cómputo de *revenue foregone* bajo O4) y subsidios al consumidor implícitos (MAFAP B), con incremento equivalente del gasto en bienes públicos al sector (MAFAP D: I+D, extensión, sanidad, infraestructura rural pública).
+
+**Composición ex-ante / ex-post.**
+
+[TODO_TRACE: figura `fig_06_02_repurposing_waterfall` — pendiente outputs Hector + cierre cap 3 MAFAP narrow]
+
+**Banda de incertidumbre.** Los ejercicios comparables del *Repurposing Recipe* y del *Detox Development* documentan que la magnitud del beneficio depende del estado inicial del país (composición observada del PSE/MAFAP) y de la calidad institucional [@GautamLaborde2022; @Damania2023; @WorldBank2024_RepurposingSupport]. Para Bolivia, la banda se calibrará con los outputs del consultor STC [TODO_TRACE: rango cuantitativo].
+
+**Supuestos operativos.** Cómputo de *revenue foregone* operativo (O4); diferenciación de segmentos (O8) para evitar regresividad sobre productores de seguridad alimentaria; secuenciación que respete el patrón dual NRP (F03) en su tramo de protección al mercado interno.
+
+### 6.3.3 S03 — Repurposing climático y de frontera
+
+**Descripción.** Reasignación parcial dentro del envelope sectorial hacia instrumentos con doble dividendo: productividad y reducción de emisiones / ordenamiento de frontera. La literatura documenta que el sistema alimentario global aporta ~25% de las emisiones de GEI y que repurposing climático del gasto agropecuario puede reducir emisiones manteniendo o mejorando el ingreso rural [@Searchinger2019_WRI; @Laborde2021_GHG; @FOLU2019] [TODO_TRACE: confirmar @Searchinger2019_WRI y @Laborde2021_GHG presentes en references.bib].
+
+**Composición ex-ante / ex-post.**
+
+[TODO_TRACE: composición pendiente — coordinación STC + Hector lidera environmental performance per 21_COORDINACION_STC §3.1]
+
+**Banda de incertidumbre.** Las elasticidades de emisiones a composición del apoyo agropecuario son altas porque dependen del *land-use change* asociado, que en Bolivia se concentra en Santa Cruz (F08, 64% del avance). El acoplamiento del repurposing fiscal con el ordenamiento territorial (instrumentos no fiscales) condiciona la banda de efecto esperada [TODO_TRACE: rango cuantitativo].
+
+**Supuestos operativos.** Compatibilidad con el patrón dual NRP (F03), de modo que la opción no penalice subsectores de seguridad alimentaria; complementariedad con instrumentos no fiscales de ordenamiento de frontera; integración del cómputo de emisiones (panel v12 grupo G08, gap actual — Héctor aporta o se reporta el gap [21_COORDINACION_STC §3.1, R-016](../.agent/21_COORDINACION_STC.md)).
+
+### 6.3.4 Banda de incertidumbre por escenario
+
+Cinco fuentes de incertidumbre justifican reportar rangos en lugar de cifras puntuales:
+
+1. **Elasticidades transferidas de otros contextos productivos** — la literatura aplicada (IFPRI, FAO MAFAP, *Repurposing Recipe*) usa elasticidades estimadas mayoritariamente fuera de Bolivia. El consultor STC calibrará rangos plausibles a partir de la mejor evidencia comparable [@GautamLaborde2022; @WorldBank2024_RepurposingSupport] [TODO_TRACE: set de elasticidades final].
+2. **Sensibilidad a la regla MIRR vs IRR** [@Hurley2014] — todas las cifras de retorno a I+D se reportan en MIRR (Principio P4); el rango se acompaña de la cifra IRR equivalente para comparación con literatura estándar.
+3. **Tratamiento del *revenue foregone*** — la inclusión o exclusión del crédito subsidiado en el envelope de apoyo modifica el numerador del PSE/MAFAP y la magnitud del repurposing factible.
+4. **Capacidad absorptiva subnacional** — el hallazgo F07 (PAR III 16% ejecución) sugiere que la velocidad realista de reasignación está acotada por la ejecución subnacional, no solo por la decisión presupuestaria.
+5. **Reversibilidad por economía política** — la literatura comparada documenta que reformas sin compensación explícita exhiben reversiones [@Rentschler2017; @AndersonRausserSwinnen2013]; los escenarios incluyen el riesgo de reversión en su banda.
+
+[TODO_TRACE: tabla `tab_06_01` resumen S01–S03 con bandas — pendiente outputs Hector]
+
+## 6.4 Cronograma e indicadores de seguimiento
+
+### 6.4.1 Cronograma indicativo de cinco años
+
+El cronograma que sigue es **indicativo, no prescriptivo**. Refleja la práctica de implementación gradual documentada por el *Repurposing Recipe* [@GautamLaborde2022] y por las síntesis del Banco Mundial sobre reformas de gasto agropecuario [@WorldBank2024_RepurposingSupport]; los hitos por año son ilustrativos y quedarán sujetos al calendario del MEFP y a la coordinación con el consultor STC.
+
+| Año | Hito indicativo | Insumo principal | Referencia |
+|:--:|---|---|---|
+| Año 1 | Cierre del cómputo de *revenue foregone* y línea base ampliada (incluye crédito BDP) | O4, O6, O7 | MAFAP full vs narrow |
+| Año 1 | Acuerdo en mesa MEFP sobre métricas de calidad del gasto subnacional | O10 | F07, [@WorldBank2024_RepurposingSupport] |
+| Año 2 | Primer tramo de reasignación gradual (S01) | O1, O2 | F02, F03 |
+| Año 2 | Fortalecimiento técnico a ejecutores subnacionales (componente piloto) | O9 | F07 |
+| Año 3 | Revisión intermedia de bandas de efecto (TFP, FIES, frontera) | S01, S03 | F01, F06, F08 |
+| Año 3 | Segundo tramo de reasignación (S02 — bienes públicos) | O1, O5 | F02, F03 |
+| Año 4 | Integración del repurposing climático con instrumentos de frontera | S03 | F08 |
+| Año 5 | Cierre del ciclo, evaluación ex-post y revisión de la composición ex-ante para el siguiente ciclo | S01–S03 | M&E framework |
+
+[TODO_TRACE: figura `fig_06_03_cronograma` — visualización del cronograma con hitos y dependencias]
+
+### 6.4.2 Indicadores de seguimiento — M&E
+
+Los indicadores se organizan en tres niveles, siguiendo la práctica MAFAP [@MAFAP2013_MethodGuideVolI; @PernecheleEtAl2018_MAFAP] y la guía metodológica de los PER agropecuarios del Banco Mundial [@WB2025_MalawiAgPER_Synthesis].
+
+**Nivel de instrumento (anual, reportable en presupuesto):**
+
+- Participación de MAFAP D (bienes públicos) en el gasto agropecuario MAFAP narrow (panel v12; %).
+- Participación de MPS y transferencias atadas a producto (MAFAP A) en el mismo agregado (panel v12; %).
+- *Revenue foregone* sectorial cuantificado (O4): concesiones tributarias + subsidio implícito del crédito BDP (millones de BOB 2015 constantes y % del PSE total).
+- Ejecución financiera del MDRyT y de los gobiernos subnacionales en programas con cofinanciamiento (porcentaje del presupuesto vigente).
+
+**Nivel de resultado intermedio (bienal):**
+
+- Cobertura de extensión del INIAF (productores asistidos / total de productores comerciales) y cobertura territorial del SENASAG en municipios de frontera (porcentaje).
+- Cartera de crédito agropecuario obligatorio del sistema financiero (BOB 2015 constantes; fuente BCB) con composición por segmento productivo (O8).
+
+**Nivel de resultado final (trienal o quinquenal):**
+
+- TFP agropecuaria (USDA-ERS o panel v12 alternativo), variación interanual.
+- Pobreza rural (INE EH) y FIES (cuando se incorpore al panel; F06).
+- Frontera agropecuaria neta (MapBiomas + Hansen GFC), variación anual con desagregación por departamento (F08).
+- Emisiones de GEI del sector AFOLU (panel v12 grupo G08 cuando se cierre el gap; ver [21_COORDINACION_STC §3.1](../.agent/21_COORDINACION_STC.md)).
+
+[TODO_TRACE: tabla `tab_06_02` con definiciones operativas, frecuencia y fuente para cada indicador]
+
+### 6.4.3 Articulación con el consultor STC
+
+El cierre cuantitativo del costo fiscal de las opciones S01–S03 se coordina con el consultor STC (Héctor Peña — OECD-PSE/Repurposing), según el protocolo de integración detallado en [`21_COORDINACION_STC §5`](../.agent/21_COORDINACION_STC.md). En particular: la sección de costo fiscal del entregable del STC aporta el costo fiscal de reducir MPS y de elevar bienes públicos a niveles globales, mientras este capítulo aporta la composición ex-ante / ex-post bajo clasificación MAFAP. Las bandas de incertidumbre finales se acordarán en la reunión de coordinación previa al cierre del reporte final.
+
+### 6.4.4 Caja — seguimiento de las recomendaciones del APER 2011
+
+::: {.callout-note}
+**Caja 6.1 — Recomendaciones del APER 2011: qué se implementó y qué no.**
+
+El APER 2011 (Informe WB N° 59696-BO) formuló un conjunto de recomendaciones sobre composición del gasto agropecuario, fortalecimiento del INIAF y mejora de la información presupuestaria sectorial. El presente reporte no realiza un seguimiento cuantitativo de la implementación de cada recomendación porque las series presupuestarias detalladas por programa para el período 2011–2024 no están disponibles con la granularidad necesaria a la fecha de cierre del APER 2026. La solicitud formal de datos al MEFP sigue pendiente.
+
+[TODO_TRACE: completar el seguimiento de implementación cuando MEFP responda la solicitud de datos detallados de ejecución MDRyT/INIAF/SENASAG 2009–2024 — ver `00_admin/RETOMAR.md`].
+
+Lo que sí se observa con la información disponible: (i) el nivel agregado del gasto agropecuario sobre el presupuesto público se mantuvo por debajo de la meta de Maputo en todo el período (F04); (ii) la participación de bienes públicos en el gasto sectorial sigue por debajo del benchmark regional (F02, F03); (iii) el peso del crédito agropecuario dirigido como instrumento de apoyo creció de forma marcada bajo la Ley 393/2014, redefiniendo la mezcla de instrumentos fiscales y cuasi-fiscales (F05).
 :::
 
-### Dimensión 2: Composición del Gasto
+---
 
-::: {.policy-box}
-**R2 — Reorientar el gasto desde subsidios hacia bienes públicos de alto retorno**
+Las opciones S01–S03 son escenarios técnicos para consideración del MEFP, no recomendaciones vinculantes ni posición oficial del Estado Plurinacional de Bolivia. Todas las cifras son reproducibles desde el panel v12 y los scripts publicados; la incertidumbre se declara por hallazgo y por escenario. El cierre cuantitativo del costo fiscal queda sujeto a la consolidación con el consultor STC del Banco Mundial.
 
-La evidencia internacional y los resultados del análisis PSE sugieren que la composición actual del gasto boliviano está sesgada hacia intervenciones de mercado (EMAPA, crédito subsidiado) con retornos relativamente bajos, en detrimento de I+D, extensión y sanidad.
-
-**Acciones**:
-- Aumentar el presupuesto de INIAF hasta representar al menos el 15% del gasto agropecuario total (actualmente ~8-10%)
-- Fortalecer SENASAG para ampliar cobertura de inspección y reducir pérdidas poscosecha
-- Revisar la focalización de EMAPA para reducir la distorsión de precios en mercados locales
-- Expandir el programa de microriego con criterios de focalización en zonas con mayor déficit hídrico
-:::
-
-::: {.policy-box}
-**R3 — Fortalecer el ratio GSSE/TSE como indicador de calidad del gasto**
-
-Siguiendo la metodología OCDE, un mayor ratio GSSE/TSE (servicios generales sobre apoyo total) indica un gasto más orientado a bienes públicos y menos distorsionante. Bolivia debería establecer una meta explícita para este indicador.
-
-**Acciones**:
-- Monitorear anualmente el ratio GSSE/TSE y publicarlo en el Presupuesto General del Estado
-- Comparar con pares regionales Chile y Colombia (miembros OCDE con mejor ratio)
-:::
-
-### Dimensión 3: Eficiencia del Gasto
-
-::: {.policy-box}
-**R4 — Mejorar las tasas de ejecución presupuestal en entidades clave**
-
-Los análisis revelan tasas de ejecución presupuestal heterogéneas entre entidades. INIAF y algunos programas departamentales muestran brechas significativas entre el presupuesto aprobado y ejecutado, lo que implica capacidad institucional limitada.
-
-**Acciones**:
-- Implementar programas de fortalecimiento de capacidad institucional en INIAF y MDRyT
-- Adoptar presupuesto plurianual para programas de inversión en infraestructura de riego
-- Crear un sistema de seguimiento de la ejecución presupuestal en tiempo real (tablero SIIF)
-:::
-
-::: {.policy-box}
-**R5 — Implementar evaluaciones de impacto sistemáticas para programas principales**
-
-Actualmente no existen evaluaciones de impacto rigurosas (con grupos de control) de los principales programas agropecuarios bolivianos (EMAPA, INIAF-extensión, Mi Agua).
-
-**Acciones**:
-- Diseñar con aleatorización o discontinuidades de regresión las nuevas fases de expansión de programas
-- Establecer una Unidad de Evaluación en el MDRyT con mandato y recursos propios
-- Publicar resultados de evaluaciones en el repositorio del Banco Mundial
-:::
-
-### Dimensión 4: Equidad del Gasto
-
-::: {.policy-box}
-**R6 — Aumentar la orientación del gasto hacia los departamentos y productores más vulnerables**
-
-El análisis subnacional revela disparidades en el gasto agropecuario per cápita entre departamentos. Los departamentos con mayor concentración de pobreza rural (Potosí, Chuquisaca, Beni) reciben proporcionalmente menos recursos que los de mayor dinámica exportadora (Santa Cruz).
-
-**Acciones**:
-- Introducir criterios explícitos de equidad en la fórmula de distribución del gasto subnacional en agricultura
-- Fortalecer los programas de extensión y semillas mejoradas en comunidades indígenas del altiplano
-- Generar datos desagregados por género para evaluar acceso de mujeres agricultoras a programas públicos
-:::
-
-## Agenda de Investigación
-
-Para fortalecer la base de evidencia en futuras revisiones, se recomienda:
-
-1. **Censo Agropecuario actualizado**: El último censo es de 2013; un nuevo censo permitiría actualizar el análisis de estructura productiva y equidad
-2. **FIES Bolivia**: Implementar la Escala de Experiencia de Inseguridad Alimentaria (FIES) para medir directamente la inseguridad alimentaria a nivel de hogar
-3. **Datos de precios frontera**: Para completar el cálculo de Market Price Support (componente MPS del PSE)
-4. **Panel subnacional extendido**: Obtener datos SIIF departamentales para fortalecer el análisis DEA con mayor número de unidades y períodos
-
-## Opciones de Política por Horizonte Temporal
-
-| Opción | Costo fiscal | Impacto esperado | Horizonte |
-|--------|-------------|-----------------|-----------|
-| Recomposición gasto INIAF/SENASAG | Neutral | Alto | Corto (1-2 años) |
-| Meta GSSE/TSE explícita | Neutral | Medio | Corto |
-| Focalización EMAPA en seguridad alimentaria | Reducción subsidios | Alto | Mediano (2-4 años) |
-| Sistema M&E MDRyT | Bajo | Alto (largo plazo) | Corto |
-| Expansión microriego focalizada | Medio-alto | Alto | Mediano |
-| Nuevo Censo Agropecuario | Medio | Muy alto (base de evidencia) | Mediano |
-
-: Opciones de política priorizadas {#tbl-policy-options}
+<!--
+draft_status: v0.1
+written_by: aper-writer (sesión 13)
+date: 2026-05-24
+blockers: outputs Hector (fiscal cost repurposing) + cierre caps 2-5
+neutrality_check: pending sancho-humanizer + critical-reviewer adversarial
+-->

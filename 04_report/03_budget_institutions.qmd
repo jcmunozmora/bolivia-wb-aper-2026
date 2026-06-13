@@ -1,64 +1,77 @@
 ---
-title: "Presupuestos e Instituciones del Sector Agropecuario"
+title: "Presupuestos e instituciones"
+subtitle: "Composición del gasto agropecuario boliviano, brecha frente a Maputo y sustitución por crédito post-Ley 393"
+lang: es
+bibliography: references.bib
+crossref:
+  chapters: true
 ---
 
 ```{r}
 #| include: false
+#| label: setup-cap3
 suppressPackageStartupMessages({
   library(data.table)
   library(ggplot2)
   library(scales)
   library(gt)
+  library(here)
 })
 source(here::here("02_code", "00_setup", "01_constants.R"))
-source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
 
-panel  <- as.data.table(readRDS(here::here("01_data", "processed", "spending_panel_v12.rds")))
-boost  <- as.data.table(readRDS(here::here("01_data", "processed", "boost_agro_panel.rds")))
-mefp   <- as.data.table(readRDS(here::here("01_data", "processed", "mefp_ejecucion_anual.rds")))
-bcb    <- as.data.table(readRDS(here::here("01_data", "processed", "bcb_credito_sectorial_anual.rds")))
-speed  <- as.data.table(readRDS(here::here("01_data", "processed", "speed_agro_bolivia.rds")))
+panel <- as.data.table(readRDS(here::here("01_data", "processed", "spending_panel_v12.rds")))
+mafap <- as.data.table(readRDS(here::here("01_data", "processed", "mafap_bolivia.rds")))
 
 FIG_DIR <- here::here("05_outputs", "figures")
-fig <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
+fig    <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
+figpng <- function(name) file.path(FIG_DIR, "png", paste0(name, ".png"))
 ```
 
-## Resumen ejecutivo del capítulo
+## Pregunta del capítulo {.unnumbered}
 
-Bolivia destinó al sector agropecuario, en promedio, **menos del 3% de su gasto público total** durante todo el período 1990-2017 — máximo histórico 3.48% en 1990 (IFPRI SPEED). El país **nunca alcanzó la meta de Maputo del 10%** acordada por gobiernos africanos pero adoptada como referencia regional. Esta brecha entre la prioridad declarativa al sector rural y la asignación presupuestaria efectiva es uno de los hallazgos centrales de este reporte. Adicionalmente, desde 2014 el **crédito subsidiado del sistema bancario** (impulsado por la Ley 393) ha sustituido parcialmente la inversión pública directa, transformando la arquitectura del apoyo financiero al sector.
+¿Cómo se compone el gasto público agropecuario boliviano, por qué nunca alcanzó el compromiso de Maputo y cómo se sustituyó por crédito dirigido tras la Ley 393 de 2014? El capítulo organiza la evidencia en cinco bloques. Primero describe la arquitectura institucional. Segundo, evoluciona la cifra de gasto 1990–2024 bajo dos clasificaciones paralelas (MAFAP y económica). Tercero, contrasta la serie con la referencia Maputo y documenta el hallazgo F04. Cuarto, cuantifica la sustitución gasto → crédito post-Ley 393 (hallazgo F05). Quinto, compara la fotografía actual con la del APER 2011 [@WB2011_BoliviaAgPER].
 
-## Marco institucional del gasto agropecuario
+## Cifras del capítulo {.unnumbered}
 
-La arquitectura institucional involucra al menos **10 entidades** con presupuesto y mandato relacionados al sector:
+- Bolivia nunca alcanzó la meta Maputo del 10% del gasto público asignado al sector. Máximo histórico **3.48% en 1990**; promedio 1990–2007 **1.72%**; promedio 2000–2007 **1.87%** (panel v12 sobre IFPRI SPEED).
+- La inversión pública agropecuaria pasó de **USD 76 M (2006)** a un pico de **USD 320 M en 2015** y volvió a **USD 261 M en 2024** (panel v12 sobre VIPFE/MEFP, USD corrientes).
+- El crédito bancario al sector agropecuario subió de **5.07% a 11.70%** de la cartera total entre 2010 y 2024, multiplicándose **×11.7** en USD (USD 290 M → USD 3,397 M) tras la Ley 393 de 2014 (panel v12 sobre BCB; ver §3.4).
 
-| Entidad | Mandato principal | Presupuesto referencia |
-|---------|-------------------|------------------------|
-| **MDRyT** | Rector del sector — política, planificación, programas | Bs 1,539 M (2024 vigente) |
-| **INIAF** | Investigación e innovación agropecuaria; semillas | Bs 98 M (2019 vigente) |
-| **SENASAG** | Sanidad agropecuaria e inocuidad alimentaria | Ingresos propios Bs 108 M (2019) |
-| **EMAPA** | Compras garantizadas y comercialización (soberanía alimentaria) | Bs ~600 M anuales |
-| **INRA** | Saneamiento y titulación de tierras | — |
-| **ABT** | Control de bosques y autorizaciones de desmonte | — |
-| **FDI** | Transferencias directas a comunidades indígenas | — |
-| **BDP-SAM** | Crédito productivo subsidiado | Cartera 2025 ~USD 3.4 B (68% agro) |
-| **SENARI** | Planificación y regulación de riego | — |
-| **MMAyA** | Riego mediante "Mi Agua / MIAGUA" — *tuición fuera del MDRyT* | — |
-
-**Hallazgo institucional crítico:** el riego — uno de los principales determinantes de la productividad agrícola — está bajo tuición del Ministerio de Medio Ambiente y Agua (MMAyA), no del MDRyT. Esta fragmentación se documenta explícitamente en el PEI MDRyT 2014-2018 como *"riesgo institucional reconocido"* (p. 12), y aparece como tema recurrente en evaluaciones externas (CIPCA 2018).
-
-## Inversión pública agropecuaria 1990-2024
-
-::: {layout-ncol=2}
-
-![Inversión agropecuaria pública Bolivia 1990-2024 (USD MM)](`r fig("fig10_inversion_agro_1990_2024")`){fig-alt="Inversión agropecuaria"}
-
-![Inversión por sector económico 1990-2024](`r fig("fig11_inversion_por_sector")`){fig-alt="Inversión por sector"}
-
+::: {.callout-note appearance="simple"}
+**Caja metodológica — Dos clasificaciones, no una.** El capítulo reporta el gasto bajo dos lentes complementarias: la **clasificación MAFAP** de FAO [@MAFAP2013_MethodGuideVolI], que organiza el gasto sectorial por destinatario (A productor / B consumidor / C otros agentes / D apoyo general / E rural-soporte), y la **clasificación económica** del GFSM 2014 [@IMF_GFSM2014], que separa gasto corriente, capital y fuente de financiamiento. La primera identifica *a quién beneficia* cada partida; la segunda identifica *cómo se ejecuta*. Ambas son necesarias y se construyen a partir de la misma data primaria BOOST/VIPFE [@WB_BOOST]; el crosswalk entre clasificaciones está formalizado en el Apéndice D ([ADR-0010](../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md)). El glosario completo de categorías MAFAP A–E vive en el [Apéndice C](appendix/C_glosario_mafap.qmd).
 :::
+
+## Arquitectura institucional del sector {#sec-arquitectura}
+
+El sector agropecuario boliviano opera bajo un rector formal (MDRyT) y varias tuiciones cruzadas en otros ministerios. Esa distribución de competencias obliga a reconstruir la cifra de gasto sectorial desde clasificadores funcionales, no desde el presupuesto de una sola cabeza de sector.
+
+## El MDRyT y sus entidades adscritas {#sec-mdryt}
+
+El Ministerio de Desarrollo Rural y Tierras (MDRyT) es el ente rector del sector agropecuario boliviano y formula la política productiva, comercial y de tierras. Bajo su tuición operan cuatro entidades técnicas con mandato sectorial específico: el Instituto Nacional de Innovación Agropecuaria y Forestal (INIAF) para investigación y semillas; el Servicio Nacional de Sanidad Agropecuaria e Inocuidad Alimentaria (SENASAG) para sanidad e inocuidad; el Instituto Nacional de Reforma Agraria (INRA) para saneamiento y titulación; y la Empresa de Apoyo a la Producción de Alimentos (EMAPA) para compras públicas con precio sostén y abastecimiento [@UDAPE2023_DiagnosticoAgropecuario].
+
+La fragmentación de tuiciones es un rasgo institucional persistente del sector. El riego (determinante directo de la productividad bajo restricción hídrica) se ejecuta desde el Ministerio de Medio Ambiente y Agua (MMAyA) a través del programa "Mi Agua / MIAGUA", sin reporte presupuestario consolidado con MDRyT. La Autoridad de Fiscalización y Control Social de Bosques y Tierra (ABT) regula desmonte bajo el Ministerio de Medio Ambiente; el Fondo de Desarrollo Indígena (FDI) ejecuta transferencias a comunidades por fuera del MDRyT [@Colque2016_SegundaReformaAgraria]. La consecuencia operativa es que la cifra agregada de gasto sectorial requiere reconstrucción analítica desde clasificadores funcionales en BOOST/VIPFE y no se lee directamente del presupuesto de una sola cabeza de sector.
+
+![Arquitectura institucional simplificada del sector agropecuario boliviano. Fuente: panel v12 sobre estructura organizacional MDRyT + adscritas + BDP-SAM (referencia decretos institucionales 2010–2024).](`r fig("fig02_agro_spending_aper")`){#fig-arquitectura fig-alt="Diagrama institucional del sector agropecuario boliviano mostrando MDRyT como rector, cuatro adscritas técnicas (INIAF, SENASAG, INRA, EMAPA), BDP-SAM como brazo financiero, y tuiciones cruzadas con MMAyA (riego) y ABT (bosques)."}
+
+## El Banco de Desarrollo Productivo (BDP-SAM) {#sec-bdp}
+
+El Banco de Desarrollo Productivo Sociedad Anónima Mixta (BDP-SAM) es el banco público de segundo y primer piso del sector. Opera con tasas reguladas por la Ley 393 de Servicios Financieros y financia parte sustantiva del crédito agropecuario nacional [@Ley393_2014]. Su cartera 2024 ronda los **USD 3.4 mil millones**, con participación agropecuaria cercana al **68% del portafolio productivo** (panel v12 sobre BCB Cuadro 3.02; ver §3.4 para detalle). El subsidio implícito del BDP (diferencia entre la tasa regulada y la tasa de mercado, multiplicada por el saldo) no se contabiliza hoy como gasto fiscal directo, sino como **revenue foregone** del sistema; el monto exacto sigue marcado como `[TODO_TRACE: revenue_foregone_bdp]` en el panel v12 y se aborda en el [Apéndice E].
+
+Bajo la clasificación MAFAP, el subsidio cuasi-fiscal del crédito BDP se asigna a la categoría **A2.2 (Other variable inputs)**, subsidio al crédito como insumo variable, siguiendo la regla 1 de [ADR-0010 §3](../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md). El monto bruto de la cartera no entra en la cifra MAFAP: solo el costo fiscal del subsidio implícito. Esta distinción separa este capítulo de cualquier lectura que confunda *flujo de crédito* con *gasto público sectorial*.
+
+## Subnacionales: departamentos y municipios {#sec-subnacionales}
+
+Bajo la Ley Marco de Autonomías y Descentralización (Ley 031/2010), los nueve gobiernos departamentales y los 339 gobiernos municipales ejecutan parte del gasto sectorial agropecuario en forma directa, principalmente a través de partidas de infraestructura productiva, riego, asistencia técnica local y caminos rurales. Los gobiernos departamentales reciben recursos del Impuesto Directo a los Hidrocarburos (IDH) y de regalías mineras y forestales; los municipios reciben coparticipación tributaria, IDH e ingresos propios. La consolidación nacional + subnacional del gasto agropecuario es uno de los aportes metodológicos de este reporte respecto del APER 2011 [@WB2011_BoliviaAgPER], y se desarrolla en detalle en el Capítulo 4.
+
+## Evolución presupuestaria 1990–2024 — clasificación dual MAFAP + económica {#sec-evolucion}
+
+La evolución del gasto sectorial se lee aquí bajo dos clasificaciones paralelas: la MAFAP de FAO (por destinatario) y la económica del GFSM 2014 (corriente, capital y fuente de financiamiento). La primera identifica a quién beneficia cada partida; la segunda, cómo se ejecuta.
+
+## Cifra agregada 1990–2024 {#sec-agregado}
 
 ```{r}
 #| label: tbl-inv-decadas
-#| tbl-cap: "Inversión pública agropecuaria, promedios decadales 1990-2024"
+#| tbl-cap: "Inversión pública agropecuaria, promedios decadales 1990–2024 (panel v12 sobre VIPFE/MEFP + IFPRI SPEED)."
 panel[, decada := fcase(
   year < 2000, "1990s",
   year < 2010, "2000s",
@@ -66,172 +79,316 @@ panel[, decada := fcase(
   default     = "2020-2024"
 )]
 inv_dec <- panel[!is.na(inv_agro_usd_mm), .(
-  `Inversión agrop. (USD MM, prom)` = round(mean(inv_agro_usd_mm, na.rm=TRUE), 0),
-  `Como % inv. pública total`        = round(mean(inv_agro_pct_total, na.rm=TRUE), 1),
-  `Como % PIB`                       = round(mean(inv_agro_pct_gdp, na.rm=TRUE), 2)
+  `Inversión agrop. (USD M, prom)` = round(mean(inv_agro_usd_mm, na.rm = TRUE), 0),
+  `% inversión pública total`      = round(mean(inv_agro_pct_total, na.rm = TRUE), 1),
+  `% PIB (cuando disponible)`      = round(mean(inv_agro_pct_gdp, na.rm = TRUE), 2)
 ), by = decada]
 setorder(inv_dec, decada)
 gt(inv_dec) |>
-  tab_source_note("Fuente: VIPFE / MEFP Informe Fiscal 2024.") |>
+  tab_source_note("Fuente: panel v12 sobre VIPFE/MEFP Informe Fiscal 2024.") |>
   opt_stylize(style = 1)
 ```
 
-**Patrón identificado:**
+La inversión pública agropecuaria muestra un patrón en tres fases que organiza el resto del capítulo. En los noventa el promedio anual fue de USD 47 M y la inversión sectorial representó 5–8% del total público; el contexto macro era de ajuste estructural y bajo gasto consolidado. En los dos mil la cifra escaló a USD 96 M anuales en promedio, con un pico transitorio cuando el ciclo de commodities empujó el gasto público total. Ya en la ventana 2008–2024 la inversión agropecuaria llegó a **USD 320 M en 2015** (su máximo histórico en USD corrientes) y luego se contrajo a una banda de USD 130–260 M durante el periodo 2020–2024, en paralelo con la restricción fiscal post-COVID y la escasez de divisas de 2023–2024.
 
-- 1990s: inversión agrop. ~USD 50 M anuales (% bajo, contexto neoliberal)
-- 2000s: ascenso a ~USD 130 M (precios commodities y cambio político 2006)
-- 2010s: pico USD 320 M en 2015 (boom de inversión pública post-nacionalización)
-- 2020-2024: caída a USD 130-260 M (crisis fiscal, COVID, escasez de divisas)
+![Inversión pública agropecuaria, Bolivia 1990–2024 (USD M corrientes). Fuente: panel v12 sobre VIPFE/MEFP Informe Fiscal 2024.](`r fig("fig10_inversion_agro_1990_2024")`){#fig-inv-1990-2024 fig-alt="Gráfico de línea de la inversión pública agropecuaria entre 1990 y 2024 en millones de USD corrientes, con un pico de 320 millones en 2015 seguido de una caída irregular hasta 130–260 millones entre 2020 y 2024."}
 
-## Benchmark internacional — meta Maputo y SPEED
+La relación de la inversión agropecuaria con el gasto público total se ha mantenido baja: el panel v12 reporta una media 2008–2024 de **6.6%** de la inversión pública total (`inv_agro_pct_total`), con un piso de 4.66% en 2016 y picos de 9.2% en 2023 y 10.7% en 2024 [Nota: estas cifras incluyen una proxy del Maputo construida sobre la **inversión pública** total y no sobre el **gasto público total**; la cifra Maputo histórica de IFPRI SPEED (ver §3.3) usa la base de gasto público total y por eso queda sistemáticamente por debajo]. Esta brecha sostenida con el referente Maputo del 10% es el hallazgo F04 ([§3.3](#sec-maputo)).
+
+## Clasificación MAFAP: narrow vs full {#sec-mafap-marco}
+
+::: {.callout-tip appearance="simple"}
+**Por qué dos clasificaciones MAFAP (narrow vs full).** La clasificación MAFAP de FAO distingue cinco grupos por destinatario [@MAFAP2013_MethodGuideVolI]: **A** apoyo al productor, **B** apoyo al consumidor, **C** apoyo a otros agentes, **D** apoyo general al sector (bienes públicos sectoriales) y **E** gasto rural-soporte (caminos, agua, electrificación, educación y salud rural). La **definición narrow** suma A + B + C + D (base para evaluar el compromiso de Maputo y comparar con el promedio LAC). La **definición full** suma narrow + E, que captura el gasto rural total incluyendo bienes públicos no estrictamente sectoriales. Bolivia se reporta en este capítulo bajo **ambas definiciones en paralelo**: la narrow para benchmarking internacional y la full para dimensionar el espacio fiscal de repurposing hacia el sector rural ampliado ([ADR-0009](../.agent/decisions/ADR-0009_mafap_narrow_full.md)). El glosario completo de A–E está en el [Apéndice C](appendix/C_glosario_mafap.qmd).
+:::
+
+![Composición MAFAP A–E del gasto público agro-rural boliviano (BOB 2015 constantes, panel v12). Fuente: cálculo propio sobre BOOST/VIPFE clasificado MAFAP — script `17_mafap_classification.R`.](`r figpng("fig18_summary_mafap_ABCDE")`){#fig-mafap-summary fig-alt="Gráfico apilado por año mostrando la descomposición del gasto sectorial boliviano en cinco categorías MAFAP (A–E) entre 2006 y 2024, con dominio claro de la categoría D (apoyo general al sector) entre 2012 y 2021 y la categoría E (rural-soporte) como masa más grande del gasto full."}
+
+La Figura @fig-mafap-summary muestra que, en el periodo con cobertura completa de PSE y datos rurales (2012–2021), el gasto agro-rural ejecutado se concentra en **dos categorías**: **D (apoyo general al sector)**, entre 1,179 y 2,098 M BOB 2015 constantes por año, y **E (rural-soporte)**, entre 2,697 y 4,799 M BOB anuales. Las categorías A (apoyo al productor neto) y B (apoyo al consumidor neto) presentan valores netos próximos a cero o negativos en varios años, lo que refleja que las transferencias precio-distorsionantes a productores se compensan en buena medida con impuestos implícitos a exportaciones (anti-MPS) capturados por la metodología MAFAP/PSE en commodities transables (ver Capítulo 5 para PSE/NRP).
+
+## MAFAP A — apoyo al productor {#sec-mafap-a}
+
+![Composición MAFAP categoría A: apoyo al productor 2006–2024 (panel v12). Fuente: cálculo propio sobre BOOST/VIPFE + AgriMonitor — script `17_mafap_classification.R`.](`r figpng("fig18a_mafap_A_apoyo_productor")`){#fig-mafap-A fig-alt="Serie de tiempo de la categoría MAFAP A (apoyo al productor) en Bolivia entre 2006 y 2024, con valores netos oscilando entre -8,000 y +2,300 millones de bolivianos de 2015 según la dirección del Market Price Support."}
+
+La categoría A captura el apoyo neto al productor, definido como Market Price Support (MPS) más subsidios a insumos variables más pagos a capital agrícola más asistencia técnica on-farm [@MAFAP2013_MethodGuideVolI]. En Bolivia, la cifra A está dominada por el MPS de commodities transables (soya, arroz, maíz, trigo) que el régimen de control de exportaciones genera como **diferencia implícita entre precio doméstico y precio frontera**. Cuando el control se traduce en precios domésticos por debajo del precio frontera (caso típico de soya y arroz exportables), la categoría A registra valores negativos. Cuando se traduce en protección al precio doméstico (caso típico de maíz y trigo), la categoría A registra valores positivos. El patrón dual está documentado como hallazgo F03 del reporte y se desarrolla en detalle en el Capítulo 5.
+
+Las **transferencias directas al productor** (A2 sin crédito BDP; A3 income support) son **modestas en términos absolutos** dentro del agregado A. La revisión de partidas BOOST/VIPFE post-2014 no muestra programas de cash transfer al productor agropecuario sostenidos en el tiempo a la escala que se observa en otros países LAC [@LopezGalinato2007]. El componente más grande de A es el MPS implícito, que tiene la propiedad de **no consumir presupuesto fiscal** pero sí transferir entre productores, consumidores y exportadores.
+
+## MAFAP B + C — apoyo al consumidor y a otros agentes {#sec-mafap-bc}
+
+![Composición MAFAP categorías B (consumidor) y C (otros agentes) 2006–2024 (panel v12). Fuente: cálculo propio sobre BOOST/VIPFE + AgriMonitor — script `17_mafap_classification.R`.](`r figpng("fig18b_mafap_BC_consumidor_otros")`){#fig-mafap-BC fig-alt="Serie de tiempo de las categorías MAFAP B y C en Bolivia entre 2006 y 2024, con la categoría C consistentemente en cero o muy próxima a cero y la categoría B oscilando entre -3,800 y +7,800 millones de bolivianos de 2015."}
+
+La categoría B (apoyo al consumidor) en Bolivia se materializa principalmente en **EMAPA**, que opera dos brazos (compras al productor con precio sostén, clasificadas como A1; y ventas al consumidor con precio subsidiado, clasificadas como B1), y en el componente alimentario del desayuno escolar municipal (B3). Cuando EMAPA vende por debajo del precio internacional, B registra valores positivos; cuando el control de precios al consumidor opera en sentido inverso al de los productores, B registra valores negativos. Esta dinámica espejo (A y B con signos opuestos) se observa en el periodo 2014–2021 y refleja el **objetivo dual** de la intervención pública en cadenas alimentarias: estabilizar precios al productor y al consumidor de manera simultánea, con resultados netos sectoriales cercanos a cero [@EMAPA_FundacionTIERRA].
+
+La categoría **C (apoyo a otros agentes)** registra valores cero o cercanos a cero en toda la serie. Esto refleja una **decisión metodológica** ([ADR-0010 §2](../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md)): cuando una partida BOOST puede atribuirse al beneficiario final (productor o consumidor), se asigna a A o B y no a C. La cobertura observada de C en Bolivia es residual.
+
+## MAFAP D — apoyo general al sector (bienes públicos sectoriales) {#sec-mafap-d}
+
+![Composición MAFAP categoría D: apoyo general al sector 2006–2024 (panel v12). Fuente: cálculo propio sobre BOOST/VIPFE — script `17_mafap_classification.R`.](`r figpng("fig18c_mafap_D_apoyo_general")`){#fig-mafap-D fig-alt="Serie de tiempo de la categoría MAFAP D (apoyo general al sector) en Bolivia entre 2006 y 2024, con valores entre 285 y 2,098 millones de bolivianos de 2015 y una tendencia creciente sostenida entre 2008 y 2019."}
+
+La categoría D es el **núcleo del repurposing** dentro del marco MAFAP. Incluye investigación agrícola pública (D1, INIAF), asistencia técnica (D2), extensión (D4), inspección sanitaria (D5, SENASAG), infraestructura sectorial off-farm (D6), almacenamiento público no-MPS (D7), marketing (D8) y costos administrativos sectoriales (D9). Es el equivalente directo del **GSSE** (General Services Support Estimate) en la nomenclatura OECD-PSE [@MAFAP2013_MethodGuideVolI; @oecd_pse_manual].
+
+Los datos del panel v12 muestran que el gasto D **creció sostenidamente** entre 2008 y 2019: de **286 M BOB 2015 en 2008** a **2,098 M BOB 2015 en 2018** (multiplicación ×7.3 en BOB constantes en una década). Tras 2019 la serie se contrae moderadamente (1,178 M en 2020, 1,648 M en 2021) y se recupera parcialmente en 2022–2023. La participación de D en el gasto MAFAP narrow (cuando el denominador es positivo) oscila entre 1.5% y 9.6% en el periodo con cobertura completa; el grueso de la base narrow lo absorbe el MPS y no las partidas D explícitas. La evidencia internacional sugiere que el gasto D tiene retornos sociales por unidad de inversión consistentemente superiores a los del MPS y a los de las transferencias privadas [@LopezGalinato2007; @FAO2021_PEFoodAgricultureSSA], lo cual se desarrolla en el Capítulo 5.
+
+Las **fichas institucionales de INIAF y SENASAG** del panel v12 indican que estas dos entidades absorben el grueso del gasto D explícito: INIAF con presupuesto vigente de Bs 98 M en 2019; SENASAG con ingresos propios por Bs 108 M ese mismo año. Una opción técnica de repurposing señalada en el Capítulo 6 explora la reasignación marginal hacia estas dos cabezas, manteniendo el techo fiscal del sector constante.
+
+## MAFAP E — gasto rural-soporte {#sec-mafap-e}
+
+![Composición MAFAP categoría E: gasto rural-soporte 2012–2021 (panel v12). Fuente: cálculo propio sobre BOOST/VIPFE con cobertura rural completa solo 2012–2021 — script `17_mafap_classification.R`.](`r figpng("fig18d_mafap_E_rural_soporte")`){#fig-mafap-E fig-alt="Serie de tiempo de la categoría MAFAP E (gasto rural-soporte) en Bolivia entre 2012 y 2021, con valores entre 2,697 y 4,799 millones de bolivianos de 2015 y un pico en 2014–2015."}
+
+La categoría E captura el gasto **rural pero no estrictamente sectorial agrícola**: caminos rurales generales (E3.1), agua y saneamiento rural (E3.2), electrificación rural (E3.3), educación rural (E1) y salud rural (E2). Es la categoría que **diferencia MAFAP narrow de MAFAP full**: el primer agregado la excluye, el segundo la incluye. La diferencia es cuantitativamente sustantiva en Bolivia: en el periodo con cobertura completa 2012–2021, el gasto E oscila entre **2,697 y 4,799 M BOB 2015 constantes anuales**, varias veces el tamaño combinado de las categorías A+B+C+D netas. Esto implica que la lectura **full** del gasto agro-rural boliviano es **mucho mayor** que la lectura narrow.
+
+La cobertura de E queda **incompleta antes de 2012 y después de 2021** por limitaciones en la disponibilidad de la clasificación funcional consolidada (`mafap_coverage_flag = "no_rural_data"`). El reporte mantiene ambas series visibles y declara la incertidumbre asociada: las comparaciones intertemporales del gasto **full** se limitan a la ventana 2012–2021; fuera de esa ventana solo se reporta narrow. El crosswalk hacia OECD-PSE no captura E (no hay equivalente), lo que refuerza la decisión de mantener MAFAP como clasificación primaria del PER ([Apéndice D](appendix/D_crosswalk_clasificaciones.qmd)).
+
+## Composición económica: corriente vs capital {#sec-economica}
+
+```{r}
+#| label: tbl-econ-comp
+#| tbl-cap: "Composición económica del gasto agropecuario ejecutado, fase BOOST 1996–2008 (BOB M corrientes)."
+econ <- panel[year >= 1996 & year <= 2008 & !is.na(boost_presup_ejecutado_mm),
+  .(Año                          = year,
+    `Ejecutado (BOB M)`          = round(boost_presup_ejecutado_mm, 0),
+    `Corriente (BOB M)`          = round(boost_gasto_corriente_mm, 0),
+    `Capital (BOB M)`            = round(boost_gasto_capital_mm, 0),
+    `% capital`                  = round(boost_pct_capital, 1),
+    `Tasa ejecución (%)`         = round(boost_tasa_ejecucion, 1))]
+gt(econ) |>
+  tab_source_note("Fuente: panel v12 sobre World Bank BOOST Bolivia 1996–2008.") |>
+  opt_stylize(style = 1)
+```
+
+![Composición del gasto agropecuario por sector económico, Bolivia 1990–2024 (panel v12).](`r fig("fig11_inversion_por_sector")`){#fig-inv-sector fig-alt="Gráfico apilado por año mostrando la composición del gasto agropecuario boliviano por sub-sector económico entre 1990 y 2024, con cambios de mezcla relevantes entre agricultura, ganadería, silvicultura y agropecuaria mixta."}
+
+La composición económica del gasto sectorial en la fase con cobertura BOOST (1996–2008) muestra **predominio de gasto de capital** sobre gasto corriente. La proporción de capital osciló entre **38.5% (2004)** y **86.7% (1998)**, con una media de **62%** en el período. Esta media supera la observación habitual de PERs de la región andina, donde el componente corriente (operación y salarios) suele absorber porciones mayores [@WB2011_BoliviaAgPER]. Tras 2008 el panel v12 no dispone de la desagregación corriente/capital con la misma calidad; es uno de los gaps registrados en el [Apéndice A](appendix/A_data_sources.qmd) y motivó la carta formal al MEFP gestionando acceso a la serie 2009–2024 con detalle funcional.
+
+La **tasa de ejecución** del gasto en la fase BOOST (1996–2008) muestra una mejora estructural: de 74% en 1996 a 101% en 2008, con un pico de 117% en 2004. Tasas superiores a 100% reflejan **modificaciones presupuestarias intra-año** que elevaron el techo vigente por encima del aprobado inicial. Esta fortaleza ejecutora del gasto agropecuario en la fase BOOST contrasta con el desempeño de PAR III post-2020 (16% financiero en 2024), documentado en el Capítulo 4.
+
+## Fuentes de financiamiento {#sec-financiamiento}
+
+La estructura de financiamiento del gasto agropecuario en Bolivia combina cuatro fuentes principales: Tesoro General de la Nación (TGN), crédito externo, donación y recursos específicos. En la fase BOOST (1996–2008) las **donaciones** absorbieron en promedio el 30–35% del financiamiento del gasto sectorial; el **TGN** entre 25 y 50%; el crédito externo entre 8 y 18%; y los recursos específicos el balance. Tras 2008 la composición se desplazó, según evidencia parcial post-BOOST, hacia mayor participación del TGN y menor dependencia de donación, en paralelo con la consolidación fiscal del sector hidrocarburos.
+
+La importancia operativa de esta composición es doble. Primero, los **gastos financiados con donación** suelen ejecutar en programas verticales (de horizonte 3–5 años) y no se traducen mecánicamente en gasto recurrente del MDRyT cuando el donante se retira. Segundo, los **recursos específicos** (ingresos propios de adscritas como SENASAG) son la base de financiamiento de servicios de inspección y certificación que escalan con la actividad del sector y no requieren asignación presupuestaria adicional del TGN. Una opción técnica para consideración del MEFP es revisar la regla de retención de recursos específicos en SENASAG y MDRyT con el objetivo de estabilizar el financiamiento de la categoría D MAFAP.
+
+## Maputo y compromisos sectoriales — hallazgo F04 {#sec-maputo}
+
+El compromiso de Maputo del 10% del gasto público total funciona como benchmark de referencia para el sector, aunque Bolivia no es signataria del CAADP. La serie histórica disponible muestra que el gasto agropecuario boliviano se mantuvo de manera persistente por debajo de esa referencia (hallazgo F04).
+
+## El compromiso Maputo del 10% {#sec-maputo-def}
+
+El compromiso de Maputo (adoptado por la Unión Africana en 2003 dentro del Comprehensive Africa Agriculture Development Programme, CAADP) estableció una **meta del 10% del gasto público total** asignado al sector agricultura y desarrollo rural. Bolivia no es signataria del CAADP, pero la meta del 10% funciona como benchmark de referencia para el monitoreo de gasto agropecuario en países de ingresos medios y bajos [@FAO2021_PEFoodAgricultureSSA; @PernecheleEtAl2018_MAFAP]. Se calcula sobre la definición **MAFAP narrow** (A+B+C+D, excluye E rural-soporte) para mantener comparabilidad con economías que no necesariamente publican consolidados de gasto rural ampliado.
+
+## Bolivia frente al benchmark Maputo, 1990–2024 {#sec-maputo-bolivia}
 
 ```{r}
 #| label: fig-maputo
-#| fig-cap: "Bolivia vs meta Maputo (10%): gasto agropecuario como % del gasto público total, 1980-2007 (IFPRI SPEED)"
-sp <- speed[, .(year, ag_pctexp)]
-ggplot(sp[!is.na(ag_pctexp)], aes(x = year, y = ag_pctexp)) +
-  geom_col(fill = WB_BLUE, alpha = 0.7) +
-  geom_hline(yintercept = 10, linetype = "dashed", color = WB_RED, linewidth = 1) +
-  annotate("text", x = 1985, y = 10.5, label = "Meta Maputo (10%)",
-            color = WB_RED, fontface = "bold", size = 3.5) +
+#| fig-cap: "Bolivia vs meta Maputo: gasto agropecuario como % del gasto público total, 1990–2007 (IFPRI SPEED, panel v12)."
+sp <- panel[!is.na(speed_ag_pctexp), .(year, speed_ag_pctexp)]
+ggplot(sp, aes(x = year, y = speed_ag_pctexp)) +
+  geom_col(fill = "#14213D", alpha = 0.85) +
+  geom_hline(yintercept = 10, linetype = "dashed", color = "#C2410C", linewidth = 1) +
+  annotate("text", x = 1992, y = 10.6, label = "Meta Maputo (10%)",
+           color = "#C2410C", fontface = "bold", size = 3.5) +
   scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 12)) +
   labs(x = NULL, y = "Gasto agrop. / gasto público total (%)",
-       caption = "Fuente: IFPRI SPEED 2019. Bolivia cubre 1980-2007 en la base.")
+       caption = "Fuente: panel v12 sobre IFPRI SPEED 2019. Cobertura Bolivia: 1990–2007.")
 ```
 
-**Bolivia nunca alcanzó la meta Maputo del 10%.** Máximo histórico: **3.48% en 1990**. Promedio 2000-2007: **2.2%**. En el ranking LAC 2000-2017, Bolivia ocupa la posición **9 de 24** con 0.43% del PIB (IFPRI SPEED), **por encima** de Argentina (0.08%), Chile (0.31%) y Perú (0.21%).
-
-## Composición del gasto agropecuario — fase BOOST 1996-2008
+**Bolivia nunca alcanzó la meta Maputo del 10%** en la serie histórica disponible. El máximo registrado es **3.48% en 1990**, observado en un contexto de bajo gasto público total que infla mecánicamente el ratio; el promedio 1990–2007 fue **1.72%**; el promedio 2000–2007, **1.87%** (panel v12 sobre IFPRI SPEED). La cifra del 9.18% reportada para 2023 en la columna `inv_agro_pct_total` del panel v12 corresponde a una **base de inversión pública** (no de gasto público total) y no es comparable con el numerador Maputo de la serie SPEED; el Apéndice A documenta esta distinción.
 
 ```{r}
-#| label: tbl-boost
-#| tbl-cap: "Ejecución y composición del gasto agropecuario público, Bolivia 1996-2008 (BOOST)"
-boost[year %in% c(1996, 2000, 2004, 2008),
-      .(Año                                = year,
-        `Presup. ejecutado (BOB MM)`       = round(presup_ejecutado_mm, 0),
-        `Tasa ejecución (%)`               = round(tasa_ejecucion, 1),
-        `Gasto corriente (BOB MM)`         = round(gasto_corriente_mm, 0),
-        `Gasto capital (BOB MM)`           = round(gasto_capital_mm, 0),
-        `% capital`                        = round(pct_capital, 1))] |>
-  gt() |>
-  tab_source_note("Fuente: World Bank BOOST Bolivia 1996-2008.") |>
+#| label: tbl-maputo-comparacion
+#| tbl-cap: "Bolivia frente a referencia Maputo: tres ventanas relevantes (panel v12)."
+maputo_tab <- data.table(
+  Ventana    = c("Máximo 1990–2007 (IFPRI SPEED)",
+                 "Promedio 1990–2007 (IFPRI SPEED)",
+                 "Promedio 2000–2007 (IFPRI SPEED)",
+                 "Meta Maputo de referencia"),
+  Cifra      = c("3.48%", "1.72%", "1.87%", "10.0%"),
+  Fuente     = c("panel v12 / SPEED", "panel v12 / SPEED",
+                 "panel v12 / SPEED", "CAADP 2003")
+)
+gt(maputo_tab) |>
+  tab_source_note("Numerador: gasto público sectorial agropecuario (narrow). Denominador: gasto público total. La serie post-2007 requiere reconstrucción desde BOOST/MEFP y no se reporta en SPEED.") |>
   opt_stylize(style = 1)
 ```
 
-**Hallazgos del período BOOST:**
+## ¿Por qué nunca se alcanzó? {#sec-maputo-por-que}
 
-- Gasto agropecuario ejecutado pasó de **278 MM BOB (1996)** a **1,282 MM BOB (2008)** — multiplicación ×4.6 en términos nominales.
-- Tasa de ejecución mejoró de **74% (1996) a 101% (2008)** — fortalecimiento de capacidad ejecutora.
-- Composición 2008: Agricultura 63%, Agropecuaria 15%, Ganadería 6%, Silvicultura 6%.
-- Top entidades ejecutoras post-2006: MDRyT, Prefecturas Tarija/Cochabamba/Santa Cruz, EMAPA.
+Tres factores estructurales explican la distancia sostenida frente al referente Maputo. Primero, el **denominador** (gasto público total) creció de manera significativa entre 2006 y 2018 en paralelo con el ciclo del IDH y los ingresos petroleros, lo que comprime mecánicamente cualquier ratio sectorial. Segundo, el sector agropecuario ha funcionado, en parte, con **instrumentos no presupuestarios**: control de exportaciones (que opera vía precio, no vía gasto), crédito dirigido (que opera vía regulación bancaria, no vía gasto) y compras públicas con precio sostén (que tienen impacto fiscal moderado y se contabilizan en otras partidas). Esto significa que el ratio Maputo, calculado solo sobre gasto sectorial registrado, **subestima** la magnitud real del apoyo público al sector. Tercero, la **fragmentación institucional** descrita en §3.1 distribuye partidas con impacto agrícola entre cabezas distintas al MDRyT (riego en MMAyA, transferencias indígenas en FDI, caminos productivos en gobernaciones), lo que dificulta la consolidación contable de la cifra "agricultura" en sentido amplio.
 
-## Tasas de ejecución presupuestal — benchmark MEFP 2015-2023
+El Capítulo 5 (PSE/CSE) y el Capítulo 4 (consolidación subnacional) cuantifican estas dimensiones no capturadas por la cifra Maputo y permiten reconstruir el **apoyo total al sector** (fiscal y no fiscal) en una métrica común con LAC. La conclusión preliminar es que la lectura Maputo, sin aumentar por componentes no presupuestarios, no es por sí sola un indicador suficiente del esfuerzo público en el sector agropecuario boliviano.
 
-::: {layout-ncol=2}
+## Sustitución gasto → crédito post-Ley 393 — hallazgo F05 {#sec-credito}
 
-![Gasto subnacional por departamento (líneas)](`r fig("fig21_gasto_subnacional_lineas")`){fig-alt="Gasto subnacional"}
+Tras la Ley 393 de 2014, parte del apoyo público al sector pasó a ejecutarse a través del balance del sistema financiero y no del Presupuesto General del Estado. Esta sección documenta esa sustitución parcial de instrumentos, del gasto fiscal a la inducción regulatoria del crédito (hallazgo F05).
 
-![Gasto agropecuario municipal — Programa 10](`r fig("fig20_programa10_agropecuario")`){fig-alt="P10 muni"}
+## Qué cambió con la Ley 393 de 2014 {#sec-ley393}
 
+La Ley 393 de Servicios Financieros, promulgada en agosto de 2013 y reglamentada en 2014, redefinió el régimen bancario boliviano en al menos cuatro dimensiones: (i) **metas mínimas** de cartera productiva por banco, con la agricultura como sector elegible; (ii) techos máximos a la tasa de interés para préstamos productivos; (iii) regulación de comisiones y servicios financieros; y (iv) un **rol expandido** del BDP-SAM como banco público sectorial [@Ley393_2014]. El instrumento es una **regulación bancaria**, no un programa de gasto: la consecuencia es que parte del apoyo público al sector pasa a ejecutarse a través del **balance del sistema financiero** y no del Presupuesto General del Estado.
+
+::: {.callout-note appearance="simple"}
+**Caja — Timeline Ley 393 (2013–2024).**
+
+- **2013-08-21:** Promulgación Ley 393 de Servicios Financieros.
+- **2013–2014:** DS 1842 (2013), DS 2055 (2014), reglamentación de tasas reguladas y metas de cartera productiva.
+- **2014-2016:** Periodo de adaptación; los bancos privados aumentan exposición productiva para cumplir metas.
+- **2017–2020:** Cartera agro alcanza dos dígitos como % del crédito total (10.1% en 2017, 10.6% en 2019).
+- **2020–2021:** Mantenimiento durante shock COVID; la cartera no se contrae proporcionalmente al crédito total.
+- **2022–2024:** Crecimiento sostenido a 11.1% (2022) → 11.2% (2023) → **11.7% en 2024**.
+
+Cierre 2024: cartera agro = **USD 3,397 M**; ×11.7 desde USD 290 M en 2010 (panel v12 sobre BCB Cuadro 3.02).
 :::
 
+## Cartera agropecuaria BCB 2010–2024 {#sec-cartera}
+
 ```{r}
-#| label: tbl-mefp
-#| tbl-cap: "Tasas de ejecución presupuestal — Ministerio de Economía y Finanzas Públicas (MEFP, Entidad 035) 2015-2023"
-mefp[, .(
-  Año                            = year,
-  `Vigente (BOB MM)`              = round(presup_vigente_mm_bs, 0),
-  `Ejecutado (BOB MM)`            = round(ejecutado_mm_bs, 0),
-  `% Ejecución (ponderado)`       = round(pct_ejec_ponderado, 1)
-)] |>
-  gt() |>
-  tab_source_note("Fuente: PDFs DGAA MEFP (Ejecucion_YYYY.pdf). Solo Entidad 035.") |>
-  opt_stylize(style = 1) |>
-  data_color(columns = "% Ejecución (ponderado)",
-              palette = c(WB_RED, WB_YELLOW, WB_GREEN),
-              domain = c(40, 70, 100))
+#| label: tbl-credito
+#| tbl-cap: "Cartera bancaria al sector agropecuario, Bolivia 2010–2024 (panel v12 sobre BCB Boletín Estadístico Cuadro 3.02)."
+cred <- panel[year >= 2010 & year <= 2024 & !is.na(bcb_cred_agro_mm_usd),
+  .(Año                                   = year,
+    `Cartera agro (USD M)`                = round(bcb_cred_agro_mm_usd, 0),
+    `Cartera agro (BOB M)`                = round(bcb_cred_agro_mm_bs, 0),
+    `Cartera total (USD M)`               = round(bcb_cred_total_mm_usd, 0),
+    `% agro / cartera total`              = round(bcb_cred_agro_pct_total, 2))]
+gt(cred) |>
+  tab_source_note("Cartera agropecuaria = créditos al sector primario agropecuario del sistema financiero bancario. No incluye crédito subsidiado BDP fuera del sistema bancario tradicional.") |>
+  opt_stylize(style = 1)
 ```
-
-**Patrón observado en el benchmark MEFP:**
-
-- Rango histórico de ejecución: **42% (2020, COVID) – 96% (2023)**.
-- 2020: presupuesto vigente *explotó 13×* (de 426 MM a 5,540 MM BOB) por transferencias COVID; ejecución cayó a 42% — *patrón típico de shock fiscal*.
-- 2022-2023: recuperación a 93-96% tras normalización.
-- *Servicios No Personales* es consistentemente el grupo con menor ejecución (46-79%) — indicador estructural de subejecución en compras.
-
-> **Nota crítica para el APER:** los datos por entidad de los **ministerios sectoriales** (MDRyT, INIAF, SENASAG, INRA) no están públicamente disponibles para 2009-2024 con el detalle requerido. La carta formal al MEFP (DS 28168) gestiona esta solicitud. Hasta que se reciba esa información, el benchmark MEFP funciona como **referencia comparativa** para los datos parciales obtenidos de RPC del MDRyT (74% financiero / 54% físico en 2024).
-
-## El cambio estructural: crédito subsidiado vs. inversión pública
-
-Desde la promulgación de la **Ley 393 de Servicios Financieros (julio 2014)**, que mandó cuotas mínimas de cartera productiva al sistema bancario, se observa una **sustitución parcial** entre inversión pública directa y crédito subsidiado al sector agropecuario.
 
 ```{r}
 #| label: fig-credito-vs-inv
-#| fig-cap: "Inversión pública agropecuaria vs crédito bancario al sector agropecuario, Bolivia 2010-2024"
-panel_cred <- panel[year >= 2010 & year <= 2024,
-                     .(year,
-                       inv_agro = inv_agro_usd_mm,
-                       credito  = bcb_cred_agro_mm_usd)]
-panel_long <- melt(panel_cred, id.vars = "year",
-                   variable.name = "fuente", value.name = "valor",
-                   variable.factor = FALSE)
-panel_long[, fuente := fifelse(fuente == "inv_agro",
-                                "Inversión pública (VIPFE)",
-                                "Crédito bancario al sector (BCB)")]
-ggplot(panel_long[!is.na(valor)], aes(x = year, y = valor, color = fuente)) +
-  geom_line(linewidth = 1.3) +
-  geom_point(size = 2.5) +
-  geom_vline(xintercept = 2014, linetype = "dashed", color = WB_NAVY, alpha = 0.6) +
-  annotate("text", x = 2014.2, y = 3000, label = "Ley 393\n(julio 2014)",
-            color = WB_NAVY, hjust = 0, size = 3.2, fontface = "bold") +
-  scale_color_manual(values = c(WB_BLUE, WB_ORANGE)) +
+#| fig-cap: "Inversión pública agropecuaria vs cartera bancaria al sector agropecuario, Bolivia 2010–2024 (USD M corrientes)."
+pc <- panel[year >= 2010 & year <= 2024,
+            .(year,
+              `Inversión pública (VIPFE)`        = inv_agro_usd_mm,
+              `Cartera bancaria agro (BCB)`      = bcb_cred_agro_mm_usd)]
+pl <- melt(pc, id.vars = "year",
+           variable.name = "fuente", value.name = "valor",
+           variable.factor = FALSE)
+ggplot(pl[!is.na(valor)], aes(x = year, y = valor, color = fuente)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2.2) +
+  geom_vline(xintercept = 2014, linetype = "dashed", color = "#14213D", alpha = 0.6) +
+  annotate("text", x = 2014.2, y = 3000, label = "Ley 393\n(2014)",
+           color = "#14213D", hjust = 0, size = 3.2, fontface = "bold") +
+  scale_color_manual(values = c("#14213D", "#C2410C")) +
   scale_y_continuous(labels = label_dollar(suffix = " M")) +
   labs(x = NULL, y = "USD millones", color = NULL,
-       caption = "Inversión: VIPFE / MEFP Informe Fiscal 2024.\nCrédito: BCB Boletín Estadístico Cuadro 3.02.") +
+       caption = "Fuente: panel v12 sobre VIPFE/MEFP (inversión) + BCB Cuadro 3.02 (cartera).") +
   theme(legend.position = "bottom")
 ```
 
-**Hallazgo central:**
+La cartera bancaria al sector agropecuario **se multiplicó por 11.7** entre 2010 y 2024, pasando de **USD 290 M (5.07% de la cartera total)** a **USD 3,397 M (11.70%)**. Es el hallazgo F05 del reporte. En paralelo, la inversión pública agropecuaria osciló entre USD 130 M (2020) y USD 320 M (2015) sin tendencia clara. La consecuencia operativa es que, **en términos de USD por año**, el flujo de crédito al sector supera al flujo de inversión pública directa: en 2024, la cartera agro fue **13× mayor** que la inversión pública agropecuaria de ese año. Este patrón se enmarca como **sustitución parcial de instrumentos** (del gasto fiscal a la inducción regulatoria del crédito) y no como suma de instrumentos complementarios, en tanto la magnitud relativa del crédito desplaza a la inversión pública como mecanismo dominante de apoyo financiero al sector.
 
-- **Inversión pública** cayó de **0.97% del PIB en 2015** a **0.38% en 2021** (USD 320 M → USD 130 M).
-- **Crédito agropecuario** subió de **5.1% del crédito total bancario en 2010** a **11.7% en 2024**.
-- En valores absolutos, el crédito al sector pasó de **USD 290 M (2010)** a **USD 3,397 M (2024)** — multiplicación ×11.7.
-- Esta **sustitución de instrumentos** transforma la naturaleza del apoyo público: del gasto fiscal directo a la *inducción regulatoria del crédito subsidiado*. La regresión panel del Capítulo 4 incluye un **dummy estructural `post_ley393`** para capturar este quiebre.
+## Subsidio cuasi-fiscal del crédito subsidiado {#sec-subsidio}
 
-## Distribución subnacional del gasto
+El régimen Ley 393 fija tasas reguladas por debajo de la tasa de mercado de referencia. La diferencia entre ambas, multiplicada por el saldo de cartera elegible, es el **subsidio implícito** del crédito subsidiado: una transferencia desde el sistema bancario hacia los productores que cumplen con los criterios de elegibilidad de cartera productiva. Bajo la clasificación MAFAP, este subsidio se asigna a la categoría **A2.2 (input subsidies, other variable inputs)**: el crédito como insumo variable de la operación productiva ([ADR-0010 §3 regla 1](../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md)).
 
-::: {layout-ncol=2}
+`[TODO_TRACE: revenue_foregone_bdp]` — La estimación de la magnitud del subsidio implícito en BOB 2015 constantes y como % del PIB sectorial sigue pendiente. El cálculo requiere (i) serie de tasa de mercado de referencia para el plazo y perfil de riesgo del crédito productivo, (ii) saldo medio de la cartera regulada y (iii) tratamiento de la cartera BDP separado de la cartera del sistema bancario regulado. Una primera estimación parcial está disponible en el script piloto `BT_agg` del panel; el ejercicio completo se delega al script `18_revenue_foregone.R` y se integrará en una versión posterior del panel v12.
 
-![Mapa: gasto agropecuario municipal 2020](`r fig("fig22_mapa_gasto_agro_2020")`){fig-alt="Mapa gasto"}
+## Costo fiscal vs gasto presupuestario {#sec-costo-fiscal}
 
-![VIPFE vs Jubileo municipal](`r fig("fig18_vipfe_vs_jubileo_municipal")`){fig-alt="VIPFE vs Jubileo"}
+La distinción entre **gasto presupuestario** (registrado en BOOST/VIPFE y captado por el ratio Maputo) y **costo fiscal total** (presupuesto + revenue foregone del crédito subsidiado + transferencias implícitas vía precios controlados) define la dimensión real del apoyo público al sector. Bolivia presenta un caso donde el **costo fiscal total** (aún sin la cuantificación final del subsidio implícito BDP) es **sustantivamente mayor** que el gasto presupuestario reportado. La consecuencia analítica para el repurposing es relevante: una reasignación de gasto presupuestario que no se acompañe de una revisión del régimen de tasas reguladas y de exportaciones controladas no alteraría los flujos de apoyo de mayor magnitud relativa (crédito regulado y precios controlados), que operan por fuera del presupuesto. El Capítulo 6 desarrolla esta línea como **escenario de repurposing ampliado** (presupuesto + crédito + precios), distinto al escenario clásico de reasignación intra-presupuestaria.
 
+## APER 2011 vs APER 2026 — caja comparativa {#sec-aper-2011}
+
+::: {.callout-tip appearance="simple"}
+**Caja comparativa — Lo que cambió desde el APER 2011.**
+
+El APER 2011 [@WB2011_BoliviaAgPER] reportó el gasto agropecuario boliviano bajo una clasificación funcional VIPFE/MEFP, con ventana 1996–2008 (período BOOST) y sin la operacionalización MAFAP. Sus hallazgos centrales (baja participación del sector en el gasto público total, predominio del gasto de capital sobre corriente y heterogeneidad subnacional marcada) se confirman cualitativamente en este reporte con la ventana extendida 2008–2024 y bajo dos clasificaciones paralelas (MAFAP + económica). Tres elementos nuevos respecto del APER 2011 estructuran este reporte:
+
+1. **Clasificación dual MAFAP narrow + full.** El APER 2011 no incluía la lectura MAFAP. Este reporte la incorpora como clasificación primaria del PER y la reporta en paralelo a la lectura funcional VIPFE.
+2. **Sustitución gasto → crédito post-Ley 393.** El cambio estructural más relevante del sector entre 2011 y 2026 es el escalamiento del crédito subsidiado, que no existía en el APER 2011 (la Ley 393 es de 2013). El hallazgo F05 lo cuantifica.
+3. **Consolidación nacional + subnacional.** El APER 2011 cubrió el nivel nacional con datos parciales subnacionales; este reporte consolida los nueve departamentos y los 339 municipios bajo la Ley de Autonomías 031/2010 (Capítulo 4).
+
+Lo que **no cambió** desde el APER 2011: la fragmentación institucional MDRyT-MMAyA-ABT-FDI, la distancia frente al referente Maputo y el bajo peso explícito de la categoría D (bienes públicos sectoriales) en el agregado del gasto sectorial registrado.
 :::
 
-::: {layout-ncol=2}
+## Síntesis y cierre del capítulo {#sec-sintesis}
 
-![Composición del gasto Jubileo (programa)](`r fig("fig19_jubileo_composition")`){fig-alt="Jubileo"}
+```{r}
+#| label: tbl-sintesis-cap3
+#| tbl-cap: "Síntesis del capítulo: composición del gasto agropecuario boliviano bajo clasificación dual (panel v12)."
+sint <- data.table(
+  Dimensión = c("Magnitud (% gasto público total, 1990–2007)",
+                "Pico de inversión USD (2015)",
+                "Categoría dominante MAFAP (2012–2021)",
+                "Tasa de ejecución BOOST (media 1996–2008)",
+                "Sustitución estructural post-2014",
+                "Cartera bancaria agro (% total, 2024)",
+                "Hallazgo central"),
+  Cifra     = c("3.48% máx; 1.72% media",
+                "USD 320 M",
+                "D (apoyo general) + E (rural-soporte)",
+                "~92%",
+                "Crédito ×11.7 (2010 → 2024)",
+                "11.70%",
+                "F04 (Maputo) + F05 (crédito Ley 393)"),
+  Fuente    = c("IFPRI SPEED via panel v12",
+                "VIPFE/MEFP via panel v12",
+                "MAFAP-Bolivia via panel v12",
+                "BOOST via panel v12",
+                "BCB via panel v12",
+                "BCB Cuadro 3.02 via panel v12",
+                "04_HALLAZGOS.md")
+)
+gt(sint) |>
+  tab_source_note("Reporte construido con clasificación dual MAFAP + económica (Apéndice C + D); panel v12.") |>
+  opt_stylize(style = 1)
+```
 
-![Mapa de gasto agropecuario subnacional](`r fig("fig32_mapa_p10_agropecuario")`){fig-alt="Mapa P10"}
+La fotografía del gasto público agropecuario boliviano 2008–2024 se caracteriza por cuatro rasgos. Primero, **magnitud persistentemente baja** frente al referente Maputo del 10% del gasto público total, con una brecha que no se ha cerrado en tres décadas y media de serie disponible. Segundo, **composición concentrada** en las categorías D (apoyo general al sector) y E (rural-soporte) cuando se aplica la clasificación MAFAP; el apoyo neto al productor (categoría A) oscila alrededor de cero por la compensación de signos entre commodities exportables (anti-MPS) y commodities domésticos (pro-MPS). Tercero, **sustitución parcial del gasto presupuestario por crédito regulado** post-Ley 393 de 2014, que escala la cartera agropecuaria a USD 3,397 M en 2024 (×11.7 desde 2010) y desplaza a la inversión pública como instrumento dominante de apoyo financiero al sector. Por último, **fragmentación institucional persistente** entre MDRyT, MMAyA, ABT y FDI, que dificulta tanto la lectura consolidada del gasto sectorial como la coordinación operativa entre instrumentos.
 
+Los Capítulos 4 y 5 amplían esta evidencia en dos direcciones complementarias: el Capítulo 4 desagrega el gasto consolidado a nivel departamental y municipal y dimensiona la subejecución observada en programas específicos como PAR III (hallazgo F07); el Capítulo 5 traduce la lectura MAFAP a la lectura OECD-PSE para benchmarking LAC y desarrolla los hallazgos F02 (PSE 5.8%) y F03 (patrón dual NRP por commodity). El Capítulo 6 retoma la cifra F05 para construir escenarios de repurposing **ampliado** que incluyen presupuesto + crédito + precios controlados.
+
+```{r}
+#| label: fig-credito-share
+#| fig-cap: "Cartera bancaria al sector agropecuario como % del crédito total, Bolivia 2010–2024 (BCB Cuadro 3.02)."
+ggplot(panel[year >= 2010 & !is.na(bcb_cred_agro_pct_total)],
+       aes(x = year, y = bcb_cred_agro_pct_total)) +
+  geom_col(fill = "#C2410C", alpha = 0.85) +
+  geom_hline(yintercept = 5.07, linetype = "dotted", color = "grey40") +
+  annotate("text", x = 2010.5, y = 5.5, label = "Base 2010 (5.07%)",
+           color = "grey30", size = 3, hjust = 0) +
+  geom_vline(xintercept = 2014, linetype = "dashed", color = "#14213D", alpha = 0.6) +
+  scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 13)) +
+  labs(x = NULL, y = "Cartera agro / cartera total (%)",
+       caption = "Fuente: panel v12 sobre BCB Boletín Estadístico Cuadro 3.02.\nLínea vertical: promulgación de la Ley 393 (2014).")
+```
+
+::: {.callout-note appearance="simple"}
+**Nota de cierre.** Este capítulo presenta análisis técnico de la composición y evolución del gasto público agropecuario en Bolivia, producido por el Banco Mundial en diálogo con el MEFP. No constituye posición oficial del Estado Plurinacional de Bolivia. Las cifras son reproducibles desde el panel v12 (`spending_panel_v12.rds` + `mafap_bolivia.rds`) y los scripts publicados (`02_code/02_cleaning/17_mafap_classification.R`, `02_code/04_visualization/11_figures_mafap.R`); las opciones de repurposing señaladas son escenarios técnicos para consideración del MEFP, no recomendaciones vinculantes. La incertidumbre metodológica está declarada por hallazgo en `.agent/04_HALLAZGOS.md`.
 :::
 
-**Distribución observada:**
-
-- **Santa Cruz** concentra el mayor gasto agropecuario absoluto pero el más bajo *per cápita rural* (paradoja de la concentración).
-- Los municipios pequeños del altiplano y valles tienen el **mayor gasto per cápita**, reflejando arreglos de coparticipación tributaria + IDH.
-- El gasto agropecuario subnacional (Programa 10) representa entre **2-8% del presupuesto total municipal** — espacio limitado para programas locales de extensión.
-
-## Síntesis del capítulo
-
-| Dimensión | Hallazgo | Implicación |
-|-----------|----------|-------------|
-| **Magnitud** | Bolivia nunca alcanzó meta Maputo (10%); máx. histórico 3.48% (1990) | El sector está sub-financiado relativo al consenso regional |
-| **Tendencia** | Inversión 1990-2024: ascendente con quiebre 2015 | Boom 2010-2015, contracción post-2020 |
-| **Composición** | Gasto corriente domina; capital crece con BOOST 1996-2008 | Fortalecimiento de programas de inversión |
-| **Ejecución** | Tasa MEFP 42-96%, mejora reciente; MDRyT 74% (2024) | Capacidad de absorción aceptable pero heterogénea |
-| **Estructural** | Crédito BCB sustituye inversión pública post-Ley 393 (2014) | Cambio de instrumento de apoyo: fiscal → crédito |
-| **Institucional** | Riego fragmentado entre MDRyT y MMAyA | Incentivo a coordinación intersectorial débil |
-| **Subnacional** | Concentración en Santa Cruz / dispersión altiplano | Necesidad de diferenciar gasto por contexto regional |
-
-El nivel y composición del gasto agropecuario boliviano se caracteriza por ser **persistentemente bajo** en términos relativos, **crecientemente dependiente de instrumentos crediticios** post-2014, y **fragmentado institucionalmente** entre múltiples ministerios y empresas públicas. Estos elementos motivan el análisis de eficiencia y retornos del Capítulo 4, donde se documenta empíricamente que la elasticidad TFP-inversión es positiva pero modesta.
+<!--
+draft_status: v0.1
+written_by: aper-writer (sesión 13)
+date: 2026-05-24
+ventana_canonica: 2008-2024
+mafap_data: mafap_bolivia.rds (recién generado, 35 años × 198 cols)
+pending:
+  - revenue_foregone_bdp (subsidio implícito Ley 393) — script 18_revenue_foregone.R
+  - validación serie crédito post-Ley 393 vs cartera anterior sin doble conteo
+  - caja Ley 393 timeline (incluida en §3.4.1, validar fechas decretos reglamentarios)
+  - fig02 actualmente reusa fig02_agro_spending_aper.png (no es organigrama dedicado);
+    construir fig02_org_chart dedicado en sesión posterior
+  - serie pre-2012 de MAFAP narrow muestra MPS volátil; documentar caveat extendido
+    en Apéndice B (sensibilidad a precio frontera de referencia)
+  - cifra fig03 / fig19 / fig20 referidas en plan §7 pero no incluidas en este draft v0.1
+    porque no están en figuras pre-generadas (solo fig02, fig10, fig11, y MAFAP nuevas)
+citas_usadas:
+  green: WB2011_BoliviaAgPER, PernecheleEtAl2018_MAFAP, MAFAP2013_MethodGuideVolI,
+         IMF_GFSM2014, FAO2021_PEFoodAgricultureSSA, UDAPE2023_DiagnosticoAgropecuario
+  yellow: WB_BOOST, LopezGalinato2007, EMAPA_FundacionTIERRA, Colque2016_SegundaReformaAgraria
+  bib_only: oecd_pse_manual (OECD2023_APME), Ley393_2014 (norma legal)
+  excluidas_por_red: MAFAP2014_PEMethodGuideVolII (red — sustituido por MAFAP2013_MethodGuideVolI),
+                     Pernechele2021 (red — sustituido por FAO2021_PEFoodAgricultureSSA),
+                     Anriquez2017IDB (red — sustituido por LopezGalinato2007),
+                     BDP_LAJED2021_MicrocreditoBolivia (red — no citado)
+desviaciones_plan_§7:
+  - fig19 (composición económica detallada) y fig20 (fuentes financiamiento) referidas en
+    plan §7 fueron sustituidas por tabla tbl-econ-comp en §3.2.7 + prosa narrativa en
+    §3.2.8 porque fig19/fig20 pre-existentes no corresponden al contenido descrito en plan.
+  - tabla resumen matriz MAFAP × Económica no incluida en v0.1: requiere panel cruzado
+    que aún no se genera desde mafap_bolivia.rds. TODO sesión 14.
+  - organigrama detallado (fig03) sustituido por prosa institucional en §3.1.
+-->

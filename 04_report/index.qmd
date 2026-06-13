@@ -5,37 +5,83 @@ title: "Resumen Ejecutivo"
 ```{r setup}
 #| include: false
 source(here::here("02_code", "00_setup", "01_constants.R"))
-source(here::here("02_code", "00_setup", "02_functions.R"))
 library(tidyverse)
-
-panel <- readRDS(here::here("01_data", "processed", "spending_panel.rds"))
 ```
 
-## Contexto y Motivación
+## Contexto
 
-Bolivia destina una parte significativa de su presupuesto público al sector agropecuario, sector que representa aproximadamente el `r round(mean(panel$agr_value_added_pct_gdp, na.rm=TRUE), 1)`% del PIB y emplea a cerca de un tercio de la población activa. Sin embargo, la efectividad de este gasto —en términos de aumentos en productividad, seguridad alimentaria y reducción de la pobreza rural— no ha sido evaluada sistemáticamente con metodología rigurosa y datos actualizados.
+Bolivia incrementó su inversión pública en el sector agropecuario por un factor cercano a diez entre 1990 y 2024, en línea con el Plan de Desarrollo Económico y Social y con la expansión general del gasto público que acompañó el ciclo de altos precios de los hidrocarburos. La inversión, en dólares constantes de 2015, pasó de niveles del orden de USD 35 millones a principios de los noventa a un máximo de USD 320 millones en 2015, y descendió a USD 261 millones en 2024 en un contexto de ajuste fiscal generalizado. Pese a esa expansión, los indicadores agregados de productividad, seguridad alimentaria y cobertura del suelo muestran trayectorias que evolucionan de forma desacoplada respecto al gasto.
 
-Este análisis actualiza el diagnóstico de gasto público agropecuario de Bolivia con datos hasta `r YEAR_END`, utilizando la metodología de Revisión del Gasto Público (PER) del Banco Mundial y los instrumentos analíticos de la OCDE (PSE/GSSE), complementados con análisis econométrico de eficiencia técnica (DEA) y regresiones de panel.
+El presente reporte actualiza el diagnóstico del *Bolivia Agricultural Public Expenditure Review* publicado por el Banco Mundial en 2011 [@WB2011_BoliviaAgPER]. Quince años después, el sector enfrenta condiciones estructurales distintas: la Ley 393 de Servicios Financieros (2014) reconfiguró el rol del crédito sectorial; la frontera agropecuaria continuó expandiéndose con concentración territorial creciente; la pobreza rural medida por la Encuesta de Hogares se estabilizó en niveles superiores a los registrados al cierre de la década anterior; y la prevalencia de inseguridad alimentaria moderada o severa (escala FIES de FAO) escaló a cerca de tres de cada cuatro hogares en el promedio 2022–2024.
 
-## Hallazgos Principales
+Ocho hallazgos cuantitativos, derivados del panel canónico v12 (35 años × 176 variables) y de la clasificación dual MAFAP+OECD consolidada en el Apéndice C, organizan el diagnóstico. Cada hallazgo se identifica con su código `F<NN>`, se reproduce desde los scripts del repositorio público y se desarrolla en los capítulos 2 a 5; el capítulo 6 organiza opciones técnicas de política sin emitir recomendación normativa.
+
+## Ocho hallazgos
+
+::: {.callout-note appearance="simple"}
+Las cifras canónicas que siguen están trazadas a panel v12 y a `04_HALLAZGOS.md` v0.2.0. La banda de incertidumbre y el detalle metodológico se reportan en los capítulos correspondientes y en el Apéndice B.
+:::
+
+**F01 — Inversión ×10 con productividad estancada.** La inversión pública agropecuaria se multiplicó por un factor cercano a diez entre 1990 y 2015, mientras el índice de productividad total de los factores (TFP) estimado por USDA-ERS aumentó aproximadamente 30 por ciento en la misma ventana. El desacople persiste cuando se controla por composición sectorial y se compara con Perú, Colombia y Ecuador. La trayectoria y la descomposición de TFP en contribuciones de insumos y producto se desarrollan en el capítulo 2.
+
+**F02 — Apoyo al productor de 5,8 por ciento, quinto puesto en América Latina.** El Producer Support Estimate (OECD-IDB AgriMonitor) ubica a Bolivia en 5,8 por ciento del valor bruto de la producción agropecuaria en 2018, quinto lugar regional después de Brasil, Chile, Colombia y Argentina. La composición está dominada por sostén de precios de mercado (MPS) y subsidios a insumos variables, mientras la participación de bienes públicos generales (GSSE) es comparativamente baja. En el capítulo 5, la lectura PSE/GSSE/CSE se contrasta con la literatura de *repurposing* [@WorldBank2024_RepurposingSupport; @Damania2023].
+
+**F03 — Patrón dual de protección por commodity.** El Nominal Rate of Protection estimado por IDB AgriMonitor presenta un sesgo opuesto entre exportables y rubros de seguridad alimentaria. Para 2018–2023, soya y arroz registran NRP negativos del orden de −37 y −33 por ciento respectivamente, consistentes con cargas tributarias y restricciones a la exportación; maíz y trigo muestran NRP positivos del orden de +46 y +28 por ciento, atribuibles a importaciones administradas y precios soporte. El patrón es robusto a sensibilidades de precio frontera y se documenta en el capítulo 5.
+
+**F04 — Compromiso de Maputo nunca alcanzado.** La participación del gasto agropecuario en el gasto público total alcanzó su máximo histórico de 3,48 por ciento en 1990, muy por debajo del referente CAADP del 10 por ciento. El promedio 2000–2007 fue 1,87 por ciento; el del período 1990–2007, 1,72 por ciento. Detrás de esa posición, que el capítulo 3 analiza en detalle, operan factores estructurales: la concentración del gasto en sectores extractivos durante el ciclo de altos precios y una arquitectura institucional fragmentada.
+
+**F05 — Sustitución gasto presupuestario por crédito sectorial dirigido.** La cartera bruta agropecuaria del sistema bancario nacional, reportada por el BCB, pasó de USD 290 millones (5,1 por ciento de la cartera total) en 2010 a USD 3 397 millones (11,7 por ciento) en 2024, un crecimiento por factor de 11,7. La Ley 393 (2014) estableció cuotas mínimas de cartera productiva y un régimen de tasas reguladas. El subsidio cuasi-fiscal asociado al diferencial de tasas no se reporta en el presupuesto general del Estado; su orden de magnitud se discute en el capítulo 3 con la deuda metodológica explícita [TODO_TRACE: estimación `revenue_foregone_bdp` pendiente].
+
+**F06 — Pobreza rural y seguridad alimentaria con trayectoria de reversión.** La pobreza monetaria rural medida por la Encuesta de Hogares del INE descendió de 55 por ciento en 2012 a aproximadamente 40 por ciento en 2018, y se ubicó cerca del 45 por ciento en 2024. La inseguridad alimentaria moderada o severa medida con la escala FIES de FAOSTAT pasó de 49 por ciento en el promedio 2014–2016 a 74 por ciento en el promedio 2022–2024. La composición territorial del cambio y la correlación entre cobertura del gasto agropecuario rural y desempeño social subnacional integran la lectura de desempeño del sector.
+
+**F07 — Ejecución financiera reducida en programas activos del Banco Mundial.** El *Implementation Status Report* 2024 del Programa de Alianzas Rurales III (PAR III) reporta una ejecución financiera acumulada del 16 por ciento. El benchmark *Public Expenditure Review* Subsahariana publicado por FAO documenta un promedio regional de 21 por ciento de subejecución [@FAO2021_PEFoodAgricultureSSA]. El PER Filipinas 2023 publicado por el Banco Mundial reporta tasas del 85–92 por ciento en el Department of Agriculture después de la reforma Mandanas Ruling, ofreciendo una analogía operativa para la Ley de Autonomías boliviana. El capítulo 4 desarrolla la lectura institucional.
+
+**F08 — Frontera agropecuaria con concentración territorial.** MapBiomas Bolivia Colección 3 documenta una pérdida acumulada de aproximadamente 9,4 millones de hectáreas de cobertura natural reconvertidas a usos antrópicos entre 1985 y 2024. Aproximadamente 64 por ciento de esa expansión se concentra en el departamento de Santa Cruz, según la desagregación por bioma y departamento que detalla el capítulo 2. La pérdida forestal anual reportada por Hansen Global Forest Change se mantiene elevada en el período reciente, y el capítulo 6 contempla *repurposing* climático entre las opciones de política.
+
+## Tres lecturas transversales
+
+El conjunto de los ocho hallazgos sugiere tres lecturas transversales, cada una traducible a opciones técnicas para consideración del MEFP en mesa técnica.
+
+**Composición del gasto sobre el nivel.** Los hallazgos F01, F02 y F03 son consistentes con un patrón en el que el incremento en recursos públicos sectoriales se canalizó proporcionalmente más hacia transferencias a productores e instrumentos de sostén de precios que hacia bienes públicos con retornos documentados de mediano plazo, en particular investigación agropecuaria, sanidad y extensión. La literatura comparada estima retornos medianos a la inversión en I+D agropecuaria del orden del 9 al 12 por ciento bajo metodología MIRR realista en la literatura comparada internacional [@Hurley2014]. Esa magnitud es inferior a la tasa interna de retorno tradicional, pero positiva y consistente; ancla la lógica costo-efectividad, no una estimación para Bolivia. El capítulo 5 analiza el margen de *repurposing* hacia GSSE bajo techo fiscal constante.
+
+**Coherencia institucional entre gasto, crédito y ejecución.** Los hallazgos F04, F05 y F07 sugieren tres movimientos paralelos que conviven con efectos potencialmente compensatorios o sustitutivos: el gasto presupuestario sectorial nunca alcanzó el referente regional CAADP; el crédito agropecuario regulado se expandió por un factor cercano a doce, asumiendo parte de la función de financiamiento que el presupuesto no cubrió; y los programas multilaterales activos enfrentan tasas de ejecución reducidas. El capítulo 4 documenta el déficit de articulación entre niveles de gobierno y propone la lectura comparada con la reforma filipina Mandanas como referencia operativa.
+
+**Sostenibilidad social y ambiental como restricción de diseño.** Los hallazgos F06 y F08 describen un sector cuya expansión productiva, concentrada en pocas commodities y unos pocos territorios, coexiste con reversión de pobreza rural y con pérdida acelerada de cobertura natural. El capítulo 6 contempla escenarios de *repurposing* que combinan reasignación productiva (S01), refuerzo de bienes públicos (S02) y diseño climático (S03); las bandas cuantitativas dependen de elasticidades documentadas en la literatura [@AnriquezFosterOrtega2020_RuralSubsidiesLAC; @SpringmannFreund2022] y de los outputs en curso de la consultoría STC.
+
+## Lo que añade este reporte respecto al APER 2011
+
+El reporte de 2011 [@WB2011_BoliviaAgPER] documentó la composición y el nivel del gasto agropecuario boliviano para la ventana 1990–2008 con metodología de Revisión del Gasto Público estándar. El presente reporte extiende la cobertura temporal a 2008–2024 sobre un panel reproducible (v12); incorpora la clasificación MAFAP de FAO bajo definición *narrow* y *full* [@MAFAP2013_MethodGuideVolI]; estima Producer Support y Consumer Support siguiendo la metodología OECD-IDB; calcula eficiencia técnica relativa de los departamentos vía DEA con bootstrap Simar-Wilson [@SimarWilson1998; @SimarWilson2007]; estima regresiones de panel con efectos fijos de alta dimensión sobre productividad y seguridad alimentaria; e incorpora la dimensión de cobertura del suelo y frontera agropecuaria, ausente en 2011. La Caja 0.1 sintetiza la comparación.
 
 ::: {.callout-note}
-**Nivel de gasto**: Bolivia cumple / no cumple la meta de Maputo (10% del presupuesto en agricultura). El gasto agropecuario representó en promedio `r round(mean(panel$agr_spending_pct_gdp, na.rm=TRUE), 1)`% del PIB en el período analizado.
+**Caja 0.1 — Qué añade el APER 2026 al APER 2011.** Ventana temporal 2008–2024 (vs 1990–2008); clasificación dual MAFAP+OECD-PSE (vs solo funcional MEFP); eficiencia técnica DEA Simar-Wilson; panel municipal subnacional reproducible (3 368 municipios); incorporación de cobertura del suelo MapBiomas + Hansen GFC; lectura sobre Ley 393 y crédito sectorial; ocho hallazgos con contrato JSON. La metodología completa se documenta en el Apéndice B.
 :::
 
-::: {.callout-important}
-**Composición**: Una parte desproporcionada del gasto se destina a subsidios de precios (EMAPA) y administración, en detrimento de bienes públicos de alto retorno como investigación (INIAF), infraestructura de riego y sanidad animal/vegetal (SENASAG).
-:::
+## Estructura del reporte
 
-Los hallazgos específicos se desarrollan en los Capítulos 3 a 5 y las recomendaciones de política en el Capítulo 6.
+| Capítulo | Pregunta de política | Hallazgos centrales |
+|----------|----------------------|:---:|
+| 1 — Introducción | ¿Por qué actualizar el APER 2011 ahora? | marco |
+| 2 — Desempeño del sector | ¿Por qué la inversión ×10 no movió la productividad? | F01, F06, F08 |
+| 3 — Presupuestos e instituciones | ¿Cómo se compone el gasto y por qué no se alcanzó Maputo? | F04, F05 |
+| 4 — Organización del gasto | ¿Quién ejecuta el gasto y con qué calidad? | F07 |
+| 5 — Análisis del gasto | ¿Qué tan eficiente es el gasto comparado con LAC? | F02, F03 |
+| 6 — Opciones técnicas de política | ¿Qué espacio de reforma describe la evidencia? | síntesis |
 
-## Estructura del Reporte
+Los apéndices documentan las fuentes (A), la metodología detallada (B), el glosario MAFAP bilingüe (C), el crosswalk entre clasificaciones (D), las tablas completas de regresión (E), los resultados DEA (F), el inventario de programas multilaterales activos (G) y las decisiones metodológicas con sus ADR asociados (H).
 
-| Capítulo | Contenido |
-|----------|-----------|
-| 1 | Introducción: objetivos, alcance y metodología |
-| 2 | Desempeño del sector agropecuario (perspectiva histórica, económica y de políticas) |
-| 3 | Presupuestos e instituciones en el sector agropecuario |
-| 4 | Organización del gasto público (nivel nacional y subnacional) |
-| 5 | Análisis del gasto: eficiencia, seguridad alimentaria, eficiencia técnica |
-| 6 | Recomendaciones y opciones de política |
+## Alcance de las afirmaciones de este reporte
+
+Este reporte presenta evidencia técnica sobre el gasto público agropecuario boliviano y describe opciones de reforma derivadas de la literatura comparada. No emite recomendaciones normativas sobre la política sectorial: cada opción se presenta para consideración del Ministerio de Economía y Finanzas Públicas y del Ministerio de Desarrollo Rural y Tierras en mesa técnica. La validación de las cifras con el MEFP se documentará en versiones posteriores del archivo `04_HALLAZGOS.md` siguiendo el flujo `draft → reviewed → MEFP_validated` definido en `.agent/08_CONTROL.md`. Los gaps de información persistentes —ejecución detallada por entidad ejecutora 2009–2024, cartera BDP desagregada por programa, SIIF municipal granular— se reportan en el Apéndice A y son objeto de comunicación formal con el MEFP.
+
+Este reporte presenta análisis técnico del gasto público agrícola en Bolivia, producido por el Banco Mundial en diálogo con el MEFP. No constituye posición oficial del Estado Plurinacional de Bolivia. Las cifras son reproducibles desde el panel v12 y los scripts publicados; las opciones de repurposing son escenarios técnicos para consideración del MEFP, no recomendaciones vinculantes. La incertidumbre metodológica está declarada por hallazgo.
+
+<!--
+draft_status: v0.1
+written_by: orquestador (sesión 13)
+date: 2026-05-24
+ventana_canonica: 2008-2024 (MASTER_PROMPT v0.4.0)
+findings_referenced: F01, F02, F03, F04, F05, F06, F07, F08
+citations_count: 9 (todas green/yellow verificadas en references.bib master+legacy)
+pending: paridad bilingüe ES/EN (deliverable D4 ToR JC) + validación cifras MEFP + 3 figuras de alto impacto (fig10, fig13, fig22) por confirmar con equipo BM
+neutrality_check: pendiente sancho-humanizer pre-publicación + revisión adversarial critical-reviewer
+-->

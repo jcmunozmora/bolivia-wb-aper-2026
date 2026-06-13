@@ -24,6 +24,12 @@ book:
   appendices:
     - appendix/A_data_sources.qmd
     - appendix/B_methodology.qmd
+    - appendix/C_glosario_mafap.qmd
+    - appendix/D_crosswalk_clasificaciones.qmd
+    - appendix/E_regresiones_panel_fe.qmd
+    - appendix/F_dea_simar_wilson.qmd
+    - appendix/G_programas_bm.qmd
+    - appendix/H_adrs_metodologicos.qmd
 
 bibliography: references.bib
 csl: style/world-development.csl
@@ -60,6 +66,16 @@ format:
     linkcolor: "009FDA"
     lang: es
     keep-tex: false
+
+  # Capa de revisión MS Word para el Banco (ver .agent/23_WORD_ROUNDTRIP.md).
+  # NO es la fuente de verdad: el .docx se regenera desde los .qmd cada ciclo.
+  docx:
+    reference-doc: style/reference-doc.docx
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    lang: es
+    # Figuras embebidas como imagen (no editables en Word; se regeneran desde script).
 
 knitr:
   opts_chunk:
