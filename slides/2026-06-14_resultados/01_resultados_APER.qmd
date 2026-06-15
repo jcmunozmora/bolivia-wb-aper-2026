@@ -182,25 +182,25 @@ Por encima: Brasil, Chile, Colombia, Argentina · **F02**
 :::
 :::
 
-## Composición MAFAP: bienes públicos mayoritarios, pero en retroceso
+## Composición MAFAP: la mitad va a la producción, solo 12 % a bienes públicos
 
 ::: {.columns}
-::: {.column width="40%"}
+::: {.column width="38%"}
 ::: {.metric}
 ::: {.metric-label}
-Bienes públicos (cat. D) · acum. 2016–2024
+Bienes públicos de alto retorno (I+D, extensión, sanidad)
 :::
 ::: {.metric-big}
-56 %
+12 %
 :::
 :::
 
-Riego 27 %, I+D, sanidad, extensión.
+Apoyo a la producción **51 %** (USD 205 M, incl. EMAPA ~33 %); riego 27 %; tierras y otros 10 %.
 
-La participación de bienes públicos **cayó de 64 % (2016) a 45 % (2024)**; EMAPA subió de 25 % a 42 %. Sustitución de categorías, no expansión.
+El gasto se concentra en una **intervención de mercado** (EMAPA) y en infraestructura; los bienes públicos de mayor retorno están **crónicamente sub-financiados**.
 :::
-::: {.column width="60%"}
-![Composición del gasto agropecuario por destinatario (MAFAP A–E), 2016–2024](../../05_outputs/figures/png/fig18_summary_mafap_ABCDE.png){width="100%"}
+::: {.column width="62%"}
+![Composición del gasto agropecuario bajo MAFAP-FAO, 2016–2024 (promedio anual)](../../05_outputs/figures/png/fig_composicion_proposito_agro.png){width="100%"}
 :::
 :::
 
