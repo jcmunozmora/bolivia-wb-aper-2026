@@ -199,6 +199,8 @@ Verificación automática (a implementar): `scripts/audit_governance_links.R` co
 | 18 | Git workflow, branches, commits, tags, releases | 17_GIT_WORKFLOW |
 | 19 | Onboarding y offboarding de personas | 18_ONBOARDING |
 | 20 | Canales, cadencia, voceros, crisis comm | 19_COMUNICACION |
+| 21 | Coordinación con STC PSE/Repurposing | 21_COORDINACION_STC |
+| 22 | Inteligencia editorial del TTL (perfil, prioridades, playbook de comentarios) | 22_PERFIL_TTL |
 
 > Cobertura blindada para policy report WB-MEFP. Dimensiones futuras (e.g. ética de investigación si se incorporan datos primarios con sujetos humanos) se agregarían como `2N_ETICA.md` cuando aplique.
 

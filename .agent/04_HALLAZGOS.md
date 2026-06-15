@@ -1,7 +1,7 @@
 # 04_HALLAZGOS.md — APER 2026 Bolivia
 
-**Versión:** v0.1.0
-**Última actualización:** 2026-05-23
+**Versión:** v0.2.0
+**Última actualización:** 2026-05-24 (ADR-0011 — reasignación de finding_ids a numeración canónica)
 **Propósito:** registro versionado de los hallazgos del APER 2026, expresados como **unidades técnicas independientes** con contrato JSON, evidencia trazable y estado de validación. Es la fuente única de los claims que alimentan executive summary, capítulos del book, slides, web y briefs.
 **Lecturas relacionadas:** [01_METODOLOGIA.md](01_METODOLOGIA.md), [02_INDICADORES.md](02_INDICADORES.md), [03_FUENTES.md](03_FUENTES.md), [05_ESTILO_NARRATIVO.md](05_ESTILO_NARRATIVO.md), [08_CONTROL.md](08_CONTROL.md), [09_AUDITORIA.md](09_AUDITORIA.md), [00_MASTER_PROMPT.md](00_MASTER_PROMPT.md) §7.1, §9.
 
@@ -64,11 +64,11 @@ Regla: si `methodology_version` o `panel_version` cambian para el mismo `F<NN>`,
 
 ## 4. Contrato JSON canónico
 
-Cada hallazgo se registra como bloque YAML/JSON dentro de este archivo, con esta forma:
+Cada hallazgo se registra como bloque YAML/JSON dentro de este archivo, con esta forma (ejemplo ilustrativo — `finding_id: F-EJEMPLO` es deliberado para no colisionar con la numeración canónica F01–F08; las cifras del ejemplo son ilustrativas y no representan claims auditados del proyecto):
 
 ```yaml
 ---
-finding_id: F03
+finding_id: F-EJEMPLO
 version: v1
 title_es: "El gasto agrícola público se concentra en transferencias a productores y empresas estatales"
 title_en: "Public agricultural spending is concentrated in transfers to producers and state enterprises"
@@ -154,342 +154,483 @@ Cuando un hallazgo bumpa `v<m>`, la versión previa se mueve a `## Histórico �
 
 ---
 
-## 5. Los 8 hallazgos del APER 2026 (esqueletos v0.1.0)
+## 5. Los 8 hallazgos del APER 2026 — numeración canónica
 
-> Los títulos y temas son **propuestas iniciales** alineadas con la estructura del Quarto book (capítulos 02–06) y con la práctica habitual de los APER del WB. **Todos los esqueletos requieren validación del equipo APER antes de pasar a `draft` formal y luego a `reviewed`.**
+> Numeración canónica conforme a **ADR-0011** (2026-05-24): los `finding_id` F01–F08 se alinean con el plan editorial (`20_CONTENIDO_REPORTE.md`), el Resumen Ejecutivo (`04_report/index.qmd`), los capítulos 1–6 y `00_admin/RETOMAR.md §6`. El esqueleto previo v0.1.0 se archiva en `.agent/legacy/04_HALLAZGOS_v0_1_0.md`.
+>
+> Estado actual: **todos en `status: draft`**. Las cifras son reproducibles desde panel v12 + scripts; los gates A1–A6 de `09_AUDITORIA.md` aún no han corrido sobre estos contratos.
 
-### F01 — Magnitud y evolución del gasto agrícola público
+### F01 — Inversión pública agropecuaria ×10 con productividad estancada
 
 ```yaml
 ---
 finding_id: F01
 version: v1
-title_es: "El gasto agrícola público promedió X% del PIB sectorial en YYYY–YYYY"
-title_en: "Public agricultural spending averaged X% of agricultural GDP in YYYY–YYYY"
+title_es: "La inversión pública agropecuaria se multiplicó por un factor cercano a diez entre 1990 y 2015, mientras la productividad total de los factores creció aproximadamente 30 por ciento"
+title_en: "Public agricultural investment grew by a factor close to ten between 1990 and 2015, while total factor productivity increased by approximately 30 percent"
 claim_es: |
-  [TODO_TRACE: cuantificar gasto agrícola público total en bolivianos
-   reales y como % del PIB agrícola y del gasto público total, con
-   período 2010-2023 o el que defina el panel v12.]
+  La inversión pública agropecuaria boliviana, en dólares constantes de 2015,
+  pasó de niveles inferiores a USD 30 millones a comienzos de los noventa a
+  un máximo de USD 320 millones en 2015 (≈ ×10), antes de descender a
+  USD 261 millones en 2024. En la misma ventana, el índice de TFP USDA-ERS
+  para Bolivia creció aproximadamente 30 por ciento. El desacople persiste
+  cuando se compara con Perú, Colombia y Ecuador.
 claim_en: |
-  [TODO_TRACE: equivalent EN.]
+  Public agricultural investment in Bolivia, in constant 2015 USD, rose from
+  levels below USD 30 million in the early 1990s to a peak of USD 320 million
+  in 2015 (≈ ×10), before falling to USD 261 million in 2024. Over the same
+  window, the USDA-ERS TFP index for Bolivia grew by approximately 30 percent.
+  The decoupling persists when benchmarked against Peru, Colombia and Ecuador.
 magnitude:
-  value: [TODO_TRACE]
-  unit: "share of agricultural GDP and share of total public spending"
-  period: "[TODO_TRACE]"
+  inv_2015: 320     # USD millones constantes 2015
+  inv_2024: 261     # USD millones constantes 2015
+  factor_growth: 10   # factor aproximado 1990–2015
+  tfp_growth_pct: 30  # variación porcentual aproximada 1990–2015
+  unit: "USD millones (2015) | factor | variación porcentual"
+  period: "1990–2024 (énfasis 1990–2015 para factor y TFP)"
   geographic_scope: "nacional"
 evidence:
-  rds_path: "01_data/processed/panel_v12.rds"
-  script_path: "[TODO_TRACE: script de agregación del gasto agrícola total]"
-  variable: "[TODO_TRACE: variable del panel — e.g. ag_spending_real_2015_bob]"
-  filter: "[TODO_TRACE]"
-  raw_source: "BOOST 2024 + INE (PIB sectorial) + MEFP"
+  rds_path: "01_data/processed/spending_panel_v12.rds"
+  script_path: "02_code/03_analysis/03_inversion_vs_tfp.R [TODO_TRACE: verificar script exacto]"
+  variable: "inv_agro_usd_mm, tfp_index"
+  filter: "year ∈ [1990, 2024]"
+  raw_source: "BOOST + VIPFE (inversión); USDA-ERS International Agricultural Productivity (TFP)"
 benchmark:
-  description_es: "[TODO_TRACE: comparar con promedio LATAM / región andina / países comparables del WDI]"
-  source: "[TODO_TRACE: FAO MAFAP / WB ASTI / OECD]"
+  description_es: "Perú, Colombia y Ecuador presentan trayectorias de TFP creciente con menor dispersión respecto al gasto público sectorial."
+  source: "@Fuglie2024, @Ludena2010"
 uncertainty:
-  level: "[TODO_TRACE: baja/media/alta]"
+  level: "media"
   reason_es: |
-    [TODO_TRACE: declarar sensibilidad a deflactor, clasificación funcional
-     y cobertura de empresas estatales.]
+    TFP sensible al método de agregación (Solow vs. Malmquist) y a la
+    elección del deflactor. La cifra del 30 por ciento corresponde al
+    índice USDA-ERS estándar.
 methodology_version: m0.1
 panel_version: v12
 policy_implication_es: |
-  [TODO_TRACE: framing técnico — no recomendación. Por ejemplo: "el
-   tamaño del gasto define el espacio de repurposing posible bajo techo
-   fiscal constante".]
+  El nivel del gasto no es la variable determinante de la productividad sectorial
+  observada; la composición del gasto entre transferencias y bienes públicos
+  emerge como dimensión relevante para el análisis de repurposing (Cap 5).
 linked_chapters:
   - "04_report/02_sector_performance.qmd"
-  - "04_report/04_spending_organization.qmd"
+  - "04_report/05_spending_analysis.qmd"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
-### F02 — Brechas sectoriales: productividad, bienestar rural, resiliencia
+### F02 — Producer Support Estimate de 5,8 por ciento, quinto puesto regional
 
 ```yaml
 ---
 finding_id: F02
 version: v1
-title_es: "La productividad agrícola y los indicadores de bienestar rural muestran brechas frente a benchmarks regionales"
-title_en: "Agricultural productivity and rural welfare indicators show gaps relative to regional benchmarks"
+title_es: "El Producer Support Estimate de Bolivia se ubica en 5,8 por ciento del valor bruto de la producción agropecuaria en 2018, quinto puesto regional, con composición sesgada hacia sostén de precios e insumos variables"
+title_en: "Bolivia's Producer Support Estimate stands at 5.8 percent of gross agricultural production in 2018, fifth in the region, with composition skewed toward market price support and variable input subsidies"
 claim_es: |
-  [TODO_TRACE: cuantificar TFP, rendimientos por hectárea, pobreza rural,
-   inseguridad alimentaria, exposición climática frente a benchmarks
-   regionales — Perú, Colombia, Ecuador, Paraguay.]
+  El PSE estimado por OECD-IDB AgriMonitor para Bolivia se ubica en
+  5,8 por ciento del valor bruto de la producción agropecuaria en 2018,
+  quinto puesto regional después de Brasil, Chile, Colombia y Argentina.
+  La composición está dominada por Market Price Support (MPS) y subsidios
+  a insumos variables; la participación de bienes públicos generales (GSSE)
+  es comparativamente baja respecto a referentes OECD.
 claim_en: |
-  [TODO_TRACE]
+  The Producer Support Estimate calculated by OECD-IDB AgriMonitor for
+  Bolivia stands at 5.8 percent of gross agricultural production in 2018,
+  fifth in the region behind Brazil, Chile, Colombia and Argentina.
+  Composition is dominated by Market Price Support (MPS) and variable input
+  subsidies; the share of general public goods (GSSE) is comparatively low
+  relative to OECD benchmarks.
 magnitude:
-  value: [TODO_TRACE]
-  unit: "varias — TFP index, yields t/ha, poverty headcount, GHI"
-  period: "[TODO_TRACE]"
+  pse_pct: 5.8     # % del valor bruto de la producción
+  ranking_lac: 5    # quinto puesto regional
+  year_ref: 2018
+  unit: "porcentaje del valor bruto de la producción"
+  period: "2018 (cifra ancla); serie completa 2006–2023"
+  geographic_scope: "nacional"
 evidence:
-  rds_path: "01_data/processed/panel_v12.rds"
-  script_path: "[TODO_TRACE: scripts de brechas sectoriales]"
-  variable: "[TODO_TRACE: tfp_index, yield_*, rural_poverty_*]"
-  raw_source: "INE EH, USDA-ERS TFP, FAOSTAT, WDI"
+  rds_path: "01_data/processed/spending_panel_v12.rds"
+  script_path: "[TODO_TRACE: 02_code/03_analysis/pse_composition.R — pendiente de output Hector]"
+  variable: "pse_pct, pse_mps, pse_gsse, pse_cse"
+  raw_source: "OECD-IDB AgriMonitor + cálculo propio sobre panel v12"
+benchmark:
+  description_es: "Brasil ≈ 8%, Chile ≈ 7%, Colombia y Argentina entre 6 y 7%. Promedio OECD del orden del 18% (rango amplio)."
+  source: "@DeSalvoEtAl2018_IDB_AgSupportLAC, @OECD2025_APME, @IDB_Agrimonitor"
 uncertainty:
-  level: "media"
+  level: "alta"
   reason_es: |
-    Definición de TFP sensible a método (Solow vs. Malmquist); pobreza
-    rural sensible a línea de pobreza usada.
+    MPS sensible a la elección del precio de referencia internacional,
+    al tipo de cambio aplicado y al tratamiento de bienes no
+    comercializables. Sensibilidad por escenarios PSE alto/medio/bajo
+    documentada en Cap 5 §5.1 y en el Apéndice B.
 methodology_version: m0.1
 panel_version: v12
 policy_implication_es: |
-  [TODO_TRACE: framing en términos de qué brechas son potencialmente
-   abordables con repurposing del gasto.]
+  La posición intermedia del PSE y la composición dominada por MPS y
+  subsidios a insumos describen el espacio analítico para opciones de
+  repurposing hacia bienes públicos generales (Cap 5, Cap 6 S02).
 linked_chapters:
-  - "04_report/02_sector_performance.qmd"
+  - "04_report/05_spending_analysis.qmd"
+  - "04_report/06_recommendations.qmd"
+linked_scenarios:
+  - "S02"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
-### F03 — Composición del gasto: transferencias vs. bienes públicos
+### F03 — Patrón dual de protección por commodity (exportables vs seguridad alimentaria)
 
 ```yaml
 ---
 finding_id: F03
 version: v1
-title_es: "El gasto agrícola se concentra en transferencias; los bienes públicos quedan por debajo del benchmark regional"
-title_en: "Agricultural spending is concentrated in transfers; public goods fall below the regional benchmark"
+title_es: "El Nominal Rate of Protection presenta sesgo opuesto entre exportables y commodities de seguridad alimentaria: soya y arroz negativos, maíz y trigo positivos"
+title_en: "The Nominal Rate of Protection shows opposite biases between exportables and food security commodities: soybean and rice negative, maize and wheat positive"
 claim_es: |
-  [TODO_TRACE: porcentaje en transferencias vs bienes públicos vs gasto
-   en infraestructura, periodo 2015-2023.]
+  Para 2018–2023, el Nominal Rate of Protection estimado por IDB AgriMonitor
+  registra soya en aproximadamente −37 por ciento y arroz en −33 por ciento,
+  consistente con cargas tributarias y restricciones a la exportación. Maíz
+  y trigo muestran NRP positivos del orden de +46 y +28 por ciento,
+  atribuibles a importaciones administradas y a precios soporte.
 claim_en: |
-  [TODO_TRACE]
+  For 2018–2023, the IDB AgriMonitor Nominal Rate of Protection registers
+  soybean at approximately −37 percent and rice at −33 percent, consistent
+  with export taxes and trade restrictions. Maize and wheat show positive
+  NRPs of approximately +46 and +28 percent, attributable to managed imports
+  and price support.
 magnitude:
-  value: [TODO_TRACE]
-  unit: "share of agricultural spending"
-  period: "[TODO_TRACE]"
+  nrp_soya_pct: -37
+  nrp_arroz_pct: -33
+  nrp_maiz_pct: 46
+  nrp_trigo_pct: 28
+  unit: "porcentaje (Nominal Rate of Protection)"
+  period: "2018–2023 (cifras ancla); serie completa 2006–2023"
+  geographic_scope: "nacional, por commodity"
 evidence:
-  rds_path: "01_data/processed/panel_v12.rds"
-  script_path: "[TODO_TRACE: 02_code/03_construct/compose_public_vs_private.R]"
-  variable: "share_transfers, share_public_goods, share_infrastructure"
-  raw_source: "BOOST 2024 + clasificación funcional MEFP + OECD-PSE adaptado"
+  rds_path: "01_data/processed/spending_panel_v12.rds"
+  script_path: "[TODO_TRACE: 02_code/03_analysis/nrp_commodities.R — pendiente integración output Hector]"
+  variable: "nrp_soya, nrp_arroz, nrp_maiz, nrp_trigo"
+  raw_source: "IDB AgriMonitor + FAOSTAT PP + WB Pink Sheet + INE PIB sectorial"
 benchmark:
-  description_es: "Países andinos comparables muestran > 25% en bienes públicos."
-  source: "[@oecd2022], [@ifpri2023]"
+  description_es: "Patrón consistente con la literatura clásica sobre tributación implícita de exportables agrícolas en LATAM."
+  source: "@KruegerSchiffValdes1988, @AndersonRausserSwinnen2013, @LopezGalinato2007"
 uncertainty:
   level: "media"
   reason_es: |
-    Sensible al tratamiento de subsidios indirectos (fertilizantes,
-    combustible agrícola) y a la clasificación funcional MEFP vs.
-    OECD-PSE.
+    NRP sensible al precio frontera de referencia, al margen de
+    transporte y comercialización y al tipo de cambio. Anomalía documentada
+    en caña de azúcar 2015 (PP doméstico USD 261/t vs referencia USD 37/t)
+    en revisión con INE.
 methodology_version: m0.1
 panel_version: v12
 policy_implication_es: |
-  Margen identificado para repurposing hacia bienes públicos; ver S02.
+  El patrón dual sugiere coexistencia de dos lógicas de política: gravamen
+  implícito a exportables y protección a importables de seguridad alimentaria.
+  Cualquier discusión de reasignación bajo techo fiscal constante debe
+  internalizar la economía política asociada a ambos lados.
 linked_chapters:
   - "04_report/05_spending_analysis.qmd"
-  - "04_report/06_recommendations.qmd"
-linked_scenarios:
-  - "S02"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
-### F04 — Distribución territorial del gasto agrícola
+### F04 — Compromiso de Maputo nunca alcanzado
 
 ```yaml
 ---
 finding_id: F04
 version: v1
-title_es: "La distribución territorial del gasto agrícola muestra concentración en X departamentos y baja regionalización"
-title_en: "The territorial distribution of agricultural spending is concentrated in X departments with limited regionalization"
+title_es: "El gasto público agropecuario nunca alcanzó el referente del 10 por ciento del gasto público total (Maputo/CAADP): máximo histórico de 3,48 por ciento en 1990"
+title_en: "Public agricultural spending never reached the 10 percent of total public spending benchmark (Maputo/CAADP): historical peak of 3.48 percent in 1990"
 claim_es: |
-  [TODO_TRACE: identificar departamentos con mayor / menor gasto per cápita
-   rural, gasto por hectárea cultivada, y comparar con índices de pobreza
-   rural y potencial productivo.]
+  La participación del gasto agropecuario en el gasto público total
+  alcanzó su máximo histórico de 3,48 por ciento en 1990, muy por
+  debajo del referente CAADP del 10 por ciento. El promedio del período
+  1990–2007 fue 1,72 por ciento; el promedio 2000–2007 fue 1,87 por
+  ciento.
 claim_en: |
-  [TODO_TRACE]
+  The share of agricultural spending in total public spending reached its
+  historical peak of 3.48 percent in 1990, well below the 10 percent CAADP
+  benchmark. The 1990–2007 average was 1.72 percent; the 2000–2007 average
+  was 1.87 percent.
 magnitude:
-  value: [TODO_TRACE]
-  unit: "bolivianos per capita rural, bolivianos per hectare"
-  period: "[TODO_TRACE]"
-  geographic_scope: "departamental — los 9 departamentos"
+  max_value_pct: 3.48
+  max_year: 1990
+  avg_1990_2007_pct: 1.72
+  avg_2000_2007_pct: 1.87
+  unit: "porcentaje del gasto público total"
+  period: "1990–2024"
+  geographic_scope: "nacional"
 evidence:
-  rds_path: "01_data/processed/panel_v12.rds"
-  script_path: "[TODO_TRACE: 02_code/04_analysis/territorial_distribution.R]"
-  variable: "[TODO_TRACE]"
-  raw_source: "BOOST 2024 + INE Censo Agropecuario 2013 + INE proyecciones rurales"
+  rds_path: "01_data/processed/spending_panel_v12.rds"
+  script_path: "02_code/03_analysis/02_maputo_caadp.R [TODO_TRACE: verificar nombre script]"
+  variable: "speed_ag_pctexp"
+  filter: "panel$speed_ag_pctexp[year==1990] = 3.4844"
+  raw_source: "BOOST + IFPRI SPEED + benchmark CAADP (Maputo 2003)"
+benchmark:
+  description_es: "Referente CAADP: 10% del gasto público total. Países que cumplieron Maputo en algún año: Etiopía, Burkina Faso, Malawi, Niger."
+  source: "@FAO2021_PEFoodAgricultureSSA, @PernecheleEtAl2018_MAFAP"
 uncertainty:
-  level: "alta"
+  level: "baja"
   reason_es: |
-    Asignación territorial del gasto sensible a definición de "ejecución
-    en territorio" vs. "registro contable"; subnacionales pueden ejecutar
-    parte sin trazabilidad.
+    Cifra robusta al cambio de denominador (gasto público total
+    consolidado vs ejecutado). Verificación cruzada BOOST vs SPEED
+    consistente en orden de magnitud.
 methodology_version: m0.1
 panel_version: v12
+policy_implication_es: |
+  La trayectoria histórica del gasto sectorial sitúa a Bolivia
+  estructuralmente por debajo del referente regional. El análisis del
+  Cap 3 documenta los factores de arquitectura institucional asociados
+  a esta posición.
 linked_chapters:
-  - "04_report/04_spending_organization.qmd"
-  - "04_report/05_spending_analysis.qmd"
+  - "04_report/03_budget_institutions.qmd"
+  - "04_report/index.qmd"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
-### F05 — Eficiencia y focalización del gasto
+### F05 — Sustitución del gasto presupuestario por crédito sectorial dirigido post-Ley 393
 
 ```yaml
 ---
 finding_id: F05
 version: v1
-title_es: "La focalización del gasto presenta dispersión y limitada conexión con indicadores de necesidad"
-title_en: "Spending targeting shows dispersion and limited connection to need-based indicators"
+title_es: "La cartera de crédito agropecuario del sistema bancario se multiplicó por 11,7 entre 2010 y 2024 tras la Ley 393, asumiendo parte de la función de financiamiento sectorial que el presupuesto no cubrió"
+title_en: "The agricultural credit portfolio of the banking system grew by a factor of 11.7 between 2010 and 2024 following Law 393, absorbing part of the sectoral financing function that the budget did not cover"
 claim_es: |
-  [TODO_TRACE: correlación entre gasto departamental per cápita y
-   pobreza rural / inseguridad alimentaria; identificar departamentos
-   sub-atendidos relativo a brecha.]
+  La cartera bruta agropecuaria del sistema bancario nacional, reportada
+  por el BCB, pasó de USD 290 millones (5,07 por ciento de la cartera
+  total) en 2010 a USD 3 397 millones (11,70 por ciento) en 2024, un
+  crecimiento por factor de 11,71. La Ley 393 de Servicios Financieros
+  (2014) estableció cuotas mínimas de cartera productiva y un régimen
+  de tasas reguladas; los DS 1842 (2013) y DS 2055 (2014) la operacionalizaron.
+  El subsidio cuasi-fiscal asociado al diferencial de tasas no se reporta
+  en el presupuesto general del Estado.
 claim_en: |
-  [TODO_TRACE]
+  Gross agricultural credit portfolio reported by the BCB rose from
+  USD 290 million (5.07 percent of total portfolio) in 2010 to USD 3 397
+  million (11.70 percent) in 2024, a factor of 11.71. Law 393 (2014)
+  established minimum productive portfolio quotas and a regulated rate
+  regime; SD 1842 (2013) and SD 2055 (2014) operationalized it. The
+  quasi-fiscal subsidy associated with the rate differential is not
+  reported in the general government budget.
 magnitude:
-  value: [TODO_TRACE: coeficientes de correlación, índice de concentración, varianza no explicada]
-  unit: "coefficient + index"
-  period: "[TODO_TRACE]"
+  cartera_2010_usd_mm: 290
+  cartera_2024_usd_mm: 3397
+  factor_growth: 11.7
+  share_2010_pct: 5.07
+  share_2024_pct: 11.70
+  unit: "USD millones | factor | porcentaje de cartera total"
+  period: "2010–2024"
+  geographic_scope: "nacional"
 evidence:
-  rds_path: "01_data/processed/panel_v12.rds"
-  script_path: "[TODO_TRACE: 02_code/04_analysis/targeting_efficiency.R]"
-  variable: "[TODO_TRACE]"
-  raw_source: "panel v12 + INE EH"
+  rds_path: "01_data/processed/bcb_credito_sectorial_anual.rds"
+  script_path: "02_code/01_collection/06_bcb_credito.R [TODO_TRACE: verificar script]"
+  variable: "bcb_cred_agro_mm_usd, bcb_cred_agro_share_total"
+  filter: "year ∈ [2010, 2024]"
+  raw_source: "Banco Central de Bolivia — Boletines mensuales de Sistema Financiero"
+benchmark:
+  description_es: "Patrón de regulación de cartera con cuotas mínimas observable también en otros marcos LATAM (Brasil PRONAF, Argentina segmento productivo)."
+  source: "[TODO_TRACE: añadir refs LAC sobre crédito dirigido]"
 uncertainty:
   level: "media"
   reason_es: |
-    Identificación de focalización es asociativa, no causal. Dependencia
-    de cómo se mide "necesidad" (pobreza, brecha de rendimiento, exposición
-    climática).
+    Magnitud del subsidio cuasi-fiscal pendiente de cuantificación
+    (requiere estimación de tasa de mercado de referencia y serie BDP
+    desagregada). Validación de la serie post-Ley 393 contra cartera
+    anterior pendiente para descartar doble conteo.
 methodology_version: m0.1
 panel_version: v12
+policy_implication_es: |
+  La sustitución parcial del gasto presupuestario por crédito regulado
+  desplaza el costo fiscal hacia un cuasi-fiscal no reportado en el PGE.
+  La consideración integral del apoyo sectorial debe internalizar ambos
+  flujos (Cap 3 §3.4, Cap 6 H2.2.3).
 linked_chapters:
-  - "04_report/05_spending_analysis.qmd"
+  - "04_report/03_budget_institutions.qmd"
+  - "04_report/06_recommendations.qmd"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
-### F06 — PSE / CSE: nivel y composición
+### F06 — Pobreza rural y seguridad alimentaria con trayectoria de reversión
 
 ```yaml
 ---
 finding_id: F06
 version: v1
-title_es: "El PSE de Bolivia se ubica en X% del ingreso bruto agrícola; CSE en Y%; composición sesgada hacia transferencias precio-distorsionantes"
-title_en: "Bolivia's PSE stands at X% of gross farm receipts; CSE at Y%; composition skewed toward price-distorting transfers"
+title_es: "La pobreza monetaria rural descendió de 55 por ciento en 2012 a aproximadamente 40 por ciento en 2018 y revirtió a cerca de 45 por ciento en 2024; la inseguridad alimentaria moderada o severa (FIES) escaló de 49 a 74 por ciento entre 2014–2016 y 2022–2024"
+title_en: "Rural monetary poverty fell from 55 percent in 2012 to approximately 40 percent in 2018 and reverted to about 45 percent in 2024; moderate-or-severe food insecurity (FIES) rose from 49 to 74 percent between 2014–2016 and 2022–2024"
 claim_es: |
-  [TODO_TRACE: nivel del PSE, nivel del CSE, composición por categorías
-   OECD-PSE: MPS (market price support), payments based on output, input
-   use, area planted, fixed parameters, etc.]
+  La pobreza monetaria rural, medida por la Encuesta de Hogares del INE,
+  descendió de 55 por ciento en 2012 a aproximadamente 40 por ciento en
+  2018 y se ubicó cerca del 45 por ciento en 2024. La prevalencia de
+  inseguridad alimentaria moderada o severa medida con la escala FIES
+  de FAOSTAT pasó de 49 por ciento en el promedio 2014–2016 a 74 por
+  ciento en el promedio 2022–2024.
 claim_en: |
-  [TODO_TRACE]
+  Rural monetary poverty, measured by the INE Household Survey, fell
+  from 55 percent in 2012 to approximately 40 percent in 2018 and
+  reverted to about 45 percent in 2024. Moderate-or-severe food insecurity
+  prevalence measured with the FAOSTAT FIES scale rose from 49 percent in
+  the 2014–2016 average to 74 percent in the 2022–2024 average.
 magnitude:
-  value: [TODO_TRACE]
-  unit: "share of gross farm receipts (PSE) and share of agricultural consumption (CSE)"
-  period: "[TODO_TRACE]"
+  pobreza_rural_2012_pct: 55
+  pobreza_rural_2018_pct: 40
+  pobreza_rural_2024_pct: 45
+  fies_2014_2016_pct: 49
+  fies_2022_2024_pct: 74
+  unit: "porcentaje de hogares"
+  period: "2012–2024 (pobreza) y 2014–2024 (FIES)"
+  geographic_scope: "nacional rural"
 evidence:
-  rds_path: "01_data/processed/pse_panel_v12.rds"
-  script_path: "02_code/07_pse/[TODO_TRACE]"
-  variable: "pse_total, pse_mps, pse_*, cse_total"
-  raw_source: "FAO MAFAP + cálculo propio sobre panel v12 + balances comerciales INE"
+  rds_path: "01_data/processed/eh_nacional_anual.rds [TODO_TRACE: verificar disponibilidad]"
+  script_path: "[TODO_TRACE: 02_code/01_collection/04_ine_eh.R]"
+  variable: "rural_poverty_pct, fies_insecure_pct"
+  raw_source: "INE Bolivia — Encuesta de Hogares; FAOSTAT — escala FIES"
 benchmark:
-  description_es: "Promedio LATAM en MAFAP; promedio OECD para referencia."
-  source: "FAO MAFAP database, OECD PSE database"
+  description_es: "Trayectoria divergente respecto al promedio LATAM, que muestra reducción sostenida de pobreza monetaria en el mismo período."
+  source: "@WFP2022_BoliviaACR, @FAO2024_SOFI, @OPHI2024_BoliviaBriefing"
 uncertainty:
-  level: "alta"
+  level: "media"
   reason_es: |
-    MPS sensible a elección del precio de referencia internacional, tasa
-    de cambio, y tratamiento de no comercializables. Sensibilidad reportada
-    en escenarios PSE alto/medio/bajo.
+    Pobreza monetaria sensible a la línea de pobreza usada y a la
+    metodología de imputación de ingreso. FIES robusta a cambios en
+    cobertura del cuestionario; promedios trianuales mitigan ruido.
 methodology_version: m0.1
 panel_version: v12
+policy_implication_es: |
+  La reversión simultánea de pobreza rural y la escalada de FIES describen
+  un sistema rural cuya expansión productiva agregada no se ha traducido
+  en mejora sostenida del bienestar de los hogares más vulnerables (Cap 2
+  §2.3, Cap 6 H2.1).
 linked_chapters:
-  - "04_report/05_spending_analysis.qmd"
+  - "04_report/02_sector_performance.qmd"
+  - "04_report/06_recommendations.qmd"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
-### F07 — Arquitectura institucional y ejecución del gasto
+### F07 — Ejecución financiera reducida en programas activos del Banco Mundial
 
 ```yaml
 ---
 finding_id: F07
 version: v1
-title_es: "La ejecución del gasto agrícola se distribuye entre MDRyT, empresas estatales y subnacionales con baja trazabilidad pública"
-title_en: "Execution of agricultural spending is distributed between MDRyT, state enterprises, and subnationals with limited public traceability"
+title_es: "El Programa de Alianzas Rurales III (PAR III) reporta ejecución financiera acumulada del 16 por ciento en 2024, por debajo del benchmark regional MAFAP-FAO y del referente Mandanas Ruling en Filipinas"
+title_en: "The Rural Alliances Program III (PAR III) reports cumulative financial execution of 16 percent in 2024, below the MAFAP-FAO regional benchmark and the Philippines Mandanas Ruling benchmark"
 claim_es: |
-  [TODO_TRACE: porcentaje ejecutado por MDRyT, EMAPA, INIAF, otras
-   empresas; porcentaje ejecutado por subnacionales; brechas de
-   trazabilidad en reportes públicos.]
+  El Implementation Status Report 2024 del PAR III reporta una ejecución
+  financiera acumulada del 16 por ciento. El benchmark regional MAFAP-FAO
+  (PER Subsahariana) reporta un promedio de 21 por ciento de subejecución
+  en el agregado sectorial africano. El PER Filipinas (Banco Mundial 2023)
+  reporta tasas del 85–92 por ciento en el Department of Agriculture tras
+  la reforma Mandanas Ruling.
 claim_en: |
-  [TODO_TRACE]
+  The PAR III 2024 Implementation Status Report records cumulative financial
+  execution of 16 percent. The MAFAP-FAO regional benchmark (Sub-Saharan PER)
+  reports an average of 21 percent under-execution at the African sectoral
+  aggregate. The Philippines PER (World Bank 2023) reports execution rates of
+  85–92 percent in the Department of Agriculture following the Mandanas
+  Ruling reform.
 magnitude:
-  value: [TODO_TRACE]
-  unit: "share of executed agricultural spending by executing entity"
-  period: "[TODO_TRACE]"
+  par_iii_ejecucion_pct: 16
+  par_iii_year_ref: 2024
+  ssa_subejecucion_pct: 21
+  ph_da_ejecucion_pct_rango: [85, 92]
+  unit: "porcentaje de ejecución financiera"
+  period: "2024 (PAR III); promedios multianuales para benchmarks"
+  geographic_scope: "nacional + benchmarks comparados"
 evidence:
-  rds_path: "01_data/processed/panel_v12.rds"
-  script_path: "[TODO_TRACE: 02_code/04_analysis/execution_by_entity.R]"
-  variable: "[TODO_TRACE]"
-  raw_source: "BOOST 2024 + informes de gestión MEFP + reportes anuales empresas estatales (cuando disponibles)"
+  rds_path: "[TODO_TRACE: serie ejecución PAR III no consolidada en panel v12]"
+  script_path: "[TODO_TRACE: añadir 02_code/01_collection/09_isr_par_iii.R]"
+  variable: "[TODO_TRACE: par_iii_disb_pct]"
+  raw_source: "PAR III ISR (BM 2024) + FAO MAFAP PER SSA (Pernechele 2018) + PER Filipinas (WB 2023)"
+benchmark:
+  description_es: "Ejecución del 16% es sustancialmente inferior al referente MAFAP-FAO SSA (≈ 79% de ejecución implícito) y al rango filipino post-Mandanas."
+  source: "@PAR_WorldBank2024_ICR, @PernecheleEtAl2018_MAFAP, @FAO2021_PEFoodAgricultureSSA"
 uncertainty:
-  level: "alta"
+  level: "media"
   reason_es: |
-    Reportes de empresas estatales con cobertura desigual; gobiernos
-    subnacionales ejecutan vía SIGEP con clasificación funcional
-    heterogénea.
+    Cifra del 16% pendiente de verificación directa contra el ISR oficial
+    2024; tomada del plan editorial §8. Diferencias metodológicas con
+    benchmarks comparados (Mandanas mide DA agregado, no programa).
 methodology_version: m0.1
 panel_version: v12
+policy_implication_es: |
+  La capacidad de ejecución es una restricción operativa que condiciona
+  la efectividad de cualquier expansión presupuestaria sectorial.
+  La analogía operativa con la reforma filipina Mandanas se discute en
+  Cap 4 §4.4 y en Cap 6 H2.2.4.
 linked_chapters:
-  - "04_report/03_budget_institutions.qmd"
   - "04_report/04_spending_organization.qmd"
+  - "04_report/06_recommendations.qmd"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
-### F08 — Oportunidades de repurposing
+### F08 — Frontera agropecuaria con concentración territorial
 
 ```yaml
 ---
 finding_id: F08
 version: v1
-title_es: "Existen oportunidades técnicas de repurposing del gasto agrícola hacia instrumentos de mayor retorno social, productivo y climático bajo techo fiscal constante"
-title_en: "Technical opportunities exist to repurpose agricultural spending toward instruments with higher social, productive, and climate returns under a constant fiscal envelope"
+title_es: "La frontera agropecuaria se expandió por aproximadamente 9,4 millones de hectáreas entre 1985 y 2024 con 64 por ciento de la expansión concentrada en el departamento de Santa Cruz"
+title_en: "The agricultural frontier expanded by approximately 9.4 million hectares between 1985 and 2024 with 64 percent of the expansion concentrated in the Santa Cruz department"
 claim_es: |
-  [TODO_TRACE: síntesis de escenarios S01–S0N con sus rangos esperados
-   de efecto sobre TFP, ingreso rural, emisiones, equidad territorial,
-   bajo techo fiscal constante.]
+  MapBiomas Bolivia Colección 3 documenta una pérdida acumulada de
+  aproximadamente 9,4 millones de hectáreas de cobertura natural
+  reconvertidas a usos antrópicos entre 1985 y 2024. Aproximadamente
+  64 por ciento de esa expansión se concentra en el departamento de
+  Santa Cruz. La pérdida forestal anual reportada por Hansen Global
+  Forest Change v1.11 se mantiene elevada en el período reciente.
 claim_en: |
-  [TODO_TRACE]
+  MapBiomas Bolivia Collection 3 documents a cumulative loss of
+  approximately 9.4 million hectares of natural cover reconverted to
+  anthropic uses between 1985 and 2024. Approximately 64 percent of
+  that expansion is concentrated in the Santa Cruz department. Annual
+  forest loss reported by Hansen Global Forest Change v1.11 remains
+  elevated in the recent period.
 magnitude:
-  value: [TODO_TRACE: rango por escenario]
-  unit: "expected change in TFP, rural income, emissions per scenario"
-  period: "horizonte 5 años desde implementación"
+  area_perdida_ha: 9400000   # 9,4 millones de hectáreas
+  santa_cruz_share_pct: 64
+  period_text: "1985–2024"
+  unit: "hectáreas | porcentaje del total"
+  period: "1985–2024"
+  geographic_scope: "nacional, desagregación departamental"
 evidence:
-  rds_path: "01_data/processed/scenarios_v12.rds"
-  script_path: "02_code/08_scenarios/[TODO_TRACE]"
-  variable: "[TODO_TRACE]"
-  raw_source: "panel v12 + elasticidades de [@ifpri2023], [@fao2023], [@laborde2021]"
+  rds_path: "01_data/processed/spending_panel_v12.rds + 01_data/processed/[TODO_TRACE: mapbiomas/hansen processed]"
+  script_path: "[TODO_TRACE: 02_code/02_cleaning/14_mapbiomas.R + 15_hansen.R]"
+  variable: "lc_antropico, lc_natural, hansen_defor_ha"
+  raw_source: "MapBiomas Bolivia Colección 3 (Wikimedia) + Hansen Global Forest Change v1.11"
+benchmark:
+  description_es: "Patrón de concentración consistente con la literatura sobre dualismo oriente-occidente en el uso del suelo boliviano."
+  source: "@Pacheco2006, @INE2015_Censo"
 uncertainty:
-  level: "alta"
+  level: "media"
   reason_es: |
-    Escenarios dependen de elasticidades estimadas en otros contextos
-    productivos. Bandas de incertidumbre reportadas por escenario.
+    Cobertura del suelo sensible al algoritmo de clasificación
+    (MapBiomas Colección 3 vs colecciones anteriores). Cifra Hansen
+    sensible al umbral de cobertura forestal mínimo aplicado.
 methodology_version: m0.1
 panel_version: v12
 policy_implication_es: |
-  Los escenarios se presentan como opciones técnicas para consideración
-  del MEFP, sin compromiso de adopción y sujetos a calibración con datos
-  bolivianos en la fase de consultoría PSE.
+  La expansión y concentración de la frontera agropecuaria interactúa
+  con la lectura de F01 (productividad), F03 (NRP de exportables) y
+  con los escenarios climáticos del Cap 6 (S03).
 linked_chapters:
+  - "04_report/02_sector_performance.qmd"
   - "04_report/06_recommendations.qmd"
 linked_scenarios:
-  - "S01"
-  - "S02"
   - "S03"
 status: draft
-last_updated: 2026-05-23
+last_updated: 2026-05-24
 ---
 ```
 
@@ -549,7 +690,7 @@ Cuando un comentario del MEFP no se incorpora porque no tiene fuente verificable
 
 ```yaml
 divergence_id: D-NNNN
-finding_id: F03
+finding_id: F-EJEMPLO   # usar F01..F08 según corresponda al hallazgo divergente
 date: YYYY-MM-DD
 mefp_position_es: "El MEFP indica que la clasificación X debería ser Y."
 team_position_es: "El equipo APER mantiene la clasificación X por consistencia con la metodología m0.4; ver METODOLOGIA §X.Y."

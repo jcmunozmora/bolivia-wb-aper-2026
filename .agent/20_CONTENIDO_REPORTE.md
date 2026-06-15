@@ -1,6 +1,6 @@
 # 20_CONTENIDO_REPORTE.md — Control detallado del contenido del Quarto book
 
-**Versión:** v0.5.0 · **Última actualización:** 2026-05-24
+**Versión:** v0.6.0 · **Última actualización:** 2026-06-13
 **Path canónico:** `.agent/20_CONTENIDO_REPORTE.md`
 **Propósito:** **control granular** del contenido de cada capítulo del Quarto book (`04_report/`). Complementa [`00_MASTER_PROMPT §6`](00_MASTER_PROMPT.md) que es el plan **estratégico**; este archivo es el plan **operativo** sub-sección por sub-sección, párrafo por párrafo cuando aplica.
 **Estado:** este archivo se actualiza **cada sesión** que toca un capítulo. Cierre de sesión obligatorio: actualizar el bloque correspondiente al capítulo trabajado.
@@ -106,6 +106,42 @@ GATES G1–G7 — checklist por capítulo del MASTER §11.1
 
 ---
 
+## 3.A Lente del TTL — criterios de aceptación transversales
+
+> **Por qué está aquí.** Estos son los aprendizajes estratégicos de la inteligencia editorial del TTL ([`22_PERFIL_TTL.md`](22_PERFIL_TTL.md)), traducidos a **criterios accionables** que aplican a **todos** los capítulos. Objetivo: que el reporte llegue a su mesa de revisión **pre-alineado**, reduciendo ciclos de reescritura. No sustituyen la validación humana ni el diálogo directo con el TTL (principio operativo 9). Si el TTL expresa prioridades distintas, mandan las suyas y se actualiza `22_PERFIL_TTL.md`.
+
+**Perfil en una línea:** Katie Kennedy Freeman — Lead Agriculture Economist, WB Agriculture & Food GP (LAC). Especialidades: **climate-smart agriculture, agricultura digital, nexo agricultura–energía**. Lee el gasto desde **eficiencia + reorientación (repurposing)**, no desde su magnitud. Registro **optimista-pragmático, basado en evidencia y "measurability"**.
+
+### 3.A.1 Los 9 criterios de aceptación (checklist transversal)
+
+Cada capítulo debe poder responder afirmativamente a los que le apliquen **antes** de pasar a `reviewed`:
+
+- [ ] **C1 · Puente con 2019.** ¿Dialoga explícitamente con *Tapping the Potential of Bolivia's Agriculture and Food Systems* (WB 2019)? (cifras-ancla: agro ~11–12% PIB; gasto agrícola ~6% del total; crecimiento por expansión de área, no productividad; TFP ~2,6% 2011–15; 72% del VA en Santa Cruz/Cochabamba/La Paz).
+- [ ] **C2 · Eficiencia, no solo magnitud.** ¿Responde "¿cada boliviano de gasto compra cuánto resultado?", no solo cuánto se gastó? (ancla WB: ~35¢ de producto por dólar de subsidio distorsionante).
+- [ ] **C3 · Bienes públicos vs. apoyo privado/transferencias.** ¿Está hecha esta desagregación? Es la columna vertebral del relato de repurposing.
+- [ ] **C4 · Repurposing como menú de opciones neutrales y cuantificadas** (no prescripción política — respeta Invariante 4).
+- [ ] **C5 · Continuidad metodológica TFP/SFA.** ¿El análisis de eficiencia dialoga con la frontera estocástica/meta-frontera del precedente (no la ignora)?
+- [ ] **C6 · Pares regionales LAC/andinos** en cada comparación clave (panel `andinos_wdi_panel.rds`).
+- [ ] **C7 · Banderas temáticas visibles:** clima/resiliencia, biocombustibles/energía, digital/measurability, género e inclusión (pequeños productores, indígenas). Tratar aunque sea acotado; su ausencia se nota. Nunca forzar sin dato (Invariante 6).
+- [ ] **C8 · Trazabilidad y reproducibilidad explícitas** (su lenguaje: "measurability"). Listo para A4.
+- [ ] **C9 · Tono optimista-pragmático:** diagnóstico honesto + opciones viables; sin catastrofismo ni advocacy.
+
+### 3.A.2 Comentarios probables del TTL por capítulo + acción pre-emptiva
+
+| Cap | Comentario probable del TTL | Acción pre-emptiva (dónde se resuelve) | Criterios |
+|:-:|---|---|---|
+| **0 · Resumen** | "¿El mensaje accionable es eficiencia/reorientación, no solo cuánto se gasta?" | Liderar con la pregunta de política, no con la descriptiva. Cerrar con menú de opciones. | C2, C4, C9 |
+| **1 · Intro** | "¿Cómo se conecta con *Tapping the Potential* (2019)? ¿Qué cambió?" | Párrafo de continuidad explícito 2019→2026. Enmarcar pregunta de política. | C1, C2 |
+| **2 · Desempeño** | "¿Sigue vigente la narrativa de crecimiento por área vs. productividad? ¿Y los pares?" | Actualizar con panel v12; benchmarks andinos/LAC; concentración territorial. | C1, C5, C6, C7 |
+| **3 · Presupuesto** | "¿Clasificación comparable (MAFAP)? ¿Qué % son bienes públicos vs. transferencias?" | Crosswalk (Apéndice D, ADR-0010) + MAFAP (`mafap_bolivia.rds`). Hacer la desagregación. Calidad del dato visible. | C3, C8 |
+| **4 · Organización** | "¿Dónde está el dinero — qué programas, qué nivel territorial? ¿Subsidios a insumos/energía?" | F07 + desagregación territorial (Santa Cruz/La Paz/Cochabamba). Tratar biocombustibles/etanol. | C3, C6, C7 |
+| **5 · Análisis (eficiencia)** | "¿El gasto compra productividad? ¿Replican/dialogan con TFP-SFA 2019? ¿35¢ por dólar en Bolivia?" | Apéndices E (panel FE) y F (DEA Simar-Wilson) conectados narrativamente al precedente. PSE/NRP (F02, F03). | C2, C5, C6, C8 |
+| **6 · Recomendaciones** | "¿De qué hacia qué se reorienta? ¿Costo fiscal y supuestos? ¿Quick wins vs. estructural?" | Escenarios S01–S03 cuantificados como opciones; coordinar costo fiscal con STC ([21_COORDINACION_STC](21_COORDINACION_STC.md)). Secuenciar. | C4, C7, C9 |
+
+> Cada bloque de capítulo abajo abre con un puntero **🎯 Alineación TTL** que remite a esta tabla y a [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md).
+
+---
+
 ## 4. Capítulo 0 — Resumen Ejecutivo (`index.qmd`)
 
 **Pregunta de política:** ¿Qué cambió en el gasto agropecuario boliviano entre el APER 2011 y 2026, y qué implica para el diseño de política sectorial?
@@ -114,6 +150,8 @@ GATES G1–G7 — checklist por capítulo del MASTER §11.1
 **Bilingüe:** **sí — paridad ES/EN obligatoria**. Versión ES es el deliverable formal D4.
 **Status:** 🟡 esqueleto (existe `index.qmd`, reescribir con cifras v12).
 **Dependencia:** integra cifras OECD-PSE de **Hector** ([21_COORDINACION_STC §3.1](21_COORDINACION_STC.md)) — específicamente F02 (PSE 5.8% LAC) y F03 (NRP dual).
+
+> 🎯 **Alineación TTL** (ver [§3.A.2](#3a-lente-del-ttl--criterios-de-aceptación-transversales) + [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md)): liderar con eficiencia/reorientación, no con magnitud; cerrar en menú de opciones; tono optimista-pragmático. Criterios C2, C4, C9.
 
 ### 4.1. Outline detallado
 
@@ -191,6 +229,8 @@ Estimado: ~25 cifras (una por bullet de los 8 hallazgos + contexto).
 **Longitud:** 8–10 pp objetivo · pendiente medición.
 **Status:** 🟡 borrador existente, requiere actualizar metodología DEA y mencionar Ley 393.
 
+> 🎯 **Alineación TTL** (ver [§3.A.2](#3a-lente-del-ttl--criterios-de-aceptación-transversales) + [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md)): párrafo de continuidad explícito con *Tapping the Potential* (WB 2019); enmarcar como pregunta de política (eficiencia/reorientación). Criterios C1, C2.
+
 ### 5.1. Outline detallado
 
 | # | Sección (h2) → sub-secciones (h3) | Status | Hallazgo | Figura | Cifras clave |
@@ -264,13 +304,17 @@ Adicional para sub-sección de metodología: `@WB2014_PEMethodGuideVolII`, `@MAF
 **Longitud:** 15–20 pp objetivo · pendiente medición.
 **Status:** 🟡 borrador parcial, falta sección FIES y sección cobertura.
 
+> 🎯 **Alineación TTL** (ver [§3.A.2](#3a-lente-del-ttl--criterios-de-aceptación-transversales) + [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md)): contrastar narrativa "crecimiento por área vs. productividad" del precedente con panel v12; pares andinos/LAC; concentración territorial; banderas clima/digital. Criterios C1, C5, C6, C7.
+
 ### 6.1. Outline detallado
 
 | # | Sección (h2) → sub-secciones (h3) | Status | Hallazgo | Figuras | Cifras clave |
 |:-:|---|:-:|:-:|:-:|---|
 | H2.1 | Importancia macro del sector | borrador | — | fig01 | VA agro %PIB, empleo agro 28%, exportaciones |
 | | H3.1.1 Valor agregado y empleo | borrador | — | fig01, fig04 | agr_value_added_pct_gdp; agr_employment_pct |
-| | H3.1.2 Exportaciones agropecuarias | outline | — | — | wdi_agr_export_pct |
+| | H3.1.2 Exportaciones agropecuarias | outline | — | **fig_pareto_export_2006v2023** | complejo soya 57%→66% de exportaciones agro |
+| | H3.1.3 **Pareto del valor de producción (2006 vs 2023)** | **outline** | F02/F08 | **fig_pareto_valor_2006v2023** | soya 24%; 8 rubros=80%; HHI 1237 |
+| | H3.1.4 **Distribución regional de la soya** (cierre de sección) | **outline** | F01/F08 | — | Santa Cruz ≈99%; área ×2,4; rendimiento +9,6% |
 | H2.2 | Productividad — TFP y descomposición | borrador parcial | **F01** | fig12 | TFP +30% / Inv ×10 |
 | | H3.2.1 TFP USDA-ERS 1990–2023 | borrador | F01 | fig06, fig07 | `tfp_index`, `tfp_input`, `tfp_output` |
 | | H3.2.2 Descomposición input vs output | outline | F01 | fig08 | tfp_per_mbob |
@@ -294,6 +338,8 @@ Adicional para sub-sección de metodología: `@WB2014_PEMethodGuideVolII`, `@MAF
 | figure_id | título corto | status | hallazgo |
 |---|---|:-:|:-:|
 | `fig01` | VA agro %PIB 1990–2024 | 🟡 pre-generada | — |
+| `fig_pareto_valor_2006v2023` | **Pareto del VALOR de producción agropecuaria 2006 vs 2023 (USD const. 2015)** — 2 paneles. Barras descendentes = valor (USD const. 2015, mn); línea naranja = % acumulado; referencia 80%; vital few en azul, resto en gris. Hallazgo: por VALOR lidera **soya** (19,5%→23,9%), seguida de **carne de res y pollo** (la caña/azúcar es marginal por valor, contrario al volumen). 7→8 rubros para 80%; HHI 1104→1237. Valor real total USD 3.225mn→10.191mn (×3,2 real). Deflactado con US GDP deflator (WDI NY.GDP.DEFL.ZS), base 2015. Fuente: IDB AgriMonitor (incluye ganadería). Ventana 2006-2023. | 🟢 generada | F08, F02 |
+| `fig_pareto_export_2006v2023` | **Pareto de EXPORTACIONES agropecuarias 2006 vs 2023 (USD const. 2015)** — 2 paneles, mismo estilo (verde). Barras = valor exportado por cadena; línea = % acumulado; ref. 80%. Hallazgo: exportaciones **mucho más concentradas que producción** — **complejo soya 57%→66%**; solo **4 rubros** suman 80% en 2023 (vs 7 en 2006); HHI 3756→4586. Total agro exportado USD 702mn→2.086mn (const. 2015). Fuente: FAOSTAT Trade (Element 5922), deflactado WDI. `02_code/08_pareto_exportaciones.R`. | 🟢 generada | F08 |
 | `fig04` | Outcomes trends Bolivia | 🟡 pre-generada | F06 |
 | `fig06` | TFP Bolivia 1990–2023 | 🟡 pre-generada | F01 |
 | `fig07` | Decomposición TFP input/output | 🟡 pre-generada | F01 |
@@ -301,6 +347,7 @@ Adicional para sub-sección de metodología: `@WB2014_PEMethodGuideVolII`, `@MAF
 | `fig09` | TFP comparado LAC | 🟡 pre-generada | F01 |
 | `fig12` | Inversión vs TFP (scatter o doble eje) | 🟡 pre-generada | F01 |
 | `fig33`–`fig40` | Cobertura del suelo y frontera | 🟡 pre-generadas | F08 |
+| `fig_muni_top15_expansion` | **Top 15 municipios por expansión antrópica 1985–2024** — barras horizontales, color por depto (Santa Cruz ocre / otros gris). Hallazgo: **14 de 15 en Santa Cruz** (no "todos"; #15 San Ramón es Beni); top15 = ~53% de la expansión nacional. Etiqueta interna = % territorio antrópico 2024. `02_code/04_visualization/14_fig_muni_expansion_antropica.R`. Fuente: MapBiomas. | 🟢 generada | F08 |
 
 ### 6.3. Tablas
 
@@ -348,6 +395,9 @@ Cadenas (cuando aplique):
 
 ### 6.7. TODO list
 
+- [x] ~~Ejecutar script `02_code/07_pareto_cultivos.R`~~ → **generada por VALOR** (2026-06-14). Fuente: `idb_agrimonitor_bolivia_full.rds` ("Value of Production at farm gate", USD mn). Ventana **2006 vs 2023** (cobertura AgriMonitor; resuelve el límite 2020 de INE). Incluye ganadería.
+- [ ] Redactar sección H3.1.3 (Pareto por valor) — borrador TEEL listo; insertar al `.qmd` con `@fig-pareto`. Cifras: soya #1 (19,5%→23,9%); carne de res y pollo emergen; 7→8 rubros para 80%; HHI 1104→1237.
+- [ ] **Contraste volumen vs valor:** mencionar en la narrativa que por volumen domina la caña (agua) pero por valor lidera soya+ganadería — ilustra el sesgo de medir solo toneladas. (Versión por volumen disponible en historial git si se requiere panel comparativo.)
 - [ ] Redactar sección H2.3 (pobreza + FIES) — bloqueada por confirmación serie INE EH.
 - [ ] Construir small multiples para H2.4 (cobertura por depto) usando MapBiomas + Hansen.
 - [ ] Escribir caja comparativa APER 2011 vs 2026.
@@ -364,6 +414,7 @@ Cadenas (cuando aplique):
 
 | Fecha | Autor | Cambio |
 |---|---|---|
+| 2026-06-14 | JCM | **v0.6.1 — Nueva sección H3.1.3 "Pareto dinámico de cultivos principales (2000 vs 2020)"** + nuevo script `02_code/07_pareto_cultivos.R` (275 líneas). Figura: 2 paneles lado a lado, barras = volumen (log), línea = valor acumulado (%). Cultivos clave: soya, maíz, arroz, papa. Muestra concentración + brecha volumen/valor. Alineación con F08 (concentración territorial) y narrativa de "crecimiento por área vs productividad". Script genera PNG/SVG/PDF 600 DPI. TODO: ejecutar script + redactar narrative H3.1.3. |
 | 2026-05-23 | JCM | Outline inicial migrado de MASTER §6 cap 2, con desagregación por sub-subsección. |
 
 ---
@@ -374,6 +425,8 @@ Cadenas (cuando aplique):
 
 **Longitud:** 18–22 pp objetivo.
 **Status:** 🟡 borrador largo existente; requiere integrar Ley 393, cifras v12 y re-clasificación MAFAP.
+
+> 🎯 **Alineación TTL** (ver [§3.A.2](#3a-lente-del-ttl--criterios-de-aceptación-transversales) + [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md)): desagregación **bienes públicos vs. apoyo privado/transferencias** (columna del relato de repurposing); clasificación comparable vía MAFAP/crosswalk (Apéndice D, ADR-0010); calidad/trazabilidad del dato visible. Criterios C3, C8.
 
 ### 7.1. Outline detallado
 
@@ -475,6 +528,8 @@ Ley 393 + crédito:
 **Longitud:** 15–18 pp objetivo.
 **Status:** 🟡 esquemático, requiere narrativa de PAR III, mapas y benchmarks regionales.
 
+> 🎯 **Alineación TTL** (ver [§3.A.2](#3a-lente-del-ttl--criterios-de-aceptación-transversales) + [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md)): ¿dónde está el dinero realmente — qué programas, qué nivel territorial (F07)?; tratar explícitamente subsidios a insumos y el nexo energía-agricultura (biocombustibles/etanol). Criterios C3, C6, C7.
+
 ### 8.1. Outline detallado
 
 | # | Sección (h2) → sub-secciones (h3) | Status | Hallazgo | Figuras | Cifras clave |
@@ -561,6 +616,8 @@ Mandanas Ruling Filipinas (analogía Ley de Autonomías):
 **Longitud:** 20–25 pp objetivo (capítulo más largo).
 **Status:** 🔴 placeholder — bloqueado hasta re-correr `08_extended_regressions.R` + DEA Simar-Wilson + **outputs Hector** ([21_COORDINACION_STC §3.1](21_COORDINACION_STC.md)).
 **Inputs principales de Hector** (Secondary TOR): §H2.1 PSE/GSSE/TSE Bolivia + §H2.2 NRP por commodity. JC produce: §H2.3 DEA + §H2.4 regresiones. **Integración**: §5 del archivo de coordinación STC.
+
+> 🎯 **Alineación TTL** (ver [§3.A.2](#3a-lente-del-ttl--criterios-de-aceptación-transversales) + [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md)): **capítulo más sensible para el TTL.** ¿El gasto compra productividad? Conectar Apéndices E (panel FE) y F (DEA Simar-Wilson) con la tradición TFP/SFA del precedente 2019; PSE/NRP (F02, F03); ancla "35¢ por dólar" para Bolivia. Criterios C2, C5, C6, C8.
 
 ### 9.1. Outline detallado
 
@@ -667,6 +724,8 @@ DEA + econometría (caps 5 §H2.3, §H2.4):
 **Longitud:** 10–12 pp objetivo.
 **Status:** 🔴 placeholder — escribir al final, **coordinado con Hector** ([21_COORDINACION_STC](21_COORDINACION_STC.md)).
 **Inputs principales de Hector** (Secondary TOR §c objetivo): §H2.3 **fiscal cost del repurposing** (Q1 reducción MPS + foregone tariff income; Q2 aumentar public goods a niveles globales) + benchmarking LAC (Colombia 2016, Perú 2020). JC produce: §H2.1 mensajes policy + §H2.2 recomendaciones institucionales + §H2.3 composición ex-ante/ex-post de S01-S03 + §H2.4 roadmap.
+
+> 🎯 **Alineación TTL** (ver [§3.A.2](#3a-lente-del-ttl--criterios-de-aceptación-transversales) + [`22_PERFIL_TTL §6`](22_PERFIL_TTL.md)): **donde concentrará su atención.** Repurposing como menú de opciones cuantificadas y neutrales (S01–S03): de qué hacia qué, con costo fiscal y supuestos explícitos (coordinar con STC); secuenciar quick wins vs. reforma estructural; cerrar accionable. Criterios C4, C7, C9.
 
 ### 10.1. Outline detallado
 
@@ -1528,4 +1587,5 @@ Cuando un capítulo entre a estado `reviewed`:
 | 2026-05-23 | JCM | **v0.2.0 — Integración FAO MAFAP + expansión de apéndices.** Cap 3 expandido con 9 sub-subsecciones MAFAP A–E (narrow/full). Cap 4 integra MAFAP a nivel subnacional. Apéndice B expandido con §H2.4 dedicado a MAFAP operacionalización Bolivia (10 sub-subsecciones). **Nuevos apéndices:** C (Glosario MAFAP bilingüe, formaliza archivo existente), D (Crosswalk MAFAP↔OECD-PSE↔COFOG↔MEFP), E (Regresiones panel FE), F (DEA Simar-Wilson), G (Programas BM), H (ADRs metodológicos). Total apéndices: 2 → 8. Total figuras objetivo: 40 → 45 (+5 MAFAP). Tablas: 25 → 30 (+5 crosswalks/regresiones). MASTER §4.1 sincronizado con los 8 apéndices y nota explícita sobre clasificación dual MAFAP+PSE. 6 TODOs MAFAP críticos identificados. |
 | 2026-05-23 | JCM | **v0.3.0 — Los 6 bloqueadores MAFAP críticos ejecutados.** Artefactos creados: ADR-0009 (166 líneas, adopción narrow+full); ADR-0010 (197 líneas, crosswalk con 5 reglas de mapeo ambiguo); `crosswalk_mafap_oecd_cofog.csv` (41 entradas 4-way: A:9, B:5, C:5, D:14, E:8); `C_glosario_mafap.qmd` (171 líneas, 9 secciones C.1–C.9, tablas estructuradas A–E + equivalencias OECD-PSE); script `17_mafap_classification.R` (270 líneas, produce mafap_bolivia.rds con 2 cifras del GAP + 5 tests T1–T5 + log cobertura); script `11_figures_mafap.R` (243 líneas, 5 figuras MAFAP en SVG+PNG 600 DPI+PDF). Total: 1273 líneas de artefactos canónicos. Pendiente: ejecución de scripts por el usuario + firma TTL de ADRs + cita BibTeX `@ghins2013mafap` + creación de `D_crosswalk_clasificaciones.qmd` Quarto desde el CSV maestro. |
 | 2026-05-24 | JCM | **v0.4.0 — Alineación con los dos ToR + coordinación formal con consultor Hector.** Cross-walk completo Main TOR JC + Secondary TOR Hector contra contenido del book. **MASTER §5.3** actualizado con: ventana canónica 2008–2024 (ext. 2025) + MAFAP Group I=narrow / Group I+II=full + indicadores TOR obligatorios + shocks explícitos (commodity, COVID, sequía 2023, Ley 393) + RQ2 mapeo a F08/F01/F06. **MASTER §4.1** Cap 0 ajustado a 4–6 pp (alineación TOR D4). **Nuevo doc canónico**: `.agent/21_COORDINACION_STC.md` (Bloque F — coordinación inter-consultor) con división operativa de contenido por capítulo + outputs esperados de Hector + cronograma integrado 7 semanas + protocolo de integración + 5 riesgos R-014 a R-018. **Cap 0, 5, 6** marcados con dependencia explícita de outputs Hector. **Cap 4 H2.2** desagregado con Santa Cruz, La Paz, Cochabamba explícitos (alineación TOR JC Scope). **Nueva §22 Cross-walk ToR ↔ Capítulos** con verificación de cobertura: 12 brechas identificadas, 6 cerradas en esta sesión, 6 pendientes (códigos VIPFE reales en crosswalk, registro R-014–R-018, gap water productivity, commodity+COVID sub-secciones, deck D3 analytical, citas BibTeX). |
+| 2026-06-13 | JCM | **v0.6.0 — Integración de la inteligencia editorial del TTL (pre-alineación).** Nueva **§3.A "Lente del TTL — criterios de aceptación transversales"**: 9 criterios accionables (C1–C9) derivados de [`22_PERFIL_TTL.md`](22_PERFIL_TTL.md) + tabla de comentarios probables del TTL por capítulo con acción pre-emptiva. **Punteros 🎯 Alineación TTL** insertados al inicio del outline de los 7 capítulos (0–6), cada uno mapeado a criterios y artefactos responsables (F-IDs, apéndices D/E/F, STC). Objetivo: que cada capítulo nazca pre-alineado con las prioridades del TTL (eficiencia/repurposing, continuidad con *Tapping the Potential* 2019, bienes públicos vs. transferencias, TFP/SFA, pares LAC, clima/digital/energía/género, measurability, tono optimista-pragmático). No sustituye validación humana (principio 9). |
 | 2026-05-24 | JCM | **v0.5.0 — Integración del corpus de literatura (sesión 11 revisión profunda).** Antes: 11 entradas BibTeX en `04_report/references.bib`. Ahora: **359 entradas en `03_literature/references_master.bib` + 325 fichas markdown en 11 carpetas temáticas + 163 PDFs (434 MB)**. Cobertura temporal 1957–2025. **Nueva §23 "Integración del corpus"** (~250 líneas, 10 subsecciones): estado del corpus, taxonomía 11 carpetas con nivel de evidencia, **6 patrones transversales** con fuentes ancla, **mapeo evidencia ↔ 6 capítulos** (fuentes ancla obligatorias por cap), reglas de citación (cuándo citar externa, citaciones combinadas, caveats), 10 vacíos de evidencia identificados (Bolivia-específicos + global + metodológicos), sincronización `references_master.bib` ↔ `references.bib` (TODO P0), workflow de incorporación, auditoría de citas pendiente, 5 brechas L-1 a L-5. **Bloques "Citas requeridas" reescritos en caps 5, 6, 7, 8, 9, 10** apuntando a fuentes ancla concretas con `@keys` (Cap 5 destacado con 10+ ancla como capítulo más denso). **Apéndice A H2.7 expandido** con 5 sub-subsecciones para documentar corpus en el book final. **Cap 5 confirmado como capítulo más denso en literatura** (repurposing TEMA CENTRAL): Gautam 2022 + FAO/UNEP/UNDP + WB Recipe + OECD APME + Springmann + Anriquez-Foster-Ortega + Rentschler + Alston/Hurley (caveat MIRR). |

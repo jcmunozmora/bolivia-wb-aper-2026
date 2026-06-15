@@ -60,7 +60,7 @@ El **PER Sub-Saharan Africa** (FAO MAFAP, Pernechele et al. 2021) y el **PER Fil
    - Caja explícita: "el APER 2011 no usó MAFAP; este recálculo es aproximado y se reporta en apéndice B §H3.4.9".
 
 6. **Variables del panel v12:**
-   - `mafap_narrow_bob_2015` y `mafap_full_bob_2015` se agregan al panel como variables derivadas calculadas por el script `11_mafap_classification.R` (ver MAFAP-1 / ADR-0010).
+   - `mafap_narrow_bob_2015` y `mafap_full_bob_2015` se agregan al panel como variables derivadas calculadas por el script `17_mafap_classification.R` (ver MAFAP-1 / ADR-0010).
    - Resto del panel se mantiene sin cambios.
 
 ---
@@ -120,7 +120,7 @@ El **PER Sub-Saharan Africa** (FAO MAFAP, Pernechele et al. 2021) y el **PER Fil
 - `04_HALLAZGOS.md` → revisar F04 (Maputo) para citar MAFAP narrow explícitamente.
 - `00_MASTER_PROMPT.md` §4.1 → ya actualizado en v0.4.0 (caja sobre clasificación dual al pie).
 - `20_CONTENIDO_REPORTE.md` → ya integra MAFAP en caps 3, 4 y apéndice B §H2.4.
-- **Nuevo archivo:** `02_code/02_classification/11_mafap_classification.R` (ADR-0009 desbloquea su creación).
+- **Nuevo archivo:** `02_code/02_cleaning/17_mafap_classification.R` (ADR-0009 desbloquea su creación).
 - **Nuevo archivo:** `01_data/processed/mafap_bolivia.rds` (output del script).
 - **Nuevo archivo:** `01_data/processed/crosswalk_mafap_oecd_cofog.csv` (ver ADR-0010).
 
@@ -143,7 +143,7 @@ El **PER Sub-Saharan Africa** (FAO MAFAP, Pernechele et al. 2021) y el **PER Fil
 
 ¿Cómo sabremos que la decisión fue correcta?
 
-1. **Test inmediato:** tras correr `11_mafap_classification.R`, las dos cifras del GAP (narrow y full) son coherentes con BOOST + VIPFE agregados y la diferencia narrow→full es atribuible a gasto rural-soporte (E) identificable.
+1. **Test inmediato:** tras correr `17_mafap_classification.R`, las dos cifras del GAP (narrow y full) son coherentes con BOOST + VIPFE agregados y la diferencia narrow→full es atribuible a gasto rural-soporte (E) identificable.
 2. **Test funcional 3 meses:** el MEFP en mesa técnica no expresa confusión sobre las dos cifras; un revisor externo (peer review WB o académico) entiende la decisión y la justificación.
 3. **Test de comparabilidad:** las cifras del APER 2026 bajo MAFAP narrow son razonablemente comparables (mismo orden de magnitud) con las del PER Filipinas 2023, PER SSA 2021, AgPER Colombia 2020 — i.e., otros PERs MAFAP.
 

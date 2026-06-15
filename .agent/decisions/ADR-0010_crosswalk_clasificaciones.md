@@ -94,7 +94,7 @@ descubrimiento de nuevo caso ambiguo
 
 ### 5. Verificación cuantitativa
 
-Tras correr `11_mafap_classification.R` con el crosswalk aplicado:
+Tras correr `17_mafap_classification.R` con el crosswalk aplicado:
 
 - `sum(MAFAP_A + MAFAP_B + MAFAP_C + MAFAP_D + MAFAP_E)` debe ser ≥ `sum(VIPFE_inv_agro)` para cada año, dado que MAFAP captura más componentes (incluye crédito subsidiado, EMAPA, etc.).
 - `sum(MAFAP_D)` debe ser ≈ `sum(OECD_GSSE)` para los años de cobertura común (2006–2023), con desvío explicable por componentes específicos.
@@ -107,7 +107,7 @@ Tras correr `11_mafap_classification.R` con el crosswalk aplicado:
 | Alternativa | Pros | Contras | Decisión |
 |---|---|---|---|
 | **Crosswalk maestro CSV + reglas explícitas + ADR** (escogida) | trazable; reproducible; auditable; versionable | esfuerzo inicial alto (~33 códigos × 4 columnas) | **aceptada** |
-| Crosswalk inline en el script `11_mafap_classification.R` | sin archivo extra | no auditable independientemente; difícil revisar; recodificar es trabajo de programador no analista | rechazada |
+| Crosswalk inline en el script `17_mafap_classification.R` | sin archivo extra | no auditable independientemente; difícil revisar; recodificar es trabajo de programador no analista | rechazada |
 | Tres crosswalks separados (MAFAP↔OECD, MAFAP↔COFOG, MAFAP↔MEFP) | desacoplamiento | inconsistencia potencial entre tablas | rechazada |
 | Crosswalk solo MAFAP↔MEFP (lo mínimo para reclasificar BOOST) | mínimo esfuerzo | imposibilita reportes paralelos en cap 5 (OECD-PSE) y benchmarking COFOG | rechazada |
 
@@ -119,7 +119,7 @@ Tras correr `11_mafap_classification.R` con el crosswalk aplicado:
 
 - **Nuevo archivo canónico:** `01_data/processed/crosswalk_mafap_oecd_cofog.csv` (~33 filas + header).
 - **Apéndice D del book** se vuelve renderizable (era `placeholder` por falta de este archivo).
-- **Script `11_mafap_classification.R`** lee este CSV como lookup table.
+- **Script `17_mafap_classification.R`** lee este CSV como lookup table.
 
 ### Sobre el panel v12
 
@@ -138,7 +138,7 @@ Tras correr `11_mafap_classification.R` con el crosswalk aplicado:
 - Cada cifra del GAP en book/web debe poder rastrearse a:
   - `panel_v12_dictionary.csv` (variable canónica),
   - `crosswalk_mafap_oecd_cofog.csv` (definición operativa),
-  - `11_mafap_classification.R` (script de cálculo).
+  - `17_mafap_classification.R` (script de cálculo).
 - Test nuevo: `test_crosswalk_covers_all_boost_partidas`: verificar que el script puede asignar **toda partida BOOST de sector agropecuario** a una categoría MAFAP (cero "no-clasificable").
 
 ---
@@ -155,7 +155,7 @@ Tras correr `11_mafap_classification.R` con el crosswalk aplicado:
 
 ### Paso 3 — Conectar al script de clasificación
 
-`02_code/02_classification/11_mafap_classification.R` lee el CSV y aplica las reglas. Detallado en MAFAP-1.
+`02_code/02_cleaning/17_mafap_classification.R` lee el CSV y aplica las reglas. Detallado en MAFAP-1.
 
 ### Paso 4 — Tests
 
@@ -173,7 +173,7 @@ test_e_no_pse                         : categorías E mapean a "no-pse" en colum
 
 ¿Cómo sabremos que la decisión fue correcta?
 
-1. **Test inmediato:** tras correr `11_mafap_classification.R`, la cobertura de partidas BOOST asignadas es ≥ 95% sin "no-clasificable".
+1. **Test inmediato:** tras correr `17_mafap_classification.R`, la cobertura de partidas BOOST asignadas es ≥ 95% sin "no-clasificable".
 2. **Test cuantitativo:** la cifra MAFAP narrow para Bolivia 2018–2023 es coherente (±15%) con la del IFPRI SPEED (variable `speed_ag_*`), dado que ambos son cifras de gasto agropecuario sin rural-soporte.
 3. **Test cualitativo:** un experto MAFAP (FAO Pernechele o equivalente) revisa el crosswalk en una sesión y confirma decisiones no obvias (e.g., crédito BDP → A2; EMAPA dividida entre A1/B1/D8).
 

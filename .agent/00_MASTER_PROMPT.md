@@ -448,7 +448,7 @@ Sinergia con ToR Consultor PSE/Repurposing
 | Pregunta de política | ¿Qué cambió en el gasto agropecuario boliviano entre el APER 2011 y 2026, y qué implica para el diseño de política sectorial? |
 | Subsecciones (4) | (i) Contexto y motivación; (ii) Hallazgos principales (los 8); (iii) Mensajes de política; (iv) Estructura del reporte |
 | Hallazgos | Los 8, en versión cifra-única |
-| Figuras | fig10 (inversión 1990–2024), fig13 (PSE), fig22 (mapa gasto 2020) — solo 3, alto impacto |
+| Figuras | fig10 (inversión 1990–2024), fig13 (PSE), mapa gasto municipal 2024 (`fig_mapa_muni_gasto_agro_2024`) — solo 3, alto impacto |
 | Datos | Panel v12, PSE Bolivia |
 | Cualitativo | — |
 | Conexión APER 2011 | Caja comparativa "Lo que ha cambiado desde 2011" |

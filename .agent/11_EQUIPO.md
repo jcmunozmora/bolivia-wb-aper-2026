@@ -28,11 +28,11 @@ Tres círculos concéntricos según proximidad al producto.
 
 | Rol | Quién | Institución | Responsabilidad principal |
 |---|---|---|---|
-| **TTL (Task Team Leader)** | _[TODO_TRACE: nombre]_ | World Bank — Agriculture Global Practice | Liderazgo técnico del APER, autor principal, firmante de A4 y A5 |
-| **co-TTL** | _[TODO_TRACE: nombre]_ | World Bank | Co-liderazgo, respaldo del TTL, firma A4 cuando TTL ausente |
+| **TTL (Task Team Leader)** | **Katie Kennedy Freeman** (Lead Agriculture Economist) — TTL confirmada (2026-06-13) | World Bank — Agriculture and Food Global Practice (LAC) | Liderazgo técnico del APER, autor principal, firmante de A4 y A5. Perfil e inteligencia editorial en [`22_PERFIL_TTL.md`](22_PERFIL_TTL.md) |
+| **co-TTL** | **Mariángela Ramírez Díaz** (mramirezdiaz@worldbank.org) · Senior Agriculture Economist | World Bank — Agriculture and Food GP (LAC) | Co-liderazgo, respaldo de la TTL, firma A4 cuando la TTL ausente. Experticia: agricultura sostenible, cadenas de valor (cacao), reducción de emisiones agrícolas, LAC/Colombia (ex-TechnoServe). Confirmada co-TTL 2026-06-13. |
+| **co-TTL** | **Héctor Peña** (hpena@worldbank.org) · Agriculture Support Estimates Specialist (OECD-PSE), ETC | World Bank — Agriculture and Food GP | Co-liderazgo; firma A4 cuando la TTL ausente. Componente OECD-PSE/GSSE/TSE, NRP por commodity (IADB AgriMonitor), costo fiscal del repurposing (Cap 5 + Cap 6). Coordinación operativa en [`21_COORDINACION_STC.md`](21_COORDINACION_STC.md). Confirmado co-TTL 2026-06-13. |
 | **Líder técnico EAFIT/CVP** | Juan Carlos Muñoz Mora | EAFIT — Centro de Valor Público | Arquitectura del panel v12, gobernanza del repo, redacción técnica, MEL |
 | **Equipo APER core** | _[TODO_TRACE: lista]_ | EAFIT / WB / colaboradores | Construcción del panel, capítulos, figuras, A2/A3 |
-| **Consultor PSE/Repurposing (STC)** | _[TODO_TRACE: nombre]_ | WB STC | PSE detallado, escenarios de repurposing, integración con cap. 06 |
 
 ### 2.2. Círculo 2 — Contraparte y revisores formales
 
@@ -66,17 +66,18 @@ Tres círculos concéntricos según proximidad al producto.
                               │ escalación política
                               │
                     ┌─────────┴─────────┐
-                    │       TTL          │   firma A4 y A5
-                    │     (autor 1)      │
+                    │  TTL — K. Kennedy │   firma A4 y A5
+                    │  Freeman (autor 1) │
                     └─────────┬─────────┘
                               │
-              ┌───────────────┼───────────────┐
-              │               │                │
-        ┌─────┴─────┐   ┌─────┴─────┐    ┌────┴────┐
-        │  co-TTL   │   │ Líder EAFIT│    │ STC PSE │
-        │ (autor 2) │   │ (autor 3)  │    │(autor 4)│
-        └───────────┘   └─────┬─────┘    └─────────┘
-                              │
+        ┌─────────────┬───────┴───────┬─────────────┐
+        │             │               │             │
+  ┌─────┴─────┐ ┌─────┴─────┐   ┌──────┴──────┐ ┌────┴─────┐
+  │ co-TTL    │ │ co-TTL    │   │ Líder EAFIT │ │ Equipo   │
+  │ M.Ramírez │ │ H. Peña   │   │ JC Muñoz    │ │ APER core│
+  │ (autor 2) │ │(autor 3)  │   │ (líder téc.)│ │          │
+  └───────────┘ └───────────┘   └──────┬──────┘ └──────────┘
+   co-TTLs firman A4 si TTL ausente     │
                     ┌─────────┴─────────┐
                     │   Equipo APER     │
                     │   core (EAFIT +   │
@@ -157,13 +158,16 @@ Una persona figura como **autor** del APER 2026 si cumple **al menos 3 de los 4 
 Convención WB AgPER (alineada con FAO MAFAP y BID AgriMonitor):
 
 ```text
-Autor 1 (TTL):              primer autor
-Autor 2 (co-TTL):           segundo autor
-Autor 3 (Líder técnico):    tercer autor (si contribución sustantiva)
-Autor 4 (STC PSE):          cuarto autor (sobre componente PSE)
+Autor 1 (TTL):              Katie Kennedy Freeman (WB, Lead Agriculture Economist)
+Autores 2–3 (co-TTLs):      Mariángela Ramírez Díaz (agricultura sostenible/cadenas)
+                            Héctor Peña (componente PSE/repurposing, Cap 5–6)
+                            — orden entre co-TTLs por contribución cuantitativa
+Líder técnico (EAFIT/CVP):  Juan Carlos Muñoz Mora (si contribución sustantiva)
 Co-autores adicionales:     orden por contribución cuantitativa (figuras,
                             capítulos, scripts del panel)
 ```
+
+> Orden final lo confirma la TTL antes del release (A5). El orden exacto entre co-TTLs y líder técnico se define por contribución sustantiva (ICMJE §5.1), no por institución.
 
 Excepciones:
 
@@ -184,14 +188,33 @@ Cada agradecimiento individual requiere **consentimiento explícito** del nombra
 
 ### 5.4. Citación canónica del reporte
 
-Formato recomendado (ver `13_PUBLICACION.md` §7 para versión completa):
+Formato recomendado (ver `13_PUBLICACION.md` §7 para versión completa). Convención WB+EAFIT con autores visibles (precedente: Perego et al. 2025, *Northern Central America*).
+
+**Autores (orden de cubierta):**
+
+- Katie Kennedy Freeman, World Bank
+- Mariángela Ramírez Díaz, World Bank
+- Héctor Peña, World Bank
+- Juan Carlos Muñoz-Mora, Centro Valor Público at Universidad EAFIT (Colombia)
+- _[TODO_TRACE: coautores EAFIT adicionales (equipo core), con consentimiento explícito]_
+
+**Cita sugerida (ES — versión publicable, coincide con `04_report/index.qmd`):**
 
 ```text
-World Bank. 2026. Bolivia: Agricultural Public Expenditure Review 2026.
-Washington, DC: World Bank. doi:10.5281/zenodo.XXXXX.
+Kennedy Freeman, K., Ramírez Díaz, M., Peña, H., & Muñoz-Mora, J. C. (2026).
+Gasto Público en el Sector Agropecuario de Bolivia: Análisis de Nivel,
+Composición y Eficiencia 2000–2023. Washington, DC: World Bank; Universidad EAFIT.
 ```
 
-Si el equipo decide visibilidad de autores en la cita: `(Authors: <lista>)` después del título.
+**Cita canónica (EN — catálogo WB / DOI):**
+
+```text
+Kennedy Freeman, K., Ramírez Díaz, M., Peña, H., & Muñoz-Mora, J. C. (2026).
+Bolivia: Agricultural Public Expenditure Review 2026. Washington, DC:
+World Bank; Universidad EAFIT. doi:10.5281/zenodo.XXXXX.
+```
+
+> **A confirmar antes del release (A5):** (1) forma de apellido de la TTL en la cita — "Kennedy Freeman, K." (apellido compuesto) vs. "Freeman, K. K."; (2) orden exacto entre co-TTLs; (3) coautores EAFIT adicionales y su consentimiento (§5.3).
 
 ---
 

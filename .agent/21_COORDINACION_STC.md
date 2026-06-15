@@ -173,9 +173,9 @@ Antes de D4 (Exec Summary) y D5 (Full Report):
 
 En el Full Report:
 
-- **Página de créditos**: WB como autor; JC lead consultant; Hector STC OECD-PSE
-- **Cap 5**: "El análisis OECD-PSE/GSSE/CSE de este capítulo se basa en estimaciones del IADB AgriMonitor (edición YYYY-MM) y en la consultoría OECD-PSE del WB conducida por Héctor Peña en mayo–junio de 2026."
-- **Cap 6**: "Las estimaciones de costo fiscal del repurposing presentadas en esta sección fueron elaboradas por la consultoría OECD-PSE del WB."
+- **Página de créditos**: WB como autor institucional; Katie Kennedy Freeman (TTL); **Mariángela Ramírez Díaz y Héctor Peña como co-TTLs WB**; JC lead consultant (EAFIT/CVP). Nota (2026-06-13): Héctor Peña se acredita como **co-TTL WB (ETC)**, no como consultor externo; la división operativa de trabajo de este documento sigue vigente. Ver [`11_EQUIPO.md §2.1`](11_EQUIPO.md).
+- **Cap 5**: "El análisis OECD-PSE/GSSE/CSE de este capítulo se basa en estimaciones del IADB AgriMonitor (edición YYYY-MM) y en el trabajo OECD-PSE del WB conducido por Héctor Peña en mayo–junio de 2026."
+- **Cap 6**: "Las estimaciones de costo fiscal del repurposing presentadas en esta sección fueron elaboradas por el equipo WB (Héctor Peña)."
 
 ---
 
