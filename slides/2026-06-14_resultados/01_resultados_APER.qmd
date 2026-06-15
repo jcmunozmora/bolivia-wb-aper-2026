@@ -2,7 +2,7 @@
 title: "APER Bolivia 2026 — Resultados"
 subtitle: "Hallazgos del Agricultural Public Expenditure Review · Banco Mundial"
 author:
-  - name: "Banco Mundial · Universidad EAFIT"
+  - name: "Banco Mundial"
 date: "2026-06-14"
 date-format: "D MMMM YYYY"
 lang: es
@@ -22,7 +22,7 @@ format:
     fig-align: center
     embed-resources: true
     incremental: false
-    footer: "APER Bolivia 2026 · Banco Mundial · Universidad EAFIT"
+    footer: "APER Bolivia 2026 · Banco Mundial"
 execute:
   echo: false
   warning: false
@@ -343,7 +343,7 @@ El nivel del gasto no es el problema; **su composición** sí lo es. El repurpos
 
 **APER Bolivia 2026** · Agricultural Public Expenditure Review
 
-Banco Mundial · Universidad EAFIT
+Banco Mundial
 
 ::: {.source}
 Sitio del proyecto: jcmunozmora.github.io/bolivia-wb-aper-2026 · Reproducible desde el panel maestro v12.
