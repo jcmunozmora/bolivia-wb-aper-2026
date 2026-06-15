@@ -1,0 +1,37 @@
+{
+  "figure_id": "fig_mapa_muni_gasto_agro_2024",
+  "chapter": "04_report/04_spending_organization",
+  "type": "choropleth_map",
+  "title_es": "El gasto agropecuario municipal es bajo y disperso en todo el territorio, 2024",
+  "title_en": "Municipal agricultural spending is low and scattered across the territory, 2024",
+  "subtitle_es": "Gasto agropecuario total devengado por el gobierno municipal (MEFP), millones de USD constantes de 2015, en quintiles. El mayor es Sucre (USD 1,8 millones); 339 municipios.",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto agropecuario total devengado, acteco=2) y límites municipales geoBoundaries ADM3. Deflactado a USD const. 2015.",
+    "note": "El gris indica municipios sin registro de gasto agropecuario en MEFP 2024 o sin emparejamiento de nombre (homónimos sin código INE); el mapa representa el 98% del gasto agropecuario municipal 2024. Stack espacial (sf) desde el entorno conda 'ds' (pendiente renv::install)."
+  },
+  "alt_text_es": "Mapa coroplético de los 339 municipios de Bolivia que muestra el gasto agropecuario total municipal devengado (MEFP, acteco=2) en 2024 en quintiles. El gasto es bajo y disperso; los municipios en gris no tienen registro en MEFP 2024 o son homónimos sin código INE. El mapa representa el 98% del gasto agropecuario municipal 2024. Fuente: MEFP y geoBoundaries.",
+  "alt_text_en": "Choropleth map of Bolivia's 339 municipalities showing total municipal agricultural spending (MEFP, acteco=2) in 2024 by quintiles. Spending is low and scattered; grey municipalities have no MEFP 2024 record or are homonyms without an INE code. The map covers 98% of 2024 municipal agricultural spending. Source: MEFP and geoBoundaries.",
+  "script": "02_code/04_visualization/26_fig_mapa_muni_gasto.R",
+  "data_rds": "01_data/processed/adm3_muni_gasto_agro_2024.rds",
+  "data_prep_script": "02_code/02_cleaning/51_prep_territorial_mapa_2024.R",
+  "data_source_rds": "01_data/processed/territorial_muni_mefp.rds",
+  "variables_used": ["usd2015", "geom", "dept", "muni_name"],
+  "filter": "year == 2024; tipo == 'Municipios'; acteco == 2 (agropecuario), devengado",
+  "period": "2024",
+  "geographic_scope": "municipal (339, choropleth)",
+  "coverage_note": "Cruce nombre↔MEFP coloca 98,4% del gasto agro municipal 2024; residual ≈1,6% (8 municipios homónimos) sin código INE.",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F07",
+  "linked_adr": "ADR-0015",
+  "dependencies": ["sf (conda ds)"],
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_mapa_muni_gasto_agro_2024.png",
+    "svg_es": "05_outputs/figures/svg/fig_mapa_muni_gasto_agro_2024.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_mapa_muni_gasto_agro_2024.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": { "generated_by_image_model": false, "ai_mockup_used_in_design": false, "flags_triggered": [] },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}

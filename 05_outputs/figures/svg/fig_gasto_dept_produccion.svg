@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='633.60pt' height='504.00pt' viewBox='0 0 633.60 504.00'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw2MzMuNjB8MC4wMHw1MDQuMDA='>
+    <rect x='0.00' y='0.00' width='633.60' height='504.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw2MzMuNjB8MC4wMHw1MDQuMDA=)'>
+<rect x='0.00' y='0.00' width='633.60' height='504.00' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpMzcuNzR8NjE5LjY1fDU3LjU2fDQ0Mi44Ng=='>
+    <rect x='37.74' y='57.56' width='581.91' height='385.30' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMzcuNzR8NjE5LjY1fDU3LjU2fDQ0Mi44Ng==)'>
+<polyline points='37.74,442.86 619.65,442.86 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='37.74,334.82 619.65,334.82 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='37.74,226.77 619.65,226.77 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='37.74,118.73 619.65,118.73 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='37.74,442.86 37.74,57.56 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='200.91,442.86 200.91,57.56 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='364.09,442.86 364.09,57.56 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='527.26,442.86 527.26,57.56 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<line x1='-544.18' y1='828.15' x2='1201.57' y2='-327.74' style='stroke-width: 0.85; stroke: #8C8C8C; stroke-dasharray: 2.28,2.28; stroke-linecap: butt;' />
+<text transform='translate(495.79,97.78) rotate(-34)' text-anchor='middle' style='font-size: 8.25px;fill: #8C8C8C; font-family: "Arial";' textLength='70.00px' lengthAdjust='spacingAndGlyphs'>gasto = producción</text>
+<text x='391.45' y='407.93' style='font-size: 7.97px;fill: #C00000; font-family: "Arial";' textLength='112.28px' lengthAdjust='spacingAndGlyphs'>menos gasto que producción →</text>
+<text x='49.15' y='98.18' style='font-size: 7.97px;fill: #1F4E79; font-family: "Arial";' textLength='103.44px' lengthAdjust='spacingAndGlyphs'>← más gasto que producción</text>
+<circle cx='149.73' cy='415.66' r='3.77' style='stroke-width: 0.71; stroke: #C00000; fill: #C00000;' />
+<circle cx='56.89' cy='357.93' r='3.77' style='stroke-width: 0.71; stroke: #1F4E79; fill: #1F4E79;' />
+<circle cx='47.03' cy='304.64' r='3.77' style='stroke-width: 0.71; stroke: #1F4E79; fill: #1F4E79;' />
+<circle cx='72.47' cy='349.19' r='3.77' style='stroke-width: 0.71; stroke: #1F4E79; fill: #1F4E79;' />
+<circle cx='52.45' cy='421.73' r='3.77' style='stroke-width: 0.71; stroke: #1F4E79; fill: #1F4E79;' />
+<circle cx='93.22' cy='424.96' r='3.77' style='stroke-width: 0.71; stroke: #C00000; fill: #C00000;' />
+<circle cx='39.95' cy='392.93' r='3.77' style='stroke-width: 0.71; stroke: #1F4E79; fill: #1F4E79;' />
+<circle cx='565.98' cy='392.84' r='3.77' style='stroke-width: 0.71; stroke: #C00000; fill: #C00000;' />
+<circle cx='77.78' cy='385.61' r='3.77' style='stroke-width: 0.71; stroke: #1F4E79; fill: #1F4E79;' />
+<text x='138.15' y='426.50' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='17.64px' lengthAdjust='spacingAndGlyphs'>Beni</text>
+<text x='68.56' y='368.85' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='46.56px' lengthAdjust='spacingAndGlyphs'>Chuquisaca</text>
+<text x='78.05' y='307.81' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='52.45px' lengthAdjust='spacingAndGlyphs'>Cochabamba</text>
+<text x='84.09' y='344.69' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='27.45px' lengthAdjust='spacingAndGlyphs'>La Paz</text>
+<text x='68.48' y='417.58' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='22.55px' lengthAdjust='spacingAndGlyphs'>Oruro</text>
+<text x='104.87' y='435.81' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='25.50px' lengthAdjust='spacingAndGlyphs'>Pando</text>
+<text x='53.84' y='403.75' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='25.00px' lengthAdjust='spacingAndGlyphs'>Potosí</text>
+<text x='577.66' y='388.23' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='44.11px' lengthAdjust='spacingAndGlyphs'>Santa Cruz</text>
+<text x='93.45' y='382.58' text-anchor='middle' style='font-size: 8.82px;fill: #333333; font-family: "Arial";' textLength='21.06px' lengthAdjust='spacingAndGlyphs'>Tarija</text>
+</g>
+<g clip-path='url(#cpMC4wMHw2MzMuNjB8MC4wMHw1MDQuMDA=)'>
+<text x='32.81' y='446.01' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='32.81' y='337.97' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.78px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='32.81' y='229.92' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.78px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='32.81' y='121.88' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.78px' lengthAdjust='spacingAndGlyphs'>60</text>
+<text x='37.74' y='454.09' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='200.91' y='454.09' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.78px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='364.09' y='454.09' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.78px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='527.26' y='454.09' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.78px' lengthAdjust='spacingAndGlyphs'>60</text>
+<text x='328.70' y='465.12' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='205.00px' lengthAdjust='spacingAndGlyphs'>Participación en la superficie cultivada nacional (%)</text>
+<text transform='translate(18.40,250.21) rotate(-90)' text-anchor='middle' style='font-size: 9.00px;fill: #4D4D4D; font-family: "Arial";' textLength='210.00px' lengthAdjust='spacingAndGlyphs'>Participación en el gasto agropecuario municipal (%)</text>
+<text x='37.74' y='36.06' style='font-size: 9.20px;fill: #666666; font-family: "Arial";' textLength='669.33px' lengthAdjust='spacingAndGlyphs'>Participación de cada departamento en la superficie cultivada nacional (ENA 2015) vs su participación en el gasto agropecuario municipal (MEFP, devengado 2024).</text>
+<text x='37.74' y='47.65' style='font-size: 9.20px;fill: #666666; font-family: "Arial";' textLength='431.48px' lengthAdjust='spacingAndGlyphs'>Por encima de la diagonal: el departamento recibe más gasto que su peso productivo; por debajo: menos.</text>
+<text x='37.74' y='21.26' style='font-size: 13.00px; font-weight: bold;fill: #2C3E50; font-family: "Arial";' textLength='583.72px' lengthAdjust='spacingAndGlyphs'>La cuota departamental del gasto agropecuario no sigue la base productiva del territorio, 2024</text>
+<text x='11.96' y='482.41' style='font-size: 7.60px;fill: #7F7F7F; font-family: "Arial";' textLength='824.00px' lengthAdjust='spacingAndGlyphs'>Fuente: cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto agro municipal devengado, acteco=2, agregado por departamento, USD const. 2015) y superficie cultivada de la Encuesta Agropecuaria 2015 (INE). Ver ADR-0015.</text>
+<text x='11.96' y='492.44' style='font-size: 7.60px;fill: #7F7F7F; font-family: "Arial";' textLength='321.05px' lengthAdjust='spacingAndGlyphs'>Nota: gasto agropecuario total de los gobiernos municipales del departamento. 2024 preliminar.</text>
+</g>
+</g>
+</svg>

@@ -1,0 +1,42 @@
+{
+  "figure_id": "fig_pareto_programas_agro",
+  "chapter": "04_report/03_budget_institutions",
+  "type": "pareto_bar_cumulative",
+  "title_es": "Ocho de 36 actividades concentran el 80% del gasto público agropecuario, 2016–2024",
+  "title_en": "Eight of 36 activities account for 80% of public agricultural spending, 2016–2024",
+  "subtitle_es": "Gasto devengado por actividad, promedio anual en millones de USD constantes de 2015. Barras: participación de cada actividad; línea: acumulado.",
+  "subtitle_en": "Executed spending by activity, annual average in millions of constant 2015 USD. Bars: each activity's share; line: cumulative.",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto devengado SIGEP, clasificación por actividad económica del sector agropecuario), deflactado a USD const. 2015. Crosswalk actividad→MAFAP: ADR-0014.",
+    "note": "Promedio anual 2016–2024 (36 actividades, código acteco 2.x). El color agrupa las actividades en cuatro categorías temáticas. 'Otras' reúne las 24 actividades de menor monto. 2024 preliminar (CPI estimado, inflación INE ≈5,1%)."
+  },
+  "caption_en": {
+    "source": "Authors' calculation (World Bank) based on MEFP Presupuesto Abierto (executed spending, SIGEP, economic-activity classification of the agricultural sector), deflated to constant 2015 USD. Activity→MAFAP crosswalk: ADR-0014.",
+    "note": "Annual average 2016–2024 (36 activities, acteco code 2.x). Color groups activities into four thematic categories. 'Other' pools the 24 smallest activities. 2024 preliminary (estimated CPI, INE inflation ≈5.1%)."
+  },
+  "alt_text_es": "Diagrama de Pareto del gasto público agropecuario por actividad, 2016–2024. Las barras, ordenadas de mayor a menor, muestran que la seguridad y soberanía alimentaria (EMAPA) concentra cerca del 30% y la construcción de sistemas de riego un 17%; la curva acumulada indica que ocho actividades suman el 80% del gasto. Fuente: MEFP Presupuesto Abierto.",
+  "alt_text_en": "Pareto chart of public agricultural spending by activity, 2016–2024. Bars, sorted high to low, show food security (EMAPA) at about 30% and irrigation construction at 17%; the cumulative line indicates that eight activities add up to 80% of spending. Source: MEFP Presupuesto Abierto.",
+  "script": "02_code/04_visualization/21_fig_pareto_programas.R",
+  "data_rds": "01_data/processed/gasto_agro_programatico.rds",
+  "variables_used": ["acteco", "label", "grupo", "usd2015_mm", "year"],
+  "filter": "nivel == 'actividad'; year 2016-2024; acteco 2.x",
+  "period": "2016-2024",
+  "geographic_scope": "nacional",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F03",
+  "linked_adr": "ADR-0014",
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_pareto_programas_agro.png",
+    "svg_es": "05_outputs/figures/svg/fig_pareto_programas_agro.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_pareto_programas_agro.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": {
+    "generated_by_image_model": false,
+    "ai_mockup_used_in_design": false,
+    "flags_triggered": []
+  },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}

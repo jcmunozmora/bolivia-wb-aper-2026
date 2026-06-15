@@ -1,0 +1,57 @@
+Bolivia APER 2026 — Panel FE: gasto agropecuario -> productividad departamental
+Generado: 2026-06-14
+
+                                                           model   outcome
+                                                          <char>    <char>
+ 1:          M1 rend. ~ gasto MEFP + lluvia (PRINCIPAL, 2016-20)  ln_yield
+ 2:          M1 rend. ~ gasto MEFP + lluvia (PRINCIPAL, 2016-20)  ln_yield
+ 3:    M2 rend. ~ gasto Jubileo + lluvia (ventana larga 2012-20)  ln_yield
+ 4:    M2 rend. ~ gasto Jubileo + lluvia (ventana larga 2012-20)  ln_yield
+ 5:                        M3 rend. ~ gasto Jubileo(L1) + lluvia  ln_yield
+ 6:                        M3 rend. ~ gasto Jubileo(L1) + lluvia  ln_yield
+ 7:                       M4 rend. ~ gasto rural amplio + lluvia  ln_yield
+ 8:                       M4 rend. ~ gasto rural amplio + lluvia  ln_yield
+ 9:                     M5 PIB agrop. ~ gasto + lluvia (2017-21)    ln_pib
+10:                     M5 PIB agrop. ~ gasto + lluvia (2017-21)    ln_pib
+11:                      M6 rend. cereales ~ gasto MEFP + lluvia ln_cereal
+12:                      M6 rend. cereales ~ gasto MEFP + lluvia ln_cereal
+13: M7 rend. ~ gasto Jubileo + lluvia + Ley393 + COVID (FE dept)  ln_yield
+14: M7 rend. ~ gasto Jubileo + lluvia + Ley393 + COVID (FE dept)  ln_yield
+15: M7 rend. ~ gasto Jubileo + lluvia + Ley393 + COVID (FE dept)  ln_yield
+16: M7 rend. ~ gasto Jubileo + lluvia + Ley393 + COVID (FE dept)  ln_yield
+               term         coef         se           t          p       ci_lo
+             <char>        <num>      <num>       <num>      <num>       <num>
+ 1:   ln_gasto_mefp  0.005461210 0.04205184  0.12986851 0.89987647 -0.09151050
+ 2:        precip_k  0.033972696 0.55061249  0.06169983 0.95231551 -1.23574199
+ 3:    ln_gasto_jub  0.032300655 0.02586316  1.24890595 0.24700524 -0.02733990
+ 4:        precip_k -0.092524113 0.37351463 -0.24771215 0.81059651 -0.95385039
+ 5: ln_gasto_jub_l1  0.039362535 0.04151210  0.94821832 0.37077768 -0.05636454
+ 6:        precip_k -0.140021580 0.37524776 -0.37314434 0.71873438 -1.00534447
+ 7:        ln_rural  0.042973925 0.05631366  0.76311730 0.46729766 -0.08688560
+ 8:        precip_k -0.061590649 0.39077339 -0.15761219 0.87866792 -0.96271569
+ 9:    ln_gasto_jub -0.015656252 0.01363108 -1.14857056 0.28391421 -0.04708957
+10:        precip_k  0.050063305 0.21914704  0.22844619 0.82503059 -0.45529067
+11:   ln_gasto_mefp  0.025338048 0.04959353  0.51091439 0.62320844 -0.08902484
+12:        precip_k -0.282650331 0.23013488 -1.22819422 0.25427953 -0.81334232
+13:    ln_gasto_jub -0.006822415 0.02016308 -0.33836177 0.74379946 -0.05331856
+14:        precip_k -0.432170525 0.39380354 -1.09742671 0.30438513 -1.34028312
+15:     post_ley393  0.072441162 0.03616500  2.00307381 0.08013371 -0.01095548
+16:           covid  0.029148393 0.02633209  1.10695335 0.30048520 -0.03157351
+         ci_hi    sig     n n_clusters       fe
+         <num> <char> <int>      <int>   <char>
+ 1: 0.10243292           45          9 dept+año
+ 2: 1.30368738           45          9 dept+año
+ 3: 0.09194121           81          9 dept+año
+ 4: 0.76880216           81          9 dept+año
+ 5: 0.13508961           72          9 dept+año
+ 6: 0.72530131           72          9 dept+año
+ 7: 0.17283345           81          9 dept+año
+ 8: 0.83953439           81          9 dept+año
+ 9: 0.01577706           45          9 dept+año
+10: 0.55541728           45          9 dept+año
+11: 0.13970093           45          9 dept+año
+12: 0.24804166           45          9 dept+año
+13: 0.03967373           81          9     dept
+14: 0.47594207           81          9     dept
+15: 0.15583780      *    81          9     dept
+16: 0.08987030           81          9     dept

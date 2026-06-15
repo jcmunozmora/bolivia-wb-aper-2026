@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='756.00pt' height='446.40pt' viewBox='0 0 756.00 446.40'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3NTYuMDB8MC4wMHw0NDYuNDA='>
+    <rect x='0.00' y='0.00' width='756.00' height='446.40' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3NTYuMDB8MC4wMHw0NDYuNDA=)'>
+<rect x='0.00' y='0.00' width='756.00' height='446.40' style='stroke-width: 1.16; stroke: none; fill: #FFFFFF;' />
+<polyline points='45.57,399.04 742.05,399.04 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,363.90 742.05,363.90 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,328.75 742.05,328.75 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,293.61 742.05,293.61 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,258.47 742.05,258.47 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,223.33 742.05,223.33 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,188.19 742.05,188.19 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,153.05 742.05,153.05 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,117.91 742.05,117.91 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='45.57,82.77 742.05,82.77 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polygon points='52.47,363.90 70.15,347.83 87.83,343.82 105.52,360.88 123.20,384.98 140.88,379.96 158.56,377.95 176.24,365.90 193.92,345.82 211.60,356.87 229.29,345.82 246.97,339.80 264.65,344.82 282.33,357.87 300.01,349.84 317.69,341.81 335.38,322.73 353.06,315.70 370.74,316.71 388.42,308.67 406.10,314.70 423.78,263.49 441.47,218.31 459.15,175.14 476.83,122.93 494.51,77.75 512.19,162.09 529.87,171.13 547.55,123.94 565.24,151.04 582.92,264.50 600.60,216.31 618.28,210.28 635.96,154.06 635.96,352.93 618.28,354.15 600.60,356.10 582.92,357.05 565.24,354.24 547.55,355.47 529.87,355.66 512.19,353.38 494.51,353.14 476.83,355.51 459.15,357.08 441.47,355.41 423.78,360.36 406.10,358.89 388.42,353.51 370.74,356.87 353.06,358.77 335.38,360.22 317.69,361.61 300.01,360.53 282.33,359.12 264.65,362.85 246.97,363.40 229.29,360.86 211.60,361.44 193.92,360.90 176.24,361.41 158.56,360.75 140.88,361.14 123.20,363.02 105.52,365.29 87.83,365.83 70.15,364.64 52.47,363.90 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #C00000; fill-opacity: 0.078;' />
+<polyline points='52.47,363.90 70.15,347.83 87.83,343.82 105.52,360.88 123.20,384.98 140.88,379.96 158.56,377.95 176.24,365.90 193.92,345.82 211.60,356.87 229.29,345.82 246.97,339.80 264.65,344.82 282.33,357.87 300.01,349.84 317.69,341.81 335.38,322.73 353.06,315.70 370.74,316.71 388.42,308.67 406.10,314.70 423.78,263.49 441.47,218.31 459.15,175.14 476.83,122.93 494.51,77.75 512.19,162.09 529.87,171.13 547.55,123.94 565.24,151.04 582.92,264.50 600.60,216.31 618.28,210.28 635.96,154.06 ' style='stroke-width: 1.16; stroke: none; stroke-linecap: butt;' />
+<polyline points='635.96,352.93 618.28,354.15 600.60,356.10 582.92,357.05 565.24,354.24 547.55,355.47 529.87,355.66 512.19,353.38 494.51,353.14 476.83,355.51 459.15,357.08 441.47,355.41 423.78,360.36 406.10,358.89 388.42,353.51 370.74,356.87 353.06,358.77 335.38,360.22 317.69,361.61 300.01,360.53 282.33,359.12 264.65,362.85 246.97,363.40 229.29,360.86 211.60,361.44 193.92,360.90 176.24,361.41 158.56,360.75 140.88,361.14 123.20,363.02 105.52,365.29 87.83,365.83 70.15,364.64 52.47,363.90 ' style='stroke-width: 1.16; stroke: none; stroke-linecap: butt;' />
+<line x1='45.57' y1='363.90' x2='742.05' y2='363.90' style='stroke-width: 0.85; stroke: #B3B3B3; stroke-dasharray: 1.14,3.41; stroke-linecap: butt;' />
+<polyline points='52.47,363.90 70.15,347.83 87.83,343.82 105.52,360.88 123.20,384.98 140.88,379.96 158.56,377.95 176.24,365.90 193.92,345.82 211.60,356.87 229.29,345.82 246.97,339.80 264.65,344.82 282.33,357.87 300.01,349.84 317.69,341.81 335.38,322.73 353.06,315.70 370.74,316.71 388.42,308.67 406.10,314.70 423.78,263.49 441.47,218.31 459.15,175.14 476.83,122.93 494.51,77.75 512.19,162.09 529.87,171.13 547.55,123.94 565.24,151.04 582.92,264.50 600.60,216.31 618.28,210.28 635.96,154.06 ' style='stroke-width: 3.63; stroke: #C00000; stroke-linecap: butt;' />
+<polyline points='52.47,363.90 70.15,364.64 87.83,365.83 105.52,365.29 123.20,363.02 140.88,361.14 158.56,360.75 176.24,361.41 193.92,360.90 211.60,361.44 229.29,360.86 246.97,363.40 264.65,362.85 282.33,359.12 300.01,360.53 317.69,361.61 335.38,360.22 353.06,358.77 370.74,356.87 388.42,353.51 406.10,358.89 423.78,360.36 441.47,355.41 459.15,357.08 476.83,355.51 494.51,353.14 512.19,353.38 529.87,355.66 547.55,355.47 565.24,354.24 582.92,357.05 600.60,356.10 618.28,354.15 635.96,352.93 ' style='stroke-width: 3.63; stroke: #1F4E79; stroke-linecap: butt;' />
+<circle cx='635.96' cy='154.06' r='3.16' style='stroke-width: 0.77; stroke: #C00000; fill: #C00000;' />
+<circle cx='635.96' cy='352.93' r='3.16' style='stroke-width: 0.77; stroke: #1F4E79; fill: #1F4E79;' />
+<text x='646.57' y='150.14' style='font-size: 10.81px; font-weight: bold;fill: #C00000; font-family: "Arial";' textLength='88.77px' lengthAdjust='spacingAndGlyphs'>Inversión pública</text>
+<text x='646.57' y='161.82' style='font-size: 10.81px; font-weight: bold;fill: #C00000; font-family: "Arial";' textLength='67.78px' lengthAdjust='spacingAndGlyphs'>agropecuaria</text>
+<text x='646.57' y='350.96' style='font-size: 10.81px; font-weight: bold;fill: #1F4E79; font-family: "Arial";' textLength='71.97px' lengthAdjust='spacingAndGlyphs'>Productividad</text>
+<text x='646.57' y='362.64' style='font-size: 10.81px; font-weight: bold;fill: #1F4E79; font-family: "Arial";' textLength='53.36px' lengthAdjust='spacingAndGlyphs'>total (TFP)</text>
+<line x1='494.51' y1='353.14' x2='494.51' y2='77.75' style='stroke-width: 0.85; stroke: #737373; stroke-dasharray: 2.28,2.28; stroke-linecap: butt;' />
+<text x='485.67' y='96.55' text-anchor='end' style='font-size: 8.82px; font-style: italic;fill: #595959; font-family: "Arial";' textLength='79.91px' lengthAdjust='spacingAndGlyphs'>En 2015 la inversión</text>
+<text x='485.67' y='106.61' text-anchor='end' style='font-size: 8.82px; font-style: italic;fill: #595959; font-family: "Arial";' textLength='76.50px' lengthAdjust='spacingAndGlyphs'>era ~×9 la de 1990;</text>
+<text x='485.67' y='116.66' text-anchor='end' style='font-size: 8.82px; font-style: italic;fill: #595959; font-family: "Arial";' textLength='83.91px' lengthAdjust='spacingAndGlyphs'>la TFP, apenas +31%</text>
+<text x='40.19' y='402.47' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='5.33px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='40.19' y='367.33' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='40.19' y='332.19' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>200</text>
+<text x='40.19' y='297.05' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>300</text>
+<text x='40.19' y='261.91' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>400</text>
+<text x='40.19' y='226.77' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>500</text>
+<text x='40.19' y='191.63' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>600</text>
+<text x='40.19' y='156.49' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>700</text>
+<text x='40.19' y='121.35' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>800</text>
+<text x='40.19' y='86.21' text-anchor='end' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>900</text>
+<text x='52.47' y='412.59' text-anchor='middle' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='21.31px' lengthAdjust='spacingAndGlyphs'>1990</text>
+<text x='140.88' y='412.59' text-anchor='middle' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='21.31px' lengthAdjust='spacingAndGlyphs'>1995</text>
+<text x='229.29' y='412.59' text-anchor='middle' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='21.31px' lengthAdjust='spacingAndGlyphs'>2000</text>
+<text x='317.69' y='412.59' text-anchor='middle' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='21.31px' lengthAdjust='spacingAndGlyphs'>2005</text>
+<text x='406.10' y='412.59' text-anchor='middle' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='21.31px' lengthAdjust='spacingAndGlyphs'>2010</text>
+<text x='494.51' y='412.59' text-anchor='middle' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='21.31px' lengthAdjust='spacingAndGlyphs'>2015</text>
+<text x='582.92' y='412.59' text-anchor='middle' style='font-size: 9.60px;fill: #4D4D4D; font-family: "Arial";' textLength='21.31px' lengthAdjust='spacingAndGlyphs'>2020</text>
+<text transform='translate(19.12,231.37) rotate(-90)' text-anchor='middle' style='font-size: 10.00px;fill: #4D4D4D; font-family: "Arial";' textLength='79.81px' lengthAdjust='spacingAndGlyphs'>Índice 1990 = 100</text>
+<text x='45.57' y='38.88' style='font-size: 10.50px;fill: #666666; font-family: "Arial";' textLength='569.69px' lengthAdjust='spacingAndGlyphs'>Inversión pública agropecuaria y productividad total de factores (TFP), ambas indexadas a 1990 = 100, Bolivia 1990-2023.</text>
+<text x='45.57' y='50.22' style='font-size: 10.50px;fill: #666666; font-family: "Arial";' textLength='420.50px' lengthAdjust='spacingAndGlyphs'>La brecha sombreada ilustra el desacople entre el gasto y los resultados de productividad.</text>
+<text x='45.57' y='22.34' style='font-size: 14.50px; font-weight: bold;fill: #2C3E50; font-family: "Arial";' textLength='588.27px' lengthAdjust='spacingAndGlyphs'>La inversión agropecuaria se multiplicó por nueve; la productividad apenas se movió</text>
+<text x='45.57' y='432.65' style='font-size: 8.50px;fill: #7F7F7F; font-family: "Arial";' textLength='652.83px' lengthAdjust='spacingAndGlyphs'>Fuente: VIPFE / inversión pública sectorial (sector Agropecuario, USD millones) y USDA-ERS International Agricultural Productivity (2024). Cálculos propios sobre panel v12.</text>
+</g>
+</g>
+</svg>

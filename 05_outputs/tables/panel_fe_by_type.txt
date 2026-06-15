@@ -1,0 +1,45 @@
+APER 2026 — Panel FE por tipo de gasto
+2026-06-14
+
+                                      model        term          coef
+                                     <char>      <char>         <num>
+ 1:     BT1 prod/ha ~ %I+D + total + lluvia sh_tecnicos  -0.261779407
+ 2:     BT1 prod/ha ~ %I+D + total + lluvia    ln_total   0.014877010
+ 3:     BT1 prod/ha ~ %I+D + total + lluvia    precip_k   0.093795308
+ 4: BT2 pobreza mod ~ %I+D + total + lluvia sh_tecnicos -19.014095610
+ 5: BT2 pobreza mod ~ %I+D + total + lluvia    ln_total   0.222381701
+ 6: BT2 pobreza mod ~ %I+D + total + lluvia    precip_k  -4.725963706
+ 7: BT3 pobreza ext ~ %I+D + total + lluvia sh_tecnicos -17.832862383
+ 8: BT3 pobreza ext ~ %I+D + total + lluvia    ln_total  -0.767904514
+ 9: BT3 pobreza ext ~ %I+D + total + lluvia    precip_k   1.894092202
+10:             BT4 pobreza mod ~ gasto I+D ln_tecnicos  -0.340962072
+11:             BT4 pobreza mod ~ gasto I+D    precip_k  -5.937489197
+12:   BT5 pobreza mod ~ gasto apoyo directo    ln_apoyo   1.573405797
+13:   BT5 pobreza mod ~ gasto apoyo directo    precip_k  -7.957717908
+14:     BT6 pobreza mod ~ gasto riego/infra    ln_riego   2.306609634
+15:     BT6 pobreza mod ~ gasto riego/infra    precip_k -11.592453802
+16:                 BT7 prod/ha ~ gasto I+D ln_tecnicos  -0.042747133
+17:                 BT7 prod/ha ~ gasto I+D    precip_k   0.094762823
+18:       BT8 prod/ha ~ gasto apoyo directo    ln_apoyo   0.002979948
+19:       BT8 prod/ha ~ gasto apoyo directo    precip_k   0.028270190
+            se          p    sig     n n_clusters
+         <num>      <num> <char> <int>      <int>
+ 1: 0.17595377 0.17512820           45          9
+ 2: 0.03258621 0.66013933           45          9
+ 3: 0.48713245 0.85211275           45          9
+ 4: 9.67970788 0.08508712      *    72          9
+ 5: 3.34538681 0.94863159           72          9
+ 6: 6.49651344 0.48768386           72          9
+ 7: 6.11574839 0.01941305     **    68          9
+ 8: 3.07320345 0.80898376           68          9
+ 9: 5.65745898 0.74638844           68          9
+10: 1.39614761 0.81321004           72          9
+11: 6.09377478 0.35841828           72          9
+12: 2.60931971 0.56321203           72          9
+13: 4.76875708 0.13372601           72          9
+14: 1.67378351 0.20549107           72          9
+15: 7.04388250 0.13843393           72          9
+16: 0.02136641 0.08043266      *    45          9
+17: 0.44116655 0.83529729           45          9
+18: 0.02527848 0.90906502           45          9
+19: 0.56870878 0.96157263           45          9

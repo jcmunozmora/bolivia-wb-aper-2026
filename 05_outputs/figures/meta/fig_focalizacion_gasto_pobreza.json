@@ -1,0 +1,36 @@
+{
+  "figure_id": "fig_focalizacion_gasto_pobreza",
+  "chapter": "04_report/04_spending_organization",
+  "type": "scatter",
+  "title_es": "El gasto agropecuario por habitante rural no se alinea con la pobreza rural municipal, 2024",
+  "title_en": "Per-rural-capita agricultural spending is not aligned with municipal rural poverty, 2024",
+  "subtitle_es": "Municipios (área rural): pobreza rural por NBI (eje X) vs gasto agropecuario municipal por habitante rural (eje Y, escala log). La recta ajustada es casi plana.",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto agropecuario municipal devengado, acteco=2, 2024, USD const. 2015) y pobreza por Necesidades Básicas Insatisfechas del Censo 2024 (INE).",
+    "note": "Gasto agropecuario total de los gobiernos municipales dividido por la población rural de referencia (Censo 2024); eje vertical en escala logarítmica. Correlación débil/no robusta: Pearson r≈0,13, Spearman ρ≈0,06 (no significativa), n=298 municipios. 2024 preliminar."
+  },
+  "alt_text_es": "Diagrama de dispersión de 298 municipios que cruza la pobreza rural por necesidades básicas insatisfechas (eje horizontal) con el gasto agropecuario municipal por habitante rural en escala logarítmica (eje vertical) en 2024. La nube no muestra tendencia y la recta ajustada es casi plana: el gasto por habitante rural no aumenta con la pobreza rural. Fuente: MEFP e INE (Censo 2024).",
+  "alt_text_en": "Scatter plot of 298 municipalities crossing rural poverty by unmet basic needs (x-axis) with per-rural-capita municipal agricultural spending on a log scale (y-axis) in 2024. The cloud shows no trend and the fitted line is nearly flat: per-rural-capita spending does not rise with rural poverty. Source: MEFP and INE (2024 Census).",
+  "script": "02_code/04_visualization/29_fig_focalizacion_gasto_pobreza.R",
+  "data_rds": "01_data/processed/focalizacion_gasto_pobreza.rds",
+  "data_inputs_rds": ["01_data/processed/territorial_muni_mefp.rds", "01_data/processed/pobreza_municipal_nbi.rds"],
+  "prep_scripts": ["02_code/02_cleaning/52_prep_pobreza_municipal_nbi.R", "02_code/03_analysis/11_focalizacion_gasto_pobreza.R"],
+  "variables_used": ["usd2015", "rural_pop_2024", "rural_nbi_2024"],
+  "filter": "year == 2024; área == 'Rural'; municipios con población rural > 0",
+  "period": "2024",
+  "geographic_scope": "municipal (298 con match gasto×NBI, choropleth N/A)",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F07",
+  "linked_adr": "ADR-0017",
+  "dependencies": ["readxl (conda ds, en prep)"],
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_focalizacion_gasto_pobreza.png",
+    "svg_es": "05_outputs/figures/svg/fig_focalizacion_gasto_pobreza.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_focalizacion_gasto_pobreza.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": { "generated_by_image_model": false, "ai_mockup_used_in_design": false, "flags_triggered": [] },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='792.00pt' height='417.60pt' viewBox='0 0 792.00 417.60'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3OTIuMDB8MC4wMHw0MTcuNjA='>
+    <rect x='0.00' y='0.00' width='792.00' height='417.60' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3OTIuMDB8MC4wMHw0MTcuNjA=)'>
+<rect x='0.00' y='0.00' width='792.00' height='417.60' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpNTAuOTJ8NTUwLjQ4fDU3Ljk5fDM3Ny4xOA=='>
+    <rect x='50.92' y='57.99' width='499.57' height='319.18' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNTAuOTJ8NTUwLjQ4fDU3Ljk5fDM3Ny4xOA==)'>
+<polyline points='50.92,377.18 550.48,377.18 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='50.92,297.38 550.48,297.38 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='50.92,217.58 550.48,217.58 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='50.92,137.79 550.48,137.79 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='50.92,57.99 550.48,57.99 ' style='stroke-width: 0.64; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polygon points='56.30,57.99 56.79,57.99 116.91,57.99 117.40,57.99 117.89,57.99 178.01,57.99 178.50,57.99 178.99,57.99 239.11,57.99 239.60,57.99 240.09,57.99 300.21,57.99 300.70,57.99 301.19,57.99 361.31,57.99 361.80,57.99 362.29,57.99 422.41,57.99 422.90,57.99 423.39,57.99 483.51,57.99 484.00,57.99 484.49,57.99 544.61,57.99 545.10,57.99 545.59,377.18 545.10,70.37 544.61,70.43 484.49,78.25 484.00,78.31 483.51,78.26 423.39,71.93 422.90,71.88 422.41,71.86 362.29,69.03 361.80,69.01 361.31,69.03 301.19,72.33 300.70,72.36 300.21,72.39 240.09,76.01 239.60,76.04 239.11,76.03 178.99,75.36 178.50,75.36 178.01,75.30 117.89,68.46 117.40,68.41 116.91,68.37 56.79,63.98 56.30,63.95 55.82,377.18 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #BFBFBF; fill-opacity: 0.93;' />
+<polyline points='56.30,57.99 56.79,57.99 116.91,57.99 117.40,57.99 117.89,57.99 178.01,57.99 178.50,57.99 178.99,57.99 239.11,57.99 239.60,57.99 240.09,57.99 300.21,57.99 300.70,57.99 301.19,57.99 361.31,57.99 361.80,57.99 362.29,57.99 422.41,57.99 422.90,57.99 423.39,57.99 483.51,57.99 484.00,57.99 484.49,57.99 544.61,57.99 545.10,57.99 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polygon points='56.30,63.95 56.79,63.98 116.91,68.37 117.40,68.41 117.89,68.46 178.01,75.30 178.50,75.36 178.99,75.36 239.11,76.03 239.60,76.04 240.09,76.01 300.21,72.39 300.70,72.36 301.19,72.33 361.31,69.03 361.80,69.01 362.29,69.03 422.41,71.86 422.90,71.88 423.39,71.93 483.51,78.26 484.00,78.31 484.49,78.25 544.61,70.43 545.10,70.37 545.59,377.18 545.10,113.56 544.61,113.71 484.49,132.56 484.00,132.72 483.51,132.63 423.39,121.91 422.90,121.82 422.41,121.80 362.29,118.78 361.80,118.75 361.31,118.69 301.19,111.49 300.70,111.43 300.21,111.49 240.09,118.77 239.60,118.83 239.11,118.84 178.99,120.78 178.50,120.79 178.01,120.69 117.89,108.55 117.40,108.45 116.91,108.50 56.79,113.69 56.30,113.73 55.82,377.18 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #BF8F00; fill-opacity: 0.93;' />
+<polyline points='56.30,63.95 56.79,63.98 116.91,68.37 117.40,68.41 117.89,68.46 178.01,75.30 178.50,75.36 178.99,75.36 239.11,76.03 239.60,76.04 240.09,76.01 300.21,72.39 300.70,72.36 301.19,72.33 361.31,69.03 361.80,69.01 362.29,69.03 422.41,71.86 422.90,71.88 423.39,71.93 483.51,78.26 484.00,78.31 484.49,78.25 544.61,70.43 545.10,70.37 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polygon points='56.30,113.73 56.79,113.69 116.91,108.50 117.40,108.45 117.89,108.55 178.01,120.69 178.50,120.79 178.99,120.78 239.11,118.84 239.60,118.83 240.09,118.77 300.21,111.49 300.70,111.43 301.19,111.49 361.31,118.69 361.80,118.75 362.29,118.78 422.41,121.80 422.90,121.82 423.39,121.91 483.51,132.63 484.00,132.72 484.49,132.56 544.61,113.71 545.10,113.56 545.59,377.18 545.10,172.55 544.61,172.56 484.49,173.62 484.00,173.63 483.51,173.57 423.39,166.78 422.90,166.72 422.41,166.69 362.29,163.01 361.80,162.98 361.31,162.96 301.19,159.42 300.70,159.39 300.21,159.57 240.09,182.41 239.60,182.59 239.11,182.48 178.99,169.17 178.50,169.06 178.01,169.10 117.89,174.30 117.40,174.35 116.91,174.35 56.79,175.37 56.30,175.38 55.82,377.18 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #1F4E79; fill-opacity: 0.93;' />
+<polyline points='56.30,113.73 56.79,113.69 116.91,108.50 117.40,108.45 117.89,108.55 178.01,120.69 178.50,120.79 178.99,120.78 239.11,118.84 239.60,118.83 240.09,118.77 300.21,111.49 300.70,111.43 301.19,111.49 361.31,118.69 361.80,118.75 362.29,118.78 422.41,121.80 422.90,121.82 423.39,121.91 483.51,132.63 484.00,132.72 484.49,132.56 544.61,113.71 545.10,113.56 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polygon points='56.30,175.38 56.79,175.37 116.91,174.35 117.40,174.35 117.89,174.30 178.01,169.10 178.50,169.06 178.99,169.17 239.11,182.48 239.60,182.59 240.09,182.41 300.21,159.57 300.70,159.39 301.19,159.42 361.31,162.96 361.80,162.98 362.29,163.01 422.41,166.69 422.90,166.72 423.39,166.78 483.51,173.57 484.00,173.63 484.49,173.62 544.61,172.56 545.10,172.55 545.59,377.18 545.10,244.11 544.61,244.09 484.49,241.23 484.00,241.21 483.51,241.28 423.39,249.95 422.90,250.02 422.41,250.21 362.29,273.94 361.80,274.13 361.31,274.21 301.19,283.45 300.70,283.52 300.21,283.78 240.09,315.84 239.60,316.10 239.11,316.11 178.99,317.85 178.50,317.86 178.01,317.65 117.89,291.19 117.40,290.98 116.91,291.02 56.79,296.38 56.30,296.42 55.82,377.18 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #548235; fill-opacity: 0.93;' />
+<polyline points='56.30,175.38 56.79,175.37 116.91,174.35 117.40,174.35 117.89,174.30 178.01,169.10 178.50,169.06 178.99,169.17 239.11,182.48 239.60,182.59 240.09,182.41 300.21,159.57 300.70,159.39 301.19,159.42 361.31,162.96 361.80,162.98 362.29,163.01 422.41,166.69 422.90,166.72 423.39,166.78 483.51,173.57 484.00,173.63 484.49,173.62 544.61,172.56 545.10,172.55 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polygon points='56.30,296.42 56.79,296.38 116.91,291.02 117.40,290.98 117.89,291.19 178.01,317.65 178.50,317.86 178.99,317.85 239.11,316.11 239.60,316.10 240.09,315.84 300.21,283.78 300.70,283.52 301.19,283.45 361.31,274.21 361.80,274.13 362.29,273.94 422.41,250.21 422.90,250.02 423.39,249.95 483.51,241.28 484.00,241.21 484.49,241.23 544.61,244.09 545.10,244.11 545.59,377.18 545.10,377.18 544.61,377.18 484.49,377.18 484.00,377.18 483.51,377.18 423.39,377.18 422.90,377.18 422.41,377.18 362.29,377.18 361.80,377.18 361.31,377.18 301.19,377.18 300.70,377.18 300.21,377.18 240.09,377.18 239.60,377.18 239.11,377.18 178.99,377.18 178.50,377.18 178.01,377.18 117.89,377.18 117.40,377.18 116.91,377.18 56.79,377.18 56.30,377.18 55.82,377.18 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #C00000; fill-opacity: 0.93;' />
+<polyline points='56.30,296.42 56.79,296.38 116.91,291.02 117.40,290.98 117.89,291.19 178.01,317.65 178.50,317.86 178.99,317.85 239.11,316.11 239.60,316.10 240.09,315.84 300.21,283.78 300.70,283.52 301.19,283.45 361.31,274.21 361.80,274.13 362.29,273.94 422.41,250.21 422.90,250.02 423.39,249.95 483.51,241.28 484.00,241.21 484.49,241.23 544.61,244.09 545.10,244.11 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
+<text x='68.52' y='335.98' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='30.16px' lengthAdjust='spacingAndGlyphs'>EMAPA</text>
+<text x='68.52' y='344.69' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>25%</text>
+<text x='545.10' y='313.61' text-anchor='end' style='font-size: 9.67px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='19.34px' lengthAdjust='spacingAndGlyphs'>42%</text>
+<text x='68.52' y='235.44' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='50.78px' lengthAdjust='spacingAndGlyphs'>Subnacional</text>
+<text x='68.52' y='244.15' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>38%</text>
+<text x='545.10' y='211.26' text-anchor='end' style='font-size: 9.10px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='18.20px' lengthAdjust='spacingAndGlyphs'>22%</text>
+</g>
+<g clip-path='url(#cpMC4wMHw3OTIuMDB8MC4wMHw0MTcuNjA=)'>
+<text x='45.99' y='380.33' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='12.72px' lengthAdjust='spacingAndGlyphs'>0%</text>
+<text x='45.99' y='300.53' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='17.61px' lengthAdjust='spacingAndGlyphs'>25%</text>
+<text x='45.99' y='220.73' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='17.61px' lengthAdjust='spacingAndGlyphs'>50%</text>
+<text x='45.99' y='140.94' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='17.61px' lengthAdjust='spacingAndGlyphs'>75%</text>
+<text x='45.99' y='61.14' text-anchor='end' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='22.50px' lengthAdjust='spacingAndGlyphs'>100%</text>
+<text x='56.30' y='388.41' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='19.56px' lengthAdjust='spacingAndGlyphs'>2016</text>
+<text x='178.50' y='388.41' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='19.56px' lengthAdjust='spacingAndGlyphs'>2018</text>
+<text x='300.70' y='388.41' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='19.56px' lengthAdjust='spacingAndGlyphs'>2020</text>
+<text x='422.90' y='388.41' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='19.56px' lengthAdjust='spacingAndGlyphs'>2022</text>
+<text x='545.10' y='388.41' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='19.56px' lengthAdjust='spacingAndGlyphs'>2024</text>
+<text transform='translate(18.75,217.58) rotate(-90)' text-anchor='middle' style='font-size: 9.50px;fill: #4D4D4D; font-family: "Arial";' textLength='137.78px' lengthAdjust='spacingAndGlyphs'>Participación en la ejecución (%)</text>
+<rect x='567.28' y='174.74' width='16.57' height='16.57' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt; fill: #C00000; fill-opacity: 0.93;' />
+<rect x='567.28' y='192.02' width='16.57' height='16.57' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt; fill: #548235; fill-opacity: 0.93;' />
+<rect x='567.28' y='209.30' width='16.57' height='16.57' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt; fill: #1F4E79; fill-opacity: 0.93;' />
+<rect x='567.28' y='226.58' width='16.57' height='16.57' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt; fill: #BF8F00; fill-opacity: 0.93;' />
+<rect x='567.28' y='243.86' width='16.57' height='16.57' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt; fill: #BFBFBF; fill-opacity: 0.93;' />
+<text x='589.68' y='186.03' style='font-size: 8.40px; font-family: "Arial";' textLength='145.84px' lengthAdjust='spacingAndGlyphs'>EMAPA (empresa estatal de alimentos)</text>
+<text x='589.68' y='203.31' style='font-size: 8.40px; font-family: "Arial";' textLength='94.78px' lengthAdjust='spacingAndGlyphs'>Gobiernos subnacionales</text>
+<text x='589.68' y='220.59' style='font-size: 8.40px; font-family: "Arial";' textLength='95.91px' lengthAdjust='spacingAndGlyphs'>MDRyT (ministerio rector)</text>
+<text x='589.68' y='237.87' style='font-size: 8.40px; font-family: "Arial";' textLength='182.89px' lengthAdjust='spacingAndGlyphs'>Adscritas técnicas + riego (INIAF, INRA, MMAyA)</text>
+<text x='589.68' y='255.15' style='font-size: 8.40px; font-family: "Arial";' textLength='59.28px' lengthAdjust='spacingAndGlyphs'>Otras entidades</text>
+<text x='50.92' y='36.21' style='font-size: 9.40px;fill: #666666; font-family: "Arial";' textLength='384.72px' lengthAdjust='spacingAndGlyphs'>Participación en la ejecución del gasto público agropecuario por tipo de entidad, 2016–2024.</text>
+<text x='50.92' y='48.05' style='font-size: 9.40px;fill: #666666; font-family: "Arial";' textLength='764.22px' lengthAdjust='spacingAndGlyphs'>La empresa estatal de alimentos (EMAPA) pasó de 25% a 42% del gasto, casi exactamente lo que perdió el bloque subnacional (38%→22%); el ministerio rector se mantuvo en ~19%.</text>
+<text x='50.92' y='21.26' style='font-size: 13.00px; font-weight: bold;fill: #2C3E50; font-family: "Arial";' textLength='595.22px' lengthAdjust='spacingAndGlyphs'>EMAPA desplazó a los gobiernos subnacionales como principal ejecutor del gasto agropecuario</text>
+<text x='11.96' y='405.95' style='font-size: 8.00px;fill: #7F7F7F; font-family: "Arial";' textLength='623.30px' lengthAdjust='spacingAndGlyphs'>Fuente: cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto devengado SIGEP); más de 340 entidades ejecutan gasto del sector cada año. Ver ADR-0012.</text>
+</g>
+</g>
+</svg>

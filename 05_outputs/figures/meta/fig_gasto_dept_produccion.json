@@ -1,0 +1,33 @@
+{
+  "figure_id": "fig_gasto_dept_produccion",
+  "chapter": "04_report/04_spending_organization",
+  "type": "scatter",
+  "title_es": "La cuota departamental del gasto agropecuario no sigue la base productiva del territorio, 2024",
+  "title_en": "Departmental shares of agricultural spending do not follow the territory's productive base, 2024",
+  "subtitle_es": "Participación de cada departamento en la superficie cultivada nacional (ENA 2015) vs su participación en el gasto agropecuario municipal (MEFP, devengado 2024).",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto agro municipal devengado, acteco=2, agregado por departamento, USD const. 2015) y superficie cultivada de la Encuesta Agropecuaria 2015 (INE).",
+    "note": "Por encima de la diagonal el departamento recibe más gasto que su peso productivo; por debajo, menos. Gasto agropecuario total de los gobiernos municipales del departamento. 2024 preliminar."
+  },
+  "alt_text_es": "Diagrama de dispersión de nueve departamentos que cruza su participación en la superficie cultivada nacional con su participación en el gasto agropecuario municipal en 2024. Santa Cruz aparece muy por debajo de la diagonal (65% de la superficie, 9% del gasto); los departamentos andinos, encabezados por Cochabamba, reciben más gasto que su peso productivo. Fuente: MEFP y ENA 2015.",
+  "alt_text_en": "Scatter plot of nine departments crossing their share of national cultivated area with their share of municipal agricultural spending in 2024. Santa Cruz lies far below the diagonal (65% of area, 9% of spending); Andean departments, led by Cochabamba, receive more spending than their productive weight. Source: MEFP and 2015 Agricultural Survey.",
+  "script": "02_code/04_visualization/28_fig_gasto_dept_produccion.R",
+  "data_rds": "01_data/processed/territorial_muni_mefp.rds + 01_data/processed/territorial_dept.rds",
+  "variables_used": ["dept", "usd2015", "year", "ena2015_sup_ha"],
+  "filter": "year == 2024; agregado por departamento",
+  "period": "2024 (gasto) · 2015 (superficie ENA)",
+  "geographic_scope": "departamental (9)",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F07",
+  "linked_adr": "ADR-0015",
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_gasto_dept_produccion.png",
+    "svg_es": "05_outputs/figures/svg/fig_gasto_dept_produccion.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_gasto_dept_produccion.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": { "generated_by_image_model": false, "ai_mockup_used_in_design": false, "flags_triggered": [] },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}

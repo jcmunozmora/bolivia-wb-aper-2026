@@ -1,0 +1,42 @@
+{
+  "figure_id": "fig_composicion_proposito_agro",
+  "chapter": "04_report/03_budget_institutions",
+  "type": "stacked_horizontal_bar",
+  "title_es": "La mitad del gasto público agropecuario financia apoyo a la producción; solo el 12% va a bienes públicos, 2016–2024",
+  "title_en": "Half of public agricultural spending funds production support; only 12% goes to public goods, 2016–2024",
+  "subtitle_es": "Composición del gasto público agropecuario por propósito (clasificación MAFAP), promedio anual, % del total y millones de USD constantes de 2015.",
+  "subtitle_en": "Composition of public agricultural spending by purpose (MAFAP classification), annual average, % of total and millions of constant 2015 USD.",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto devengado SIGEP, clasificación por actividad económica del sector agropecuario), deflactado a USD const. 2015. Crosswalk actividad→MAFAP: ADR-0014.",
+    "note": "'Bienes públicos clásicos' = servicios técnicos (investigación, extensión, sanidad). 'Apoyo a la producción' incluye seguridad alimentaria (EMAPA). Promedio anual 2016–2024; 2024 preliminar."
+  },
+  "caption_en": {
+    "source": "Authors' calculation (World Bank) based on MEFP Presupuesto Abierto (executed spending, SIGEP, economic-activity classification of the agricultural sector), deflated to constant 2015 USD. Activity→MAFAP crosswalk: ADR-0014.",
+    "note": "'Classic public goods' = technical services (research, extension, sanitation). 'Production support' includes food security (EMAPA). Annual average 2016–2024; 2024 preliminary."
+  },
+  "alt_text_es": "Barra apilada horizontal de la composición del gasto público agropecuario por propósito, promedio 2016–2024. El apoyo a la producción y seguridad alimentaria representa el 51% (USD 205 M), el riego e infraestructura el 27% (USD 110 M), los servicios técnicos —investigación, extensión y sanidad— el 12% (USD 47 M) y tierras y otros el 10% (USD 40 M). Fuente: MEFP Presupuesto Abierto.",
+  "alt_text_en": "Horizontal stacked bar of public agricultural spending composition by purpose, 2016–2024 average. Production support and food security account for 51% (USD 205M), irrigation and infrastructure 27% (USD 110M), technical services—research, extension and sanitation—12% (USD 47M), and land and other 10% (USD 40M). Source: MEFP Presupuesto Abierto.",
+  "script": "02_code/04_visualization/22_fig_composicion_proposito.R",
+  "data_rds": "01_data/processed/gasto_agro_programatico.rds",
+  "variables_used": ["grupo", "usd2015_mm", "year"],
+  "filter": "nivel == 'actividad'; year 2016-2024; acteco 2.x",
+  "period": "2016-2024",
+  "geographic_scope": "nacional",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F03",
+  "linked_adr": "ADR-0014",
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_composicion_proposito_agro.png",
+    "svg_es": "05_outputs/figures/svg/fig_composicion_proposito_agro.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_composicion_proposito_agro.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": {
+    "generated_by_image_model": false,
+    "ai_mockup_used_in_design": false,
+    "flags_triggered": []
+  },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}

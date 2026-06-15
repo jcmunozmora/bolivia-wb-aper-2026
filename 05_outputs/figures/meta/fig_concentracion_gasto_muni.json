@@ -1,0 +1,33 @@
+{
+  "figure_id": "fig_concentracion_gasto_muni",
+  "chapter": "04_report/04_spending_organization",
+  "type": "lorenz_curve",
+  "title_es": "El gasto agropecuario municipal se mantiene moderadamente concentrado: Gini ≈ 0,6 sin cambio entre 2016 y 2024",
+  "title_en": "Municipal agricultural spending stays moderately concentrated: Gini ≈ 0.6, unchanged between 2016 and 2024",
+  "subtitle_es": "Curva de Lorenz del gasto agropecuario total por municipio (devengado), 2016 y 2024. Los diez municipios mayores ejecutan cerca de una cuarta parte del gasto.",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto agro municipal devengado, acteco=2), deflactado a USD const. 2015.",
+    "note": "Gasto agropecuario total por Gobierno Autónomo Municipal (no separa instrumentos). 2024 preliminar (CPI estimado, inflación INE ≈5,1%)."
+  },
+  "alt_text_es": "Curva de Lorenz del gasto agropecuario municipal total en 2016 y 2024: el coeficiente de Gini se mantiene cerca de 0,6 y los diez municipios mayores ejecutan alrededor del 24% del gasto en ambos años. Fuente: MEFP Presupuesto Abierto.",
+  "alt_text_en": "Lorenz curve of total municipal agricultural spending in 2016 and 2024: the Gini coefficient stays around 0.6 and the top-10 municipalities execute about 24% of spending in both years. Source: MEFP Presupuesto Abierto.",
+  "script": "02_code/04_visualization/25_fig_concentracion_municipal.R",
+  "data_rds": "01_data/processed/territorial_muni_mefp.rds",
+  "variables_used": ["usd2015", "entidad", "year"],
+  "filter": "tipo == 'Municipios'; year ∈ {2016, 2024}",
+  "period": "2016, 2024",
+  "geographic_scope": "municipal (corte transversal)",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F07",
+  "linked_adr": "ADR-0015",
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_concentracion_gasto_muni.png",
+    "svg_es": "05_outputs/figures/svg/fig_concentracion_gasto_muni.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_concentracion_gasto_muni.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": { "generated_by_image_model": false, "ai_mockup_used_in_design": false, "flags_triggered": [] },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}

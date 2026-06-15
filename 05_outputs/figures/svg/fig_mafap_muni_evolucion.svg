@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='648.00pt' height='388.80pt' viewBox='0 0 648.00 388.80'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw2NDguMDB8MC4wMHwzODguODA='>
+    <rect x='0.00' y='0.00' width='648.00' height='388.80' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw2NDguMDB8MC4wMHwzODguODA=)'>
+<rect x='0.00' y='0.00000000000011' width='648.00' height='388.80' style='stroke-width: 0.97; stroke: none; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpNTIuNjV8NjMyLjA2fDU1LjAwfDI2MS4zNg=='>
+    <rect x='52.65' y='55.00' width='579.41' height='206.36' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNTIuNjV8NjMyLjA2fDU1LjAwfDI2MS4zNg==)'>
+<polyline points='52.65,261.36 632.06,261.36 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='52.65,209.77 632.06,209.77 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='52.65,158.18 632.06,158.18 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='52.65,106.59 632.06,106.59 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='52.65,55.00 632.06,55.00 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polygon points='58.90,55.00 59.46,55.00 129.19,55.00 129.76,55.00 130.33,55.00 200.06,55.00 200.63,55.00 201.19,55.00 270.92,55.00 271.49,55.00 272.06,55.00 341.79,55.00 342.35,55.00 342.92,55.00 412.65,55.00 413.22,55.00 413.79,55.00 483.52,55.00 484.08,55.00 484.65,55.00 554.38,55.00 554.95,55.00 555.51,55.00 625.25,55.00 625.81,55.00 626.38,261.36 625.81,68.68 625.25,68.68 555.51,68.03 554.95,68.02 554.38,68.05 484.65,71.15 484.08,71.17 483.52,71.14 413.79,66.97 413.22,66.94 412.65,66.99 342.92,73.24 342.35,73.30 341.79,73.25 272.06,67.67 271.49,67.62 270.92,67.63 201.19,68.60 200.63,68.61 200.06,68.65 130.33,73.24 129.76,73.27 129.19,73.31 59.46,78.33 58.90,78.37 58.33,261.36 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #A6A6A6; fill-opacity: 0.93;' />
+<polyline points='58.90,55.00 59.46,55.00 129.19,55.00 129.76,55.00 130.33,55.00 200.06,55.00 200.63,55.00 201.19,55.00 270.92,55.00 271.49,55.00 272.06,55.00 341.79,55.00 342.35,55.00 342.92,55.00 412.65,55.00 413.22,55.00 413.79,55.00 483.52,55.00 484.08,55.00 484.65,55.00 554.38,55.00 554.95,55.00 555.51,55.00 625.25,55.00 625.81,55.00 ' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polygon points='58.90,78.37 59.46,78.33 129.19,73.31 129.76,73.27 130.33,73.24 200.06,68.65 200.63,68.61 201.19,68.60 270.92,67.63 271.49,67.62 272.06,67.67 341.79,73.25 342.35,73.30 342.92,73.24 412.65,66.99 413.22,66.94 413.79,66.97 483.52,71.14 484.08,71.17 484.65,71.15 554.38,68.05 554.95,68.02 555.51,68.03 625.25,68.68 625.81,68.68 626.38,261.36 625.81,95.16 625.25,95.12 555.51,89.76 554.95,89.72 554.38,89.76 484.65,95.10 484.08,95.14 483.52,95.08 413.79,87.44 413.22,87.37 412.65,87.46 342.92,97.53 342.35,97.61 341.79,97.50 272.06,83.29 271.49,83.18 270.92,83.23 201.19,89.90 200.63,89.96 200.06,90.09 130.33,106.95 129.76,107.08 129.19,107.13 59.46,112.85 58.90,112.90 58.33,261.36 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #1F4E79; fill-opacity: 0.93;' />
+<polyline points='58.90,78.37 59.46,78.33 129.19,73.31 129.76,73.27 130.33,73.24 200.06,68.65 200.63,68.61 201.19,68.60 270.92,67.63 271.49,67.62 272.06,67.67 341.79,73.25 342.35,73.30 342.92,73.24 412.65,66.99 413.22,66.94 413.79,66.97 483.52,71.14 484.08,71.17 484.65,71.15 554.38,68.05 554.95,68.02 555.51,68.03 625.25,68.68 625.81,68.68 ' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polygon points='58.90,112.90 59.46,112.85 129.19,107.13 129.76,107.08 130.33,106.95 200.06,90.09 200.63,89.96 201.19,89.90 270.92,83.23 271.49,83.18 272.06,83.29 341.79,97.50 342.35,97.61 342.92,97.53 412.65,87.46 413.22,87.37 413.79,87.44 483.52,95.08 484.08,95.14 484.65,95.10 554.38,89.76 554.95,89.72 555.51,89.76 625.25,95.12 625.81,95.16 626.38,261.36 625.81,152.18 625.25,152.41 555.51,180.48 554.95,180.71 554.38,180.64 484.65,172.68 484.08,172.61 483.52,172.76 413.79,190.62 413.22,190.77 412.65,190.89 342.92,205.65 342.35,205.77 341.79,205.74 272.06,202.57 271.49,202.55 270.92,202.48 201.19,193.67 200.63,193.60 200.06,193.50 130.33,180.88 129.76,180.77 129.19,180.88 59.46,194.05 58.90,194.16 58.33,261.36 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #548235; fill-opacity: 0.93;' />
+<polyline points='58.90,112.90 59.46,112.85 129.19,107.13 129.76,107.08 130.33,106.95 200.06,90.09 200.63,89.96 201.19,89.90 270.92,83.23 271.49,83.18 272.06,83.29 341.79,97.50 342.35,97.61 342.92,97.53 412.65,87.46 413.22,87.37 413.79,87.44 483.52,95.08 484.08,95.14 484.65,95.10 554.38,89.76 554.95,89.72 555.51,89.76 625.25,95.12 625.81,95.16 ' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polygon points='58.90,194.16 59.46,194.05 129.19,180.88 129.76,180.77 130.33,180.88 200.06,193.50 200.63,193.60 201.19,193.67 270.92,202.48 271.49,202.55 272.06,202.57 341.79,205.74 342.35,205.77 342.92,205.65 412.65,190.89 413.22,190.77 413.79,190.62 483.52,172.76 484.08,172.61 484.65,172.68 554.38,180.64 554.95,180.71 555.51,180.48 625.25,152.41 625.81,152.18 626.38,261.36 625.81,261.36 625.25,261.36 555.51,261.36 554.95,261.36 554.38,261.36 484.65,261.36 484.08,261.36 483.52,261.36 413.79,261.36 413.22,261.36 412.65,261.36 342.92,261.36 342.35,261.36 341.79,261.36 272.06,261.36 271.49,261.36 270.92,261.36 201.19,261.36 200.63,261.36 200.06,261.36 130.33,261.36 129.76,261.36 129.19,261.36 59.46,261.36 58.90,261.36 58.33,261.36 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #C00000; fill-opacity: 0.93;' />
+<polyline points='58.90,194.16 59.46,194.05 129.19,180.88 129.76,180.77 130.33,180.88 200.06,193.50 200.63,193.60 201.19,193.67 270.92,202.48 271.49,202.55 272.06,202.57 341.79,205.74 342.35,205.77 342.92,205.65 412.65,190.89 413.22,190.77 413.79,190.62 483.52,172.76 484.08,172.61 484.65,172.68 554.38,180.64 554.95,180.71 555.51,180.48 625.25,152.41 625.81,152.18 ' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt;' />
+<text x='67.40' y='230.81' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>33%</text>
+<text x='67.40' y='156.58' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>39%</text>
+<text x='617.31' y='209.82' text-anchor='end' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>53%</text>
+<text x='617.31' y='126.73' text-anchor='end' style='font-size: 8.54px; font-weight: bold;fill: #FFFFFF; font-family: "Arial";' textLength='17.08px' lengthAdjust='spacingAndGlyphs'>28%</text>
+</g>
+<g clip-path='url(#cpMC4wMHw2NDguMDB8MC4wMHwzODguODA=)'>
+<text x='48.17' y='264.22' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='11.56px' lengthAdjust='spacingAndGlyphs'>0%</text>
+<text x='48.17' y='212.63' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='16.02px' lengthAdjust='spacingAndGlyphs'>25%</text>
+<text x='48.17' y='161.04' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='16.02px' lengthAdjust='spacingAndGlyphs'>50%</text>
+<text x='48.17' y='109.45' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='16.02px' lengthAdjust='spacingAndGlyphs'>75%</text>
+<text x='48.17' y='57.86' text-anchor='end' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='20.47px' lengthAdjust='spacingAndGlyphs'>100%</text>
+<text x='58.90' y='271.57' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.81px' lengthAdjust='spacingAndGlyphs'>2016</text>
+<text x='200.63' y='271.57' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.81px' lengthAdjust='spacingAndGlyphs'>2018</text>
+<text x='342.35' y='271.57' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.81px' lengthAdjust='spacingAndGlyphs'>2020</text>
+<text x='484.08' y='271.57' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.81px' lengthAdjust='spacingAndGlyphs'>2022</text>
+<text x='625.81' y='271.57' text-anchor='middle' style='font-size: 8.00px;fill: #4D4D4D; font-family: "Arial";' textLength='17.81px' lengthAdjust='spacingAndGlyphs'>2024</text>
+<text transform='translate(23.10,158.18) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-family: "Arial";' textLength='158.44px' lengthAdjust='spacingAndGlyphs'>% del gasto agropecuario municipal</text>
+<rect x='184.01' y='288.48' width='16.71' height='16.71' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt; fill: #C00000; fill-opacity: 0.93;' />
+<rect x='370.21' y='288.48' width='16.71' height='16.71' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt; fill: #548235; fill-opacity: 0.93;' />
+<rect x='184.01' y='310.75' width='16.71' height='16.71' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt; fill: #1F4E79; fill-opacity: 0.93;' />
+<rect x='370.21' y='310.75' width='16.71' height='16.71' style='stroke-width: 0.43; stroke: #FFFFFF; stroke-linecap: butt; fill: #A6A6A6; fill-opacity: 0.93;' />
+<text x='205.99' y='299.77' style='font-size: 8.20px; font-family: "Arial";' textLength='80.95px' lengthAdjust='spacingAndGlyphs'>Apoyo a la producción</text>
+<text x='392.18' y='299.77' style='font-size: 8.20px; font-family: "Arial";' textLength='82.75px' lengthAdjust='spacingAndGlyphs'>Riego e infraestructura</text>
+<text x='205.99' y='322.03' style='font-size: 8.20px; font-family: "Arial";' textLength='158.95px' lengthAdjust='spacingAndGlyphs'>Servicios técnicos (I+D, extensión, sanidad)</text>
+<text x='392.18' y='322.03' style='font-size: 8.20px; font-family: "Arial";' textLength='108.80px' lengthAdjust='spacingAndGlyphs'>Tierras, multiprograma y otros</text>
+<text x='52.65' y='34.38' style='font-size: 8.60px;fill: #666666; font-family: "Arial";' textLength='483.52px' lengthAdjust='spacingAndGlyphs'>Composición del gasto agropecuario de los gobiernos autónomos municipales por propósito (clasificación MAFAP), % del total.</text>
+<text x='52.65' y='45.22' style='font-size: 8.60px;fill: #666666; font-family: "Arial";' textLength='387.55px' lengthAdjust='spacingAndGlyphs'>El apoyo a la producción (categoría A) pasó de 33% a 53% y cruzó a los bienes públicos (D) en 2024.</text>
+<text x='52.65' y='20.68' style='font-size: 12.20px; font-weight: bold;fill: #2C3E50; font-family: "Arial";' textLength='560.91px' lengthAdjust='spacingAndGlyphs'>El gasto agropecuario municipal viró del riego hacia el apoyo directo a la producción, 2016–2024</text>
+<text x='15.94' y='347.98' style='font-size: 7.40px;fill: #7F7F7F; font-family: "Arial";' textLength='380.02px' lengthAdjust='spacingAndGlyphs'>Fuente: cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (devengado SIGEP por entidad municipal,</text>
+<text x='15.94' y='357.75' style='font-size: 7.40px;fill: #7F7F7F; font-family: "Arial";' textLength='312.91px' lengthAdjust='spacingAndGlyphs'>clasificación por actividad económica agropecuaria); crosswalk actividad→MAFAP (ADR-0015).</text>
+<text x='15.94' y='367.51' style='font-size: 7.40px;fill: #7F7F7F; font-family: "Arial";' textLength='348.86px' lengthAdjust='spacingAndGlyphs'>Nota: capta el gasto del gobierno municipal (POA), no la ejecución del nivel central ni departamental. ~329</text>
+<text x='15.94' y='377.28' style='font-size: 7.40px;fill: #7F7F7F; font-family: "Arial";' textLength='292.28px' lengthAdjust='spacingAndGlyphs'>municipios/año; cobertura 99,7% del total agropecuario municipal MEFP. 2024 preliminar.</text>
+</g>
+</g>
+</svg>

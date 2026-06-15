@@ -1,0 +1,32 @@
+{
+  "figure_id": "fig_produccion_instrumento_zona",
+  "chapter": "04_report/04_spending_organization",
+  "type": "stacked_horizontal_bar",
+  "title_es": "El instrumento del gasto rural sigue la vocación del territorio: microriego en los valles, gasto productivo en la frontera oriental",
+  "title_en": "Rural spending instruments follow territorial vocation: micro-irrigation in the valleys, productive spending on the eastern frontier",
+  "subtitle_es": "Composición del gasto rural municipal por instrumento, según zona agroproductiva (Censo Agropecuario 2013). Promedio anual 2012–2021, USD constantes de 2015.",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre panel municipal (Fundación Jubileo, clasificador programático municipal) y zonas agroproductivas del Censo Nacional Agropecuario 2013 (INE).",
+    "note": "Instrumentos = programas municipales p10 (productivo), p12 (microriego), p18 (caminos vecinales), p32 (recursos hídricos). Cruce muni↔CNA por nombre (286/335, 85%). Zonas híbridas excluidas."
+  },
+  "alt_text_es": "Barras apiladas que muestran la composición del gasto rural municipal por instrumento en siete zonas agroproductivas. El microriego se concentra en los valles, los caminos vecinales dominan en valles, Chiquitania y altiplano, y el gasto productivo predomina en el Chaco, la Amazonía y las llanuras. Fuente: Jubileo y Censo Agropecuario 2013.",
+  "alt_text_en": "Stacked bars showing the composition of municipal rural spending by instrument across seven agro-productive zones. Micro-irrigation concentrates in the valleys, feeder roads dominate in valleys, Chiquitania and altiplano, and productive spending prevails in the Chaco, Amazon and lowlands. Source: Jubileo and 2013 Agricultural Census.",
+  "script": "02_code/04_visualization/24_fig_produccion_instrumento.R",
+  "data_rds": "01_data/processed/territorial_muni.rds",
+  "variables_used": ["zona_agroproductiva", "p10_agropecuario_usd2015", "p12_microriegos_usd2015", "p18_caminos_vecinales_usd2015", "p32_recursos_hidricos_usd2015", "year"],
+  "period": "2012-2021",
+  "geographic_scope": "municipal (7 zonas agroproductivas)",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F07",
+  "linked_adr": "ADR-0015",
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_produccion_instrumento_zona.png",
+    "svg_es": "05_outputs/figures/svg/fig_produccion_instrumento_zona.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_produccion_instrumento_zona.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": { "generated_by_image_model": false, "ai_mockup_used_in_design": false, "flags_triggered": [] },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}

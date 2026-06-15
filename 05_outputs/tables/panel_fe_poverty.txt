@@ -1,0 +1,42 @@
+Bolivia APER 2026 — Panel FE: gasto agropecuario -> pobreza departamental (INE)
+Generado: 2026-06-14
+
+                                                       model     outcome
+                                                      <char>      <char>
+ 1:             P1 pobreza mod. ~ gasto MEFP (vigente 16-24) pobreza_mod
+ 2:        P2 pobreza mod. ~ gasto MEFP + lluvia (PRINCIPAL) pobreza_mod
+ 3:        P2 pobreza mod. ~ gasto MEFP + lluvia (PRINCIPAL) pobreza_mod
+ 4:          P3 pobreza ext. ~ gasto MEFP + lluvia (vigente) pobreza_ext
+ 5:          P3 pobreza ext. ~ gasto MEFP + lluvia (vigente) pobreza_ext
+ 6:       P4 pobreza mod. ~ gasto Jubileo + lluvia (vigente) pobreza_mod
+ 7:       P4 pobreza mod. ~ gasto Jubileo + lluvia (vigente) pobreza_mod
+ 8: P5 pobreza mod. ~ gasto Jubileo + lluvia (antigua 12-18) pobreza_mod
+ 9: P5 pobreza mod. ~ gasto Jubileo + lluvia (antigua 12-18) pobreza_mod
+10:       P6 pobreza ext. ~ gasto Jubileo + lluvia (antigua) pobreza_ext
+11:       P6 pobreza ext. ~ gasto Jubileo + lluvia (antigua) pobreza_ext
+             term        coef        se          p      ci_lo       ci_hi
+           <char>       <num>     <num>      <num>      <num>       <num>
+ 1: ln_gasto_mefp   1.5248841  3.051218 0.63069610  -5.511238  8.56100593
+ 2: ln_gasto_mefp   1.2402780  3.842890 0.75516123  -7.621442 10.10199855
+ 3:      precip_k  -7.0107060  5.445457 0.23393495 -19.567953  5.54654087
+ 4: ln_gasto_mefp   0.1515687  3.079106 0.96194686  -6.948863  7.25200010
+ 5:      precip_k  -0.9317617  4.295406 0.83370004 -10.836987  8.97346346
+ 6:  ln_gasto_jub  -2.3144501  1.215102 0.09328465  -5.116480  0.48758016
+ 7:      precip_k   3.7431139 19.321566 0.85121795 -40.812497 48.29872446
+ 8:  ln_gasto_jub  -4.9612355  1.119565 0.00219293  -7.542958 -2.37951322
+ 9:      precip_k -22.9541053 13.308533 0.12285405 -53.643636  7.73542591
+10:  ln_gasto_jub  -3.6803702  1.601537 0.05062671  -7.373520  0.01277968
+11:      precip_k -23.2817778 19.224862 0.26044410 -67.614388 21.05083235
+       sig     n n_clusters
+    <char> <int>      <int>
+ 1:           81          9
+ 2:           72          9
+ 3:           72          9
+ 4:           68          9
+ 5:           68          9
+ 6:      *    54          9
+ 7:           54          9
+ 8:    ***    63          9
+ 9:           63          9
+10:      *    57          9
+11:           57          9

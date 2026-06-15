@@ -1,0 +1,33 @@
+{
+  "figure_id": "fig_top20_municipios_agro",
+  "chapter": "04_report/04_spending_organization",
+  "type": "ranked_horizontal_bar",
+  "title_es": "El top municipal del gasto agropecuario mezcla capitales, el Chaco tarijeño y los valles cochabambinos, 2024",
+  "title_en": "The top municipalities for agricultural spending mix capitals, the Tarija Chaco and the Cochabamba valleys, 2024",
+  "subtitle_es": "Veinte municipios con mayor gasto agropecuario total (devengado), 2024, en millones de USD constantes de 2015.",
+  "caption_es": {
+    "source": "Cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto (gasto agro municipal devengado, acteco=2), deflactado a USD const. 2015.",
+    "note": "(*) capital departamental. Gasto agropecuario total del municipio (no separa instrumentos). 2024 preliminar."
+  },
+  "alt_text_es": "Barras horizontales con los 20 municipios de mayor gasto agropecuario total en 2024. Encabezan Sucre, Caraparí, Quillacollo, Santa Cruz de la Sierra y Villamontes; conviven capitales departamentales, el Chaco tarijeño y los valles cochabambinos. Fuente: MEFP Presupuesto Abierto.",
+  "alt_text_en": "Horizontal bars with the 20 municipalities with the highest total agricultural spending in 2024. Sucre, Caraparí, Quillacollo, Santa Cruz de la Sierra and Villamontes lead; departmental capitals, the Tarija Chaco and the Cochabamba valleys coexist. Source: MEFP Presupuesto Abierto.",
+  "script": "02_code/04_visualization/27_fig_top_municipios.R",
+  "data_rds": "01_data/processed/territorial_muni_mefp.rds",
+  "variables_used": ["muni_name", "dept", "usd2015", "year"],
+  "filter": "tipo == 'Municipios'; year == 2024",
+  "period": "2024",
+  "geographic_scope": "municipal (top-20)",
+  "panel_version": "v12",
+  "methodology_version": "m0.2.0",
+  "linked_finding": "F07",
+  "linked_adr": "ADR-0015",
+  "outputs": {
+    "png_es": "05_outputs/figures/png/fig_top20_municipios_agro.png",
+    "svg_es": "05_outputs/figures/svg/fig_top20_municipios_agro.svg",
+    "pdf_es": "05_outputs/figures/pdf/fig_top20_municipios_agro.pdf"
+  },
+  "license": "CC-BY-4.0",
+  "ai_check": { "generated_by_image_model": false, "ai_mockup_used_in_design": false, "flags_triggered": [] },
+  "status": "draft",
+  "last_updated": "2026-06-14"
+}
