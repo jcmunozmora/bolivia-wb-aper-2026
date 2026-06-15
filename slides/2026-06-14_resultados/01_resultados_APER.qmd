@@ -36,7 +36,7 @@ execute:
 ::: {.column}
 **1 · El sector**
 
-Desempeño productivo, frontera agrícola y bienestar rural.
+Desempeño productivo, estructura por cultivo y bienestar rural.
 
 **2 · El gasto**
 
@@ -68,13 +68,21 @@ Cifras del panel maestro v12 (1990–2024) y del reporte técnico APER 2026. Ide
 ::: {.columns}
 ::: {.column width="42%"}
 ::: {.metric}
-::: {.metric-label}Inversión pública agro 2000–2015:::
-::: {.metric-big}×10:::
+::: {.metric-label}
+Inversión pública agro · 2000–2015
+:::
+::: {.metric-big}
+×10
+:::
 :::
 
 ::: {.metric}
-::: {.metric-label}Productividad total de factores (mismo período):::
-::: {.metric-big}+30 %:::
+::: {.metric-label}
+Productividad total de factores · mismo período
+:::
+::: {.metric-big}
++30 %
+:::
 :::
 
 La inversión se multiplicó por diez; la productividad apenas avanzó (**hallazgo F01**).
@@ -86,30 +94,58 @@ La inversión se multiplicó por diez; la productividad apenas avanzó (**hallaz
 
 ## Bolivia crece más lento que sus pares andinos
 
-![Productividad total de factores — Bolivia frente a LAC](../../05_outputs/figures/fig07_tfp_latam_comparison.png){width="78%"}
+![Productividad total de factores — Bolivia frente a LAC](../../05_outputs/figures/fig07_tfp_latam_comparison.png){width="74%"}
 
 ::: {.source}
 USDA-ERS, índice de TFP agropecuario. La brecha con Perú, Colombia y Ecuador es estructural.
 :::
 
+## Crecimiento extensivo: la soya manda, el rendimiento no sigue
+
+::: {.columns}
+::: {.column width="40%"}
+::: {.metric}
+::: {.metric-label}
+Superficie de soya · 2000–2020
+:::
+::: {.metric-big}
+×2,4
+:::
+:::
+
+Rendimiento **+9,6 %** en dos décadas: el sector creció por **expansión de superficie**, no por intensificación.
+:::
+::: {.column width="60%"}
+![Concentración del valor de producción por cultivo (Pareto), 2006 vs 2023](../../05_outputs/figures/png/fig_pareto_valor_2006v2023.png){width="100%"}
+:::
+:::
+
 ## Frontera que avanza, bienestar que se revierte
 
 ::: {.columns}
-::: {.column width="38%"}
+::: {.column}
 ::: {.metric}
-::: {.metric-label}Cobertura natural perdida 1985–2024:::
-::: {.metric-big}9,4 M ha:::
+::: {.metric-label}
+Cobertura natural perdida · 1985–2024
 :::
-<span class="pill pill-new">64 % en Santa Cruz</span> · **F08**
+::: {.metric-big}
+9,4 M ha
+:::
+:::
 
+<span class="pill pill-new">64 % en Santa Cruz</span> · hallazgo **F08**
+:::
+::: {.column}
 ::: {.metric}
-::: {.metric-label}Inseguridad alimentaria (FIES) rural 2024:::
-::: {.metric-big}74 %:::
+::: {.metric-label}
+Inseguridad alimentaria (FIES) rural · 2024
 :::
-Era 49 % en 2019. Pobreza rural revirtió a **45 %** (2024) · **F06**
+::: {.metric-big}
+74 %
 :::
-::: {.column width="62%"}
-![Cambio de cobertura del suelo por departamento, 1985–2024](../../05_outputs/figures/fig35_cambio_cobertura_dept.png){width="100%"}
+:::
+
+Era 49 % en 2019. La pobreza rural revirtió a **45 %** en 2024 · **F06**
 :::
 :::
 
@@ -118,22 +154,31 @@ Era 49 % en 2019. Pobreza rural revirtió a **45 %** (2024) · **F06**
 ## Bolivia nunca alcanzó la meta de Maputo
 
 ::: {.columns}
-::: {.column width="45%"}
+::: {.column width="40%"}
 ::: {.metric}
-::: {.metric-label}Máximo histórico (1990) sobre gasto público total:::
-::: {.metric-big}3,48 %:::
+::: {.metric-label}
+Máximo histórico (1990) · % del gasto público
+:::
+::: {.metric-big}
+3,48 %
+:::
 :::
 
-La meta del **10 %** nunca se logró; el promedio 2000–2007 fue de **1,87 %** (**hallazgo F04**).
+La meta del **10 %** nunca se logró (**F04**).
 
 ::: {.metric}
-::: {.metric-label}Apoyo al productor (PSE) 2018 — 5° en LAC:::
-::: {.metric-big}5,8 %:::
+::: {.metric-label}
+Apoyo al productor (PSE) · 2018 — 5° en LAC
 :::
+::: {.metric-big}
+5,8 %
+:::
+:::
+
 Por encima: Brasil, Chile, Colombia, Argentina · **F02**
 :::
-::: {.column width="55%"}
-![Tasa de apoyo al productor (%PSE): Bolivia frente a LAC](../../05_outputs/figures/fig15_psep_bolivia_vs_lac.png){width="100%"}
+::: {.column width="60%"}
+![Gasto agropecuario como porcentaje del PIB, Bolivia](../../05_outputs/figures/png/fig_gasto_agro_pct_pib.png){width="100%"}
 :::
 :::
 
@@ -142,9 +187,14 @@ Por encima: Brasil, Chile, Colombia, Argentina · **F02**
 ::: {.columns}
 ::: {.column width="40%"}
 ::: {.metric}
-::: {.metric-label}Bienes públicos (D) acum. 2016–2024:::
-::: {.metric-big}56 %:::
+::: {.metric-label}
+Bienes públicos (cat. D) · acum. 2016–2024
 :::
+::: {.metric-big}
+56 %
+:::
+:::
+
 Riego 27 %, I+D, sanidad, extensión.
 
 La participación de bienes públicos **cayó de 64 % (2016) a 45 % (2024)**; EMAPA subió de 25 % a 42 %. Sustitución de categorías, no expansión.
@@ -159,12 +209,17 @@ La participación de bienes públicos **cayó de 64 % (2016) a 45 % (2024)**; EM
 ::: {.columns}
 ::: {.column width="40%"}
 ::: {.metric}
-::: {.metric-label}Cartera agro real 2010–2024 (USD const. 2015):::
-::: {.metric-big}×7,1:::
+::: {.metric-label}
+Cartera agro real · 2010–2024 (USD const. 2015)
 :::
+::: {.metric-big}
+×7,1
+:::
+:::
+
 USD 385 → 2 725 M. El factor nominal de ×11,7 incluye inflación.
 
-La inversión pública cayó de **0,97 % del PIB (2015) a 0,38 % (2021)** mientras el crédito subía · **F05**.
+La inversión pública cayó de **0,97 % del PIB (2015) a 0,38 % (2021)** · **F05**.
 :::
 ::: {.column width="60%"}
 ![Cartera bancaria agropecuaria, 2010–2024](../../05_outputs/figures/png/fig_cartera_agro_2010_2024.png){width="100%"}
@@ -178,9 +233,14 @@ La inversión pública cayó de **0,97 % del PIB (2015) a 0,38 % (2021)** mientr
 ::: {.columns}
 ::: {.column width="40%"}
 ::: {.metric}
-::: {.metric-label}Eficiencia media corregida (DEA Simar-Wilson):::
-::: {.metric-big}0,60:::
+::: {.metric-label}
+Eficiencia media corregida · DEA Simar-Wilson
 :::
+::: {.metric-big}
+0,60
+:::
+:::
+
 Rango 0,22–0,89.
 
 Tierras bajas y valles cerca de la frontera (**Pando 0,85**); altiplano con las mayores brechas (**Potosí 0,27**). **Ningún departamento del altiplano** alcanzó la frontera.
@@ -223,15 +283,15 @@ Panel FE departamento × año, gasto MEFP 2016–2024 e INE. Especificación: AD
 
 ## Mensaje 1 — el nivel del gasto no mueve los resultados
 
-![Asociación entre el nivel del gasto agropecuario y los resultados departamentales (panel FE, 2016–2024). Todos los coeficientes cruzan el cero.](../../05_outputs/figures/fig41_panel_fe_gasto_resultados.png){width="74%"}
+![Asociación entre el nivel del gasto agropecuario y los resultados departamentales (panel FE, 2016–2024). Todos los coeficientes cruzan el cero.](../../05_outputs/figures/fig41_panel_fe_gasto_resultados.png){width="72%"}
 
 ## Mensaje 2 — la composición se desplazó
 
-![Composición del gasto agropecuario público por tipo de propósito, 2016–2024](../../05_outputs/figures/fig42_composicion_gasto_tipo.png){width="74%"}
+![Composición del gasto agropecuario público por tipo de propósito, 2016–2024](../../05_outputs/figures/fig42_composicion_gasto_tipo.png){width="72%"}
 
 ## Mensaje 3 — solo los bienes públicos se asocian con menos pobreza
 
-![Asociación de cada tipo de gasto con la pobreza departamental, controlando el gasto total (2016–2024)](../../05_outputs/figures/fig44_betas_por_tipo.png){width="74%"}
+![Asociación de cada tipo de gasto con la pobreza departamental, controlando el gasto total (2016–2024)](../../05_outputs/figures/fig44_betas_por_tipo.png){width="72%"}
 
 # 5 · Implicación de política {.section-header}
 
