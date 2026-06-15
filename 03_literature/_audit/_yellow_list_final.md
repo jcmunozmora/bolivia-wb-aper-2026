@@ -159,3 +159,8 @@ Total: 124 fichas
 - `RedUnitas2019CooperacionInternacional` — 
 - `UNDP2024HDR` — 
 - `UNODC2023ProgramaPaisBolivia` — 
+
+## `mdryt_fichas/` (fuentes primarias gubernamentales — registradas sesión 21, pendiente confirmación auditor)
+
+- `MDRyT_RPC2024` — Rendición Pública de Cuentas Final 2024 MDRyT. PDF presente + provenance Wayback. Ejecución 74% fin / 54% fís y tabla por entidad ejecutora (p.6, p.11). Caveat: auto-reporte + OCR defectuoso en tablas. Yellow PROPUESTO (verificar contra PDF antes de cita verbatim).
+- `INIAF_Memoria2019` — Memoria Anual 2019 INIAF (entidad descentralizada del MDRyT, no consolidado). Ejecución 83,7% fin / 82,7% fís; Activos Reales 47,3%; Café capitalizable 0%. Caveat: auto-reporte + columnas fragmentadas en extracción. Yellow PROPUESTO.

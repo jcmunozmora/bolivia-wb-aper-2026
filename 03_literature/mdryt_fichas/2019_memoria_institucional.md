@@ -1,3 +1,16 @@
+---
+citekey: INIAF_Memoria2019
+audit_status: yellow
+audit_note: >
+  Fuente primaria gubernamental verificada — PDF presente en 01_data/raw/mdryt/Memoria_2019.pdf
+  (corresponde al INIAF, entidad descentralizada del MDRyT, NO al MDRyT consolidado). Cifras de
+  ejecución (presupuesto vigente Bs 98.306.490 / ejecutado Bs 82.322.382 = 83,7% financiera; 82,7%
+  física; Activos Reales 47,3%; Proyecto Café capitalizable 0%) leídas directamente del PDF. Caveat:
+  auto-reporte institucional; fragmentación de columnas al extraer algunas tablas con pdftools.
+  Clasificación yellow PROPUESTA sesión 21 (2026-06-14); pendiente confirmación de aper-citation-auditor
+  y backfill en Zotero (ADR-0013).
+---
+
 # Ficha de Lectura — Memoria Institucional MDRyT 2019 (INIAF)
 
 > **Aclaración importante:** El PDF `Memoria_2019.pdf` contenido en `01_data/raw/mdryt/` corresponde a la **Memoria Anual 2019 del Instituto Nacional de Innovación Agropecuaria y Forestal (INIAF)** — entidad descentralizada bajo tuición del MDRyT — y NO a una Memoria Institucional consolidada del Ministerio. En consecuencia, las cifras de presupuesto, ejecución y beneficiarios reportadas a continuación corresponden únicamente al INIAF. No se encuentran cifras agregadas del MDRyT ni de sus otros programas (PAR II/EMPODERAR, CRIAR, MI RIEGO, EMAPA, INRA, SENASAG, FDI, BDP, PACU) salvo una mención tangencial a EMPODERAR – PAR II como expositor en un congreso.

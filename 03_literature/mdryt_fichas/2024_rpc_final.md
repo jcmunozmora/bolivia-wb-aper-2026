@@ -1,3 +1,15 @@
+---
+citekey: MDRyT_RPC2024
+audit_status: yellow
+audit_note: >
+  Fuente primaria gubernamental verificada — PDF presente en 01_data/raw/mdryt/RPC_Final_2024.pdf
+  con provenance Wayback (snapshot 2025-02-18). Cifras de ejecución (74% financiera / 54% física a
+  nivel MDRyT; tablas por entidad ejecutora p.6 y avance físico-financiero por programa p.11) leídas
+  directamente de las tablas del PDF. Caveat: cifras auto-reportadas por la entidad y con OCR
+  defectuoso en algunas tablas. Clasificación yellow PROPUESTA sesión 21 (2026-06-14); pendiente
+  confirmación de aper-citation-auditor y backfill en Zotero (ADR-0013).
+---
+
 # Ficha de Lectura — Rendición Pública de Cuentas Final 2024 — MDRyT
 
 ## Metadatos
