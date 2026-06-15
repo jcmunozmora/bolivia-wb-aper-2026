@@ -2,8 +2,7 @@
 title: "APER Bolivia 2026 — Resultados"
 subtitle: "Hallazgos del Agricultural Public Expenditure Review · Banco Mundial"
 author:
-  - name: "Juan Carlos Muñoz-Mora"
-    affiliation: "Universidad EAFIT — Consultor Banco Mundial Bolivia"
+  - name: "Banco Mundial · Universidad EAFIT"
 date: "2026-06-14"
 date-format: "D MMMM YYYY"
 lang: es
