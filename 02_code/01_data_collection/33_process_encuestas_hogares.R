@@ -16,9 +16,14 @@
 library(haven)
 library(data.table)
 
-root <- "/Users/jcmunoz/Library/CloudStorage/OneDrive-UniversidadEAFIT/Projects/2026_WB_Bolivia"
-eh_root <- file.path(root, "01_data/raw/ine_bolivia")
-proc    <- file.path(root, "01_data/processed")
+# Reproducibilidad (invariante 7 / ADR-0018): rutas vía here::here(), no paths absolutos.
+# NOTA (invariante 14): los microdatos crudos EH (.sav) son insumo EXTERNO y
+# CONFIDENCIAL — no se commitean al repo. Colócalos en 01_data/raw/ine_bolivia/.
+# La pobreza departamental del reporte se toma de tablas INE ya calculadas
+# (34_ine_poverty_departamental.R), no de este reprocesamiento de microdatos.
+source(here::here("02_code", "00_setup", "01_constants.R"))
+eh_root <- file.path(DIR_DATA_RAW, "ine_bolivia")
+proc    <- DIR_DATA_PRO
 
 # ── Configuración por año ─────────────────────────────────────────────────────
 # sa_prefix: prefijo de las 8 preguntas FIES en el módulo SeguridadAlimentaria

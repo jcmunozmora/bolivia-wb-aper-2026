@@ -2,10 +2,18 @@
 # Fuente de verdad para todos los scripts
 
 # ── Períodos ──────────────────────────────────────────────────────────────────
-YEAR_START      <- 2000
-YEAR_END        <- 2023
-YEAR_BASE       <- 2015       # año base para valores reales
+# Ventana canónica del APER 2026 — fijada por MASTER_PROMPT v0.4.0 (ADR-0008).
+# La ventana legacy 2000–2023 se preserva como YEAR_LEGACY_* para retrocompatibilidad
+# con scripts pre-sesión 12 que aún no se han re-corrido sobre la ventana canónica.
+YEAR_START      <- 2008       # canónica APER 2026 (MASTER_PROMPT v0.4.0)
+YEAR_END        <- 2024       # canónica APER 2026 (MASTER_PROMPT v0.4.0)
+YEAR_BASE       <- 2015       # año base para valores reales (deflactor CPI INE Bolivia)
 YEARS           <- YEAR_START:YEAR_END
+
+# Ventana legacy — usar sólo en scripts que aún no migraron a la canónica.
+YEAR_LEGACY_START <- 2000
+YEAR_LEGACY_END   <- 2023
+YEARS_LEGACY      <- YEAR_LEGACY_START:YEAR_LEGACY_END
 
 # ── Identificadores de país ───────────────────────────────────────────────────
 COUNTRY_ISO3    <- "BOL"

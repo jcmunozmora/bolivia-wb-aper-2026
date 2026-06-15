@@ -91,36 +91,47 @@ classify_panel <- function(df) {
 
   df <- df %>%
     mutate(
-      # ---- Categoría A: Apoyo al productor ----
-      # A1 MPS — proxy con componente IDB AgriMonitor (MPS_BOB_2015)
-      mafap_A1_bob_2015 = coalesce(MPS_BOB_2015, 0),
+      # ---- Categoría A: Apoyo al productor (GASTO PÚBLICO — marco Vol II) ----
+      # FIX m0.2.0 (2026-06-14, decisión "A = solo gasto público"): el MPS
+      # (sostén de precios = transferencia implícita vía precios) NO consume
+      # presupuesto y se EXCLUYE de MAFAP; se reporta como OECD-PSE en el Cap. 5
+      # (la columna MPS_BOB_2015 se conserva intacta). A = transferencias
+      # presupuestarias netas al productor (BT). NOTA: BT puede ser NEGATIVO
+      # cuando las restricciones a la exportación gravan netamente al productor
+      # (rasgo real de la política boliviana; ver Cap. 5 NRP dual F03).
+      mafap_A1_bob_2015 = NA_real_,                        # MPS excluido → Cap. 5 PSE
+      mafap_A2_bob_2015 = coalesce(BT_agg_BOB_2015, 0),    # transferencias presupuestarias netas
+      mafap_A_bob_2015  = mafap_A2_bob_2015,
 
-      # A2 Input subsidies — incluye crédito BDP subsidiado (revenue foregone)
-      # Hasta tener `revenue_foregone_bdp`, usar BT_agg como proxy
-      mafap_A2_bob_2015 = coalesce(BT_agg_BOB_2015, 0),
-
-      # A — total productor (suma OECD-PSE: MPS + BT)
-      mafap_A_bob_2015 = mafap_A1_bob_2015 + mafap_A2_bob_2015,
-
-      # ---- Categoría B: Apoyo al consumidor (CSE) ----
-      mafap_B_bob_2015 = coalesce(CSE_BOB_2015, 0),
+      # ---- Categoría B: Apoyo al consumidor (GASTO PÚBLICO) ----
+      # FIX m0.2.0: el CSE de AgriMonitor es price-inclusive (marco OECD), NO es
+      # gasto presupuestario; se mueve al Cap. 5 (CSE_BOB_2015 se conserva). El
+      # apoyo presupuestario al consumidor (ayuda alimentaria B1, desayuno
+      # escolar B3, brazo consumidor de EMAPA) requiere clasificación BOOST
+      # granular aún no disponible → no_data.
+      mafap_B_bob_2015 = NA_real_,
 
       # ---- Categoría C: Apoyo a otros agentes ----
-      # Sin proxy directo en panel v12; placeholder = 0 hasta clasificación granular
-      mafap_C_bob_2015 = 0,
+      # Sin clasificación granular en el panel v12 agregado → no_data (no 0).
+      mafap_C_bob_2015 = NA_real_,
 
       # ---- Categoría D: Apoyo general al sector (GSSE) ----
       mafap_D_bob_2015 = coalesce(GSSE_BOB_2015, 0),
 
       # ---- Categoría E: Gasto agropecuario-soporte (rural) ----
-      # Proxy con infraestructura rural municipal cuando disponible
-      mafap_E_bob_2015 = coalesce(mun_rural_infra_bob_mm_2015, 0) * 1000,
-      # × 1000 porque mun_*_mm está en millones; ajustar a BOB
+      # Proxy con infraestructura rural municipal cuando disponible.
+      # FIX (m0.1.1, 2026-06-14): se elimina el "* 1000". Todas las categorías
+      # A–E quedan en la MISMA unidad (millones de BOB 2015), igual que
+      # MPS/GSSE/CSE/BT_agg_BOB_2015 (que ya están en millones). El "* 1000"
+      # previo dejaba E 1000× inflada y rompía narrow/full y las figuras.
+      mafap_E_bob_2015 = coalesce(mun_rural_infra_bob_mm_2015, 0),
 
       # ---- Agregados narrow y full ----
-      mafap_narrow_bob_2015 = mafap_A_bob_2015 + mafap_B_bob_2015 +
-                              mafap_C_bob_2015 + mafap_D_bob_2015,
-      mafap_full_bob_2015   = mafap_narrow_bob_2015 + mafap_E_bob_2015,
+      # narrow = A + B + C + D (categorías con dato; B/C son no_data → 0 en la suma).
+      # Con datos actuales narrow ≈ A(BT, presupuestario neto) + D(GSSE).
+      mafap_narrow_bob_2015 = coalesce(mafap_A_bob_2015, 0) + coalesce(mafap_B_bob_2015, 0) +
+                              coalesce(mafap_C_bob_2015, 0) + coalesce(mafap_D_bob_2015, 0),
+      mafap_full_bob_2015   = mafap_narrow_bob_2015 + coalesce(mafap_E_bob_2015, 0),
 
       # ---- Shares (relativos al narrow) ----
       mafap_share_A = if_else(mafap_narrow_bob_2015 > 0,
@@ -136,17 +147,17 @@ classify_panel <- function(df) {
       gap_mafap_narrow = mafap_narrow_bob_2015,
       gap_mafap_full   = mafap_full_bob_2015,
       gap_oecd_pse     = coalesce(PSE_BOB_2015, 0) + coalesce(GSSE_BOB_2015, 0),
-      gap_cofog_042    = coalesce(inv_agro_bob_mm_2015, 0) * 1000,  # proxy COFOG 04.2
+      gap_cofog_042    = coalesce(inv_agro_bob_mm_2015, 0),  # proxy COFOG 04.2 (millones BOB 2015; FIX m0.1.1: sin *1000)
 
-      # ---- Flag de cobertura ----
+      # ---- Flag de cobertura (marco Vol II) ----
       mafap_coverage_flag = case_when(
-        is.na(MPS_BOB_2015) & is.na(GSSE_BOB_2015) ~ "no_pse_data",
-        is.na(mun_rural_infra_bob_mm_2015)         ~ "no_rural_data",
-        TRUE                                       ~ "ok"
+        is.na(GSSE_BOB_2015) & is.na(BT_agg_BOB_2015) ~ "no_budget_data",
+        is.na(mun_rural_infra_bob_mm_2015)            ~ "no_rural_data_E",
+        TRUE                                          ~ "ok"
       ),
 
       # ---- Versionamiento ----
-      methodology_version = "m0.1.0",
+      methodology_version = "m0.2.0",
       panel_version       = "v12",
       mafap_script        = "17_mafap_classification.R",
       mafap_adr           = "ADR-0009, ADR-0010"
@@ -166,19 +177,28 @@ run_tests <- function(df) {
 
   log_line("Tests de integridad MAFAP:")
 
-  # Test 1: narrow = A + B + C + D
+  # Test 1: narrow = A + B + C + D (B/C pueden ser no_data → coalesce a 0)
   t1 <- with(df, all.equal(
     mafap_narrow_bob_2015,
-    mafap_A_bob_2015 + mafap_B_bob_2015 + mafap_C_bob_2015 + mafap_D_bob_2015
+    coalesce(mafap_A_bob_2015, 0) + coalesce(mafap_B_bob_2015, 0) +
+      coalesce(mafap_C_bob_2015, 0) + coalesce(mafap_D_bob_2015, 0)
   ))
   log_line(glue("  [T1] narrow = A+B+C+D : {if (isTRUE(t1)) '✓' else paste('✗', t1)}"))
 
   # Test 2: full = narrow + E
   t2 <- with(df, all.equal(
     mafap_full_bob_2015,
-    mafap_narrow_bob_2015 + mafap_E_bob_2015
+    mafap_narrow_bob_2015 + coalesce(mafap_E_bob_2015, 0)
   ))
   log_line(glue("  [T2] full = narrow + E : {if (isTRUE(t2)) '✓' else paste('✗', t2)}"))
+
+  # Test 1b (m0.2.0): coherencia de unidades — D y E en el mismo orden de magnitud
+  uok <- with(df, {
+    d <- median(mafap_D_bob_2015[mafap_D_bob_2015 > 0], na.rm = TRUE)
+    e <- median(mafap_E_bob_2015[mafap_E_bob_2015 > 0], na.rm = TRUE)
+    isTRUE(d > 100 & d < 1e5 & e > 100 & e < 1e5)  # ambos en "millones BOB", no 1000× off
+  })
+  log_line(glue("  [T1b] D y E en misma escala (millones) : {if (uok) '✓' else '✗ revisar unidades'}"))
 
   # Test 3: cobertura años con datos
   yrs_with_data <- df %>% filter(mafap_narrow_bob_2015 > 0) %>% pull(year)

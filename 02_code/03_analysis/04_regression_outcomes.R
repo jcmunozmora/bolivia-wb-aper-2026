@@ -1,6 +1,17 @@
-# Panel regression: gasto agropecuario → outcomes agrícolas
-# Estimador principal: fixest (FE bidireccional + SE robustos cluster)
-# Output: tablas de regresión en 05_outputs/tables/
+# =============================================================================
+# [DEPRECADO — ADR-0018] Panel regression: gasto agropecuario → outcomes
+# -----------------------------------------------------------------------------
+# Este script leía paneles NO canónicos (`spending_panel.rds`, `subnacional_panel.rds`,
+# no v12/v2) y variables inexistentes → violaba el invariante 2 (fuente única).
+# Quedó SUPERADO por el pipeline canónico del ADR-0018:
+#   · Nacional (TFP)            → 02_code/03_analysis/08_extended_regressions.R (sección 1)
+#   · Subnacional productividad → 02_code/03_analysis/09_panel_fe_productivity.R
+#   · Subnacional pobreza (INE) → 02_code/03_analysis/10_panel_fe_poverty.R
+# Se conserva solo como referencia histórica; no debe ejecutarse.
+# =============================================================================
+stop("04_regression_outcomes.R está DEPRECADO (ADR-0018). Usa 08 / 09 / 10. Ver cabecera.")
+
+# --- código histórico (no se ejecuta) ----------------------------------------
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "00_setup", "02_functions.R"))
 library(fixest)

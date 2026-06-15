@@ -17,9 +17,10 @@
 library(data.table)
 library(fixest)
 
-root   <- "/Users/jcmunoz/Library/CloudStorage/OneDrive-UniversidadEAFIT/Projects/2026_WB_Bolivia"
-proc   <- file.path(root, "01_data/processed")
-tbl    <- file.path(root, "05_outputs/tables")
+# Reproducibilidad (invariante 7 / ADR-0018): rutas vía here::here(), no paths absolutos.
+source(here::here("02_code", "00_setup", "01_constants.R"))
+proc   <- DIR_DATA_PRO
+tbl    <- DIR_TABLES
 dir.create(tbl, recursive = TRUE, showWarnings = FALSE)
 
 sep <- function(titulo) {

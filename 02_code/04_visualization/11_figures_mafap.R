@@ -95,6 +95,7 @@ if (!file.exists(PATH_DATA)) {
   stop(glue("[error] No existe {PATH_DATA}. Ejecutar primero 17_mafap_classification.R."))
 }
 
+FX2015 <- 6.91  # USD const. 2015 = BOB const. 2015 / FX2015
 mafap <- readRDS(PATH_DATA)
 message(glue("Cargado mafap_bolivia.rds: {nrow(mafap)} años × {ncol(mafap)} cols"))
 
@@ -105,24 +106,29 @@ df_long <- mafap %>%
   rename(A = mafap_A_bob_2015, B = mafap_B_bob_2015, C = mafap_C_bob_2015,
          D = mafap_D_bob_2015, E = mafap_E_bob_2015) %>%
   pivot_longer(-year, names_to = "categoria", values_to = "monto_bob_2015") %>%
-  mutate(monto_mm = monto_bob_2015 / 1e6)
+  # FIX m0.1.1: las columnas mafap_*_bob_2015 YA están en millones de BOB 2015;
+  # no dividir por 1e6 (eso aplastaba A–D a ~0).
+  mutate(monto_mm = monto_bob_2015)
 
 # ----------------------------------------------------------------------------
 # Figura 18a — MAFAP categoría A (Apoyo al productor)
 # ----------------------------------------------------------------------------
 
 fig_a <- mafap %>%
-  filter(!is.na(mafap_A_bob_2015), mafap_A_bob_2015 > 0) %>%
-  mutate(monto_mm = mafap_A_bob_2015 / 1e6) %>%
-  ggplot(aes(x = year, y = monto_mm)) +
-  geom_col(fill = palette_mafap["A"], width = 0.7) +
-  scale_x_continuous(breaks = seq(1990, 2024, 5)) +
+  filter(!is.na(mafap_A_bob_2015), year >= 2006) %>%
+  mutate(monto_mm = mafap_A_bob_2015/FX2015,
+         signo = if_else(monto_mm >= 0, "pos", "neg")) %>%
+  ggplot(aes(x = year, y = monto_mm, fill = signo)) +
+  geom_hline(yintercept = 0, color = "gray55", linewidth = 0.4) +
+  geom_col(width = 0.7) +
+  scale_fill_manual(values = c(pos = palette_mafap["A2"], neg = "#C00000"), guide = "none") +
+  scale_x_continuous(breaks = seq(2006, 2024, 4)) +
   scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
   labs(
-    title    = "El apoyo al productor (MAFAP categoría A) se concentra en transferencias presupuestarias y MPS",
-    subtitle = "Bolivia, millones de BOB constantes 2015, 2006–2024",
-    x = NULL, y = "BOB mm 2015",
-    caption = "Fuente: IDB AgriMonitor 2024 (MPS, BT); cálculo propio sobre panel v12 [m0.1.0].\nNota: A1 = Market Price Support; A2 = subsidios a insumos (incluye revenue foregone BDP, ver ADR-0010). Categoría agregada A = A1 + A2 + A3."
+    title    = "El apoyo presupuestario neto al productor es marginal o negativo",
+    subtitle = "MAFAP A — transferencias presupuestarias netas (BT), millones de USD const. 2015, 2006–2023",
+    x = NULL, y = "USD mm const. 2015",
+    caption = "Fuente: IDB AgriMonitor (componente presupuestario BT); cálculo propio (Banco Mundial) sobre panel v12 [m0.2.0].\nNota: marco de gasto público MAFAP (Vol II). El sostén de precios (MPS) NO es gasto público y se reporta como OECD-PSE en el Capítulo 5. Los valores negativos reflejan net-imposición al productor vía restricciones de exportación (coherente con F03)."
   ) +
   theme_aper_mafap()
 
@@ -132,24 +138,12 @@ save_figure(fig_a, "fig18a_mafap_A_apoyo_productor", height = 4.0)
 # Figura 18b — MAFAP categorías B + C (Consumidor + Otros agentes)
 # ----------------------------------------------------------------------------
 
-fig_bc <- df_long %>%
-  filter(categoria %in% c("B", "C"), !is.na(monto_mm)) %>%
-  ggplot(aes(x = year, y = monto_mm, fill = categoria)) +
-  geom_col(position = "stack", width = 0.7) +
-  scale_fill_manual(values = palette_mafap[c("B", "C")],
-                    labels = c("B — Apoyo al consumidor",
-                               "C — Apoyo a otros agentes")) +
-  scale_x_continuous(breaks = seq(1990, 2024, 5)) +
-  scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
-  labs(
-    title    = "El apoyo al consumidor (B) supera al de otros agentes (C) en todo el período",
-    subtitle = "Bolivia, millones de BOB constantes 2015, 2006–2024",
-    x = NULL, y = "BOB mm 2015",
-    caption = "Fuente: IDB AgriMonitor 2024 (CSE); cálculo propio sobre panel v12 [m0.1.0].\nNota: B incluye compras EMAPA al consumidor con precio subsidiado + componente alimentario de bonos. C requiere clasificación granular pendiente (ver script 17_mafap_classification.R caveat §1)."
-  ) +
-  theme_aper_mafap()
-
-save_figure(fig_bc, "fig18b_mafap_BC_consumidor_otros", height = 4.0)
+# RETIRADA en m0.2.0: bajo el marco de gasto público (Vol II), la categoría B
+# se medía con el CSE de AgriMonitor (price-inclusive, NO presupuestario) y C no
+# tiene proxy. Ambas quedan como `no_data` hasta clasificación BOOST granular.
+# El CSE se reporta como OECD-PSE en el Capítulo 5. Por tanto NO se genera fig18b
+# (sería engañosa: serie vacía o basada en una medida que no es gasto público).
+message("[m0.2.0] fig18b OMITIDA: B (consumidor) y C (otros agentes) son no_data en el marco de gasto público. CSE → Cap. 5 (PSE).")
 
 # ----------------------------------------------------------------------------
 # Figura 18c — MAFAP categoría D (Apoyo general al sector ≈ GSSE)
@@ -157,7 +151,7 @@ save_figure(fig_bc, "fig18b_mafap_BC_consumidor_otros", height = 4.0)
 
 fig_d <- mafap %>%
   filter(!is.na(mafap_D_bob_2015), mafap_D_bob_2015 > 0) %>%
-  mutate(monto_mm = mafap_D_bob_2015 / 1e6) %>%
+  mutate(monto_mm = mafap_D_bob_2015/FX2015) %>%
   ggplot(aes(x = year, y = monto_mm)) +
   geom_area(fill = palette_mafap["D"], alpha = 0.7, color = palette_mafap["D"],
             linewidth = 0.6) +
@@ -165,9 +159,9 @@ fig_d <- mafap %>%
   scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
   labs(
     title    = "El apoyo general al sector (MAFAP D, bienes públicos) es la categoría clave para repurposing",
-    subtitle = "Bolivia, millones de BOB constantes 2015, 2006–2024",
-    x = NULL, y = "BOB mm 2015",
-    caption = "Fuente: IDB AgriMonitor 2024 (GSSE); cálculo propio sobre panel v12 [m0.1.0].\nNota: MAFAP D incluye D1 investigación (INIAF), D2-D4 extensión, D5 sanidad (SENASAG), D6 infraestructura sectorial, D7 almacenamiento, D8 marketing, D9 costos administrativos, D10 otros. Equivalente aproximado a GSSE OECD."
+    subtitle = "Bolivia, millones de USD constantes de 2015, 2006–2024",
+    x = NULL, y = "USD mm const. 2015",
+    caption = "Fuente: IDB AgriMonitor (GSSE); cálculo propio (Banco Mundial) sobre panel v12 [m0.2.0].\nNota: MAFAP D = apoyo general al sector (servicios públicos), proxy = GSSE OECD. Conceptualmente comprende I+D (INIAF), extensión, sanidad (SENASAG), infraestructura sectorial, etc.; la desagregación por subcategoría (D1–D10) requiere clasificación funcional BOOST granular y no se cuantifica en este panel agregado."
   ) +
   theme_aper_mafap()
 
@@ -179,54 +173,29 @@ save_figure(fig_d, "fig18c_mafap_D_apoyo_general", height = 4.0)
 
 fig_e <- mafap %>%
   filter(!is.na(mafap_E_bob_2015), mafap_E_bob_2015 > 0) %>%
-  mutate(monto_mm = mafap_E_bob_2015 / 1e6) %>%
+  mutate(monto_mm = mafap_E_bob_2015/FX2015) %>%
   ggplot(aes(x = year, y = monto_mm)) +
   geom_col(fill = palette_mafap["E"], width = 0.7) +
   scale_x_continuous(breaks = seq(1990, 2024, 5)) +
   scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
   labs(
     title    = "El gasto rural-soporte (MAFAP E) define la diferencia entre GAP narrow y full",
-    subtitle = "Bolivia, infraestructura rural municipal — millones de BOB constantes 2015, 2012–2023",
-    x = NULL, y = "BOB mm 2015",
-    caption = "Fuente: SIIF / Jubileo compilación municipal; cálculo propio sobre panel v12 [m0.1.0].\nNota: E1 educación rural, E2 salud rural, E3.1 caminos rurales, E3.2 agua y saneamiento, E3.3 electrificación. Cobertura 2012-2023 (limitación documentada en ESTADO_DE_DATOS.md). Categoría no incluida en MAFAP narrow."
+    subtitle = "Bolivia, infraestructura rural municipal — millones de USD constantes de 2015, 2012–2023",
+    x = NULL, y = "USD mm const. 2015",
+    caption = "Fuente: SIIF / Jubileo compilación municipal; cálculo propio (Banco Mundial) sobre panel v12 [m0.2.0].\nNota: E = soporte rural (infraestructura municipal). Cobertura solo 2012–2021 (limitación documentada en ESTADO_DE_DATOS.md). Categoría incluida en MAFAP full, no en narrow. Subcategorías (E1–E3) conceptuales, no cuantificadas en este panel."
   ) +
   theme_aper_mafap()
 
 save_figure(fig_e, "fig18d_mafap_E_rural_soporte", height = 4.0)
 
 # ----------------------------------------------------------------------------
-# Figura 18 summary — Composición MAFAP A-E apilada
+# Figura 18 summary — MOVIDA a 16_fig_mafap_publicexp.R (m0.2.0)
 # ----------------------------------------------------------------------------
-
-# Calcular shares relativos al narrow para % ; mantener E aparte
-df_summary <- df_long %>%
-  filter(!is.na(monto_mm), monto_mm > 0) %>%
-  mutate(categoria = factor(categoria, levels = c("A", "B", "C", "D", "E")))
-
-fig_summary <- df_summary %>%
-  ggplot(aes(x = year, y = monto_mm, fill = categoria)) +
-  geom_col(position = "stack", width = 0.7) +
-  scale_fill_manual(
-    values = palette_mafap[c("A", "B", "C", "D", "E")],
-    labels = c("A — Apoyo al productor",
-               "B — Consumidor",
-               "C — Otros agentes",
-               "D — Apoyo general (bienes públicos)",
-               "E — Rural-soporte (solo en GAP full)")
-  ) +
-  scale_x_continuous(breaks = seq(1990, 2024, 5)) +
-  scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
-  labs(
-    title    = "El gasto agrícola público boliviano bajo MAFAP: composición A–E, 2006–2024",
-    subtitle = "Millones de BOB constantes 2015. Diferencia narrow ↔ full = categoría E (rural-soporte)",
-    x = NULL, y = "BOB mm 2015",
-    caption = "Fuente: IDB AgriMonitor 2024 + BOOST + SIIF municipal; cálculo propio sobre panel v12 [m0.1.0].\nNota: Cifra MAFAP narrow = A + B + C + D (Maputo/CAADP). Cifra MAFAP full = narrow + E. Crosswalk con OECD-PSE en Apéndice D. Decisión de adopción dual: ADR-0009.\nCobertura: serie completa requiere SIIF municipal pre-2012 (gap documentado en 00_admin/ESTADO_DE_DATOS.md)."
-  ) +
-  theme_aper_mafap() +
-  theme(legend.position = "top",
-        legend.text = element_text(size = 8.5))
-
-save_figure(fig_summary, "fig18_summary_mafap_ABCDE", height = 4.5, width = 7.5)
+# La composición A–E apilada quedó obsoleta bajo el marco de gasto público:
+# A puede ser negativa (BT neto) y B/C son no_data, por lo que un stack A–E es
+# engañoso. La figura summary corregida (D+E apilados + A como línea neta) la
+# produce ahora `02_code/04_visualization/16_fig_mafap_publicexp.R`.
+message("[m0.2.0] fig18_summary se genera en 16_fig_mafap_publicexp.R (NO aquí, para no sobrescribir la versión corregida).")
 
 # ---- Cierre ----------------------------------------------------------------
 

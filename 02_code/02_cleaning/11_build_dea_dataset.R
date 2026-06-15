@@ -16,8 +16,9 @@
 
 library(data.table)
 
-root     <- "/Users/jcmunoz/Library/CloudStorage/OneDrive-UniversidadEAFIT/Projects/2026_WB_Bolivia"
-proc_dir <- file.path(root, "01_data/processed")
+# Reproducibilidad (invariante 7 / ADR-0016): rutas vía here::here(), no paths absolutos.
+source(here::here("02_code", "00_setup", "01_constants.R"))
+proc_dir <- DIR_DATA_PRO
 
 # ─── Cargar datasets ──────────────────────────────────────────────────────────
 panel_sub <- readRDS(file.path(proc_dir, "subnacional_panel.rds"))
