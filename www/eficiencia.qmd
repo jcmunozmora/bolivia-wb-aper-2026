@@ -6,14 +6,13 @@ subtitle: "DEA Simar-Wilson, panel de productividad e incidencia subnacional"
 ```{r}
 #| include: false
 suppressPackageStartupMessages({
-  library(data.table); library(ggplot2); library(scales); library(gt); library(fixest)
+  library(data.table); library(ggplot2); library(scales); library(gt)
 })
 here::i_am("www/eficiencia.qmd")   # ancla la raíz del proyecto (repo root) sin depender del cwd
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
 
 panel <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
-res   <- readRDS(here::here("01_data/processed/extended_regression_results.rds"))
 dea   <- readRDS(here::here("01_data/processed/dea_simar_wilson_results.rds"))
 
 # Paleta World Bank
@@ -127,33 +126,30 @@ La **precipitación** emerge como un determinante positivo y significativo (coef
 
 ![Intuición nivel/composición del gasto y eficiencia](`r fig("fig25_dea_gasto_intuicion")`)
 
-## Gasto y resultados — panel de productividad
+## Gasto y resultados — ¿el gasto se traduce en resultados?
 
-```{r}
-#| label: tbl-tfp-summary
-m1 <- res$m1; m2 <- res$m2; m3 <- res$m3
-data.table(
-  Modelo = c("M1: TFP ~ Inv", "M2: TFP ~ Inv + LC + tendencia", "M3: M2 + PSE"),
-  `Coef. Inv` = c(coef(m1)["ln_inv_agro"], coef(m2)["ln_inv_agro"], coef(m3)["ln_inv_agro"]),
-  `Coef. LC antrópica` = c(NA, coef(m2)["ln_lc_antrop"], coef(m3)["ln_lc_antrop"]),
-  `R² ajustado` = c(r2(m1, "ar2"), r2(m2, "ar2"), r2(m3, "ar2")),
-  `N` = c(nobs(m1), nobs(m2), nobs(m3))
-) |>
-  gt() |>
-  tab_header(title = md("**Determinantes de la TFP agrícola — estimación exploratoria**")) |>
-  fmt_number(columns = c("Coef. Inv", "Coef. LC antrópica", "R² ajustado"),
-             decimals = 3, dec_mark = ",", sep_mark = ".") |>
-  sub_missing(missing_text = "—") |>
-  tab_source_note(md("*feols(), variables en log, panel maestro v12. Resultados exploratorios — ver caveat.*")) |>
-  opt_table_outline(style = "none")
-```
+A nivel departamental, ¿el gasto agropecuario público se traduce en más productividad y menos pobreza? Un panel de los nueve departamentos por año, con efectos fijos de departamento y año, responde con **tres mensajes** (especificación e identificación fijadas en el ADR-0018; el detalle técnico vive en el Apéndice E del reporte). La identificación es **asociativa, no causal**, y descansa en nueve departamentos (pocos clústeres), por lo que la significancia se lee con cautela.
 
-::: {.callout-warning}
-## La asociación gasto–resultados no es robusta
+### 1 · El nivel del gasto no mueve los resultados
 
-Las regresiones panel con efectos fijos que vinculan el gasto agropecuario con la productividad (TFP) y con la pobreza **no arrojan una asociación robusta** a especificaciones alternativas. El "dividendo de pobreza" que aparecía en estimaciones preliminares resultó ser un artefacto de la fuente subnacional (Jubileo) y de la ventana 2012–2018; al recomponer el panel sobre la fuente canónica desaparece (decisión ADR-0017).
+Con el dato fiscal oficial más reciente —el gasto agropecuario municipal ejecutado del MEFP, 2016–2024—, la cantidad de gasto **no se asocia de forma estable** ni con la productividad de la tierra (producción por hectárea, INE) ni con la pobreza departamental, una vez descontadas las diferencias entre departamentos y los choques comunes de cada año. Coincide con el hallazgo F01: la inversión real se multiplicó por cerca de diez sin un avance equivalente de la productividad agregada.
 
-La lectura del reporte técnico es que **la efectividad del gasto está limitada por su composición y por rezagos de maduración, más que por su nivel**. Estos coeficientes se presentan como **exploratorios** y no sostienen una interpretación causal; la relación gasto-resultados permanece en consolidación hasta cerrar las corridas pendientes sobre el panel v12.
+![Asociación entre el nivel del gasto agropecuario y los resultados departamentales (panel FE depto + año, MEFP 2016–2024). Todos los coeficientes cruzan el cero.](`r fig("fig41_panel_fe_gasto_resultados")`)
+
+### 2 · La composición del gasto se desplazó
+
+El **apoyo directo a la producción pasó de 43 % a 63 %** del gasto agropecuario entre 2016 y 2024, mientras el **riego e infraestructura cayó de 27 % a 16 %** y la categoría de tierras y otros bajó de 15 % a 7 %. Los **servicios técnicos** —I+D, extensión y sanidad, los bienes públicos de mayor retorno social— se mantuvieron cerca del **14 %** en toda la serie, sin ganar terreno.
+
+![Composición del gasto agropecuario público por tipo de propósito, Bolivia 2016–2024 (% del gasto agropecuario)](`r fig("fig42_composicion_gasto_tipo")`)
+
+### 3 · La composición sí importa
+
+A igual nivel de gasto total, una mayor **participación de bienes públicos** (servicios técnicos: I+D, extensión, sanidad) se asocia con **menor pobreza departamental**: la asociación es negativa para la pobreza moderada y **negativa y estadísticamente significativa para la pobreza extrema**, mientras el nivel de gasto total —en el mismo modelo— sigue sin distinguirse de cero. En orden de magnitud, reasignar cerca de **10 puntos** del gasto hacia bienes públicos, manteniendo constante el gasto total, se asocia con alrededor de **2 puntos porcentuales menos de pobreza**.
+
+![Solo asignar más a bienes públicos se asocia con menor pobreza; los demás tipos de gasto no, 2016–2024](`r fig("fig44_betas_por_tipo")`)
+
+::: {.policy-box}
+**Implicación de política.** El margen de mejora no pasa por elevar el gasto total sino por **desplazar su composición hacia bienes públicos**. Es el sustento empírico directo del *repurposing* del capítulo de recomendaciones: reasignar, no necesariamente gastar más. Resultado descriptivo y asociativo (no causal), sensible a la ventana corta, a la colinealidad entre tipos de gasto y a la inferencia con pocos clústeres (ADR-0018).
 :::
 
 ## Equidad — distribución del gasto entre municipios
@@ -242,7 +238,7 @@ Los departamentos del occidente y los valles —**Chuquisaca (51 %), Potosí (47
 | Patrón dual (NRP) | Tasa soya/arroz, protege maíz/trigo | Política explícita de soberanía alimentaria |
 | DEA departamental | Media 0,60; Pando 0,85 … Potosí 0,27 | Gradiente geográfico nítido |
 | 2ª etapa DEA | Precipitación significativa (0,35) | Brecha en parte agroecológica, no solo de gestión |
-| Gasto → TFP/pobreza | Asociación no robusta (ADR-0017) | Problema de composición y rezagos, no de nivel |
+| Gasto: nivel vs composición | Nivel no mueve resultados; bienes públicos ↓ pobreza extrema (ADR-0018) | El margen está en reasignar, no en gastar más |
 | Focalización NBI | Correlación plana (ρ = 0,06, n.s.) | El gasto no llega donde más necesidad hay |
 | Incidencia | Chuquisaca/Potosí/La Paz 45–51 % | Asimetría territorial oriente–occidente |
 

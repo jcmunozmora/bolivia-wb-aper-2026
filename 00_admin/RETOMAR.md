@@ -1,7 +1,7 @@
 # Cómo retomar el proyecto — APER Bolivia 2026
 
 **Última sesión:** 2026-06-14 (sesión 24 — **rediseño World Bank institucional + realineación completa del sitio público `www/` al reporte final**; sitio renderizado end-to-end)
-**Estado global:** ✅ Datos consolidados · ✅ **Sitio público rediseñado (identidad BM) y alineado al reporte final** · ✅ Gobernanza centralizada · ✅ **MAFAP programático real (sesión 22, caso base 50/50) — pendiente firma TTL + decisión split EMAPA** · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **DEA Simar-Wilson real (sesión 21, ADR-0016)** · 🟡 **Composición municipal MEFP 2016–2024 en descarga (robot nocturno)** · 🔴 13 P0 abiertos · 🔴 Caps no promovibles a `reviewed` aún · 🟡 renv sin snapshot (paquetes DEA)
+**Estado global:** ✅ Datos consolidados · ✅ **Sitio público rediseñado (identidad BM) y alineado al reporte final** · ✅ Gobernanza centralizada · ✅ **MAFAP programático real (sesión 22, caso base 50/50) — pendiente firma TTL + decisión split EMAPA** · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **DEA Simar-Wilson real (sesión 21, ADR-0016)** · ✅ **Composición municipal MEFP 2016–2024 completa (2 940 JSON · 13 k filas · 3 figs MAFAP, sesión 23)** · 🔴 13 P0 abiertos · 🔴 Caps no promovibles a `reviewed` aún · 🟡 renv sin snapshot (paquetes DEA)
 
 ---
 
@@ -25,6 +25,8 @@
 **ADR requerido:** no.
 **Siguientes pasos:** (1) firmar TTL y publicar el docx en `recursos.qmd`; (2) `renv::snapshot()`; (3) construir la serie nacional pobreza/FIES; (4) traducción EN del sitio si se requiere paridad bilingüe.
 
+**Adenda (mismo día) — figuras del reporte + deck de resultados:** (a) el sitio usaba figuras viejas → se sincronizaron `fig07_tfp_latam_comparison` y `fig12_inversion_vs_tfp` (regeneradas) y se trajeron las nuevas del reporte `fig41_panel_fe_gasto_resultados`, `fig42_composicion_gasto_tipo`, `fig44_betas_por_tipo`; (b) se reescribió `eficiencia.qmd` §"Gasto y resultados" al **§5.4 del reporte (ADR-0018)**: tres mensajes (nivel no mueve resultados; composición se desplazó 43%→63%; composición sí importa — bienes públicos ↓ pobreza extrema, ~10 pts→~2 pp), con fig41/42/44; (c) **nuevo deck** `slides/2026-06-14_resultados/01_resultados_APER.qmd` (5 secciones, 12 figuras: DEA real, MAFAP, panel FE composición) publicado en el sitio (`www/slides.qmd` lo destaca). Render: las páginas afectadas + el deck → EXIT 0.
+
 ---
 
 ## Sesión 23 (2026-06-14) — Gasto agro municipal por actividad/programa hasta 2024 (MEFP)
@@ -40,16 +42,34 @@
 - Salida: `01_data/processed/gasto_agro_prog_muni_2016_2024.{rds,csv}` (+ agregados grupo/MAFAP).
 - `00_admin/PLAN_URGENTE_2024_datos_municipales.md` — bitácora completa.
 
-**Estado al cierre:** 230/2940 JSON bajados. **El endpoint por-entidad se degradó temporalmente** (timeout) tras intentar acelerar con descargas paralelas — error de estrategia: el servidor MEFP no tolera concurrencia (~50% fallos) y las queries pesadas colgadas saturaron su BD. Confirmado que NO es ban de IP (el dominio y endpoints livianos/nacional responden); es la query por-entidad municipal, degradada. El robot nocturno la completará cuando el servidor reviva (probable en horas de bajo tráfico).
+**Estado al cierre (DESCARGA COMPLETA):** **2 940/2 940 JSON** descargados (el endpoint se degradó a mitad por intentar paralelizar — el servidor MEFP no tolera concurrencia; se revirtió a secuencial fiable con `nohup`, 0,3 s de delay, ~70 min, 2 fallos). `51_parse` ejecutado → `gasto_agro_prog_muni_2016_2024.rds` = **13 017 filas** (municipio × actividad × año), 338 municipios, 2016–2024. **QA reconciliación 99,75%** vs total por entidad; 13 casos borde (todos 2016 Tarija, 0,25% del total). Top municipios 2024 coinciden exacto con el Cap. 4 (Sucre 1,81 / Caraparí 1,56 / Quillacollo 1,54 …).
 
-**Provenance:** API MEFP → 49_download → 51_parse → `gasto_agro_prog_muni_2016_2024.rds` → Cap. 4. Decisión: ADR-0015.
+**Tipo de cambio:** 🔴 ROJO (incorpora una fuente y dimensión nueva al pipeline; ADR-0015). **No publicar sin firma TTL (invariante 9).**
+
+**Productos analíticos nuevos (3 figuras MAFAP municipales + 1 párrafo de análisis):**
+- `02_code/04_visualization/34_fig_mafap_muni_evolucion.R` → `fig_mafap_muni_evolucion` — composición municipal por propósito MAFAP 2016–2024 (área 100%). Hallazgo: el apoyo a la producción (A) pasó de **33% a 53%** y cruzó a los bienes públicos (D, de **67% a 47%**) en 2024; el riego cayó de ~58% (2019) a 28% (2024).
+- `02_code/04_visualization/35_fig_mafap_muni_departamento.R` → `fig_mafap_muni_departamento` — composición por departamento (barra apilada). Riego domina Andes/valles (Potosí 64%, Chuquisaca 63%, Cochabamba 58%, Oruro 58%); apoyo a la producción domina tierras bajas (Pando 61%, Santa Cruz 47%); Beni atípico (servicios técnicos 61%).
+- `02_code/04_visualization/36_fig_focalizacion_tipo_pobreza.R` → `fig_focalizacion_tipo_pobreza` — focalización por tipo vs NBI rural (Censo 2024), small multiples con highlight + gray-out.
+- Párrafos insertados en `04_report/04_spending_organization.qmd`: (1) evolución temporal MAFAP, (2) corte departamental MAFAP, (3) párrafo de zona agroproductiva **actualizado** (declara fuente Jubileo 2012–2021, sin códigos p10/p12/p18). Redacción vía `aper-writer` (anti-IA 1/10).
+
+**Hallazgo candidato (NO numerar como F-NN hasta validación humana):** ningún tipo de gasto agro municipal se focaliza en la pobreza rural; las correlaciones de Spearman son nulas para apoyo a la producción (ρ=−0,02; p=0,78), riego (−0,06; p=0,38) y tierras (−0,09; p=0,23). **Excepción significativa:** servicios técnicos (I+D, extensión, sanidad) ρ=**−0,22; p=0,0007 (sig. 1%)** — único instrumento con asociación, y es **regresiva** (el gasto de mayor retorno social llega menos a los municipios más pobres). Lectura no causal; compatible con menor capacidad de ejecución (conecta con F07).
+
+**Cifras tocadas (trazables a `gasto_agro_prog_muni_2016_2024.rds` × `pobreza_municipal_nbi.rds`):** todas verificadas en sesión; el `aper-writer` corrigió una afirmación errónea mía ("ninguna significativa" → servicios técnicos sí lo es, p=0,0007).
+
+**Provenance:** API MEFP `acteco-treemap` → `49_download` → `51_parse` → `gasto_agro_prog_muni_2016_2024.rds` → figuras 34/35/36 → Cap. 4. Decisión: ADR-0015.
+
+**Pendientes / riesgos:**
+- **Colisión de numeración**: las figuras 34/35 chocan con scripts de la sesión 24 (`34_fig_composicion_pobreza.R`, `35_fig_betas_por_tipo.R`); renumerar las mías a 37/38/39 (no rompe referencias — las figuras se llaman por nombre de salida, no por número).
+- Firma TTL del ADR-0015 (gasto sensible).
+- Conectar las 3 figuras nuevas al `_quarto.yml`/render y verificar `figp()` resuelve los PNG.
+- 13 casos borde 2016 Tarija (gasto agregado sin desglose fino a actividad) — documentado, no bloqueante.
+- Caveat declarado en prosa: taxonomía acteco (actividad económica) ≠ programa presupuestario del POA; convergen vía MAFAP. Gasto del GAM (devengado), no del nivel central ni departamental.
 
 **Siguientes pasos:**
-1. Revisar `00_admin/auditorias/descarga_muni_nocturna.log` — si completó, los datos están en `gasto_agro_prog_muni_2016_2024.rds`.
-2. Si quedó parcial: re-correr `Rscript 02_code/01_data_collection/49_download_mefp_muni_programatico.R` (salta cache) hasta completar, luego `51_parse`.
-3. Construir figura de **composición municipal por propósito/MAFAP 2016–2024** para el Cap. 4 (extiende la de Jubileo 2012–2021).
-4. Caveat a declarar: taxonomía acteco (actividad económica) ≠ programa presupuestario del POA; convergen vía MAFAP. Gasto del GAM, no del nivel central.
-5. Firma TTL del ADR-0015.
+1. Renumerar figuras 34/35→37/38 para resolver colisión con sesión 24.
+2. Render local del Cap. 4 con las 3 figuras nuevas + 3 párrafos.
+3. Decidir si el hallazgo de focalización por tipo se promueve a finding (F09 candidato) tras validación humana.
+4. Firma TTL del ADR-0015.
 
 ---
 

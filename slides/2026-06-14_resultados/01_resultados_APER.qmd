@@ -1,0 +1,291 @@
+---
+title: "APER Bolivia 2026 — Resultados"
+subtitle: "Hallazgos del Agricultural Public Expenditure Review · Banco Mundial"
+author:
+  - name: "Juan Carlos Muñoz-Mora"
+    affiliation: "Universidad EAFIT — Consultor Banco Mundial Bolivia"
+date: "2026-06-14"
+date-format: "D MMMM YYYY"
+lang: es
+format:
+  revealjs:
+    theme: [dark, ../wb_slides.scss]
+    slide-number: c/t
+    show-slide-number: all
+    progress: true
+    chalkboard: false
+    history: false
+    transition: fade
+    transition-speed: fast
+    width: 1280
+    height: 760
+    margin: 0.06
+    fig-align: center
+    embed-resources: true
+    incremental: false
+    footer: "APER Bolivia 2026 · Banco Mundial · Universidad EAFIT"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Hoja de ruta
+
+::: {.columns}
+::: {.column}
+**1 · El sector**
+
+Desempeño productivo, frontera agrícola y bienestar rural.
+
+**2 · El gasto**
+
+Magnitud, meta de Maputo, composición MAFAP y sustitución por crédito.
+
+**3 · Eficiencia técnica**
+
+Frontera departamental con DEA Simar-Wilson.
+:::
+::: {.column}
+**4 · Gasto y resultados**
+
+¿El gasto se traduce en productividad y menos pobreza?
+
+**5 · Implicación de política**
+
+El caso del *repurposing*: reasignar, no necesariamente gastar más.
+:::
+:::
+
+::: {.source}
+Cifras del panel maestro v12 (1990–2024) y del reporte técnico APER 2026. Identificación asociativa, no causal.
+:::
+
+# 1 · El sector {.section-header}
+
+## El acertijo central: gasto que sube, productividad que no
+
+::: {.columns}
+::: {.column width="42%"}
+::: {.metric}
+::: {.metric-label}Inversión pública agro 2000–2015:::
+::: {.metric-big}×10:::
+:::
+
+::: {.metric}
+::: {.metric-label}Productividad total de factores (mismo período):::
+::: {.metric-big}+30 %:::
+:::
+
+La inversión se multiplicó por diez; la productividad apenas avanzó (**hallazgo F01**).
+:::
+::: {.column width="58%"}
+![Inversión pública agropecuaria frente a TFP, Bolivia 1990–2023](../../05_outputs/figures/fig12_inversion_vs_tfp.png){width="100%"}
+:::
+:::
+
+## Bolivia crece más lento que sus pares andinos
+
+![Productividad total de factores — Bolivia frente a LAC](../../05_outputs/figures/fig07_tfp_latam_comparison.png){width="78%"}
+
+::: {.source}
+USDA-ERS, índice de TFP agropecuario. La brecha con Perú, Colombia y Ecuador es estructural.
+:::
+
+## Frontera que avanza, bienestar que se revierte
+
+::: {.columns}
+::: {.column width="38%"}
+::: {.metric}
+::: {.metric-label}Cobertura natural perdida 1985–2024:::
+::: {.metric-big}9,4 M ha:::
+:::
+<span class="pill pill-new">64 % en Santa Cruz</span> · **F08**
+
+::: {.metric}
+::: {.metric-label}Inseguridad alimentaria (FIES) rural 2024:::
+::: {.metric-big}74 %:::
+:::
+Era 49 % en 2019. Pobreza rural revirtió a **45 %** (2024) · **F06**
+:::
+::: {.column width="62%"}
+![Cambio de cobertura del suelo por departamento, 1985–2024](../../05_outputs/figures/fig35_cambio_cobertura_dept.png){width="100%"}
+:::
+:::
+
+# 2 · El gasto {.section-header}
+
+## Bolivia nunca alcanzó la meta de Maputo
+
+::: {.columns}
+::: {.column width="45%"}
+::: {.metric}
+::: {.metric-label}Máximo histórico (1990) sobre gasto público total:::
+::: {.metric-big}3,48 %:::
+:::
+
+La meta del **10 %** nunca se logró; el promedio 2000–2007 fue de **1,87 %** (**hallazgo F04**).
+
+::: {.metric}
+::: {.metric-label}Apoyo al productor (PSE) 2018 — 5° en LAC:::
+::: {.metric-big}5,8 %:::
+:::
+Por encima: Brasil, Chile, Colombia, Argentina · **F02**
+:::
+::: {.column width="55%"}
+![Tasa de apoyo al productor (%PSE): Bolivia frente a LAC](../../05_outputs/figures/fig15_psep_bolivia_vs_lac.png){width="100%"}
+:::
+:::
+
+## Composición MAFAP: bienes públicos mayoritarios, pero en retroceso
+
+::: {.columns}
+::: {.column width="40%"}
+::: {.metric}
+::: {.metric-label}Bienes públicos (D) acum. 2016–2024:::
+::: {.metric-big}56 %:::
+:::
+Riego 27 %, I+D, sanidad, extensión.
+
+La participación de bienes públicos **cayó de 64 % (2016) a 45 % (2024)**; EMAPA subió de 25 % a 42 %. Sustitución de categorías, no expansión.
+:::
+::: {.column width="60%"}
+![Composición del gasto agropecuario por destinatario (MAFAP A–E), 2016–2024](../../05_outputs/figures/png/fig18_summary_mafap_ABCDE.png){width="100%"}
+:::
+:::
+
+## Del gasto fiscal al crédito subsidiado (Ley 393)
+
+::: {.columns}
+::: {.column width="40%"}
+::: {.metric}
+::: {.metric-label}Cartera agro real 2010–2024 (USD const. 2015):::
+::: {.metric-big}×7,1:::
+:::
+USD 385 → 2 725 M. El factor nominal de ×11,7 incluye inflación.
+
+La inversión pública cayó de **0,97 % del PIB (2015) a 0,38 % (2021)** mientras el crédito subía · **F05**.
+:::
+::: {.column width="60%"}
+![Cartera bancaria agropecuaria, 2010–2024](../../05_outputs/figures/png/fig_cartera_agro_2010_2024.png){width="100%"}
+:::
+:::
+
+# 3 · Eficiencia técnica {.section-header}
+
+## La frontera departamental: un gradiente geográfico nítido
+
+::: {.columns}
+::: {.column width="40%"}
+::: {.metric}
+::: {.metric-label}Eficiencia media corregida (DEA Simar-Wilson):::
+::: {.metric-big}0,60:::
+:::
+Rango 0,22–0,89.
+
+Tierras bajas y valles cerca de la frontera (**Pando 0,85**); altiplano con las mayores brechas (**Potosí 0,27**). **Ningún departamento del altiplano** alcanzó la frontera.
+
+La 2ª etapa (truncada) identifica la **precipitación** como determinante: parte de la brecha es agroecológica, no solo de gestión.
+:::
+::: {.column width="60%"}
+![Eficiencia departamental — mapa de calor Simar-Wilson, 2012–2020](../../05_outputs/figures/fig24_dea_heatmap_simar_wilson.png){width="100%"}
+:::
+:::
+
+# 4 · Gasto y resultados {.section-header}
+
+## ¿El gasto se traduce en resultados? Tres mensajes
+
+::: {.columns}
+::: {.column}
+**1 · El nivel no mueve los resultados**
+
+A igual departamento, más gasto **no** se asocia de forma estable ni con la productividad de la tierra ni con la pobreza.
+
+**2 · La composición se desplazó**
+
+Apoyo directo a la producción **43 % → 63 %**; riego 27 % → 16 %; servicios técnicos estancados en ~14 %.
+:::
+::: {.column}
+**3 · La composición sí importa**
+
+A igual gasto total, más **bienes públicos** se asocia con **menos pobreza** (significativo en pobreza extrema).
+
+::: {.callout}
+Reasignar ~10 puntos del gasto hacia bienes públicos ≈ **2 puntos porcentuales menos de pobreza**.
+:::
+:::
+:::
+
+::: {.source}
+Panel FE departamento × año, gasto MEFP 2016–2024 e INE. Especificación: ADR-0018. Asociativo, no causal; 9 clústeres.
+:::
+
+## Mensaje 1 — el nivel del gasto no mueve los resultados
+
+![Asociación entre el nivel del gasto agropecuario y los resultados departamentales (panel FE, 2016–2024). Todos los coeficientes cruzan el cero.](../../05_outputs/figures/fig41_panel_fe_gasto_resultados.png){width="74%"}
+
+## Mensaje 2 — la composición se desplazó
+
+![Composición del gasto agropecuario público por tipo de propósito, 2016–2024](../../05_outputs/figures/fig42_composicion_gasto_tipo.png){width="74%"}
+
+## Mensaje 3 — solo los bienes públicos se asocian con menos pobreza
+
+![Asociación de cada tipo de gasto con la pobreza departamental, controlando el gasto total (2016–2024)](../../05_outputs/figures/fig44_betas_por_tipo.png){width="74%"}
+
+# 5 · Implicación de política {.section-header}
+
+## El margen está en reasignar, no en gastar más
+
+::: {.columns}
+::: {.column}
+**La evidencia converge:**
+
+- El **nivel** del gasto no mueve productividad ni pobreza (F01, §5.4).
+- La **composición** sí: bienes públicos → menos pobreza.
+- Los bienes públicos de mayor retorno (I+D, extensión, sanidad) están **estancados en ~14 %** y en retroceso relativo.
+- El patrón dual de protección (NRP) grava exportables y protege alimentarios (F03).
+:::
+::: {.column}
+**El caso del *repurposing*:**
+
+A techo fiscal constante, desplazar la composición hacia bienes públicos puede mejorar resultados **sin gastar más**.
+
+<span class="pill pill-new">Reasignar</span> <span class="pill pill-same">No necesariamente más gasto</span>
+
+::: {.source}
+Las opciones técnicas cuantificadas (S01–S03) se desarrollan en el capítulo de recomendaciones del reporte.
+:::
+:::
+:::
+
+## Síntesis — ocho hallazgos
+
+::: {.columns}
+::: {.column}
+- **F01** Inversión ×10, TFP +30 %
+- **F02** PSE 5,8 % (2018), 5° en LAC
+- **F03** Patrón dual NRP (soya −37 %, maíz +46 %)
+- **F04** Maputo nunca alcanzado (máx 3,48 %)
+:::
+::: {.column}
+- **F05** Crédito ×7,1 real sustituye inversión
+- **F06** Pobreza rural 45 %; FIES 49 → 74 %
+- **F07** Ejecución subnacional limitada
+- **F08** Frontera 9,4 M ha, 64 % Santa Cruz
+:::
+:::
+
+::: {.callout-important}
+El nivel del gasto no es el problema; **su composición** sí lo es. El repurposing hacia bienes públicos es el margen de mejora.
+:::
+
+## Gracias
+
+**APER Bolivia 2026** · Agricultural Public Expenditure Review
+
+Banco Mundial · Universidad EAFIT
+
+::: {.source}
+Sitio del proyecto: jcmunozmora.github.io/bolivia-wb-aper-2026 · Reproducible desde el panel maestro v12.
+:::

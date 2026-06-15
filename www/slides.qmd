@@ -7,6 +7,41 @@ subtitle: "Decks utilizados en sesiones del proyecto"
 Cada presentación se conserva en su versión original (HTML autocontenido, sin dependencias externas) para trazabilidad de qué se mostró, cuándo y a quién. La fuente Quarto está en el repositorio.
 :::
 
+## Resultados del APER 2026 — 14 de junio de 2026
+
+Deck de **hallazgos finales** con los gráficos y resultados actualizados del reporte: desempeño del sector, composición MAFAP del gasto, eficiencia DEA Simar-Wilson y la relación gasto–resultados (el nivel no mueve los resultados, la composición sí).
+
+::: {.callout-note}
+## Cómo navegar el deck embebido
+**Espacio / ↓** siguiente · **↑** previa · **Esc** vista panorámica · **F** pantalla completa.
+:::
+
+::: {.column-screen-inset}
+
+```{=html}
+<div style="position: relative; width: 100%; padding-bottom: 56.25%; max-width: 1400px; margin: 1.5rem auto; border: 1px solid #E3E7EB; background: #002244;">
+  <iframe
+    src="downloads/slides/2026-06-14_resultados_APER.html"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+    allowfullscreen
+    title="APER Bolivia 2026 — Resultados">
+  </iframe>
+</div>
+```
+
+:::
+
+[Abrir HTML interactivo en pestaña nueva](downloads/slides/2026-06-14_resultados_APER.html){.download-btn .primary target="_blank"}
+[Ver fuente Quarto en GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/slides/2026-06-14_resultados/01_resultados_APER.qmd){.download-btn}
+
+### Hoja de ruta del deck
+
+1. **El sector** — acertijo inversión ×10 / TFP +30 %, TFP vs LAC, frontera 9,4 M ha, pobreza/FIES.
+2. **El gasto** — meta de Maputo (3,48 %), PSE 5,8 % (2018), composición MAFAP (D 56 % → 45 %), crédito ×7,1 real.
+3. **Eficiencia técnica** — DEA Simar-Wilson (media 0,60; gradiente Pando→Potosí; precipitación).
+4. **Gasto y resultados** — tres mensajes: el nivel no mueve, la composición se desplazó (43 % → 63 %), la composición sí importa.
+5. **Implicación de política** — el *repurposing*: reasignar, no necesariamente gastar más; síntesis de los ocho hallazgos.
+
 ## Kickoff con el Banco Mundial — 27 de abril de 2026
 
 Presentación inicial de los avances de la actualización del APER. Repasa el reporte original (WB 2011), el esfuerzo de datos consolidado (124 datasets, 35 años, 309 K personas en encuestas) y las cinco grandes adiciones metodológicas: PSE/GSSE OECD, DEA con bootstrap, crédito agropecuario, clima y uso del suelo, microdatos de hogares y UPAs.
@@ -75,9 +110,10 @@ Presentación inicial de los avances de la actualización del APER. Repasa el re
 
 ## Inventario de presentaciones
 
-| Fecha | Evento | Audiencia | Láminas | Formatos |
-|-------|--------|-----------|:------:|----------|
-| 2026-04-27 | Kickoff BM | Banco Mundial Bolivia | 20 | [HTML](downloads/slides/2026-04-27_kickoff_BM.html) · [PDF](downloads/slides/2026-04-27_kickoff_BM.pdf) |
+| Fecha | Evento | Audiencia | Tema | Formatos |
+|-------|--------|-----------|------|----------|
+| 2026-06-14 | Resultados APER 2026 | Banco Mundial / MEFP | Hallazgos finales | [HTML](downloads/slides/2026-06-14_resultados_APER.html) |
+| 2026-04-27 | Kickoff BM | Banco Mundial Bolivia | Avances iniciales | [HTML](downloads/slides/2026-04-27_kickoff_BM.html) · [PDF](downloads/slides/2026-04-27_kickoff_BM.pdf) |
 
 ## Convenciones del repositorio de slides
 
