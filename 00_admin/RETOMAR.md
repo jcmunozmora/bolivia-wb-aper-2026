@@ -1,7 +1,75 @@
 # Cómo retomar el proyecto — APER Bolivia 2026
 
-**Última sesión:** 2026-06-14 (sesión 25 — **Zotero grupo + 9 referencias nuevas + auditoría duplicados**)
-**Estado global:** ✅ Datos consolidados · ✅ **Sitio público rediseñado (identidad BM) y alineado al reporte final** · ✅ Gobernanza centralizada · ✅ **MAFAP programático real (sesión 22, caso base 50/50) — pendiente firma TTL + decisión split EMAPA** · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas + 9 nuevas en Zotero sin fijar citekeys) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **DEA Simar-Wilson real (sesión 21, ADR-0016)** · ✅ **Composición municipal MEFP 2016–2024 completa (2 940 JSON · 13 k filas · 3 figs MAFAP, sesión 23)** · 🔴 13 P0 abiertos · 🔴 Caps no promovibles a `reviewed` aún · 🟡 renv sin snapshot (paquetes DEA) · 🟡 Zotero: 9 refs nuevas sin reconciliar a `.bib` + citekeys pendientes
+**Última sesión:** 2026-06-15 (sesión 27 — **Deck de resultados + alineación de figuras del sitio público** · ⚠️ **cifras de composición §5.4 a corregir, ver abajo**)
+**Estado global:** ✅ Datos consolidados · ✅ **Sitio público rediseñado (identidad BM) y alineado al reporte final** · ✅ Gobernanza centralizada · ✅ **MAFAP programático real (sesión 22, caso base 50/50) — pendiente firma TTL + decisión split EMAPA** · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas + 9 nuevas en Zotero sin fijar citekeys) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **DEA Simar-Wilson real (sesión 21, ADR-0016)** · ✅ **Composición municipal MEFP 2016–2024 completa (2 940 JSON · 13 k filas · 3 figs MAFAP, sesión 23)** · 🔴 **Word final NO apto (auditoría sesión 26: placeholders + S01–S03 sin cuantificar + bib incompleta + cifra falsa §5.4 + §6.4 faltante)** · 🔴 13 P0 abiertos · 🔴 Caps no promovibles a `reviewed` aún · 🟡 renv sin snapshot (paquetes DEA) · 🟡 Zotero: 9 refs nuevas sin reconciliar a `.bib` + citekeys pendientes
+
+---
+
+## Sesión 27 (2026-06-15) — Deck de resultados + alineación de figuras del sitio público
+
+**Tipo de cambio:** 🟡 amarillo (deck nuevo + figuras del sitio; sin cambio de metodología/panel). **⚠️ propagó cifras a corregir — ver Cifras tocadas.**
+**Archivos modificados:** `www/eficiencia.qmd`, `www/slides.qmd`, figuras (`fig07/12/41/42/44`), deck nuevo `slides/2026-06-14_resultados/`, `docs/` re-render. Commits: `c0666db`, `1ff4cbf`, `a835671`, `ad774d3`, `b6b6c10` (pusheados a `main`).
+**Tests ejecutados:** `quarto render` de las 11 páginas + el deck → EXIT 0 (entorno ds R + `RENV_CONFIG_AUTOLOADER_ENABLED=FALSE` + `here::i_am`); carga RDS de los chunks reescritos.
+**ADR requerido:** no.
+
+### Qué se hizo
+1. Reescrita la sección §"Gasto y resultados" de `eficiencia.qmd` al §5.4 (ADR-0018): 3 mensajes con `fig41/42/44`.
+2. Sincronizadas figuras viejas del sitio (`fig07`, `fig12`) + traídas las nuevas del reporte (`fig41/42/44`).
+3. **Deck nuevo** `slides/2026-06-14_resultados/01_resultados_APER.qmd` (5 secciones, 12 figuras: DEA real, MAFAP Figura 2.8, panel FE) destacado en `www/slides.qmd`. Corregido bug de fenced-divs inline en los `.metric`.
+4. Slide de composición usa la **Figura 2.8** (`fig_composicion_proposito_agro`). Atribución del deck → solo "Banco Mundial".
+
+### Cifras tocadas (con trazabilidad)
+- 🔴 **El sitio (`eficiencia.qmd` §5.4) y el deck heredaron del texto §5.4 del reporte la composición FALSA "apoyo 43→63 / riego 27→16 / técnicos ~14"** (misma que detectó la sesión 26). Correcto, computado de `panel_fe_by_type_results.rds`: **apoyo 33→51, riego 39→29, técnicos 17→13, tierras 11→7**. La figura `fig42_composicion_gasto_tipo` codifica la cifra falsa (su caption dice 43→63).
+- OK verificadas: composición→pobreza extrema **−17,8 pp (p=0,019)**; DEA media 0,60; crédito ×7,1 real.
+
+### Hallazgos afectados: ninguno editado.
+### Capítulos del book: ninguno (solo sitio/slides).
+### Slides / web: deck nuevo + `eficiencia.qmd`/`slides.qmd` + 5 figuras. **LIVE en GitHub Pages.**
+### Panel / metodología: v12 / m0.1 (sin cambio).
+### MEFP handoff: ninguno directo.
+
+### Riesgos pendientes
+- 🔴 **PRIORIDAD: corregir la composición §5.4 (43→63 → 33→51 etc.) en `eficiencia.qmd` y en el deck, y regenerar/sustituir `fig42` — están LIVE en el sitio público y en los slides.** (Misma corrección que el parche de sesión 26 para el Word.)
+- `renv` sin snapshot (paquetes DEA) para re-render reproducible.
+
+### Siguientes pasos
+1. Corregir a **apoyo 33→51 / riego 39→29 / técnicos 17→13 / tierras 11→7** en sitio + deck; regenerar `fig42` desde `panel_fe_by_type_results.rds`; re-render + re-push.
+2. Coordinar con sesión 26 (mismo fix en el `.qmd` del reporte) para no divergir.
+
+---
+
+## Sesión 26 (2026-06-15) — Auditoría /aper-audit del Word final + revisión Cap. 6
+
+**Tipo de cambio:** 🟡 amarillo (2 documentos de cambios nuevos; no se editaron cifras/hallazgos/panel/.qmd del reporte)
+**Archivos modificados:** 2 nuevos en `06_Final_Report/` + memoria de proyecto (fuera del repo). Nota: `.agent/04_HALLAZGOS.md` figura `M` en git pero **no es de esta sesión** (venía del status inicial).
+**Tests ejecutados:** ninguno (auditoría read-only; subagentes leyeron RDS vía R)
+**ADR requerido:** no
+
+### Qué se hizo
+1. Auditoría completa del Word `APER2026_Bolivia_20260614.docx` → veredicto **🔴 FAIL** (consistencia + trazabilidad + citas). Producto: **`06_Final_Report/CAMBIOS_AUDITORIA_20260614.md`** (parches C1–C6, T1–T4, B1–B3 + Anexo A trazabilidad + Anexo B citas).
+2. **Cifra falsa detectada:** composición §5.4 (apoyo 43→63 / riego 27→16 / técnicos ~14) NO sale del RDS; correcto: **apoyo 33→51, riego 39→29, técnicos 17→13, tierras 11→7** (`panel_fe_by_type_results.rds`).
+3. **Verificado OK (no tocar):** composición→pobreza BT3 −17,8 pp (p=0,019) / BT2 −19,0 (p=0,085); crédito real ×7,1 / nominal ×11,7; DEA 0,60 (input, bias-corrected, 2012–2020).
+4. Citas: "7–15×" mal atribuido a Mogues 2012; elasticidades 0,1–0,3 de Goyal-Nash son de África (no LAC); **bibliografía del Word incompleta (solo caps I–II)**; orphans Hansen/MapBiomas en `.bib` (existen en Zotero, sin reconciliar — ver sesión 25).
+5. Revisión Cap. 6 → **`06_Final_Report/CAMBIOS_CAP6_RECOMENDACIONES_20260614.md`** (R1–R9): integrar evidencia composición→pobreza en Mensaje 1; anclar S01 ex-ante verificado (costo fiscal al STC); limpiar TODO_TRACE; **restaurar §6.4 faltante en el render**. El `.qmd` fuente está más limpio/completo que el Word.
+6. Corregida memoria `panel-fe-gasto-outcomes-no-robusto` (contenía las cifras falsas 43→63 que se filtraron al docx) + matiz: composición-share SÍ significativa aunque el nivel no.
+
+### Cifras tocadas: ninguna aplicada al reporte; correcciones **documentadas, no editadas**.
+### Hallazgos afectados: ninguno editado; **propuesto F09** (composición→pobreza) — pendiente de crear.
+### Capítulos del book afectados: ninguno editado; CAMBIOS para `04_report/06_recommendations.qmd` (sin aplicar).
+### Slides / web: ninguna.
+### Panel / metodología: v12 (sin cambio) · m0.1 (sin cambio).
+### MEFP handoff: el Word final **NO es apto aún** (placeholders, S01–S03 sin cuantificar, bib incompleta, §6.4 faltante, cifra falsa §5.4).
+
+### Riesgos pendientes
+- La cifra falsa de composición §5.4 debe corregirse antes de circular el documento.
+- Word render desincronizado del `.qmd` (más viejo + sin §6.4) → recomendado **re-renderizar**, no parchear a mano.
+- F09 (composición→pobreza) sin registrar en HALLAZGOS pese a ser la base del repurposing.
+
+### Siguientes pasos
+1. Aplicar `CAMBIOS_AUDITORIA` + `CAMBIOS_CAP6` (preferible en el `.qmd` y re-render).
+2. Registrar F09 (composición→pobreza) en `04_HALLAZGOS.md` (cierra el claim del Mensaje 1).
+3. Re-correr `/aper-audit` sobre el `.docx` regenerado.
+4. (pipeline) Materializar RDS de cartera BCB; crear fichas Searchinger/Laborde; reconciliar Hansen/MapBiomas a `.bib`.
 
 ---
 
