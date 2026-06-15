@@ -1,7 +1,49 @@
 # Cómo retomar el proyecto — APER Bolivia 2026
 
-**Última sesión:** 2026-06-14 (sesión 24 — **rediseño World Bank institucional + realineación completa del sitio público `www/` al reporte final**; sitio renderizado end-to-end)
-**Estado global:** ✅ Datos consolidados · ✅ **Sitio público rediseñado (identidad BM) y alineado al reporte final** · ✅ Gobernanza centralizada · ✅ **MAFAP programático real (sesión 22, caso base 50/50) — pendiente firma TTL + decisión split EMAPA** · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **DEA Simar-Wilson real (sesión 21, ADR-0016)** · ✅ **Composición municipal MEFP 2016–2024 completa (2 940 JSON · 13 k filas · 3 figs MAFAP, sesión 23)** · 🔴 13 P0 abiertos · 🔴 Caps no promovibles a `reviewed` aún · 🟡 renv sin snapshot (paquetes DEA)
+**Última sesión:** 2026-06-14 (sesión 25 — **Zotero grupo + 9 referencias nuevas + auditoría duplicados**)
+**Estado global:** ✅ Datos consolidados · ✅ **Sitio público rediseñado (identidad BM) y alineado al reporte final** · ✅ Gobernanza centralizada · ✅ **MAFAP programático real (sesión 22, caso base 50/50) — pendiente firma TTL + decisión split EMAPA** · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas + 9 nuevas en Zotero sin fijar citekeys) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **DEA Simar-Wilson real (sesión 21, ADR-0016)** · ✅ **Composición municipal MEFP 2016–2024 completa (2 940 JSON · 13 k filas · 3 figs MAFAP, sesión 23)** · 🔴 13 P0 abiertos · 🔴 Caps no promovibles a `reviewed` aún · 🟡 renv sin snapshot (paquetes DEA) · 🟡 Zotero: 9 refs nuevas sin reconciliar a `.bib` + citekeys pendientes
+
+---
+
+## Sesión 25 (2026-06-14) — MCP Zotero grupo + 9 referencias nuevas + auditoría duplicados
+
+**Objetivo:** configurar Zotero como fuente upstream canónica de metadata bibliográfica (ADR-0013) y detectar/resolver duplicados en el grupo para limpiar antes de reconciliar con `references_master.bib`.
+
+**Productos:**
+- **`.mcp.json`** — configura MCP `zotero-mcp` en scope proyecto, apunta a grupo `WB-APER-Bolivia` (6586554) vía API local (`ZOTERO_LOCAL=true`). Sin API key (seguro). Reemplaza la lectura de librería personal.
+- **ADR-0013** — declara Zotero grupo como upstream de `references_master.bib`. Zotero aporta metadata limpia; auditoría (green/yellow/red) sigue viviendo en ficha `.md` (gate §13B intacto). No automatiza export (futuro). Citekey = llave de empalme entre capas (Zotero → master → report → `.qmd`).
+- **`00_admin/auditorias/2026-06-14_zotero_duplicados_calidad.md`** — análisis completo de duplicados: 10 grupos detectados (5 por DOI idéntico, 5 por título normalizado). Recomendaciones de merge para 8 casos confirmados; 2 ambiguos con decisión pendiente (Colque cross-type journal/book, Mogues preprint 2008 vs publicado 2011). Calidad: 15 refs sin DOI — 6 confirman DOI en CrossRef; 13 `journalArticle` legítimamente sin DOI (revistas pre-digitales, documentos locales).
+- **`03_literature/README.md` §6 actualizado** — flujo de incorporación ahora arranca en Zotero como paso 2. Auditoría sigue siendo autoridad de citabilidad.
+
+**Referencias nuevas cargadas a Zotero grupo (9 ítems, sin duplicar):**
+1. `D3G3GADU` — Constitución Política del Estado Plurinacional de Bolivia (statute, 2009-02-07)
+2. `WJSLGLFS` — Ley N.º 1178 de Administración y Control Gubernamentales / SAFCO (statute, 1990-07-20)
+3. `BKBHITSU` — Ley N.º 777 del Sistema de Planificación Integral del Estado / SPIE (statute, 2016-01-21)
+4. `ZBUN6IU9` — Ley N.º 031 Marco de Autonomías y Descentralización «Andrés Ibáñez» (statute, 2010-07-19)
+5. `F43Q8LGP` — Hansen et al. 2013, *High-Resolution Global Maps of 21st-Century Forest Cover Change* (journalArticle, Science 342(6160):850–853, DOI 10.1126/science.1244693)
+6. `JPUWANBP` — Colección 3 de Mapas de Cobertura y Uso del Suelo de Bolivia 1985–2024 (dataset, MapBiomas Bolivia)
+7. `BCDN8GEV` — Informe de Rendición Pública de Cuentas Final — Gestión 2024, MDRyT (report, 2025, reportNumber INF/DGP/UPEAI/00026-2025, **`audit_status: yellow` ✓**)
+8. `4HA7EP35` — Memoria Anual 2019, INIAF (report, 2020, **`audit_status: yellow` ✓**)
+9. `SA9CAHL8` — Encuesta Agropecuaria 2015 (dataset, INE)
+
+**Método de carga:** vía Connector (`/connector/saveItems`), que escribe a la librería seleccionada (grupo) sin API key. Verificación anti-duplicado antes de cada carga.
+
+**Duplicados detectados en grupo pre-carga (sesión anterior):** `CGHKWCAE` (Hansen duplicado) y `RJP8XTGM` (MapBiomas duplicado) — **PENDIENTE de borrar** (son mis dos, extras, sin PDF).
+
+**Citekeys pendientes de fijar:** BBT auto-generó citekeys largos/tediosos. Los 9 necesitan el campo Extra → `Citation Key: [citekey_esperado]` para resolver `[@key]` en `.qmd`. Alternativa: reconciliar en `references_master.bib` (lado repo) sin tocar Zotero.
+
+**Pendientes:**
+1. **Usuario:** borrar 2 duplicados en Zotero (`CGHKWCAE`, `RJP8XTGM`) — clic derecho → Papelera (30 segundos).
+2. **Usuario (opcional):** fijar los 9 citekeys en cada ficha (campo Extra) si usa Zotero como master. Si no → dejo los keys reconciliados en `.bib`.
+3. **JCM (próxima sesión):** reconciliar `references_master.bib` — verificar no colisionen los 9 nuevos con los 373 existentes, resolver el `audit_status` yellow en cada ficha vs Zotero, actualizar citekeys.
+4. **JCM:** cambiar la cita de Encuesta Agropecuaria 2015 en `04_report/04_spending_organization.qmd` línea 125 de texto incidental a `[@EncuestaAgro2015]`.
+
+**Commit:** feat(zotero+lit) a349271.
+
+**Siguientes pasos:**
+1. Borrar los 2 duplicados en Zotero.
+2. Próxima sesión: reconciliar los 9 al `.bib` (verificar unificación de citekeys).
+3. Cambiar Encuesta Agropecuaria a sintaxis formal `[@...]` en el reporte.
 
 ---
 
