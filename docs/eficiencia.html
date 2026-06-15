@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-114341b918e606a1f46e170a36b214bb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c69004a60252fccc180e8b43c8a494db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c9c8737d678ecf21571f1ed79068ed4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Eficiencia y equidad del gasto – APER Bolivia 2026">
-<meta property="og:description" content="DEA, regresiones panel e incidencia subnacional">
+<meta property="og:description" content="DEA Simar-Wilson, panel de productividad e incidencia subnacional">
 <meta property="og:image" content="https://jcmunozmora.github.io/bolivia-wb-aper-2026/figures/fig13_pse_gsse_cse_bolivia.png">
 <meta property="og:site_name" content="APER Bolivia 2026">
 <meta property="og:image:height" content="825">
@@ -130,17 +130,28 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./timeline.html"> 
 <span class="menu-text">Línea de tiempo</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datos-y-código" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Datos y código</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-datos-y-código">    
+        <li>
+    <a class="dropdown-item" href="./datos.html">
+ <span class="dropdown-text">Datos y metodología</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./replicacion.html">
+ <span class="dropdown-text">Cómo reproducir</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./recursos.html">
+ <span class="dropdown-text">Recursos descargables</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./slides.html"> 
 <span class="menu-text">Slides</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./datos.html"> 
-<span class="menu-text">Datos</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./recursos.html"> 
-<span class="menu-text">Recursos</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -158,11 +169,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul class="collapse">
-  <li><a href="#apoyo-al-productor-pse-bolivia-en-contexto-lac" id="toc-apoyo-al-productor-pse-bolivia-en-contexto-lac" class="nav-link active" data-scroll-target="#apoyo-al-productor-pse-bolivia-en-contexto-lac">Apoyo al productor — PSE Bolivia en contexto LAC</a></li>
-  <li><a href="#eficiencia-técnica-departamental-dea" id="toc-eficiencia-técnica-departamental-dea" class="nav-link" data-scroll-target="#eficiencia-técnica-departamental-dea">Eficiencia técnica departamental — DEA</a></li>
-  <li><a href="#regresiones-de-productividad-panel-nacional" id="toc-regresiones-de-productividad-panel-nacional" class="nav-link" data-scroll-target="#regresiones-de-productividad-panel-nacional">Regresiones de productividad — panel nacional</a></li>
+  <li><a href="#apoyo-al-productor-pse-en-contexto-lac" id="toc-apoyo-al-productor-pse-en-contexto-lac" class="nav-link active" data-scroll-target="#apoyo-al-productor-pse-en-contexto-lac">Apoyo al productor — PSE en contexto LAC</a></li>
+  <li><a href="#eficiencia-técnica-departamental-dea-simar-wilson" id="toc-eficiencia-técnica-departamental-dea-simar-wilson" class="nav-link" data-scroll-target="#eficiencia-técnica-departamental-dea-simar-wilson">Eficiencia técnica departamental — DEA Simar-Wilson</a></li>
+  <li><a href="#gasto-y-resultados-panel-de-productividad" id="toc-gasto-y-resultados-panel-de-productividad" class="nav-link" data-scroll-target="#gasto-y-resultados-panel-de-productividad">Gasto y resultados — panel de productividad</a></li>
   <li><a href="#equidad-distribución-del-gasto-entre-municipios" id="toc-equidad-distribución-del-gasto-entre-municipios" class="nav-link" data-scroll-target="#equidad-distribución-del-gasto-entre-municipios">Equidad — distribución del gasto entre municipios</a></li>
-  <li><a href="#equidad-incidencia-rural" id="toc-equidad-incidencia-rural" class="nav-link" data-scroll-target="#equidad-incidencia-rural">Equidad — incidencia rural</a></li>
+  <li><a href="#equidad-focalización-gasto-y-pobreza-rural-nbi" id="toc-equidad-focalización-gasto-y-pobreza-rural-nbi" class="nav-link" data-scroll-target="#equidad-focalización-gasto-y-pobreza-rural-nbi">Equidad — focalización: gasto y pobreza rural (NBI)</a></li>
+  <li><a href="#equidad-incidencia-de-pobreza-por-departamento" id="toc-equidad-incidencia-de-pobreza-por-departamento" class="nav-link" data-scroll-target="#equidad-incidencia-de-pobreza-por-departamento">Equidad — incidencia de pobreza por departamento</a></li>
   <li><a href="#síntesis" id="toc-síntesis" class="nav-link" data-scroll-target="#síntesis">Síntesis</a></li>
   </ul>
 </nav>
@@ -173,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Eficiencia y equidad del gasto</h1>
-<p class="subtitle lead">DEA, regresiones panel e incidencia subnacional</p>
+<p class="subtitle lead">DEA Simar-Wilson, panel de productividad e incidencia subnacional</p>
 </div>
 
 
@@ -191,17 +203,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="lead">
-<p>Este capítulo evalúa si el gasto agropecuario boliviano es eficiente y equitativo. Combina análisis envolvente de datos a nivel departamental, regresiones panel de productividad y análisis de incidencia con la Encuesta de Hogares.</p>
+<p>Este capítulo evalúa si el gasto agropecuario boliviano es eficiente y equitativo. Combina el análisis envolvente de datos (DEA) con bootstrap de Simar-Wilson a nivel departamental, regresiones panel de productividad y un análisis de incidencia y focalización con datos de hogares y del Censo.</p>
 </div>
-<section id="apoyo-al-productor-pse-bolivia-en-contexto-lac" class="level2">
-<h2 class="anchored" data-anchor-id="apoyo-al-productor-pse-bolivia-en-contexto-lac">Apoyo al productor — PSE Bolivia en contexto LAC</h2>
+<section id="apoyo-al-productor-pse-en-contexto-lac" class="level2">
+<h2 class="anchored" data-anchor-id="apoyo-al-productor-pse-en-contexto-lac">Apoyo al productor — PSE en contexto LAC</h2>
 <section id="composición-de-los-apoyos" class="level3">
 <h3 class="anchored" data-anchor-id="composición-de-los-apoyos">Composición de los apoyos</h3>
-<p>Antes de comparar Bolivia con LAC, es útil examinar la composición interna de los apoyos al productor — la metodología OECD distingue entre <strong>Producer Support Estimate (PSE)</strong> que captura transferencias directas (precios, pagos, reducción de insumos), <strong>General Services Support Estimate (GSSE)</strong> que cubre bienes públicos al sector (I+D, sanidad, infraestructura), y <strong>Consumer Support Estimate (CSE)</strong> que mide transferencias hacia consumidores.</p>
+<p>La metodología OCDE distingue entre <strong>Producer Support Estimate (PSE)</strong> —transferencias al productor por precios, pagos y reducción de insumos—, <strong>General Services Support Estimate (GSSE)</strong> —bienes públicos al sector: I+D, sanidad, infraestructura— y <strong>Consumer Support Estimate (CSE)</strong> —transferencias hacia consumidores.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig13_pse_gsse_cse_bolivia.png" class="img-fluid figure-img"></p>
-<figcaption>PSE, GSSE y CSE Bolivia 2006-2023 — niveles y trayectoria</figcaption>
+<figcaption>PSE, GSSE y CSE Bolivia 2006-2024 — niveles y trayectoria</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -216,13 +228,13 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig15_psep_bolivia_vs_lac.png" class="img-fluid figure-img"></p>
-<figcaption>Tasa Producer Support Estimate (PSE%) Bolivia vs LAC, 2006–2023</figcaption>
+<figcaption>Tasa Producer Support Estimate (%PSE) Bolivia vs LAC</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig16_price_gap_by_commodity_2023.png" class="img-fluid figure-img"></p>
-<figcaption>Brecha de precios doméstico-frontera por commodity, Bolivia 2023</figcaption>
+<figcaption>Brecha de precios doméstico-frontera por commodity, Bolivia</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -237,66 +249,64 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Patrón dual de protección
+Patrón dual de protección (hallazgo F02–F03)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Bolivia exhibe un patrón dual de apoyo al productor que persiste en el tiempo:</p>
+<p>El %PSE de Bolivia se ubicó en <strong>5,8 % del valor bruto de producción en 2018</strong>, el quinto nivel más alto entre los países LAC monitoreados por el IDB AgriMonitor ese año (por encima: Brasil, Chile, Colombia y Argentina; por debajo: Paraguay, Ecuador, Perú, México y Costa Rica).</p>
+<p>La protección es <strong>dual</strong> según la tasa nominal de protección (NRP) por commodity:</p>
 <ul>
-<li><strong>Taxa exportables</strong> (transferencia implícita del productor al consumidor): soya −37 %, arroz −33 %, sorgo −47 %.</li>
-<li><strong>Protege seguridad alimentaria</strong>: maíz +46 %, trigo +28 %, cebada +65 %.</li>
-<li>PSE total Bolivia 2023: <strong>5.8 %</strong> — quinto en LAC tras México (6.6 %), Colombia (5.6 %), Perú (5.1 %), Brasil (4.4 %).</li>
+<li><strong>Tasa los exportables</strong> (transferencia implícita del productor al consumidor): soya −37 %, arroz −33 %.</li>
+<li><strong>Protege la seguridad alimentaria</strong>: maíz +46 %, trigo +28 %.</li>
 </ul>
-<p>Este patrón es coherente con la política explícita de soberanía alimentaria post-2009 y los controles de precios sobre exportables.</p>
+<p>El patrón es coherente con la política explícita de soberanía alimentaria post-2009 y los controles de precios sobre exportables.</p>
 </div>
 </div>
 </section>
 </section>
-<section id="eficiencia-técnica-departamental-dea" class="level2">
-<h2 class="anchored" data-anchor-id="eficiencia-técnica-departamental-dea">Eficiencia técnica departamental — DEA</h2>
-<section id="setup-metodológico" class="level3">
-<h3 class="anchored" data-anchor-id="setup-metodológico">Setup metodológico</h3>
-<p>El análisis envolvente de datos (DEA) compara cada unidad territorial (DMU) con la mejor combinación factible de inputs y outputs observada en la muestra. Para Bolivia, la unidad de análisis son los 9 departamentos × 9 años (81 DMUs) entre 2012 y 2020.</p>
+<section id="eficiencia-técnica-departamental-dea-simar-wilson" class="level2">
+<h2 class="anchored" data-anchor-id="eficiencia-técnica-departamental-dea-simar-wilson">Eficiencia técnica departamental — DEA Simar-Wilson</h2>
+<section id="especificación" class="level3">
+<h3 class="anchored" data-anchor-id="especificación">Especificación</h3>
+<p>El análisis envolvente de datos (DEA) compara cada unidad territorial con la mejor combinación factible de insumos y productos observada en la muestra. La frontera es <strong>VRS (rendimientos variables a escala), agrupada (<em>pooled</em>) intertemporalmente</strong> sobre los <strong>81 pares departamento-año</strong> del período <strong>2012–2020</strong> (9 departamentos × 9 años). Se reportan <strong>ambas orientaciones</strong> y se corrige el sesgo de la frontera determinista con <strong>bootstrap de Simar-Wilson (1998), B = 2 000 réplicas</strong>, intervalos al 95 %. La especificación está fijada en el ADR-0016.</p>
+<ul>
+<li><strong>Insumos:</strong> gasto agropecuario estricto (USD constantes de 2015) y superficie cultivada total (ha).</li>
+<li><strong>Productos:</strong> producción total (toneladas) y rendimiento de cereales (kg/ha).</li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig23_dea_inputs_outputs.png" class="img-fluid figure-img"></p>
-<figcaption>DEA Bolivia: inputs (gasto, crédito, área irrigada) y outputs (PIB agropecuario, rendimientos)</figcaption>
+<figcaption>Insumos y productos del modelo DEA departamental</figcaption>
 </figure>
 </div>
 </section>
 <section id="resultados-por-departamento" class="level3">
 <h3 class="anchored" data-anchor-id="resultados-por-departamento">Resultados por departamento</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/fig24_eficiencia_simple_2019.png" class="img-fluid figure-img"></p>
-<figcaption>Eficiencia simple por departamento, 2019 (proxy)</figcaption>
-</figure>
-</div>
 <div class="cell">
-<div id="tbl-eff" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-dea" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-eff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-dea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;1
 </figcaption>
-<div aria-describedby="tbl-eff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-dea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="gruymkyjse" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gruymkyjse table {
+<div id="yputnehdrt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yputnehdrt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gruymkyjse thead, #gruymkyjse tbody, #gruymkyjse tfoot, #gruymkyjse tr, #gruymkyjse td, #gruymkyjse th {
+#yputnehdrt thead, #yputnehdrt tbody, #yputnehdrt tfoot, #yputnehdrt tr, #yputnehdrt td, #yputnehdrt th {
   border-style: none;
 }
 
-#gruymkyjse p {
+#yputnehdrt p {
   margin: 0;
   padding: 0;
 }
 
-#gruymkyjse .gt_table {
+#yputnehdrt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -322,12 +332,12 @@ Tabla&nbsp;1
   border-left-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_caption {
+#yputnehdrt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gruymkyjse .gt_title {
+#yputnehdrt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -339,7 +349,7 @@ Tabla&nbsp;1
   border-bottom-width: 0;
 }
 
-#gruymkyjse .gt_subtitle {
+#yputnehdrt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -351,7 +361,7 @@ Tabla&nbsp;1
   border-top-width: 0;
 }
 
-#gruymkyjse .gt_heading {
+#yputnehdrt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -363,13 +373,13 @@ Tabla&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_bottom_border {
+#yputnehdrt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_col_headings {
+#yputnehdrt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -384,7 +394,7 @@ Tabla&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_col_heading {
+#yputnehdrt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -404,7 +414,7 @@ Tabla&nbsp;1
   overflow-x: hidden;
 }
 
-#gruymkyjse .gt_column_spanner_outer {
+#yputnehdrt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -416,15 +426,15 @@ Tabla&nbsp;1
   padding-right: 4px;
 }
 
-#gruymkyjse .gt_column_spanner_outer:first-child {
+#yputnehdrt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gruymkyjse .gt_column_spanner_outer:last-child {
+#yputnehdrt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gruymkyjse .gt_column_spanner {
+#yputnehdrt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -436,11 +446,11 @@ Tabla&nbsp;1
   width: 100%;
 }
 
-#gruymkyjse .gt_spanner_row {
+#yputnehdrt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gruymkyjse .gt_group_heading {
+#yputnehdrt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -466,7 +476,7 @@ Tabla&nbsp;1
   text-align: left;
 }
 
-#gruymkyjse .gt_empty_group_heading {
+#yputnehdrt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -481,15 +491,15 @@ Tabla&nbsp;1
   vertical-align: middle;
 }
 
-#gruymkyjse .gt_from_md > :first-child {
+#yputnehdrt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gruymkyjse .gt_from_md > :last-child {
+#yputnehdrt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gruymkyjse .gt_row {
+#yputnehdrt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -508,7 +518,7 @@ Tabla&nbsp;1
   overflow-x: hidden;
 }
 
-#gruymkyjse .gt_stub {
+#yputnehdrt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,7 +531,7 @@ Tabla&nbsp;1
   padding-right: 5px;
 }
 
-#gruymkyjse .gt_stub_row_group {
+#yputnehdrt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -535,15 +545,15 @@ Tabla&nbsp;1
   vertical-align: top;
 }
 
-#gruymkyjse .gt_row_group_first td {
+#yputnehdrt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gruymkyjse .gt_row_group_first th {
+#yputnehdrt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gruymkyjse .gt_summary_row {
+#yputnehdrt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -553,16 +563,16 @@ Tabla&nbsp;1
   padding-right: 5px;
 }
 
-#gruymkyjse .gt_first_summary_row {
+#yputnehdrt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_first_summary_row.thick {
+#yputnehdrt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gruymkyjse .gt_last_summary_row {
+#yputnehdrt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -572,7 +582,7 @@ Tabla&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_grand_summary_row {
+#yputnehdrt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -582,7 +592,7 @@ Tabla&nbsp;1
   padding-right: 5px;
 }
 
-#gruymkyjse .gt_first_grand_summary_row {
+#yputnehdrt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -592,7 +602,7 @@ Tabla&nbsp;1
   border-top-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_last_grand_summary_row_top {
+#yputnehdrt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -602,11 +612,11 @@ Tabla&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_striped {
+#yputnehdrt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gruymkyjse .gt_table_body {
+#yputnehdrt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -615,7 +625,7 @@ Tabla&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_footnotes {
+#yputnehdrt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -629,7 +639,7 @@ Tabla&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_footnote {
+#yputnehdrt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -638,7 +648,7 @@ Tabla&nbsp;1
   padding-right: 5px;
 }
 
-#gruymkyjse .gt_sourcenotes {
+#yputnehdrt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -652,7 +662,7 @@ Tabla&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#gruymkyjse .gt_sourcenote {
+#yputnehdrt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -660,72 +670,72 @@ Tabla&nbsp;1
   padding-right: 5px;
 }
 
-#gruymkyjse .gt_left {
+#yputnehdrt .gt_left {
   text-align: left;
 }
 
-#gruymkyjse .gt_center {
+#yputnehdrt .gt_center {
   text-align: center;
 }
 
-#gruymkyjse .gt_right {
+#yputnehdrt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gruymkyjse .gt_font_normal {
+#yputnehdrt .gt_font_normal {
   font-weight: normal;
 }
 
-#gruymkyjse .gt_font_bold {
+#yputnehdrt .gt_font_bold {
   font-weight: bold;
 }
 
-#gruymkyjse .gt_font_italic {
+#yputnehdrt .gt_font_italic {
   font-style: italic;
 }
 
-#gruymkyjse .gt_super {
+#yputnehdrt .gt_super {
   font-size: 65%;
 }
 
-#gruymkyjse .gt_footnote_marks {
+#yputnehdrt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gruymkyjse .gt_asterisk {
+#yputnehdrt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gruymkyjse .gt_indent_1 {
+#yputnehdrt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gruymkyjse .gt_indent_2 {
+#yputnehdrt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gruymkyjse .gt_indent_3 {
+#yputnehdrt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gruymkyjse .gt_indent_4 {
+#yputnehdrt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gruymkyjse .gt_indent_5 {
+#yputnehdrt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gruymkyjse .katex-display {
+#yputnehdrt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gruymkyjse div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yputnehdrt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -733,83 +743,73 @@ Tabla&nbsp;1
 <table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Score de eficiencia técnica relativa, promedio 2017–2021</strong></th>
+<th colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Eficiencia técnica departamental — DEA Simar-Wilson, 2012–2020</strong></th>
 </tr>
 <tr class="gt_col_headings even">
 <th id="Departamento" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Departamento</th>
-<th id="Score-eficiencia" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Score eficiencia</th>
-<th id="PIB-agrop.-(BOB-MM)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">PIB agrop. (BOB MM)</th>
-<th id="Gasto-(BOB-MM)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Gasto (BOB MM)</th>
-<th id="Ratio-PIB/Gasto" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ratio PIB/Gasto</th>
+<th id="Eficiencia-(corregida)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Eficiencia (corregida)</th>
+<th id="Sin-corregir" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sin corregir</th>
+<th id="Años-en-frontera" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Años en frontera</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="Departamento">SANTA CRUZ</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #14213D; color: #FFFFFF">1.000</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">11026</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">32.2</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">378</td>
+<td class="gt_row gt_left" headers="Departamento">Pando</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #036797; color: #FFFFFF">0,85</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,99</td>
+<td class="gt_row gt_right" headers="Años en frontera">4</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Departamento">BENI</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #FDD3A6; color: #000000">0.487</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">1438</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">9.0</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">163</td>
+<td class="gt_row gt_left" headers="Departamento">Tarija</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #036FA1; color: #FFFFFF">0,83</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,93</td>
+<td class="gt_row gt_right" headers="Años en frontera">3</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Departamento">COCHABAMBA</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #E99664; color: #000000">0.279</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">5242</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">81.9</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">85</td>
+<td class="gt_row gt_left" headers="Departamento">Santa Cruz</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #028DC5; color: #FFFFFF">0,77</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,95</td>
+<td class="gt_row gt_right" headers="Años en frontera">3</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Departamento">PANDO</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #E18350; color: #FFFFFF">0.214</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">817</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">10.9</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">77</td>
+<td class="gt_row gt_left" headers="Departamento">Beni</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #0191CA; color: #FFFFFF">0,76</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,92</td>
+<td class="gt_row gt_right" headers="Años en frontera">3</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Departamento">LA PAZ</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #D66B38; color: #FFFFFF">0.133</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">3770</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">94.1</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">53</td>
+<td class="gt_row gt_left" headers="Departamento">Cochabamba</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #3AA0D3; color: #FFFFFF">0,72</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,81</td>
+<td class="gt_row gt_right" headers="Años en frontera">2</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Departamento">ORURO</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #CF5C29; color: #FFFFFF">0.083</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">468</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">19.2</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">27</td>
+<td class="gt_row gt_left" headers="Departamento">La Paz</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #DFB159; color: #000000">0,53</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,58</td>
+<td class="gt_row gt_right" headers="Años en frontera">0</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Departamento">CHUQUISACA</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #CF5C28; color: #FFFFFF">0.082</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">1232</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">57.9</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">27</td>
+<td class="gt_row gt_left" headers="Departamento">Oruro</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #FA951D; color: #000000">0,37</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,41</td>
+<td class="gt_row gt_right" headers="Años en frontera">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Departamento">POTOSÍ</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #CE5A27; color: #FFFFFF">0.077</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">938</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">40.9</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">25</td>
+<td class="gt_row gt_left" headers="Departamento">Chuquisaca</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #F7821F; color: #FFFFFF">0,32</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,34</td>
+<td class="gt_row gt_right" headers="Años en frontera">0</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Departamento">TARIJA</td>
-<td class="gt_row gt_right" headers="Score eficiencia" style="background-color: #CA521E; color: #FFFFFF">0.050</td>
-<td class="gt_row gt_right" headers="PIB agrop. (BOB MM)">1144</td>
-<td class="gt_row gt_right" headers="Gasto (BOB MM)">73.5</td>
-<td class="gt_row gt_right" headers="Ratio PIB/Gasto">17</td>
+<td class="gt_row gt_left" headers="Departamento">Potosí</td>
+<td class="gt_row gt_right" headers="Eficiencia (corregida)" style="background-color: #F56F21; color: #FFFFFF">0,27</td>
+<td class="gt_row gt_right" headers="Sin corregir">0,29</td>
+<td class="gt_row gt_right" headers="Años en frontera">0</td>
 </tr>
-</tbody><tfoot class="gt_sourcenotes">
-<tr class="odd">
-<td colspan="5" class="gt_sourcenote"><em>Score: ratio PIB/gasto normalizado por máximo anual. 1.0 = depto frontera.</em></td>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote"><em>Puntaje de eficiencia insumo-orientado corregido por sesgo (bootstrap Simar-Wilson 1998). Fuente: <code>dea_simar_wilson_results.rds</code>.</em></td>
 </tr>
 </tfoot>
 
@@ -821,53 +821,54 @@ Tabla&nbsp;1
 </figure>
 </div>
 </div>
-<p>Santa Cruz domina como frontera de eficiencia con score 1.0 (ratio PIB/gasto ~378), seguido por Beni (0.49) y Cochabamba (0.28). Tarija aparece como el menos eficiente (0.05) — gran gasto, bajo PIB agropecuario relativo.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Determinante principal de la eficiencia
+Un gradiente geográfico nítido
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>La regresión de segunda etapa muestra que la <strong>expansión de uso antrópico del suelo (MapBiomas)</strong> explica el <strong>63 % de la varianza</strong> en los scores de eficiencia departamental.</p>
-<pre><code>score ~ ln(área antrópica)
-β = 0.230  (SE 0.028, p&lt;0.001)
-R² ajustado = 0.632  (n=40)</code></pre>
-<p>Es decir, los departamentos con frontera agrícola activa son los que aparecen como “más eficientes” en términos de PIB agropecuario por boliviano gastado. Esta lectura matiza el resultado: la eficiencia observada está vinculada a la expansión territorial, no necesariamente a mejor gestión del gasto.</p>
+<p>En promedio, los departamentos bolivianos operan con un puntaje de eficiencia corregido de <strong>0,60</strong> (rango 0,22–0,89). El ordenamiento dibuja un gradiente claro: las <strong>tierras bajas y los valles</strong> (Pando 0,85; Tarija 0,83; Santa Cruz 0,77; Beni 0,76; Cochabamba 0,72) operan cerca de la frontera, mientras que el <strong>altiplano</strong> (La Paz 0,53; Oruro 0,37; Potosí 0,27) y Chuquisaca (0,32) registran las mayores brechas. <strong>Ningún departamento del altiplano alcanzó la frontera de eficiencia en ningún año</strong> del período analizado.</p>
 </div>
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig24_dea_heatmap_simar_wilson.png" class="img-fluid figure-img"></p>
+<figcaption>Eficiencia departamental — mapa de calor Simar-Wilson</figcaption>
+</figure>
+</div>
 </section>
-</section>
-<section id="regresiones-de-productividad-panel-nacional" class="level2">
-<h2 class="anchored" data-anchor-id="regresiones-de-productividad-panel-nacional">Regresiones de productividad — panel nacional</h2>
+<section id="determinantes-ambientales-segunda-etapa" class="level3">
+<h3 class="anchored" data-anchor-id="determinantes-ambientales-segunda-etapa">Determinantes ambientales — segunda etapa</h3>
+<p>La segunda etapa de Simar y Wilson (2007) estima los determinantes de la (in)eficiencia mediante <strong>regresión truncada con bootstrap (no Tobit)</strong>.</p>
 <div class="cell">
-<div id="tbl-tfp-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-dea-stage2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-tfp-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-dea-stage2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;2
 </figcaption>
-<div aria-describedby="tbl-tfp-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-dea-stage2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="oxmefheldd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oxmefheldd table {
+<div id="ljzxcqgobh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ljzxcqgobh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oxmefheldd thead, #oxmefheldd tbody, #oxmefheldd tfoot, #oxmefheldd tr, #oxmefheldd td, #oxmefheldd th {
+#ljzxcqgobh thead, #ljzxcqgobh tbody, #ljzxcqgobh tfoot, #ljzxcqgobh tr, #ljzxcqgobh td, #ljzxcqgobh th {
   border-style: none;
 }
 
-#oxmefheldd p {
+#ljzxcqgobh p {
   margin: 0;
   padding: 0;
 }
 
-#oxmefheldd .gt_table {
+#ljzxcqgobh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -893,12 +894,12 @@ Tabla&nbsp;2
   border-left-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_caption {
+#ljzxcqgobh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oxmefheldd .gt_title {
+#ljzxcqgobh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -910,7 +911,7 @@ Tabla&nbsp;2
   border-bottom-width: 0;
 }
 
-#oxmefheldd .gt_subtitle {
+#ljzxcqgobh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -922,7 +923,7 @@ Tabla&nbsp;2
   border-top-width: 0;
 }
 
-#oxmefheldd .gt_heading {
+#ljzxcqgobh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -934,13 +935,13 @@ Tabla&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_bottom_border {
+#ljzxcqgobh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_col_headings {
+#ljzxcqgobh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -955,7 +956,7 @@ Tabla&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_col_heading {
+#ljzxcqgobh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -975,7 +976,7 @@ Tabla&nbsp;2
   overflow-x: hidden;
 }
 
-#oxmefheldd .gt_column_spanner_outer {
+#ljzxcqgobh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -987,15 +988,15 @@ Tabla&nbsp;2
   padding-right: 4px;
 }
 
-#oxmefheldd .gt_column_spanner_outer:first-child {
+#ljzxcqgobh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oxmefheldd .gt_column_spanner_outer:last-child {
+#ljzxcqgobh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oxmefheldd .gt_column_spanner {
+#ljzxcqgobh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1007,11 +1008,11 @@ Tabla&nbsp;2
   width: 100%;
 }
 
-#oxmefheldd .gt_spanner_row {
+#ljzxcqgobh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oxmefheldd .gt_group_heading {
+#ljzxcqgobh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1037,7 +1038,7 @@ Tabla&nbsp;2
   text-align: left;
 }
 
-#oxmefheldd .gt_empty_group_heading {
+#ljzxcqgobh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1052,15 +1053,15 @@ Tabla&nbsp;2
   vertical-align: middle;
 }
 
-#oxmefheldd .gt_from_md > :first-child {
+#ljzxcqgobh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oxmefheldd .gt_from_md > :last-child {
+#ljzxcqgobh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oxmefheldd .gt_row {
+#ljzxcqgobh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1079,7 +1080,7 @@ Tabla&nbsp;2
   overflow-x: hidden;
 }
 
-#oxmefheldd .gt_stub {
+#ljzxcqgobh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1092,7 +1093,7 @@ Tabla&nbsp;2
   padding-right: 5px;
 }
 
-#oxmefheldd .gt_stub_row_group {
+#ljzxcqgobh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1106,15 +1107,15 @@ Tabla&nbsp;2
   vertical-align: top;
 }
 
-#oxmefheldd .gt_row_group_first td {
+#ljzxcqgobh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oxmefheldd .gt_row_group_first th {
+#ljzxcqgobh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oxmefheldd .gt_summary_row {
+#ljzxcqgobh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1124,16 +1125,16 @@ Tabla&nbsp;2
   padding-right: 5px;
 }
 
-#oxmefheldd .gt_first_summary_row {
+#ljzxcqgobh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_first_summary_row.thick {
+#ljzxcqgobh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oxmefheldd .gt_last_summary_row {
+#ljzxcqgobh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1143,7 +1144,7 @@ Tabla&nbsp;2
   border-bottom-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_grand_summary_row {
+#ljzxcqgobh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1153,7 +1154,7 @@ Tabla&nbsp;2
   padding-right: 5px;
 }
 
-#oxmefheldd .gt_first_grand_summary_row {
+#ljzxcqgobh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1163,7 +1164,7 @@ Tabla&nbsp;2
   border-top-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_last_grand_summary_row_top {
+#ljzxcqgobh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1173,11 +1174,11 @@ Tabla&nbsp;2
   border-bottom-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_striped {
+#ljzxcqgobh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oxmefheldd .gt_table_body {
+#ljzxcqgobh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1186,7 +1187,7 @@ Tabla&nbsp;2
   border-bottom-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_footnotes {
+#ljzxcqgobh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1200,7 +1201,7 @@ Tabla&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_footnote {
+#ljzxcqgobh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1209,7 +1210,7 @@ Tabla&nbsp;2
   padding-right: 5px;
 }
 
-#oxmefheldd .gt_sourcenotes {
+#ljzxcqgobh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1223,7 +1224,7 @@ Tabla&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#oxmefheldd .gt_sourcenote {
+#ljzxcqgobh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1231,72 +1232,72 @@ Tabla&nbsp;2
   padding-right: 5px;
 }
 
-#oxmefheldd .gt_left {
+#ljzxcqgobh .gt_left {
   text-align: left;
 }
 
-#oxmefheldd .gt_center {
+#ljzxcqgobh .gt_center {
   text-align: center;
 }
 
-#oxmefheldd .gt_right {
+#ljzxcqgobh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oxmefheldd .gt_font_normal {
+#ljzxcqgobh .gt_font_normal {
   font-weight: normal;
 }
 
-#oxmefheldd .gt_font_bold {
+#ljzxcqgobh .gt_font_bold {
   font-weight: bold;
 }
 
-#oxmefheldd .gt_font_italic {
+#ljzxcqgobh .gt_font_italic {
   font-style: italic;
 }
 
-#oxmefheldd .gt_super {
+#ljzxcqgobh .gt_super {
   font-size: 65%;
 }
 
-#oxmefheldd .gt_footnote_marks {
+#ljzxcqgobh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oxmefheldd .gt_asterisk {
+#ljzxcqgobh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oxmefheldd .gt_indent_1 {
+#ljzxcqgobh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oxmefheldd .gt_indent_2 {
+#ljzxcqgobh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oxmefheldd .gt_indent_3 {
+#ljzxcqgobh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oxmefheldd .gt_indent_4 {
+#ljzxcqgobh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oxmefheldd .gt_indent_5 {
+#ljzxcqgobh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#oxmefheldd .katex-display {
+#ljzxcqgobh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#oxmefheldd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ljzxcqgobh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1304,45 +1305,34 @@ Tabla&nbsp;2
 <table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Determinantes de la TFP agrícola, Bolivia 1990–2023</strong></th>
+<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Segunda etapa Simar-Wilson (2007) — regresión truncada</strong></th>
 </tr>
 <tr class="gt_col_headings even">
-<th id="Modelo" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Modelo</th>
-<th id="Coef.-Inv-(β1)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Coef. Inv (β1)</th>
-<th id="Coef.-LC-antrópica" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Coef. LC antrópica</th>
-<th id="Coef.-PSE%" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Coef. PSE%</th>
-<th id="R²-ajustado" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">R² ajustado</th>
-<th id="N-obs" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">N obs</th>
+<th id="Determinante" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Determinante</th>
+<th id="Coeficiente" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Coeficiente</th>
+<th id="IC-95%-inf." class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IC 95% inf.</th>
+<th id="IC-95%-sup." class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IC 95% sup.</th>
+<th id="Significativo" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Significativo</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="Modelo">M1: TFP ~ Inv</td>
-<td class="gt_row gt_right" headers="Coef. Inv (β1)">0.089</td>
-<td class="gt_row gt_right" headers="Coef. LC antrópica">NA</td>
-<td class="gt_row gt_right" headers="Coef. PSE%">NA</td>
-<td class="gt_row gt_right" headers="R² ajustado">0.621</td>
-<td class="gt_row gt_right" headers="N obs">34</td>
+<td class="gt_row gt_left" headers="Determinante">Precipitación</td>
+<td class="gt_row gt_right" headers="Coeficiente">0,352</td>
+<td class="gt_row gt_right" headers="IC 95% inf.">0,262</td>
+<td class="gt_row gt_right" headers="IC 95% sup.">0,454</td>
+<td class="gt_row gt_left" headers="Significativo">Sí</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Modelo">M2: TFP ~ Inv + LC + tendencia</td>
-<td class="gt_row gt_right" headers="Coef. Inv (β1)">-0.006</td>
-<td class="gt_row gt_right" headers="Coef. LC antrópica">-0.277</td>
-<td class="gt_row gt_right" headers="Coef. PSE%">NA</td>
-<td class="gt_row gt_right" headers="R² ajustado">0.783</td>
-<td class="gt_row gt_right" headers="N obs">34</td>
+<td class="gt_row gt_left" headers="Determinante">Deforestación</td>
+<td class="gt_row gt_right" headers="Coeficiente">0,001</td>
+<td class="gt_row gt_right" headers="IC 95% inf.">0,000</td>
+<td class="gt_row gt_right" headers="IC 95% sup.">0,001</td>
+<td class="gt_row gt_left" headers="Significativo">Sí</td>
 </tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Modelo">M3: M2 + PSE</td>
-<td class="gt_row gt_right" headers="Coef. Inv (β1)">0.073</td>
-<td class="gt_row gt_right" headers="Coef. LC antrópica">0.095</td>
-<td class="gt_row gt_right" headers="Coef. PSE%">-0.0038</td>
-<td class="gt_row gt_right" headers="R² ajustado">0.620</td>
-<td class="gt_row gt_right" headers="N obs">18</td>
-</tr>
-</tbody><tfoot class="gt_sourcenotes">
-<tr class="odd">
-<td colspan="6" class="gt_sourcenote"><em>Estimación: feols(). Variables en log. Panel maestro v12.</em></td>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="5" class="gt_sourcenote"><em>Variable dependiente: eficiencia corregida. Fuente: <code>dea_simar_wilson_results.rds</code>.</em></td>
 </tr>
 </tfoot>
 
@@ -1354,29 +1344,554 @@ Tabla&nbsp;2
 </figure>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Interpretación de las regresiones
+La eficiencia refleja, en parte, una desventaja agroecológica
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>La <strong>elasticidad TFP-inversión</strong> es positiva pero modesta: ~0.09 en el modelo baseline. Es decir, doblar la inversión agropecuaria se asocia con un aumento de TFP de ~9 %.</li>
-<li>La <strong>expansión de uso antrópico</strong> muestra un coeficiente positivo y significativo: la frontera agrícola eleva la productividad agregada (mecanismo de ampliación de escala), no la productividad por hectárea.</li>
-<li>El <strong>PSE% es significativo y negativo</strong> (β = −0.004, p&lt;0.05): el apoyo de precios distorsiona la asignación de recursos y se asocia con menor TFP — un resultado consistente con la literatura OCDE.</li>
-</ul>
+<p>La <strong>precipitación</strong> emerge como un determinante positivo y significativo (coeficiente 0,35; IC 95 % [0,26; 0,45]): los departamentos con menor disponibilidad hídrica registran sistemáticamente menor eficiencia técnica. Una porción de la brecha del altiplano refleja por tanto una <strong>desventaja agroecológica estructural</strong> —aridez relativa, limitación de la precipitación— y no exclusivamente decisiones de asignación o de ejecución del gasto. La robustez de la ordenación es alta (Spearman 0,94 entre especificaciones).</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig25_dea_gasto_intuicion.png" class="img-fluid figure-img"></p>
+<figcaption>Intuición nivel/composición del gasto y eficiencia</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="gasto-y-resultados-panel-de-productividad" class="level2">
+<h2 class="anchored" data-anchor-id="gasto-y-resultados-panel-de-productividad">Gasto y resultados — panel de productividad</h2>
+<div class="cell">
+<div id="tbl-tfp-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-tfp-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;3
+</figcaption>
+<div aria-describedby="tbl-tfp-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="ltxyglkmbj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ltxyglkmbj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ltxyglkmbj thead, #ltxyglkmbj tbody, #ltxyglkmbj tfoot, #ltxyglkmbj tr, #ltxyglkmbj td, #ltxyglkmbj th {
+  border-style: none;
+}
+
+#ltxyglkmbj p {
+  margin: 0;
+  padding: 0;
+}
+
+#ltxyglkmbj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ltxyglkmbj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ltxyglkmbj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ltxyglkmbj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ltxyglkmbj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ltxyglkmbj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ltxyglkmbj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ltxyglkmbj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ltxyglkmbj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ltxyglkmbj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ltxyglkmbj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ltxyglkmbj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ltxyglkmbj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ltxyglkmbj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ltxyglkmbj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ltxyglkmbj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ltxyglkmbj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ltxyglkmbj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ltxyglkmbj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ltxyglkmbj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ltxyglkmbj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ltxyglkmbj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ltxyglkmbj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ltxyglkmbj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ltxyglkmbj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ltxyglkmbj .gt_left {
+  text-align: left;
+}
+
+#ltxyglkmbj .gt_center {
+  text-align: center;
+}
+
+#ltxyglkmbj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ltxyglkmbj .gt_font_normal {
+  font-weight: normal;
+}
+
+#ltxyglkmbj .gt_font_bold {
+  font-weight: bold;
+}
+
+#ltxyglkmbj .gt_font_italic {
+  font-style: italic;
+}
+
+#ltxyglkmbj .gt_super {
+  font-size: 65%;
+}
+
+#ltxyglkmbj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ltxyglkmbj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ltxyglkmbj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ltxyglkmbj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ltxyglkmbj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ltxyglkmbj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ltxyglkmbj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ltxyglkmbj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ltxyglkmbj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Determinantes de la TFP agrícola — estimación exploratoria</strong></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Modelo" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Modelo</th>
+<th id="Coef.-Inv" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Coef. Inv</th>
+<th id="Coef.-LC-antrópica" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Coef. LC antrópica</th>
+<th id="R²-ajustado" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">R² ajustado</th>
+<th id="N" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">N</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Modelo">M1: TFP ~ Inv</td>
+<td class="gt_row gt_right" headers="Coef. Inv">0,089</td>
+<td class="gt_row gt_right" headers="Coef. LC antrópica">—</td>
+<td class="gt_row gt_right" headers="R² ajustado">0,621</td>
+<td class="gt_row gt_right" headers="N">34</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Modelo">M2: TFP ~ Inv + LC + tendencia</td>
+<td class="gt_row gt_right" headers="Coef. Inv">−0,006</td>
+<td class="gt_row gt_right" headers="Coef. LC antrópica">−0,277</td>
+<td class="gt_row gt_right" headers="R² ajustado">0,783</td>
+<td class="gt_row gt_right" headers="N">34</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Modelo">M3: M2 + PSE</td>
+<td class="gt_row gt_right" headers="Coef. Inv">0,073</td>
+<td class="gt_row gt_right" headers="Coef. LC antrópica">0,095</td>
+<td class="gt_row gt_right" headers="R² ajustado">0,620</td>
+<td class="gt_row gt_right" headers="N">18</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="5" class="gt_sourcenote"><em>feols(), variables en log, panel maestro v12. Resultados exploratorios — ver caveat.</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+La asociación gasto–resultados no es robusta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las regresiones panel con efectos fijos que vinculan el gasto agropecuario con la productividad (TFP) y con la pobreza <strong>no arrojan una asociación robusta</strong> a especificaciones alternativas. El “dividendo de pobreza” que aparecía en estimaciones preliminares resultó ser un artefacto de la fuente subnacional (Jubileo) y de la ventana 2012–2018; al recomponer el panel sobre la fuente canónica desaparece (decisión ADR-0017).</p>
+<p>La lectura del reporte técnico es que <strong>la efectividad del gasto está limitada por su composición y por rezagos de maduración, más que por su nivel</strong>. Estos coeficientes se presentan como <strong>exploratorios</strong> y no sostienen una interpretación causal; la relación gasto-resultados permanece en consolidación hasta cerrar las corridas pendientes sobre el panel v12.</p>
 </div>
 </div>
 </section>
 <section id="equidad-distribución-del-gasto-entre-municipios" class="level2">
 <h2 class="anchored" data-anchor-id="equidad-distribución-del-gasto-entre-municipios">Equidad — distribución del gasto entre municipios</h2>
-<section id="distribución-y-concentración" class="level3">
-<h3 class="anchored" data-anchor-id="distribución-y-concentración">Distribución y concentración</h3>
-<p>Antes de medir la incidencia rural del gasto agropecuario sobre la pobreza, conviene examinar <strong>cómo se distribuye el gasto entre municipios</strong>. La distribución es muy asimétrica: pocos municipios reciben grandes volúmenes y la mayoría queda con asignaciones modestas.</p>
+<p>La distribución del gasto agropecuario municipal es muy asimétrica: pocos municipios reciben grandes volúmenes y la mayoría queda con asignaciones modestas.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig25_dist_muni_agro_2020.png" class="img-fluid figure-img"></p>
@@ -1386,7 +1901,7 @@ Interpretación de las regresiones
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fig26_lorenz_muni_2020.png" class="img-fluid figure-img"></p>
-<figcaption>Curva de Lorenz del gasto agropecuario municipal — concentración entre municipios</figcaption>
+<figcaption>Curva de Lorenz del gasto agropecuario municipal</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -1395,32 +1910,19 @@ Interpretación de las regresiones
 <figcaption>Gasto agropecuario por municipio frente a tamaño poblacional</figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Concentración del gasto entre municipios
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La curva de Lorenz revela una concentración extrema: un grupo pequeño de municipios concentra una fracción desproporcionada del gasto agropecuario, mientras que la mayoría de municipios pequeños queda con montos absolutos modestos. Cruzando con la incidencia rural de pobreza (siguiente sección), la asimetría territorial del gasto se vuelve políticamente relevante.</p>
-</div>
-</div>
 </section>
-</section>
-<section id="equidad-incidencia-rural" class="level2">
-<h2 class="anchored" data-anchor-id="equidad-incidencia-rural">Equidad — incidencia rural</h2>
+<section id="equidad-focalización-gasto-y-pobreza-rural-nbi" class="level2">
+<h2 class="anchored" data-anchor-id="equidad-focalización-gasto-y-pobreza-rural-nbi">Equidad — focalización: gasto y pobreza rural (NBI)</h2>
+<p>¿Llega el gasto agropecuario a los territorios con mayor necesidad? Cruzando el gasto agropecuario municipal devengado (MEFP 2024) con la incidencia de pobreza por Necesidades Básicas Insatisfechas (NBI) rural del Censo 2024, la respuesta es: <strong>no de forma sistemática</strong>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-incidencia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-nbi-rural" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-incidencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="eficiencia_files/figure-html/fig-incidencia-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-nbi-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="eficiencia_files/figure-html/fig-nbi-rural-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-incidencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1: Pobreza rural por departamento (Encuesta de Hogares 2024).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nbi-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Pobreza rural por NBI a nivel departamental (Censo 2024). Fuente: pobreza_municipal_nbi.rds (INE).
 </figcaption>
 </figure>
 </div>
@@ -1432,12 +1934,41 @@ Figura&nbsp;1: Pobreza rural por departamento (Encuesta de Hogares 2024).
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Asimetría territorial
+El gasto no se concentra donde más necesidad hay
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Los departamentos andinos —<strong>Chuquisaca, Oruro y Potosí</strong>— concentran las mayores tasas de pobreza rural (54–64 %), mientras Pando, Tarija y Beni muestran tasas de 27–34 %.</p>
-<p>Cruzando esta información con la distribución del gasto público agropecuario, se observa que las regiones más pobres no reciben proporcionalmente más recursos. La paradoja es nítida: <strong>Santa Cruz concentra el mayor gasto agropecuario absoluto, mientras los departamentos más pobres reciben el más alto per cápita pero en montos absolutos pequeños</strong> que no permiten programas de transformación productiva de escala.</p>
+<p>La correlación entre el gasto agropecuario per cápita rural municipal y la pobreza rural por NBI es <strong>débil y no significativa</strong> en rangos (n = 298 municipios; Spearman ρ = 0,06, p = 0,32; Pearson r = 0,13). Los departamentos del altiplano y la Amazonía concentran las mayores tasas de NBI rural (Beni 72 %, Potosí 70 %, Chuquisaca 68 %), pero no reciben proporcionalmente más gasto agropecuario por habitante rural. La focalización territorial del gasto sobre la necesidad es, en la práctica, <strong>plana</strong>.</p>
+</div>
+</div>
+</section>
+<section id="equidad-incidencia-de-pobreza-por-departamento" class="level2">
+<h2 class="anchored" data-anchor-id="equidad-incidencia-de-pobreza-por-departamento">Equidad — incidencia de pobreza por departamento</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-incidencia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-incidencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="eficiencia_files/figure-html/fig-incidencia-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-incidencia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Pobreza moderada por departamento, 2024 (serie INE CBA 2016–2024).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Asimetría territorial oriente–occidente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los departamentos del occidente y los valles —<strong>Chuquisaca (51 %), Potosí (47 %), La Paz (45 %)</strong>— concentran las mayores tasas de pobreza moderada, mientras Santa Cruz (26 %), Tarija (31 %) y Pando (34 %) se ubican por debajo. El patrón replica la dualidad estructural oriente–occidente y refuerza la lectura de la sección anterior: una política de bienes públicos sectoriales focalizada por territorio y una política de transferencias focalizada por hogar producen incidencias distintas.</p>
 </div>
 </div>
 </section>
@@ -1458,43 +1989,43 @@ Asimetría territorial
 </thead>
 <tbody>
 <tr class="odd">
-<td>PSE Bolivia 2023</td>
-<td>5.8 % — 5° en LAC</td>
+<td>PSE Bolivia 2018</td>
+<td>5,8 % — 5° en LAC</td>
 <td>Apoyo moderado-bajo en contexto regional</td>
 </tr>
 <tr class="even">
-<td>Patrón dual</td>
-<td>Taxa soya/arroz, protege maíz/trigo</td>
+<td>Patrón dual (NRP)</td>
+<td>Tasa soya/arroz, protege maíz/trigo</td>
 <td>Política explícita de soberanía alimentaria</td>
 </tr>
 <tr class="odd">
-<td>DEA depts</td>
-<td>Santa Cruz frontera (1.0); Tarija mínimo (0.05)</td>
-<td>Heterogeneidad enorme</td>
+<td>DEA departamental</td>
+<td>Media 0,60; Pando 0,85 … Potosí 0,27</td>
+<td>Gradiente geográfico nítido</td>
 </tr>
 <tr class="even">
 <td>2ª etapa DEA</td>
-<td>LC antrópica explica 63 % varianza</td>
-<td>Eficiencia ligada a expansión territorial</td>
+<td>Precipitación significativa (0,35)</td>
+<td>Brecha en parte agroecológica, no solo de gestión</td>
 </tr>
 <tr class="odd">
-<td>TFP-Inv</td>
-<td>Elasticidad ~0.09 (significativa)</td>
-<td>Retornos positivos pero modestos</td>
+<td>Gasto → TFP/pobreza</td>
+<td>Asociación no robusta (ADR-0017)</td>
+<td>Problema de composición y rezagos, no de nivel</td>
 </tr>
 <tr class="even">
-<td>PSE-TFP</td>
-<td>Coef negativo (−0.004**)</td>
-<td>Apoyo de precios distorsiona productividad</td>
+<td>Focalización NBI</td>
+<td>Correlación plana (ρ = 0,06, n.s.)</td>
+<td>El gasto no llega donde más necesidad hay</td>
 </tr>
 <tr class="odd">
 <td>Incidencia</td>
-<td>Chuquisaca/Oruro/Potosí 54–64 % pobreza</td>
-<td>Asimetría territorial del gasto</td>
+<td>Chuquisaca/Potosí/La Paz 45–51 %</td>
+<td>Asimetría territorial oriente–occidente</td>
 </tr>
 </tbody>
 </table>
-<p>Los retornos del gasto agropecuario son <strong>positivos pero modestos</strong>, <strong>muy heterogéneos por territorio</strong>, y <strong>vinculados más a expansión de frontera que a mejoras de productividad por hectárea</strong>. Estos hallazgos motivan las recomendaciones de reorientación del próximo capítulo del reporte técnico.</p>
+<p>Los retornos del gasto agropecuario son <strong>heterogéneos por territorio</strong>, <strong>vinculados en parte a condiciones agroecológicas</strong> más que a la sola gestión, y <strong>no se focalizan sobre la necesidad</strong>. Estos hallazgos motivan las opciones de reorientación del capítulo de recomendaciones del reporte técnico.</p>
 
 
 </section>
@@ -1908,7 +2439,7 @@ Asimetría territorial
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>APER Bolivia 2026 · Banco Mundial · Universidad EAFIT</p>
+<p>The World Bank · Universidad EAFIT — Agricultural Public Expenditure Review · Bolivia 2026</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -1916,7 +2447,7 @@ Asimetría territorial
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- Última actualización 2026-04
+ Última actualización 2026-06
   </li>  
     <li class="nav-item">
     <a class="nav-link" href="https://github.com/jcmunozmora/bolivia-wb-aper-2026">

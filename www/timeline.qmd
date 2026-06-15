@@ -11,6 +11,7 @@ page-layout: full
 suppressPackageStartupMessages({
   library(data.table); library(gt)
 })
+here::i_am("www/timeline.qmd")   # ancla la raíz del proyecto (repo root) sin depender del cwd
 tl <- fread(here::here("01_data/timeline/timeline.csv"))
 tl_data <- tl[Type != "title"]
 

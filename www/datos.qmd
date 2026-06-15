@@ -8,12 +8,13 @@ subtitle: "Panel maestro v12, fuentes y diccionario"
 suppressPackageStartupMessages({
   library(data.table); library(gt)
 })
+here::i_am("www/datos.qmd")   # ancla la raíz del proyecto (repo root) sin depender del cwd
 panel <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
 dict  <- fread(here::here("01_data/processed/spending_panel_v12_dictionary.csv"))
 ```
 
 ::: {.lead}
-El estudio descansa sobre un panel maestro de 35 años × 176 variables consolidadas a partir de 124 datasets procesados de fuentes nacionales e internacionales.
+El estudio descansa sobre un panel maestro de 35 años × 176 variables consolidadas a partir de 126 datasets procesados de fuentes nacionales e internacionales.
 :::
 
 ## El panel maestro
@@ -22,12 +23,12 @@ El estudio descansa sobre un panel maestro de 35 años × 176 variables consolid
 #| label: tbl-panel-summary
 data.table(
   Indicador = c("Años cubiertos", "Variables totales", "Variables clasificadas",
-                 "Datasets procesados (RDS)", "Scripts de recolección",
+                 "Datasets procesados (RDS)", "Scripts del pipeline (R)",
                  "Densidad media", "Densidad máxima"),
   Valor = c("35 (1990-2024)",
             paste(ncol(panel), "vars"),
             paste(sum(dict$group != "99_sin_clasificar"), "vars en 17 grupos"),
-            "124", "44",
+            "126", "107",
             sprintf("%d vars/año", round(mean(panel[, sum(!is.na(.SD)), .SDcols = -1, by = year]$V1))),
             sprintf("%d vars (año %d)", max(panel[, sum(!is.na(.SD)), .SDcols = -1, by = year]$V1),
                     panel$year[which.max(panel[, sum(!is.na(.SD)), .SDcols = -1, by = year]$V1)]))
@@ -65,9 +66,10 @@ Diccionario completo de las 176 variables disponible en `spending_panel_v12_dict
 | Fuente | Cobertura | Variables | Uso en el estudio |
 |--------|-----------|-----------|-------------------|
 | **VIPFE / MEFP** | 1990–2024 | Inversión sectorial, ejecución | Cap. 3 — gasto público |
+| **MEFP Presupuesto Abierto** | 2016–2024 | Descomposición programática (`acteco`) | Cap. 3 — composición MAFAP |
 | **World Bank BOOST** | 1996–2008 | Microdatos fiscales | Cap. 3 — período histórico detallado |
 | **IFPRI SPEED 2019** | 1980–2017 | Gasto agro % PIB y % gasto total | Cap. 3 — meta Maputo, ranking LAC |
-| **IDB AgriMonitor** | 2006–2023 | PSE, GSSE, TSE, NPC | Cap. 4a — apoyo al productor |
+| **IDB AgriMonitor** | 1986–2024 | PSE, GSSE, TSE, NPC | Cap. 3 — apoyo al productor |
 | **FAOSTAT PP** | 1991–2024 | Precios productor 119 commodities | Cap. 4a — NRP pre-2006 |
 | **WB Pink Sheet** | 1960–2025 | Precios mundiales referencia | Cap. 4a — NRP cálculo |
 | **BCB Boletín Estadístico** | 2010–2025 | Crédito por sector × banco | Cap. 3 — sustitución crédito |
@@ -84,7 +86,7 @@ Diccionario completo de las 176 variables disponible en `spending_panel_v12_dict
 
 ## Datasets disponibles
 
-El proyecto incluye **124 datasets RDS** organizados en categorías. Los principales:
+El proyecto incluye **126 datasets RDS** organizados en categorías. Los principales:
 
 ```{r}
 #| label: tbl-datasets-cuenta
@@ -127,6 +129,8 @@ Subsidios diésel YPFB, INRA titulación serie, NASA FIRMS incendios, FAOSTAT TC
 :::
 
 ::: {.callout-note}
-## Tier C — Próximas fases (5 items)
-Poblar capítulos Quarto del reporte técnico. Publicar timeline KnightLab. Análisis DEA bootstrap Simar-Wilson formal. Validar anomalía caña de azúcar 2015. Pre-review interno con equipo BM.
+## Tier C — Próximas fases
+Validar la anomalía de caña de azúcar 2015 con INE. Construir la serie nacional de pobreza/FIES (`eh_nacional_anual.rds`) desde la Encuesta de Hogares cruda. Congelar en `renv.lock` los paquetes del DEA (`Benchmarking`, `truncreg`). Pre-review interno con el equipo del Banco Mundial. *Completado:* descomposición programática MAFAP 2016–2024 y DEA Simar-Wilson formal (81 pares, bootstrap B = 2 000).
 :::
+
+Para reproducir todo el análisis paso a paso, consulta [Cómo reproducir](replicacion.qmd).

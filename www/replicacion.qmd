@@ -1,0 +1,114 @@
+---
+title: "Cómo reproducir el estudio"
+subtitle: "Pipeline reproducible, requisitos y trazabilidad de cada cifra"
+---
+
+::: {.lead}
+Todo el análisis del APER Bolivia 2026 es **reproducible desde el código**. Esta página documenta la ruta completa —de un repositorio limpio a las figuras, tablas y al reporte— para que cualquier persona pueda reconstruir los resultados. No se requieren todos los datos crudos para entender la cadena: se requiere que la cadena sea trazable de principio a fin.
+:::
+
+::: {.policy-box}
+**Principio rector.** *Una cifra que no se puede reconstruir desde cero en una máquina limpia, en cinco años, no es una cifra del APER 2026.* Toda cifra del reporte traza al panel maestro **v12** → script → fuente cruda.
+:::
+
+## 1 · Requisitos
+
+| Componente | Versión | Uso |
+|------------|---------|-----|
+| **R** | ≥ 4.3 | Pipeline de datos y análisis |
+| **Quarto** | ≥ 1.4 | Render del reporte, el sitio y las slides |
+| **renv** | (incluido) | Entorno de paquetes reproducible (`renv.lock`) |
+| **GDAL / sf** | 3.6+ | Capas espaciales (mapas municipales) |
+
+El sistema de código es **R + Quarto** (no Python). El año base de los deflactores es **2015** (montos en USD/BOB constantes de 2015).
+
+## 2 · Estructura del repositorio
+
+```
+00_admin/      Documentos administrativos, bitácora (RETOMAR.md), estado de datos
+01_data/
+├── raw/        Originales inmutables (no versionados; ~1.3 GB)
+├── processed/  126 datasets limpios (.rds + espejo .csv) — incluye panel v12
+└── external/   Shapefiles, clasificadores, deflactores
+02_code/
+├── 00_setup/          Configuración, constantes, paquetes
+├── 01_data_collection/  39 scripts — descarga y parseo de fuentes
+├── 02_cleaning/         24 scripts — integración y panel maestro
+├── 03_analysis/         11 scripts — PSE, DEA, regresiones, MAFAP
+└── 04_visualization/    33 scripts — figuras con el tema World Bank
+04_report/     Quarto Book (6 capítulos + 9 apéndices)
+05_outputs/    Figuras (PNG) y tablas
+www/           Este sitio público
+slides/        Presentaciones (Reveal.js)
+```
+
+## 3 · Reproducción paso a paso
+
+```bash
+# 1 · Clonar el repositorio
+git clone https://github.com/jcmunozmora/bolivia-wb-aper-2026.git
+cd bolivia-wb-aper-2026
+
+# 2 · Restaurar el entorno de paquetes R (renv)
+Rscript -e 'renv::restore()'
+
+# 3 · (Opcional) Descargar datos crudos no versionados (~400 MB)
+bash scripts/00_download_raw.sh
+
+# 4 · Ejecutar el pipeline de construcción del panel maestro v12
+Rscript scripts/01_run_all.R
+```
+
+### 3.1 · El pipeline analítico (panel v12 → resultados)
+
+Una vez construido el panel maestro `01_data/processed/spending_panel_v12.rds`, los bloques analíticos se derivan de él:
+
+| Bloque | Script | Salida |
+|--------|--------|--------|
+| **Composición MAFAP** | `02_code/02_cleaning/17_mafap_classification.R`, `18_mafap_programatico.R` | `mafap_bolivia.rds`, `gasto_agro_mafap_prog_serie.rds` |
+| **Eficiencia DEA Simar-Wilson** | `02_code/03_analysis/03_dea_efficiency.R` | `dea_simar_wilson_results.rds` |
+| **Regresiones panel** | `02_code/03_analysis/08_extended_regressions.R` | `extended_regression_results.rds` |
+| **Gasto municipal programático** | `01_data_collection/49_download_mefp_muni_programatico.R` → `02_cleaning/51_parse_mefp_muni_programatico.R` | `gasto_agro_prog_muni_2016_2024.rds` |
+| **Focalización pobreza (NBI)** | `02_code/02_cleaning/52_prep_pobreza_municipal_nbi.R` | `pobreza_municipal_nbi.rds`, `focalizacion_gasto_pobreza.rds` |
+
+### 3.2 · Render del reporte, el sitio y las slides
+
+```bash
+# Reporte técnico (Quarto Book → HTML/PDF/DOCX)
+quarto render 04_report/
+
+# Sitio público (→ docs/, GitHub Pages)
+cd www && quarto render && cd ..
+
+# Slides
+cd slides && quarto render && cd ..
+```
+
+## 4 · Qué datos son públicos y cuáles requieren gestión
+
+No es necesario tener todos los datos para reproducir el grueso del análisis. El estado de cada fuente está documentado en [`00_admin/ESTADO_DE_DATOS.md`](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md):
+
+- **Públicos y procesados:** la mayoría de las fuentes (VIPFE, BOOST, MEFP Presupuesto Abierto, IDB AgriMonitor, INE, FAOSTAT, USDA, BCB, MapBiomas, CHIRPS, WDI).
+- **Requieren gestión institucional:** ejecución por entidad de los ministerios sectoriales 2009–2024 (carta formal al MEFP bajo DS 28168, lista en el repositorio).
+- **En construcción / próximas fases:** ver la sección de gaps abajo.
+
+## 5 · Trazabilidad
+
+Cada cifra publicada es trazable en menos de dos minutos:
+
+1. **Panel v12** (`01_data/processed/spending_panel_v12.rds`) es la fuente cuantitativa única.
+2. El [diccionario del panel](datos.qmd) documenta las 176 variables y sus 17 grupos temáticos.
+3. Los hallazgos canónicos **F01–F08** están especificados en [`.agent/04_HALLAZGOS.md`](https://github.com/jcmunozmora/bolivia-wb-aper-2026/tree/main/.agent), con su contrato (cifra, evidencia, script, fuente).
+4. El inventario de fuentes y licencias vive en el Apéndice A del reporte técnico.
+
+## 6 · Gaps de reproducibilidad declarados
+
+Por transparencia, los siguientes puntos están abiertos al cierre de esta versión:
+
+- **Snapshot de `renv` pendiente:** los paquetes del DEA (`Benchmarking`, `truncreg`, `ggrepel`) aún no están congelados en `renv.lock`; deben instalarse manualmente para re-correr `03_dea_efficiency.R` hasta el próximo `renv::snapshot()`.
+- **Serie nacional de pobreza/FIES:** la figura de pobreza/FIES usa los valores de anclaje canónicos del hallazgo F06; la serie continua `eh_nacional_anual.rds` está pendiente de construcción desde la Encuesta de Hogares cruda.
+- **Orquestador único:** existe el blueprint de un `rebuild_everything.sh` y un `Makefile` en [`.agent/12_REPRODUCIBILIDAD.md`](https://github.com/jcmunozmora/bolivia-wb-aper-2026/tree/main/.agent); por ahora la reproducción usa `scripts/01_run_all.R` más los scripts analíticos de la tabla 3.1.
+
+[Repositorio GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026){.download-btn .primary}
+[Estado de datos completo](https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md){.download-btn}
+[Datos y diccionario](datos.qmd){.download-btn}

@@ -1,6 +1,6 @@
 ---
 title: "Eficiencia y equidad del gasto"
-subtitle: "DEA, regresiones panel e incidencia subnacional"
+subtitle: "DEA Simar-Wilson, panel de productividad e incidencia subnacional"
 ---
 
 ```{r}
@@ -8,183 +8,242 @@ subtitle: "DEA, regresiones panel e incidencia subnacional"
 suppressPackageStartupMessages({
   library(data.table); library(ggplot2); library(scales); library(gt); library(fixest)
 })
+here::i_am("www/eficiencia.qmd")   # ancla la raíz del proyecto (repo root) sin depender del cwd
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
 
 panel <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
 res   <- readRDS(here::here("01_data/processed/extended_regression_results.rds"))
+dea   <- readRDS(here::here("01_data/processed/dea_simar_wilson_results.rds"))
 
+# Paleta World Bank
+wb_navy <- "#002244"; wb_blue <- "#009FDA"; wb_orange <- "#F05023"
 fig <- function(name) paste0("figures/", name, ".png")
 ```
 
 ::: {.lead}
-Este capítulo evalúa si el gasto agropecuario boliviano es eficiente y equitativo. Combina análisis envolvente de datos a nivel departamental, regresiones panel de productividad y análisis de incidencia con la Encuesta de Hogares.
+Este capítulo evalúa si el gasto agropecuario boliviano es eficiente y equitativo. Combina el análisis envolvente de datos (DEA) con bootstrap de Simar-Wilson a nivel departamental, regresiones panel de productividad y un análisis de incidencia y focalización con datos de hogares y del Censo.
 :::
 
-## Apoyo al productor — PSE Bolivia en contexto LAC
+## Apoyo al productor — PSE en contexto LAC
 
 ### Composición de los apoyos
 
-Antes de comparar Bolivia con LAC, es útil examinar la composición interna de los apoyos al productor — la metodología OECD distingue entre **Producer Support Estimate (PSE)** que captura transferencias directas (precios, pagos, reducción de insumos), **General Services Support Estimate (GSSE)** que cubre bienes públicos al sector (I+D, sanidad, infraestructura), y **Consumer Support Estimate (CSE)** que mide transferencias hacia consumidores.
+La metodología OCDE distingue entre **Producer Support Estimate (PSE)** —transferencias al productor por precios, pagos y reducción de insumos—, **General Services Support Estimate (GSSE)** —bienes públicos al sector: I+D, sanidad, infraestructura— y **Consumer Support Estimate (CSE)** —transferencias hacia consumidores.
 
-![PSE, GSSE y CSE Bolivia 2006-2023 — niveles y trayectoria](`r fig("fig13_pse_gsse_cse_bolivia")`)
+![PSE, GSSE y CSE Bolivia 2006-2024 — niveles y trayectoria](`r fig("fig13_pse_gsse_cse_bolivia")`)
 
 ![Composición interna del PSE Bolivia por tipo de transferencia](`r fig("fig14_pse_composition")`)
 
 ### Bolivia frente a LAC
 
-![Tasa Producer Support Estimate (PSE%) Bolivia vs LAC, 2006–2023](`r fig("fig15_psep_bolivia_vs_lac")`)
+![Tasa Producer Support Estimate (%PSE) Bolivia vs LAC](`r fig("fig15_psep_bolivia_vs_lac")`)
 
-![Brecha de precios doméstico-frontera por commodity, Bolivia 2023](`r fig("fig16_price_gap_by_commodity_2023")`)
+![Brecha de precios doméstico-frontera por commodity, Bolivia](`r fig("fig16_price_gap_by_commodity_2023")`)
 
 ![Heatmap PSCT por commodity y año (Bolivia)](`r fig("fig17_psct_heatmap")`)
 
 ::: {.callout-note}
-## Patrón dual de protección
-Bolivia exhibe un patrón dual de apoyo al productor que persiste en el tiempo:
+## Patrón dual de protección (hallazgo F02–F03)
 
-- **Taxa exportables** (transferencia implícita del productor al consumidor): soya −37 %, arroz −33 %, sorgo −47 %.
-- **Protege seguridad alimentaria**: maíz +46 %, trigo +28 %, cebada +65 %.
-- PSE total Bolivia 2023: **5.8 %** — quinto en LAC tras México (6.6 %), Colombia (5.6 %), Perú (5.1 %), Brasil (4.4 %).
+El %PSE de Bolivia se ubicó en **5,8 % del valor bruto de producción en 2018**, el quinto nivel más alto entre los países LAC monitoreados por el IDB AgriMonitor ese año (por encima: Brasil, Chile, Colombia y Argentina; por debajo: Paraguay, Ecuador, Perú, México y Costa Rica).
 
-Este patrón es coherente con la política explícita de soberanía alimentaria post-2009 y los controles de precios sobre exportables.
+La protección es **dual** según la tasa nominal de protección (NRP) por commodity:
+
+- **Tasa los exportables** (transferencia implícita del productor al consumidor): soya −37 %, arroz −33 %.
+- **Protege la seguridad alimentaria**: maíz +46 %, trigo +28 %.
+
+El patrón es coherente con la política explícita de soberanía alimentaria post-2009 y los controles de precios sobre exportables.
 :::
 
-## Eficiencia técnica departamental — DEA
+## Eficiencia técnica departamental — DEA Simar-Wilson
 
-### Setup metodológico
+### Especificación
 
-El análisis envolvente de datos (DEA) compara cada unidad territorial (DMU) con la mejor combinación factible de inputs y outputs observada en la muestra. Para Bolivia, la unidad de análisis son los 9 departamentos × 9 años (81 DMUs) entre 2012 y 2020.
+El análisis envolvente de datos (DEA) compara cada unidad territorial con la mejor combinación factible de insumos y productos observada en la muestra. La frontera es **VRS (rendimientos variables a escala), agrupada (*pooled*) intertemporalmente** sobre los **81 pares departamento-año** del período **2012–2020** (9 departamentos × 9 años). Se reportan **ambas orientaciones** y se corrige el sesgo de la frontera determinista con **bootstrap de Simar-Wilson (1998), B = 2 000 réplicas**, intervalos al 95 %. La especificación está fijada en el ADR-0016.
 
-![DEA Bolivia: inputs (gasto, crédito, área irrigada) y outputs (PIB agropecuario, rendimientos)](`r fig("fig23_dea_inputs_outputs")`)
+- **Insumos:** gasto agropecuario estricto (USD constantes de 2015) y superficie cultivada total (ha).
+- **Productos:** producción total (toneladas) y rendimiento de cereales (kg/ha).
+
+![Insumos y productos del modelo DEA departamental](`r fig("fig23_dea_inputs_outputs")`)
 
 ### Resultados por departamento
 
-![Eficiencia simple por departamento, 2019 (proxy)](`r fig("fig24_eficiencia_simple_2019")`)
-
 ```{r}
-#| label: tbl-eff
-eff <- as.data.table(res$eff_avg)
-eff[, .(
-  Departamento = dept_upper,
-  `Score eficiencia` = round(eff_mean, 3),
-  `PIB agrop. (BOB MM)` = round(pib_mean_mm, 0),
-  `Gasto (BOB MM)` = round(gasto_mean_mm, 1),
-  `Ratio PIB/Gasto` = round(ratio_mean, 0)
+#| label: tbl-dea
+ds <- as.data.table(dea$dept_summary)[order(-eff_in_bc_mean)]
+ds[, .(
+  Departamento = tools::toTitleCase(tolower(dept_upper)),
+  `Eficiencia (corregida)` = eff_in_bc_mean,
+  `Sin corregir` = eff_in_mean,
+  `Años en frontera` = n_frontier_in
 )] |>
   gt() |>
-  tab_header(title = md("**Score de eficiencia técnica relativa, promedio 2017–2021**")) |>
-  tab_source_note(md("*Score: ratio PIB/gasto normalizado por máximo anual. 1.0 = depto frontera.*")) |>
-  data_color(columns = "Score eficiencia",
-             palette = c("#C2410C", "#FED7AA", "#14213D"),
-             domain = c(0, 0.5, 1)) |>
+  tab_header(title = md("**Eficiencia técnica departamental — DEA Simar-Wilson, 2012–2020**")) |>
+  fmt_number(columns = c("Eficiencia (corregida)", "Sin corregir"),
+             decimals = 2, dec_mark = ",", sep_mark = ".") |>
+  data_color(columns = "Eficiencia (corregida)",
+             palette = c("#F05023", "#FDB714", "#009FDA", "#002244"),
+             domain = c(0.2, 1.0)) |>
+  tab_source_note(md("*Puntaje de eficiencia insumo-orientado corregido por sesgo (bootstrap Simar-Wilson 1998). Fuente: `dea_simar_wilson_results.rds`.*")) |>
   opt_table_outline(style = "none")
 ```
 
-Santa Cruz domina como frontera de eficiencia con score 1.0 (ratio PIB/gasto ~378), seguido por Beni (0.49) y Cochabamba (0.28). Tarija aparece como el menos eficiente (0.05) — gran gasto, bajo PIB agropecuario relativo.
-
 ::: {.callout-note}
-## Determinante principal de la eficiencia
-La regresión de segunda etapa muestra que la **expansión de uso antrópico del suelo (MapBiomas)** explica el **63 % de la varianza** en los scores de eficiencia departamental.
+## Un gradiente geográfico nítido
 
-```
-score ~ ln(área antrópica)
-β = 0.230  (SE 0.028, p<0.001)
-R² ajustado = 0.632  (n=40)
-```
-
-Es decir, los departamentos con frontera agrícola activa son los que aparecen como "más eficientes" en términos de PIB agropecuario por boliviano gastado. Esta lectura matiza el resultado: la eficiencia observada está vinculada a la expansión territorial, no necesariamente a mejor gestión del gasto.
+En promedio, los departamentos bolivianos operan con un puntaje de eficiencia corregido de **0,60** (rango 0,22–0,89). El ordenamiento dibuja un gradiente claro: las **tierras bajas y los valles** (Pando 0,85; Tarija 0,83; Santa Cruz 0,77; Beni 0,76; Cochabamba 0,72) operan cerca de la frontera, mientras que el **altiplano** (La Paz 0,53; Oruro 0,37; Potosí 0,27) y Chuquisaca (0,32) registran las mayores brechas. **Ningún departamento del altiplano alcanzó la frontera de eficiencia en ningún año** del período analizado.
 :::
 
-## Regresiones de productividad — panel nacional
+![Eficiencia departamental — mapa de calor Simar-Wilson](`r fig("fig24_dea_heatmap_simar_wilson")`)
+
+### Determinantes ambientales — segunda etapa
+
+La segunda etapa de Simar y Wilson (2007) estima los determinantes de la (in)eficiencia mediante **regresión truncada con bootstrap (no Tobit)**.
+
+```{r}
+#| label: tbl-dea-stage2
+s2 <- as.data.table(dea$stage2_sw2007)
+s2[term != "(Intercept)", .(
+  Determinante = c("precip_k" = "Precipitación", "defor_k" = "Deforestación")[term],
+  Coeficiente = coef,
+  `IC 95% inf.` = ci_lo,
+  `IC 95% sup.` = ci_hi,
+  Significativo = ifelse(sig95, "Sí", "No")
+)] |>
+  gt() |>
+  tab_header(title = md("**Segunda etapa Simar-Wilson (2007) — regresión truncada**")) |>
+  fmt_number(columns = c("Coeficiente", "IC 95% inf.", "IC 95% sup."),
+             decimals = 3, dec_mark = ",", sep_mark = ".") |>
+  tab_source_note(md("*Variable dependiente: eficiencia corregida. Fuente: `dea_simar_wilson_results.rds`.*")) |>
+  opt_table_outline(style = "none")
+```
+
+::: {.callout-important}
+## La eficiencia refleja, en parte, una desventaja agroecológica
+
+La **precipitación** emerge como un determinante positivo y significativo (coeficiente 0,35; IC 95 % [0,26; 0,45]): los departamentos con menor disponibilidad hídrica registran sistemáticamente menor eficiencia técnica. Una porción de la brecha del altiplano refleja por tanto una **desventaja agroecológica estructural** —aridez relativa, limitación de la precipitación— y no exclusivamente decisiones de asignación o de ejecución del gasto. La robustez de la ordenación es alta (Spearman 0,94 entre especificaciones).
+:::
+
+![Intuición nivel/composición del gasto y eficiencia](`r fig("fig25_dea_gasto_intuicion")`)
+
+## Gasto y resultados — panel de productividad
 
 ```{r}
 #| label: tbl-tfp-summary
 m1 <- res$m1; m2 <- res$m2; m3 <- res$m3
 data.table(
   Modelo = c("M1: TFP ~ Inv", "M2: TFP ~ Inv + LC + tendencia", "M3: M2 + PSE"),
-  `Coef. Inv (β1)` = c(round(coef(m1)["ln_inv_agro"], 3),
-                        round(coef(m2)["ln_inv_agro"], 3),
-                        round(coef(m3)["ln_inv_agro"], 3)),
-  `Coef. LC antrópica` = c(NA,
-                            round(coef(m2)["ln_lc_antrop"], 3),
-                            round(coef(m3)["ln_lc_antrop"], 3)),
-  `Coef. PSE%` = c(NA, NA, round(coef(m3)["PSEP_pct"], 4)),
-  `R² ajustado` = c(round(r2(m1, "ar2"), 3),
-                     round(r2(m2, "ar2"), 3),
-                     round(r2(m3, "ar2"), 3)),
-  `N obs` = c(nobs(m1), nobs(m2), nobs(m3))
+  `Coef. Inv` = c(coef(m1)["ln_inv_agro"], coef(m2)["ln_inv_agro"], coef(m3)["ln_inv_agro"]),
+  `Coef. LC antrópica` = c(NA, coef(m2)["ln_lc_antrop"], coef(m3)["ln_lc_antrop"]),
+  `R² ajustado` = c(r2(m1, "ar2"), r2(m2, "ar2"), r2(m3, "ar2")),
+  `N` = c(nobs(m1), nobs(m2), nobs(m3))
 ) |>
   gt() |>
-  tab_header(title = md("**Determinantes de la TFP agrícola, Bolivia 1990–2023**")) |>
-  tab_source_note(md("*Estimación: feols(). Variables en log. Panel maestro v12.*")) |>
+  tab_header(title = md("**Determinantes de la TFP agrícola — estimación exploratoria**")) |>
+  fmt_number(columns = c("Coef. Inv", "Coef. LC antrópica", "R² ajustado"),
+             decimals = 3, dec_mark = ",", sep_mark = ".") |>
+  sub_missing(missing_text = "—") |>
+  tab_source_note(md("*feols(), variables en log, panel maestro v12. Resultados exploratorios — ver caveat.*")) |>
   opt_table_outline(style = "none")
 ```
 
-::: {.callout-tip}
-## Interpretación de las regresiones
-- La **elasticidad TFP-inversión** es positiva pero modesta: ~0.09 en el modelo baseline. Es decir, doblar la inversión agropecuaria se asocia con un aumento de TFP de ~9 %.
-- La **expansión de uso antrópico** muestra un coeficiente positivo y significativo: la frontera agrícola eleva la productividad agregada (mecanismo de ampliación de escala), no la productividad por hectárea.
-- El **PSE% es significativo y negativo** (β = −0.004, p<0.05): el apoyo de precios distorsiona la asignación de recursos y se asocia con menor TFP — un resultado consistente con la literatura OCDE.
+::: {.callout-warning}
+## La asociación gasto–resultados no es robusta
+
+Las regresiones panel con efectos fijos que vinculan el gasto agropecuario con la productividad (TFP) y con la pobreza **no arrojan una asociación robusta** a especificaciones alternativas. El "dividendo de pobreza" que aparecía en estimaciones preliminares resultó ser un artefacto de la fuente subnacional (Jubileo) y de la ventana 2012–2018; al recomponer el panel sobre la fuente canónica desaparece (decisión ADR-0017).
+
+La lectura del reporte técnico es que **la efectividad del gasto está limitada por su composición y por rezagos de maduración, más que por su nivel**. Estos coeficientes se presentan como **exploratorios** y no sostienen una interpretación causal; la relación gasto-resultados permanece en consolidación hasta cerrar las corridas pendientes sobre el panel v12.
 :::
 
 ## Equidad — distribución del gasto entre municipios
 
-### Distribución y concentración
-
-Antes de medir la incidencia rural del gasto agropecuario sobre la pobreza, conviene examinar **cómo se distribuye el gasto entre municipios**. La distribución es muy asimétrica: pocos municipios reciben grandes volúmenes y la mayoría queda con asignaciones modestas.
+La distribución del gasto agropecuario municipal es muy asimétrica: pocos municipios reciben grandes volúmenes y la mayoría queda con asignaciones modestas.
 
 ![Distribución del gasto agropecuario municipal 2020 — histograma y dispersión](`r fig("fig25_dist_muni_agro_2020")`)
 
-![Curva de Lorenz del gasto agropecuario municipal — concentración entre municipios](`r fig("fig26_lorenz_muni_2020")`)
+![Curva de Lorenz del gasto agropecuario municipal](`r fig("fig26_lorenz_muni_2020")`)
 
 ![Gasto agropecuario por municipio frente a tamaño poblacional](`r fig("fig27_muni_share_vs_size")`)
 
-::: {.callout-warning}
-## Concentración del gasto entre municipios
-La curva de Lorenz revela una concentración extrema: un grupo pequeño de municipios concentra una fracción desproporcionada del gasto agropecuario, mientras que la mayoría de municipios pequeños queda con montos absolutos modestos. Cruzando con la incidencia rural de pobreza (siguiente sección), la asimetría territorial del gasto se vuelve políticamente relevante.
-:::
+## Equidad — focalización: gasto y pobreza rural (NBI)
 
-## Equidad — incidencia rural
+¿Llega el gasto agropecuario a los territorios con mayor necesidad? Cruzando el gasto agropecuario municipal devengado (MEFP 2024) con la incidencia de pobreza por Necesidades Básicas Insatisfechas (NBI) rural del Censo 2024, la respuesta es: **no de forma sistemática**.
 
 ```{r}
-#| label: fig-incidencia
-#| fig-cap: "Pobreza rural por departamento (Encuesta de Hogares 2024)."
-eh_dept <- as.data.table(readRDS(here::here("01_data/processed/eh_dept_anual.rds")))
-eh_2024 <- eh_dept[year == 2024 & area == "rural"][!is.na(pov_rate)]
-ggplot(eh_2024, aes(x = reorder(depto, pov_rate), y = pov_rate)) +
-  geom_col(fill = "#14213D", alpha = 0.85) +
+#| label: fig-nbi-rural
+#| fig-cap: "Pobreza rural por NBI a nivel departamental (Censo 2024). Fuente: pobreza_municipal_nbi.rds (INE)."
+nbi <- as.data.table(readRDS(here::here("01_data/processed/pobreza_municipal_nbi.rds")))
+nbi_dep <- nbi[area == "Rural" & !is.na(nbi_pct_2024),
+               .(nbi = weighted.mean(nbi_pct_2024, pop_2024, na.rm = TRUE)), by = dept]
+ggplot(nbi_dep, aes(x = reorder(dept, nbi), y = nbi)) +
+  geom_col(fill = wb_navy, width = 0.72) +
+  geom_text(aes(label = sprintf("%.0f%%", nbi)), hjust = -0.15, size = 3.2, color = wb_navy) +
   coord_flip() +
-  scale_y_continuous(labels = label_number(suffix = "%"), expand = c(0, 0)) +
+  scale_y_continuous(labels = label_number(suffix = " %"), expand = expansion(mult = c(0, 0.12))) +
   labs(x = NULL, y = NULL,
-       caption = "Fuente: Encuesta de Hogares 2024, INE Bolivia.") +
+       caption = "Fuente: NBI rural por municipio (Censo 2024, INE), agregado a departamento ponderando por población rural.") +
   theme_minimal(base_family = "Inter", base_size = 11) +
   theme(
-    plot.background = element_rect(fill = "#FAFAF9", color = NA),
-    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    plot.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.background = element_rect(fill = "#FFFFFF", color = NA),
     panel.grid.major.y = element_blank(),
     panel.grid.minor = element_blank(),
-    plot.caption = element_text(color = "#6B7280", hjust = 0, size = 9)
+    plot.caption = element_text(color = "#6B7280", hjust = 0, size = 8.5)
   )
 ```
 
-::: {.callout-warning}
-## Asimetría territorial
-Los departamentos andinos —**Chuquisaca, Oruro y Potosí**— concentran las mayores tasas de pobreza rural (54–64 %), mientras Pando, Tarija y Beni muestran tasas de 27–34 %.
+```{r}
+#| label: foc
+foc <- readRDS(here::here("01_data/processed/focalizacion_gasto_pobreza.rds"))
+```
 
-Cruzando esta información con la distribución del gasto público agropecuario, se observa que las regiones más pobres no reciben proporcionalmente más recursos. La paradoja es nítida: **Santa Cruz concentra el mayor gasto agropecuario absoluto, mientras los departamentos más pobres reciben el más alto per cápita pero en montos absolutos pequeños** que no permiten programas de transformación productiva de escala.
+::: {.callout-warning}
+## El gasto no se concentra donde más necesidad hay
+
+La correlación entre el gasto agropecuario per cápita rural municipal y la pobreza rural por NBI es **débil y no significativa** en rangos (n = `r foc$n` municipios; Spearman ρ = `r format(round(foc$spearman_rho, 2), decimal.mark = ",")`, p = `r format(round(foc$spearman_p, 2), decimal.mark = ",")`; Pearson r = `r format(round(foc$pearson_r, 2), decimal.mark = ",")`). Los departamentos del altiplano y la Amazonía concentran las mayores tasas de NBI rural (Beni 72 %, Potosí 70 %, Chuquisaca 68 %), pero no reciben proporcionalmente más gasto agropecuario por habitante rural. La focalización territorial del gasto sobre la necesidad es, en la práctica, **plana**.
+:::
+
+## Equidad — incidencia de pobreza por departamento
+
+```{r}
+#| label: fig-incidencia
+#| fig-cap: "Pobreza moderada por departamento, 2024 (serie INE CBA 2016–2024)."
+pov <- as.data.table(readRDS(here::here("01_data/processed/ine_pobreza_departamental.rds")))
+pov24 <- pov[year == 2024 & indicador == "moderada" & serie == "cba_2016_2024" & !is.na(value_pct)]
+ggplot(pov24, aes(x = reorder(tools::toTitleCase(tolower(dept_upper)), value_pct), y = value_pct)) +
+  geom_col(fill = wb_blue, width = 0.72) +
+  geom_text(aes(label = sprintf("%.0f%%", value_pct)), hjust = -0.15, size = 3.2, color = wb_navy) +
+  coord_flip() +
+  scale_y_continuous(labels = label_number(suffix = " %"), expand = expansion(mult = c(0, 0.12))) +
+  labs(x = NULL, y = NULL,
+       caption = "Fuente: pobreza moderada por línea (CBA 2016–2024), INE Bolivia.") +
+  theme_minimal(base_family = "Inter", base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.caption = element_text(color = "#6B7280", hjust = 0, size = 8.5)
+  )
+```
+
+::: {.callout-note}
+## Asimetría territorial oriente–occidente
+
+Los departamentos del occidente y los valles —**Chuquisaca (51 %), Potosí (47 %), La Paz (45 %)**— concentran las mayores tasas de pobreza moderada, mientras Santa Cruz (26 %), Tarija (31 %) y Pando (34 %) se ubican por debajo. El patrón replica la dualidad estructural oriente–occidente y refuerza la lectura de la sección anterior: una política de bienes públicos sectoriales focalizada por territorio y una política de transferencias focalizada por hogar producen incidencias distintas.
 :::
 
 ## Síntesis
 
 | Dimensión | Hallazgo | Implicación |
 |-----------|----------|-------------|
-| PSE Bolivia 2023 | 5.8 % — 5° en LAC | Apoyo moderado-bajo en contexto regional |
-| Patrón dual | Taxa soya/arroz, protege maíz/trigo | Política explícita de soberanía alimentaria |
-| DEA depts | Santa Cruz frontera (1.0); Tarija mínimo (0.05) | Heterogeneidad enorme |
-| 2ª etapa DEA | LC antrópica explica 63 % varianza | Eficiencia ligada a expansión territorial |
-| TFP-Inv | Elasticidad ~0.09 (significativa) | Retornos positivos pero modestos |
-| PSE-TFP | Coef negativo (−0.004**) | Apoyo de precios distorsiona productividad |
-| Incidencia | Chuquisaca/Oruro/Potosí 54–64 % pobreza | Asimetría territorial del gasto |
+| PSE Bolivia 2018 | 5,8 % — 5° en LAC | Apoyo moderado-bajo en contexto regional |
+| Patrón dual (NRP) | Tasa soya/arroz, protege maíz/trigo | Política explícita de soberanía alimentaria |
+| DEA departamental | Media 0,60; Pando 0,85 … Potosí 0,27 | Gradiente geográfico nítido |
+| 2ª etapa DEA | Precipitación significativa (0,35) | Brecha en parte agroecológica, no solo de gestión |
+| Gasto → TFP/pobreza | Asociación no robusta (ADR-0017) | Problema de composición y rezagos, no de nivel |
+| Focalización NBI | Correlación plana (ρ = 0,06, n.s.) | El gasto no llega donde más necesidad hay |
+| Incidencia | Chuquisaca/Potosí/La Paz 45–51 % | Asimetría territorial oriente–occidente |
 
-Los retornos del gasto agropecuario son **positivos pero modestos**, **muy heterogéneos por territorio**, y **vinculados más a expansión de frontera que a mejoras de productividad por hectárea**. Estos hallazgos motivan las recomendaciones de reorientación del próximo capítulo del reporte técnico.
+Los retornos del gasto agropecuario son **heterogéneos por territorio**, **vinculados en parte a condiciones agroecológicas** más que a la sola gestión, y **no se focalizan sobre la necesidad**. Estos hallazgos motivan las opciones de reorientación del capítulo de recomendaciones del reporte técnico.

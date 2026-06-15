@@ -7,6 +7,31 @@ subtitle: "Reportes, datos, documentación institucional"
 Documentos, datos y análisis generados o consultados durante el estudio. Todos los recursos del Banco Mundial citados son de acceso público.
 :::
 
+## Reporte técnico 2026
+
+::: {.notice}
+**Documento de trabajo — pendiente de validación.** El reporte técnico APER 2026 se encuentra en revisión institucional (validación con el MEFP y firma del *Task Team Leader*). La versión final se publicará en esta sección una vez completado ese proceso.
+:::
+
+[Reporte técnico APER 2026 (próximamente)](#){.download-btn .disabled}
+
+Mientras tanto, todos los hallazgos centrales, métodos y datos están documentados en este sitio (ver [Hallazgos](sector.qmd), [Datos](datos.qmd) y [Cómo reproducir](replicacion.qmd)).
+
+## Transparencia — uso de inteligencia artificial
+
+El reporte se elaboró con asistencia de IA generativa bajo un marco de gobernanza explícito, declarado conforme a la escala **AIAS (AI Assessment Scale)**.
+
+::: {.callout-note}
+## Nivel AIAS predominante: 3 — Colaboración con IA
+La IA **redactó borradores y co-escribió scripts**; el equipo humano verificó la ejecución, validó las fuentes y asumió la responsabilidad final. Salvaguardas clave:
+
+- **Las cifras no las genera la IA.** Todos los valores cuantitativos provienen de scripts determinísticos sobre datos crudos (nivel AIAS 1).
+- El **juicio de política** y la interpretación final son exclusivamente humanos.
+- Las **citas** se verificaron de forma independiente contra las fuentes.
+
+Los autores del informe asumen la responsabilidad plena por todo su contenido.
+:::
+
 ## Reporte original — antecedente
 
 [World Bank (2011) — APER Bolivia 1996-2008 (PDF)](downloads/WB_APER_2011_Spanish.pdf){.download-btn}
@@ -63,13 +88,17 @@ Fichas estructuradas a partir de la documentación oficial del Ministerio de Des
 
 ## Repositorio de código
 
-Todo el código de análisis es público:
+Todo el código de análisis es público y reproducible:
 
-- **44 scripts** de recolección y procesamiento (`02_code/01_data_collection/`).
-- **8 scripts** de análisis econométrico (`02_code/03_analysis/`).
-- Reproducibilidad: cada panel se construye de forma incremental con scripts numerados (28 → 36 → 38 → 41 → 43 → 44 = panel v12).
+- **39 scripts** de recolección (`02_code/01_data_collection/`) y **24** de limpieza/integración (`02_code/02_cleaning/`).
+- **11 scripts** de análisis econométrico (`02_code/03_analysis/`) — incluye el DEA Simar-Wilson y las regresiones panel.
+- **33 scripts** de visualización con el tema World Bank (`02_code/04_visualization/`).
+- El panel maestro **v12** se construye de forma incremental con scripts numerados; la composición MAFAP, el DEA y las regresiones se derivan de él.
 
-[Repositorio GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026){.download-btn}
+Para la secuencia completa de reproducción, ver **[Cómo reproducir](replicacion.qmd)**.
+
+[Repositorio GitHub](https://github.com/jcmunozmora/bolivia-wb-aper-2026){.download-btn .primary}
+[Cómo reproducir el estudio](replicacion.qmd){.download-btn}
 
 ## Cita sugerida
 

@@ -8,14 +8,17 @@ subtitle: "Magnitud, composición, ejecución y sustitución por crédito"
 suppressPackageStartupMessages({
   library(data.table); library(ggplot2); library(scales); library(gt)
 })
+here::i_am("www/gasto.qmd")   # ancla la raíz del proyecto (repo root) sin depender del cwd
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
 
 panel  <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
-boost  <- as.data.table(readRDS(here::here("01_data/processed/boost_agro_panel.rds")))
 mefp   <- as.data.table(readRDS(here::here("01_data/processed/mefp_ejecucion_anual.rds")))
 speed  <- as.data.table(readRDS(here::here("01_data/processed/speed_agro_bolivia.rds")))
+mafap_serie <- as.data.table(readRDS(here::here("01_data/processed/gasto_agro_mafap_prog_serie.rds")))
 
+# Paleta World Bank
+wb_navy <- "#002244"; wb_blue <- "#009FDA"; wb_teal <- "#00B3A2"; wb_orange <- "#F05023"
 fig <- function(name) paste0("figures/", name, ".png")
 ```
 
@@ -77,18 +80,18 @@ La trayectoria muestra cuatro fases:
 #| fig-cap: "Bolivia frente a la meta de Maputo (10%): gasto agropecuario como % del gasto público total, 1980-2007. Fuente: IFPRI SPEED 2019."
 sp <- speed[, .(year, ag_pctexp)]
 ggplot(sp[!is.na(ag_pctexp)], aes(x = year, y = ag_pctexp)) +
-  geom_col(fill = "#14213D", alpha = 0.78) +
-  geom_hline(yintercept = 10, linetype = "dashed", color = "#C2410C", linewidth = 0.8) +
+  geom_col(fill = wb_navy, alpha = 0.9) +
+  geom_hline(yintercept = 10, linetype = "dashed", color = wb_orange, linewidth = 0.8) +
   annotate("text", x = 1986, y = 10.5, label = "Meta Maputo (10%)",
-            color = "#C2410C", fontface = "bold", size = 3.5, hjust = 0) +
+            color = wb_orange, fontface = "bold", size = 3.5, hjust = 0) +
   scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 12), expand = c(0,0)) +
   scale_x_continuous(breaks = seq(1980, 2007, 4)) +
   labs(x = NULL, y = NULL,
        caption = "Bolivia cubre 1980-2007 en la base IFPRI SPEED 2019.") +
   theme_minimal(base_family = "Inter", base_size = 11) +
   theme(
-    plot.background = element_rect(fill = "#FAFAF9", color = NA),
-    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    plot.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.background = element_rect(fill = "#FFFFFF", color = NA),
     panel.grid.major.x = element_blank(),
     panel.grid.minor = element_blank(),
     plot.caption = element_text(color = "#6B7280", hjust = 0, size = 9)
@@ -97,27 +100,69 @@ ggplot(sp[!is.na(ag_pctexp)], aes(x = year, y = ag_pctexp)) +
 
 ::: {.callout-note}
 ## Bolivia nunca alcanzó la meta de Maputo
-**Máximo histórico**: 3.48 % del gasto público total en 1990. **Promedio 2000–2007**: 2.2 %. En el ranking LAC 2000–2017, Bolivia ocupa la posición 9 de 24 con 0.43 % del PIB — por encima de Argentina (0.08 %), Chile (0.31 %) y Perú (0.21 %).
+**Máximo histórico**: 3,48 % del gasto público total en 1990. **Promedio 2000–2007**: 1,87 % (promedio 1990–2007: 1,72 %). En el ranking LAC 2000–2017, Bolivia ocupa la posición 9 de 24 con 0,43 % del PIB — por encima de Argentina (0,08 %), Chile (0,31 %) y Perú (0,21 %).
 :::
 
 ## Composición del gasto: período BOOST 1996–2008
 
 ```{r}
 #| label: tbl-boost
-boost[year %in% c(1996, 2000, 2004, 2008),
+panel[year %in% c(1996, 2000, 2004, 2008),
       .(Año                                = year,
-        `Presup. ejecutado (BOB MM)`       = round(presup_ejecutado_mm, 0),
-        `Tasa ejecución (%)`               = round(tasa_ejecucion, 1),
-        `Gasto corriente (BOB MM)`         = round(gasto_corriente_mm, 0),
-        `Gasto capital (BOB MM)`           = round(gasto_capital_mm, 0),
-        `% capital`                        = round(pct_capital, 1))] |>
+        `Presup. ejecutado (BOB MM)`       = round(boost_presup_ejecutado_mm, 0),
+        `Tasa ejecución (%)`               = round(boost_tasa_ejecucion, 1),
+        `Gasto corriente (BOB MM)`         = round(boost_gasto_corriente_mm, 0),
+        `Gasto capital (BOB MM)`           = round(boost_gasto_capital_mm, 0),
+        `% capital`                        = round(boost_pct_capital, 1))] |>
   gt() |>
   tab_header(title = md("**Ejecución y composición — BOOST 1996-2008**")) |>
-  tab_source_note(md("*Fuente: World Bank BOOST Bolivia.*")) |>
+  fmt_number(columns = "Tasa ejecución (%)", decimals = 1, dec_mark = ",", sep_mark = ".") |>
+  fmt_number(columns = "% capital", decimals = 1, dec_mark = ",", sep_mark = ".") |>
+  tab_source_note(md("*Fuente: World Bank BOOST Bolivia (panel maestro v12).*")) |>
   opt_table_outline(style = "none")
 ```
 
-Durante el período BOOST (único con microdato institucional completo), el gasto agropecuario ejecutado pasó de **278 MM BOB (1996)** a **1 282 MM BOB (2008)** — multiplicación ×4.6 en términos nominales. La tasa de ejecución mejoró de **74 % a 101 %**, evidenciando fortalecimiento institucional. Composición 2008: Agricultura 63 %, Agropecuaria 15 %, Ganadería 6 %, Silvicultura 6 %.
+Durante el período BOOST (único con microdato institucional completo), el gasto agropecuario ejecutado pasó de **278 MM BOB (1996)** a **1 282 MM BOB (2008)** — multiplicación ×4,6 en términos nominales. La tasa de ejecución mejoró de **74 % a 101 %**, evidenciando fortalecimiento institucional.
+
+## Composición por destinatario — metodología MAFAP-FAO
+
+Más allá de cuánto se gasta, importa **a quién beneficia** el gasto. La metodología MAFAP-FAO clasifica el gasto agropecuario según su destinatario: **A** apoyo a productores (transferencias atadas a producto), **B** apoyo a consumidores, **C** apoyo a intermediarios, **D** bienes públicos al sector (I+D, sanidad, extensión, riego) y **E** soporte rural general. La descomposición se construye desde la **descomposición programática del MEFP** (Presupuesto Abierto, `acteco-treemap`, 36 actividades, devengado 2016–2024).
+
+```{r}
+#| label: fig-mafap
+#| fig-cap: "Composición del gasto agropecuario por destinatario MAFAP, 2016–2024. Fuente: descomposición programática MEFP."
+ms <- copy(mafap_serie)
+cat_lab <- c(A = "A · Productores", B = "B · Consumidores", C = "C · Intermediarios",
+             D = "D · Bienes públicos", E = "E · Soporte rural")
+ms[, etiqueta := factor(cat_lab[mafap_cat], levels = rev(cat_lab))]
+pal_mafap <- c("A · Productores" = wb_blue, "B · Consumidores" = wb_teal,
+               "C · Intermediarios" = wb_orange, "D · Bienes públicos" = wb_navy,
+               "E · Soporte rural" = "#FDB714")
+ggplot(ms, aes(x = year, y = pct, fill = etiqueta)) +
+  geom_col(width = 0.8) +
+  scale_fill_manual(values = pal_mafap, breaks = cat_lab) +
+  scale_y_continuous(labels = label_number(suffix = " %"), expand = c(0, 0)) +
+  scale_x_continuous(breaks = 2016:2024) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       caption = "Caso base conservador EMAPA 50/50 (A/B). Fuente: MEFP, devengado SIGEP; clasificación MAFAP (ADR-0014).") +
+  theme_minimal(base_family = "Inter", base_size = 11) +
+  theme(
+    plot.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.position = "top", legend.justification = "left",
+    plot.caption = element_text(color = "#6B7280", hjust = 0, size = 8.5)
+  )
+```
+
+::: {.callout-note}
+## Bienes públicos mayoritarios, pero en retroceso (hallazgo de composición)
+
+Acumulado 2016–2024, el **56 % del gasto agropecuario se destina a bienes públicos** (categoría D): infraestructura de riego 27 %, investigación (INIAF), sanidad y extensión. El resto se reparte entre apoyo a productores (A, 27 %) y a consumidores (B, 16 %); las categorías C y E son casi nulas.
+
+La dinámica es la señal de alerta: la participación de los bienes públicos **cayó de 64 % (2016) a 45 % (2024)**, mientras el apoyo a productores y consumidores (A+B) subió de 35 % a 55 %, con el cruce en 2022. El mecanismo de **EMAPA** —compras y comercialización— pasó del 25 % al 42 % del gasto, casi exactamente lo que perdieron los bienes públicos: una **sustitución de categorías, no una expansión del gasto total**. El reparto A/B de EMAPA se trata como caso base conservador 50/50 (supuesto, no observado).
+:::
 
 ## Tasa de ejecución reciente — benchmark MEFP
 
@@ -133,7 +178,7 @@ mefp[, .(
   tab_header(title = md("**Tasas de ejecución MEFP (Entidad 035), 2015-2023**")) |>
   tab_source_note(md("*Fuente: PDFs DGAA MEFP. Solo Entidad 035 (referencia comparativa).*")) |>
   data_color(columns = "% Ejecución",
-             palette = c("#C2410C", "#FED7AA", "#14213D"),
+             palette = c("#F05023", "#FDB714", "#002244"),
              domain = c(40, 70, 100)) |>
   opt_table_outline(style = "none")
 ```
@@ -168,15 +213,15 @@ ggplot(panel_long[!is.na(valor)], aes(x = year, y = valor, color = fuente)) +
   geom_vline(xintercept = 2014, linetype = "dashed", color = "#1F3057", alpha = 0.5) +
   annotate("text", x = 2014.2, y = 3000, label = "Ley 393\n(jul 2014)",
             color = "#1F3057", hjust = 0, size = 3.2, fontface = "bold") +
-  scale_color_manual(values = c("Inversión pública (VIPFE)" = "#14213D",
-                                  "Crédito bancario al sector (BCB)" = "#C2410C")) +
+  scale_color_manual(values = c("Inversión pública (VIPFE)" = wb_navy,
+                                  "Crédito bancario al sector (BCB)" = wb_blue)) +
   scale_y_continuous(labels = label_dollar(suffix = " M")) +
-  labs(x = NULL, y = "USD millones", color = NULL,
-       caption = "Inversión: VIPFE/MEFP. Crédito: BCB Boletín Estadístico Cuadro 3.02.") +
+  labs(x = NULL, y = "USD millones (nominales)", color = NULL,
+       caption = "Inversión: VIPFE/MEFP. Crédito: BCB Boletín Estadístico Cuadro 3.02. Series en USD nominales.") +
   theme_minimal(base_family = "Inter", base_size = 11) +
   theme(
-    plot.background = element_rect(fill = "#FAFAF9", color = NA),
-    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    plot.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.background = element_rect(fill = "#FFFFFF", color = NA),
     panel.grid.minor = element_blank(),
     legend.position = "top",
     legend.justification = "left",
@@ -185,12 +230,12 @@ ggplot(panel_long[!is.na(valor)], aes(x = year, y = valor, color = fuente)) +
 ```
 
 ::: {.callout-note}
-## Hallazgo central
-- La **inversión pública** cayó de 0.97 % del PIB en 2015 a 0.38 % en 2021.
-- El **crédito agropecuario** subió de 5.1 % (2010) a 11.7 % (2024) del crédito total bancario.
-- En valores absolutos, el crédito al sector pasó de USD 290 M (2010) a USD 3 397 M (2024) — multiplicación ×11.7.
+## Hallazgo central (F05)
+- La **inversión pública** cayó de 0,97 % del PIB en 2015 a 0,38 % en 2021.
+- El **crédito agropecuario** subió de 5,1 % (2010) a 11,7 % (2024) del crédito total bancario (participación, invariante a deflación).
+- En términos **reales**, la cartera se multiplicó por **×7,1** (USD 385 → 2 725 M constantes de 2015). El factor nominal de ×11,7 (USD 290 → 3 397 M corrientes) incorpora el efecto de la inflación.
 
-Esta sustitución de instrumentos transforma la naturaleza del apoyo público: del **gasto fiscal directo** a la **inducción regulatoria del crédito subsidiado**. Las regresiones panel del estudio incluyen un dummy estructural `post_ley393` para capturar este quiebre.
+Esta sustitución de instrumentos transforma la naturaleza del apoyo público: del **gasto fiscal directo** a la **inducción regulatoria del crédito subsidiado** (Ley 393/2014). Las regresiones panel del estudio incluyen un dummy estructural `post_ley393` para capturar este quiebre.
 :::
 
 ## Distribución subnacional del gasto
@@ -238,11 +283,11 @@ Patrones territoriales del gasto:
 
 | Dimensión | Hallazgo | Implicación |
 |-----------|----------|-------------|
-| Magnitud | Bolivia nunca alcanzó Maputo (máx 3.48 %) | Sector sub-financiado relativo al consenso regional |
+| Magnitud | Bolivia nunca alcanzó Maputo (máx 3,48 %) | Sector sub-financiado relativo al consenso regional |
 | Tendencia | Inversión pico 2015, contracción post-2020 | Ciclo asociado a hidrocarburos y crisis fiscal |
-| Composición | Gasto corriente domina; capital crece con BOOST | Fortalecimiento de inversión 1996–2008 |
-| Ejecución | MEFP 42–96 %; MDRyT 74 % (2024) | Capacidad heterogénea entre entidades |
-| Estructural | Crédito sustituye inversión post-Ley 393 | Cambio de instrumento: fiscal → crédito |
+| Composición (MAFAP) | Bienes públicos 64 % → 45 %; EMAPA 25 % → 42 % | Sustitución de bienes públicos por compras |
+| Ejecución | MEFP 42–96 %; ejecución subnacional limitada (F07) | Capacidad heterogénea entre entidades |
+| Estructural | Crédito ×7,1 real sustituye inversión post-Ley 393 | Cambio de instrumento: fiscal → crédito |
 | Institucional | Riego fragmentado MDRyT-MMAyA | Coordinación intersectorial débil |
 | Subnacional | Concentración Santa Cruz / dispersión altiplano | Diferenciar gasto por contexto regional |
 

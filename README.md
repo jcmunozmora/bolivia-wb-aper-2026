@@ -3,17 +3,17 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![R version](https://img.shields.io/badge/R-%E2%89%A5%204.3-blue.svg)](https://www.r-project.org/)
 [![Panel](https://img.shields.io/badge/panel-v12_(176_vars,_1990--2024)-green.svg)](./01_data/processed/spending_panel_v12.rds)
-[![Site](https://img.shields.io/badge/site-GitHub_Pages-14213D.svg)](https://jcmunozmora.github.io/bolivia-wb-aper-2026)
-[![Reproducible](https://img.shields.io/badge/reproducible-yes-brightgreen.svg)](./CONTRIBUTING.md)
+[![Site](https://img.shields.io/badge/site-GitHub_Pages-002244.svg)](https://jcmunozmora.github.io/bolivia-wb-aper-2026)
+[![Reproducible](https://img.shields.io/badge/reproducible-yes-brightgreen.svg)](./www/replicacion.qmd)
 
 **Cliente:** World Bank — Bolivia Country Office
 **Antecedente:** Actualiza el [APER 2011 (Informe N.° 59696-BO)](./01_data/raw/wb_reports/WB_APER_2011_Spanish.pdf)
-**Periodo de análisis:** 1990-2024 (nacional) / 2012-2021 (subnacional / municipal)
-**Estado:** Datos consolidados (panel v12 con 176 vars) · Sitio público publicado · Reporte técnico en redacción
+**Periodo de análisis:** 1990-2024 (nacional) / 2012-2024 (subnacional / municipal)
+**Estado:** Datos consolidados (panel v12, 176 vars) · Sitio público publicado · Reporte técnico en validación
 
 ## 🌐 Sitio público
 
-El proyecto cuenta con un sitio web minimalista que reúne hallazgos, datos y recursos descargables:
+Sitio web que reúne hallazgos, datos, una línea de tiempo de política y la guía de reproducción:
 
 **👉 [https://jcmunozmora.github.io/bolivia-wb-aper-2026](https://jcmunozmora.github.io/bolivia-wb-aper-2026)**
 
@@ -26,174 +26,102 @@ Source en [`www/`](./www) · Renderizado en [`docs/`](./docs) · Auto-deploy ví
 git clone https://github.com/jcmunozmora/bolivia-wb-aper-2026.git
 cd bolivia-wb-aper-2026
 
-# 2. Descargar datos raw (~400 MB, no incluidos en el repo)
+# 2. Restaurar el entorno de paquetes R
+Rscript -e 'renv::restore()'
+
+# 3. (Opcional) Descargar datos raw (~400 MB, no incluidos en el repo)
 bash scripts/00_download_raw.sh
 
-# 3. Instalar paquetes R + re-ejecutar pipeline completo
+# 4. Construir el panel maestro v12
 Rscript scripts/01_run_all.R
 
-# 4. (Opcional) Renderizar reporte
+# 5. (Opcional) Renderizar el reporte / sitio / slides
 quarto render 04_report/
+cd www && quarto render && cd ..
 ```
 
-Tiempo total desde repo limpio: **~15 minutos** (10 min descarga + 5 min pipeline).
+> Guía de reproducción completa, paso a paso y con trazabilidad: **[www/replicacion.qmd](./www/replicacion.qmd)**.
 
 ---
 
 ## Descripción
 
-Análisis de gasto público agropecuario para Bolivia, siguiendo metodología
-OCDE (PSE, PER) y mejores prácticas del Banco Mundial. Actualiza el
-*Agricultural Public Expenditure Review* (WB, 2011) con datos 2009-2024.
+Análisis del gasto público agropecuario para Bolivia siguiendo metodologías OCDE
+(PSE), MAFAP-FAO (clasificación por destinatario), IFPRI-SPEED (benchmark fiscal)
+y DEA con bootstrap de Simar-Wilson (eficiencia subnacional). Actualiza el
+*Agricultural Public Expenditure Review* (WB, 2011) con datos hasta 2024.
 
 **Preguntas centrales:**
-1. ¿Cuánto gasta el Estado en agricultura y cómo se distribuye?
-2. ¿Qué productos/regiones reciben apoyo efectivo vs. tasación implícita?
-3. ¿Es eficiente el gasto (DEA departamental)?
-4. ¿Impacta en productividad (TFP) y seguridad alimentaria?
-
----
-
-## Documentación principal
-
-📄 **[Anexo A — Inventario de Fuentes de Datos](04_report/appendix/A_data_sources.qmd)**
-
-Documentación exhaustiva de todas las fuentes, archivos, scripts y figuras.
-Incluye catálogo de datasets procesados, cobertura temporal, licencias,
-y reproducibilidad.
-
-📄 **[Estrategia SIIF](02_code/01_data_collection/10_siif_strategy.md)**
-
-Plan de 4 tiers con 25+ rutas para obtener datos SIIF del MEFP.
-
-📄 **[Carta formal MEFP (DS 28168)](00_admin/carta_solicitud_MEFP.md)**
-
-Solicitud de acceso a información pública lista para enviar.
+1. ¿Cuánto gasta Bolivia en el sector agropecuario y cómo se compara con la región?
+2. ¿A quién beneficia el gasto (composición MAFAP) y qué productos reciben apoyo o tasación implícita?
+3. ¿Es eficiente el gasto (DEA Simar-Wilson departamental)?
+4. ¿Se asocia con productividad (TFP), pobreza y seguridad alimentaria?
 
 ---
 
 ## Estructura del proyecto
 
 ```
-00_admin/             Documentos administrativos (ToR, cartas, bitácora)
+00_admin/             Documentos administrativos (ToR, cartas, bitácora RETOMAR.md)
 01_data/
-├── raw/              Originales inmutables (~1.3 GB, 13 fuentes)
-├── processed/        42 datasets limpios (.rds/.csv)
+├── raw/              Originales inmutables (~1.3 GB, no versionados)
+├── processed/        126 datasets limpios (.rds/.csv) — incluye panel v12
 └── external/         Shapefiles, clasificadores, deflactores
-02_code/              29 scripts R del pipeline
-├── 00_setup/         Configuración y funciones base
-├── 01_data_collection/   Descarga y parseo raw
-├── 02_cleaning/      Integración y panel maestro
-├── 03_analysis/      PSE, DEA, regresiones, food security
-└── 04_visualization/ Tema WB ggplot2
-03_literature/        Revisión PRISMA
-04_report/            Quarto Book (6 capítulos + 2 anexos)
+02_code/              ~107 scripts R del pipeline
+├── 00_setup/         Configuración, constantes, paquetes
+├── 01_data_collection/   39 scripts — descarga y parseo
+├── 02_cleaning/      24 scripts — integración y panel maestro
+├── 03_analysis/      11 scripts — PSE, DEA, regresiones, MAFAP
+└── 04_visualization/ 33 scripts — tema WB ggplot2
+03_literature/        Revisión PRISMA + fichas
+04_report/            Quarto Book (6 capítulos + 9 apéndices A–I)
 05_outputs/
-├── figures/          17 figuras WB-theme (PNG 150 dpi)
-└── tables/           Tablas resultados
+├── figures/          ~73 figuras WB-theme (PNG/SVG)
+└── tables/           Tablas de resultados
+www/                  Sitio público (Quarto website)
+slides/               Presentaciones (Reveal.js, tema WB)
 ```
 
 ---
 
 ## Panel maestro (archivo canónico)
 
-**`01_data/processed/spending_panel_v3.rds`** — 35 años × 72 variables
+**`01_data/processed/spending_panel_v12.rds`** — 35 años (1990–2024) × 176 variables en 17 grupos temáticos.
 
 | Grupo | Cobertura | Fuente |
 |-------|-----------|--------|
-| Inversión pública agropecuaria | 1990-2024 | MEFP Informe Fiscal 2024 (VIPFE) |
-| PSE / MPS / GSSE / TSE (OCDE) | 2006-2023 | IDB Agrimonitor |
-| EMAPA gasto individual | 2008-2024 | MEFP Cuadro 22 |
-| APER detallado por categoría | 1996-2008 | WB APER 2011 |
+| Inversión pública agropecuaria | 1990-2024 | MEFP Informe Fiscal / VIPFE |
+| Descomposición programática (MAFAP) | 2016-2024 | MEFP Presupuesto Abierto (`acteco`) |
+| PSE / MPS / GSSE / TSE (OCDE) | 1986-2024 | IDB AgriMonitor |
+| Gasto detallado por categoría | 1996-2008 | WB BOOST / APER 2011 |
+| Crédito agropecuario | 2010-2024 | BCB Boletín Estadístico |
 | TFP + outputs + inputs | 1961-2023 | USDA ERS |
-| Outcomes WDI | 2000-2023 | World Bank WDI |
-| GHG agrícolas | 2019-2023 | IDB Agrimonitor |
-| Deflactores CPI 2015 | 2000-2023 | Derivado de WDI |
+| Uso del suelo / deforestación | 1985-2024 | MapBiomas Col. 3 / Hansen GFC |
+| Clima (precipitación) | 1981-2024 | CHIRPS |
+| Pobreza / seguridad alimentaria | 2012-2024 | INE EH / FAOSTAT FIES |
+| Deflactores CPI 2015 | — | Derivado INE/WDI |
+
+> Diccionario completo: [`spending_panel_v12_dictionary.csv`](./01_data/processed/spending_panel_v12_dictionary.csv).
+> Estado de cada fuente y gaps: [`00_admin/ESTADO_DE_DATOS.md`](./00_admin/ESTADO_DE_DATOS.md).
 
 ---
 
-## Fuentes de datos (resumen)
+## Hallazgos centrales (F01–F08)
 
-### ✅ Descargado y procesado
+1. **F01 — Inversión ×10, TFP +30 %.** La inversión pública agropecuaria se multiplicó por diez (2000–2015), pero la TFP creció apenas 30 %; Bolivia avanza más lento que sus pares andinos.
+2. **F02 — PSE 5,8 % (2018).** Quinto nivel de apoyo al productor entre los países LAC monitoreados por el IDB AgriMonitor.
+3. **F03 — Patrón dual de protección (NRP).** Tasa los exportables (soya −37 %, arroz −33 %) y protege la seguridad alimentaria (maíz +46 %, trigo +28 %).
+4. **F04 — Maputo nunca alcanzado.** Máximo histórico 3,48 % del gasto público total (1990); meta del 10 % nunca lograda.
+5. **F05 — Sustitución por crédito (Ley 393/2014).** La cartera agropecuaria se multiplicó por ×7,1 real (USD 385 → 2 725 M constantes 2015; ×11,7 nominal), sustituyendo parcialmente la inversión pública.
+6. **F06 — Reversión social.** Pobreza rural a 45 % (2024) tras bajar a 40 % (2021); inseguridad alimentaria FIES de 49 % (2019) a 74 % (2024).
+7. **F07 — Ejecución subnacional limitada.** Capacidad de ejecución heterogénea; programas subnacionales con baja ejecución acumulada.
+8. **F08 — Frontera agropecuaria.** 9,4 M ha de cobertura natural perdidas (1985–2024); 64 % de la expansión antrópica en Santa Cruz.
 
-| Fuente | Cobertura | Tipo | Script |
-|--------|-----------|------|--------|
-| **IDB Agrimonitor** ⭐ | 2006-2023 PSE 16 commodities | CSV 91 MB | `15_process_idb_agrimonitor.R` |
-| **USDA ERS TFP** | 1961-2023 Bolivia + LAC | CSV 17 MB | `09_process_usda_tfp.R` |
-| **WB APER 2011** | 1996-2008 granular | Excel 26 MB | `08_process_aper.R` |
-| **MEFP Informe Fiscal 2024** | 1990-2024 inversión sectorial | PDF 2.6 MB | `14_parse_inversion_publica_sectorial.R` |
-| **MEFP Boletín ETA 2022** | 2005-2022 deuda rural | PDF 4.4 MB | `12_parse_mefp_boletin.R` |
-| **Jubileo Municipal** ⭐ | 2012-2021 gasto municipal 31 programas | HTML | `16_scrape_jubileo_municipal.R` |
-| **WDI Bulk** | 2000-2023 22 indicadores | CSV 280 MB | `process_wdi.R` |
-| **Our World in Data (FAOSTAT)** | 1961-2023 outcomes | CSV | `02_download_faostat.R` |
-| **geoBoundaries** | ADM1 + ADM2 | GeoPackage | `07_download_spatial.R` |
+**Composición MAFAP (2016–2024):** 56 % del gasto a bienes públicos (D) —riego 27 %, I+D, sanidad, extensión—, en retroceso de 64 % (2016) a 45 % (2024) frente al avance del apoyo a productores/consumidores (EMAPA 25 % → 42 %).
 
-### 🟡 Descargado pero sin procesar
+**Eficiencia DEA (2012–2020):** eficiencia media corregida 0,60; gradiente Pando 0,85 … Potosí 0,27; la precipitación es un determinante significativo (parte de la brecha es agroecológica).
 
-| Dato | Archivo raw | Acción pendiente |
-|------|-------------|------------------|
-| INE ENA 2015 microdatos | `Encuesta_Agropecuaria_2015.zip` (19.5 MB) | Extraer SPSS .sav, estructurar |
-| INE ENA 2008 microdatos | `Encuesta_Nacional_Agropecuaria_2008.zip` (5.2 MB) | Extraer SPSS .sav |
-| INE Estadísticas Agrícolas | 3 Excel (producción, rendimiento, superficie × 9 depts, 1984-2024) | Parsear a panel largo |
-| INE PIB Departamental | 30 Excel files 2017-2021 | Completar extracción |
-
-### ⏳ Pendiente de obtener
-
-| Dato | Fuente | Acción | Carta/script listo |
-|------|--------|--------|:------------------:|
-| Gasto detallado por entidad 2009-2023 | MEFP SIGEP | Solicitud formal DS 28168 | ✅ |
-| Jubileo datos por depto/municipio | Fundación Jubileo | Email colaboración | ✅ |
-| Precios productor pre-2006 | FAOSTAT PP | Crear cuenta + download | — |
-| PIB dept 1988-2016 | INE Ref 2001 | Localizar archivo | — |
-| OECD PSE comparadores oficial | API OECD | Reintentar | — |
-
-> Ver [ESTADO_DE_DATOS.md](00_admin/ESTADO_DE_DATOS.md) para el snapshot completo
-> con variables por grupo, cobertura real, y plan semanal de acciones.
-
----
-
-## Hallazgos centrales (por si ya se revisan)
-
-1. **Inversión 10× vs TFP estancada** — la inversión pública agropecuaria pasó de USD 84 M (2010) a USD 320 M (2015), pero la TFP se mantuvo en ~95-100 → problema de eficiencia del gasto.
-
-2. **Bolivia es el país más volátil de LAC en política de apoyo** — %PSE osciló entre -27% (2009) y +7% (2016), comparado con México (estable +10-20%) o Chile (estable +3-10%).
-
-3. **Patrón dual de protección (2023)**:
-   - Protegidos: papa (+83%), azúcar (+23%), leche (+22%), cerdo (+17%)
-   - Tasados: huevos (-53%), arroz (-34%), pollo (-34%), maíz (-33%), sorgo (-25%)
-   - Consistente con "soberanía alimentaria" (proteger autoconsumo, tasar exportables)
-
-4. **GSSE creció 8×** — gasto en servicios generales (R&D, infraestructura, sanidad) pasó de 251 mm BOB (2006) a 2,015 mm BOB (2023) → expansión sostenida de bienes públicos agrícolas.
-
-5. **Colapso productividad 2020** — inversión cayó 46% (USD 247→134 mm) por COVID-19; recuperación gradual.
-
----
-
-## Reproducibilidad rápida
-
-```bash
-# Setup
-Rscript 02_code/00_setup/00_packages.R
-
-# Descargar + procesar (datos manuales requeridos — ver Anexo A)
-Rscript 02_code/01_data_collection/07_download_spatial.R
-Rscript 02_code/01_data_collection/08_process_aper.R
-Rscript 02_code/01_data_collection/09_process_usda_tfp.R
-Rscript 02_code/01_data_collection/12_parse_mefp_boletin.R
-Rscript 02_code/01_data_collection/14_parse_inversion_publica_sectorial.R
-Rscript 02_code/01_data_collection/15_process_idb_agrimonitor.R
-
-# Integrar panel maestro
-Rscript 02_code/02_cleaning/08_integrate_pse.R
-
-# Analizar y visualizar
-Rscript 02_code/03_analysis/01_descriptive_spending.R
-
-# Renderizar reporte
-quarto render 04_report/
-```
-
-**Ver documentación completa del pipeline en [Anexo A](04_report/appendix/A_data_sources.qmd)**.
+> Contratos completos de cada hallazgo (cifra, evidencia, script, fuente): [`.agent/04_HALLAZGOS.md`](./.agent/04_HALLAZGOS.md).
 
 ---
 
@@ -201,22 +129,23 @@ quarto render 04_report/
 
 | Método | Capítulo | Implementación |
 |--------|----------|----------------|
-| **PSE** (Producer Support Estimate) | Cap. 4 | IDB Agrimonitor pre-calculado (OECD 2020) |
-| **PER** (Public Expenditure Review) | Cap. 3-4 | Análisis de nivel, composición, eficiencia |
-| **DEA** + Bootstrap Simar-Wilson | Cap. 4 | 9 depts × 2006-2023 (B=2000) |
-| **Panel FE** (fixest) | Cap. 5 | TFP como outcome + PSE/GSSE/inversión |
-| **Food Security Index** | Cap. 2 | PCA 4 dimensiones FAO |
-| **Benchmark LAC** | Cap. 2 | USDA TFP + IDB PSE, 8 países |
+| **PSE / NRP** (OCDE) | Cap. 3 | IDB AgriMonitor + NRP propio (FAOSTAT PP vs WB Pink Sheet) |
+| **MAFAP** (FAO) | Cap. 2–3 | Descomposición programática MEFP (`acteco`), 36 actividades → A–E |
+| **DEA + Bootstrap Simar-Wilson** | Cap. 3 | 9 deptos × 2012-2020 (81 pares), VRS, B=2000, 2ª etapa truncada |
+| **Panel FE** (fixest) | Cap. 3 | TFP / pobreza ~ gasto (exploratorio; asociación no robusta, ADR-0017) |
+| **Benchmark LAC** | Cap. 1–3 | USDA TFP + IDB PSE + IFPRI SPEED |
 
 ---
 
 ## Convenciones del proyecto
 
-- **Año base deflactores:** 2015 (BOB constantes 2015)
-- **Moneda:** BOB (bolivianos) y USD paralelos
-- **Tema visual:** World Bank (`#009FDA` azul, `#002244` navy)
-- **Idioma reporte:** Español
-- **Sistema código:** R + Quarto Book (no Python)
+- **Año base deflactores:** 2015 (USD/BOB constantes de 2015).
+- **Tema visual:** World Bank (`#002244` navy, `#009FDA` azul) — coherente entre reporte, sitio y slides.
+- **Idioma del reporte:** Español.
+- **Sistema de código:** R + Quarto (no Python).
+- **Gobernanza:** ver [`.agent/`](./.agent) (master prompt, invariantes, ADRs) y [`AGENTS.md`](./AGENTS.md).
+
+> **Nota de reproducibilidad:** los paquetes del DEA (`Benchmarking`, `truncreg`, `ggrepel`) aún no están congelados en `renv.lock` (pendiente `renv::snapshot()`); instálense manualmente para re-correr `03_dea_efficiency.R`.
 
 ---
 
@@ -226,8 +155,8 @@ quarto render 04_report/
 |-----|---------|
 | Investigador principal | Juan Carlos Muñoz Mora (jcmunozmora@gmail.com) |
 | Institución | Universidad EAFIT, Medellín |
-| Cliente | WB Bolivia Country Office |
+| Cliente | World Bank — Bolivia Country Office |
 
 ---
 
-*Última actualización: 2026-04-21*
+*Última actualización: 2026-06-14*

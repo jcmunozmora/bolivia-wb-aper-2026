@@ -19,8 +19,8 @@ website:
 
   navbar:
     pinned: false
-    background: light
-    foreground: dark
+    background: dark
+    foreground: light
     title: "APER Bolivia 2026"
     left:
       - href: index.qmd
@@ -39,18 +39,23 @@ website:
             text: Eficiencia y equidad
       - href: timeline.qmd
         text: Línea de tiempo
+      - text: Datos y código
+        menu:
+          - href: datos.qmd
+            text: Datos y metodología
+          - href: replicacion.qmd
+            text: Cómo reproducir
+          - href: recursos.qmd
+            text: Recursos descargables
       - href: slides.qmd
         text: Slides
-      - href: datos.qmd
-        text: Datos
-      - href: recursos.qmd
-        text: Recursos
 
   page-footer:
     border: true
-    left: "APER Bolivia 2026 · Banco Mundial · Universidad EAFIT"
+    background: dark
+    left: "The World Bank · Universidad EAFIT — Agricultural Public Expenditure Review · Bolivia 2026"
     right:
-      - text: "Última actualización 2026-04"
+      - text: "Última actualización 2026-06"
       - text: "GitHub"
         href: https://github.com/jcmunozmora/bolivia-wb-aper-2026
 

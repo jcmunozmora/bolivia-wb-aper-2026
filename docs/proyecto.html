@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-114341b918e606a1f46e170a36b214bb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c69004a60252fccc180e8b43c8a494db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6c9c8737d678ecf21571f1ed79068ed4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -156,17 +156,28 @@ window.Quarto = {
     <a class="nav-link" href="./timeline.html"> 
 <span class="menu-text">Línea de tiempo</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-datos-y-código" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Datos y código</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-datos-y-código">    
+        <li>
+    <a class="dropdown-item" href="./datos.html">
+ <span class="dropdown-text">Datos y metodología</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./replicacion.html">
+ <span class="dropdown-text">Cómo reproducir</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./recursos.html">
+ <span class="dropdown-text">Recursos descargables</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./slides.html"> 
 <span class="menu-text">Slides</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./datos.html"> 
-<span class="menu-text">Datos</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./recursos.html"> 
-<span class="menu-text">Recursos</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -243,7 +254,20 @@ Producer Support Estimates (PSE)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Metodología OCDE aplicada por el BID-AgriMonitor para el período <strong>2006–2023</strong>. Para extender el análisis hacia atrás, se calculó la <em>Tasa Nominal de Protección</em> (NRP) por commodity para <strong>1991–2024</strong> usando precios productor FAOSTAT contra precios de referencia mundiales (WB Pink Sheet).</p>
+<p>Metodología OCDE aplicada por el BID-AgriMonitor (cobertura <strong>1986–2024</strong>). El %PSE de Bolivia se ubicó en <strong>5,8 % del valor de producción en 2018</strong>, quinto entre los países LAC monitoreados. Para extender el análisis hacia atrás, se calculó la <em>Tasa Nominal de Protección</em> (NRP) por commodity para <strong>1991–2024</strong> usando precios productor FAOSTAT contra precios de referencia mundiales (WB Pink Sheet).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Clasificación del gasto por destinatario (MAFAP-FAO)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El gasto agropecuario se clasifica por destinatario según la metodología MAFAP-FAO (categorías A–E) a partir de la <strong>descomposición programática del MEFP</strong> (portal Presupuesto Abierto, <code>acteco-treemap</code>): 36 actividades presupuestarias, devengado real <strong>2016–2024</strong>, mapeadas una a una a las categorías MAFAP (ADR-0014). El reparto A/B del mecanismo EMAPA se trata como caso base conservador 50/50.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -269,7 +293,7 @@ DEA con bootstrap Simar-Wilson
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Análisis envolvente de datos a nivel departamental (9 DMUs × 9 años = 81 observaciones), con tres inputs (gasto agropecuario real, crédito al sector, área irrigada) y dos outputs (PIB agropecuario real, rendimiento cereales). Bootstrap con B=2 000 iteraciones para intervalos de confianza. Segunda etapa Tobit con scores ~ uso de suelo + deforestación + clima.</p>
+<p>Análisis envolvente de datos a nivel departamental (9 departamentos × 9 años = 81 pares, 2012–2020), frontera <strong>VRS agrupada (<em>pooled</em>) intertemporal</strong>, ambas orientaciones. <strong>Insumos</strong>: gasto agropecuario estricto (USD constantes de 2015) y superficie cultivada total. <strong>Productos</strong>: producción total (toneladas) y rendimiento de cereales. Corrección de sesgo con bootstrap de Simar-Wilson (1998), B = 2 000 réplicas. La segunda etapa de Simar-Wilson (2007) estima los determinantes ambientales por <strong>regresión truncada (no Tobit)</strong>; la precipitación emerge como determinante significativo. Especificación fijada en el ADR-0016.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -282,7 +306,7 @@ Panel econométrico fixest
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Modelos de productividad total de factores con efectos fijos: <span class="math inline">\(\ln \text{TFP}_t = \beta_1 \ln \text{Inv}_t + \beta_2 \ln \text{LC antrópica}_t + \beta_3 t + \varepsilon_t\)</span>. Versiones con rezagos (L1, L2), variables climáticas y deforestación. Subnacional: <span class="math inline">\(\ln \text{PIB agro}_{it} = \beta_1 \ln \text{Gasto}_{it} + \alpha_i + \gamma_t + \varepsilon_{it}\)</span>.</p>
+<p>Modelos de productividad (TFP) con efectos fijos: <span class="math inline">\(\ln \text{TFP}_t = \beta_1 \ln \text{Inv}_t + \beta_2 \ln \text{LC antrópica}_t + \beta_3 t + \varepsilon_t\)</span>; versiones con rezagos y controles climáticos. Subnacional: <span class="math inline">\(\ln \text{PIB agro}_{it} = \beta_1 \ln \text{Gasto}_{it} + \alpha_i + \gamma_t + \varepsilon_{it}\)</span>. La asociación entre gasto agropecuario y resultados (productividad, pobreza) <strong>no resulta robusta</strong> a especificaciones alternativas; estos modelos se reportan como exploratorios y en consolidación (ADR-0017).</p>
 </div>
 </div>
 </section>
@@ -763,7 +787,7 @@ Panel econométrico fixest
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>APER Bolivia 2026 · Banco Mundial · Universidad EAFIT</p>
+<p>The World Bank · Universidad EAFIT — Agricultural Public Expenditure Review · Bolivia 2026</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -771,7 +795,7 @@ Panel econométrico fixest
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- Última actualización 2026-04
+ Última actualización 2026-06
   </li>  
     <li class="nav-item">
     <a class="nav-link" href="https://github.com/jcmunozmora/bolivia-wb-aper-2026">

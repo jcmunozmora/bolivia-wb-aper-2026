@@ -25,7 +25,12 @@ El estudio responde a tres preguntas guía:
 
 ::: {.callout-note}
 ## Producer Support Estimates (PSE)
-Metodología OCDE aplicada por el BID-AgriMonitor para el período **2006–2023**. Para extender el análisis hacia atrás, se calculó la *Tasa Nominal de Protección* (NRP) por commodity para **1991–2024** usando precios productor FAOSTAT contra precios de referencia mundiales (WB Pink Sheet).
+Metodología OCDE aplicada por el BID-AgriMonitor (cobertura **1986–2024**). El %PSE de Bolivia se ubicó en **5,8 % del valor de producción en 2018**, quinto entre los países LAC monitoreados. Para extender el análisis hacia atrás, se calculó la *Tasa Nominal de Protección* (NRP) por commodity para **1991–2024** usando precios productor FAOSTAT contra precios de referencia mundiales (WB Pink Sheet).
+:::
+
+::: {.callout-note}
+## Clasificación del gasto por destinatario (MAFAP-FAO)
+El gasto agropecuario se clasifica por destinatario según la metodología MAFAP-FAO (categorías A–E) a partir de la **descomposición programática del MEFP** (portal Presupuesto Abierto, `acteco-treemap`): 36 actividades presupuestarias, devengado real **2016–2024**, mapeadas una a una a las categorías MAFAP (ADR-0014). El reparto A/B del mecanismo EMAPA se trata como caso base conservador 50/50.
 :::
 
 ::: {.callout-note}
@@ -35,12 +40,12 @@ Base de datos comparable internacional (164 países, 1980–2017) basada en Gove
 
 ::: {.callout-note}
 ## DEA con bootstrap Simar-Wilson
-Análisis envolvente de datos a nivel departamental (9 DMUs × 9 años = 81 observaciones), con tres inputs (gasto agropecuario real, crédito al sector, área irrigada) y dos outputs (PIB agropecuario real, rendimiento cereales). Bootstrap con B=2 000 iteraciones para intervalos de confianza. Segunda etapa Tobit con scores ~ uso de suelo + deforestación + clima.
+Análisis envolvente de datos a nivel departamental (9 departamentos × 9 años = 81 pares, 2012–2020), frontera **VRS agrupada (*pooled*) intertemporal**, ambas orientaciones. **Insumos**: gasto agropecuario estricto (USD constantes de 2015) y superficie cultivada total. **Productos**: producción total (toneladas) y rendimiento de cereales. Corrección de sesgo con bootstrap de Simar-Wilson (1998), B = 2 000 réplicas. La segunda etapa de Simar-Wilson (2007) estima los determinantes ambientales por **regresión truncada (no Tobit)**; la precipitación emerge como determinante significativo. Especificación fijada en el ADR-0016.
 :::
 
 ::: {.callout-note}
 ## Panel econométrico fixest
-Modelos de productividad total de factores con efectos fijos: $\ln \text{TFP}_t = \beta_1 \ln \text{Inv}_t + \beta_2 \ln \text{LC antrópica}_t + \beta_3 t + \varepsilon_t$. Versiones con rezagos (L1, L2), variables climáticas y deforestación. Subnacional: $\ln \text{PIB agro}_{it} = \beta_1 \ln \text{Gasto}_{it} + \alpha_i + \gamma_t + \varepsilon_{it}$.
+Modelos de productividad (TFP) con efectos fijos: $\ln \text{TFP}_t = \beta_1 \ln \text{Inv}_t + \beta_2 \ln \text{LC antrópica}_t + \beta_3 t + \varepsilon_t$; versiones con rezagos y controles climáticos. Subnacional: $\ln \text{PIB agro}_{it} = \beta_1 \ln \text{Gasto}_{it} + \alpha_i + \gamma_t + \varepsilon_{it}$. La asociación entre gasto agropecuario y resultados (productividad, pobreza) **no resulta robusta** a especificaciones alternativas; estos modelos se reportan como exploratorios y en consolidación (ADR-0017).
 :::
 
 ## Estructura institucional

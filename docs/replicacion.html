@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Recursos descargables – APER Bolivia 2026</title>
+<title>Cómo reproducir el estudio – APER Bolivia 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -70,8 +105,8 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Recursos descargables – APER Bolivia 2026">
-<meta property="og:description" content="Reportes, datos, documentación institucional">
+<meta property="og:title" content="Cómo reproducir el estudio – APER Bolivia 2026">
+<meta property="og:description" content="Pipeline reproducible, requisitos y trazabilidad de cada cifra">
 <meta property="og:site_name" content="APER Bolivia 2026">
 </head>
 
@@ -166,17 +201,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul class="collapse">
-  <li><a href="#reporte-técnico-2026" id="toc-reporte-técnico-2026" class="nav-link active" data-scroll-target="#reporte-técnico-2026">Reporte técnico 2026</a></li>
-  <li><a href="#transparencia-uso-de-inteligencia-artificial" id="toc-transparencia-uso-de-inteligencia-artificial" class="nav-link" data-scroll-target="#transparencia-uso-de-inteligencia-artificial">Transparencia — uso de inteligencia artificial</a></li>
-  <li><a href="#reporte-original-antecedente" id="toc-reporte-original-antecedente" class="nav-link" data-scroll-target="#reporte-original-antecedente">Reporte original — antecedente</a></li>
-  <li><a href="#inventario-y-diccionario-de-datos" id="toc-inventario-y-diccionario-de-datos" class="nav-link" data-scroll-target="#inventario-y-diccionario-de-datos">Inventario y diccionario de datos</a></li>
-  <li><a href="#solicitud-formal-al-mefp" id="toc-solicitud-formal-al-mefp" class="nav-link" data-scroll-target="#solicitud-formal-al-mefp">Solicitud formal al MEFP</a></li>
-  <li><a href="#línea-de-tiempo-de-política-agropecuaria" id="toc-línea-de-tiempo-de-política-agropecuaria" class="nav-link" data-scroll-target="#línea-de-tiempo-de-política-agropecuaria">Línea de tiempo de política agropecuaria</a></li>
-  <li><a href="#fichas-de-lectura-mdryt" id="toc-fichas-de-lectura-mdryt" class="nav-link" data-scroll-target="#fichas-de-lectura-mdryt">Fichas de lectura — MDRyT</a></li>
-  <li><a href="#reportes-complementarios-consultados" id="toc-reportes-complementarios-consultados" class="nav-link" data-scroll-target="#reportes-complementarios-consultados">Reportes complementarios consultados</a></li>
-  <li><a href="#repositorio-de-código" id="toc-repositorio-de-código" class="nav-link" data-scroll-target="#repositorio-de-código">Repositorio de código</a></li>
-  <li><a href="#cita-sugerida" id="toc-cita-sugerida" class="nav-link" data-scroll-target="#cita-sugerida">Cita sugerida</a></li>
-  <li><a href="#licencia" id="toc-licencia" class="nav-link" data-scroll-target="#licencia">Licencia</a></li>
+  <li><a href="#requisitos" id="toc-requisitos" class="nav-link active" data-scroll-target="#requisitos">1 · Requisitos</a></li>
+  <li><a href="#estructura-del-repositorio" id="toc-estructura-del-repositorio" class="nav-link" data-scroll-target="#estructura-del-repositorio">2 · Estructura del repositorio</a></li>
+  <li><a href="#reproducción-paso-a-paso" id="toc-reproducción-paso-a-paso" class="nav-link" data-scroll-target="#reproducción-paso-a-paso">3 · Reproducción paso a paso</a></li>
+  <li><a href="#qué-datos-son-públicos-y-cuáles-requieren-gestión" id="toc-qué-datos-son-públicos-y-cuáles-requieren-gestión" class="nav-link" data-scroll-target="#qué-datos-son-públicos-y-cuáles-requieren-gestión">4 · Qué datos son públicos y cuáles requieren gestión</a></li>
+  <li><a href="#trazabilidad" id="toc-trazabilidad" class="nav-link" data-scroll-target="#trazabilidad">5 · Trazabilidad</a></li>
+  <li><a href="#gaps-de-reproducibilidad-declarados" id="toc-gaps-de-reproducibilidad-declarados" class="nav-link" data-scroll-target="#gaps-de-reproducibilidad-declarados">6 · Gaps de reproducibilidad declarados</a></li>
   </ul>
 </nav>
     </div>
@@ -185,8 +215,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Recursos descargables</h1>
-<p class="subtitle lead">Reportes, datos, documentación institucional</p>
+<h1 class="title">Cómo reproducir el estudio</h1>
+<p class="subtitle lead">Pipeline reproducible, requisitos y trazabilidad de cada cifra</p>
 </div>
 
 
@@ -204,143 +234,168 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="lead">
-<p>Documentos, datos y análisis generados o consultados durante el estudio. Todos los recursos del Banco Mundial citados son de acceso público.</p>
+<p>Todo el análisis del APER Bolivia 2026 es <strong>reproducible desde el código</strong>. Esta página documenta la ruta completa —de un repositorio limpio a las figuras, tablas y al reporte— para que cualquier persona pueda reconstruir los resultados. No se requieren todos los datos crudos para entender la cadena: se requiere que la cadena sea trazable de principio a fin.</p>
 </div>
-<section id="reporte-técnico-2026" class="level2">
-<h2 class="anchored" data-anchor-id="reporte-técnico-2026">Reporte técnico 2026</h2>
-<div class="notice">
-<p><strong>Documento de trabajo — pendiente de validación.</strong> El reporte técnico APER 2026 se encuentra en revisión institucional (validación con el MEFP y firma del <em>Task Team Leader</em>). La versión final se publicará en esta sección una vez completado ese proceso.</p>
+<div class="policy-box">
+<p><strong>Principio rector.</strong> <em>Una cifra que no se puede reconstruir desde cero en una máquina limpia, en cinco años, no es una cifra del APER 2026.</em> Toda cifra del reporte traza al panel maestro <strong>v12</strong> → script → fuente cruda.</p>
 </div>
-<p><a href="#" class="download-btn disabled">Reporte técnico APER 2026 (próximamente)</a></p>
-<p>Mientras tanto, todos los hallazgos centrales, métodos y datos están documentados en este sitio (ver <a href="./sector.html">Hallazgos</a>, <a href="./datos.html">Datos</a> y <a href="./replicacion.html">Cómo reproducir</a>).</p>
-</section>
-<section id="transparencia-uso-de-inteligencia-artificial" class="level2">
-<h2 class="anchored" data-anchor-id="transparencia-uso-de-inteligencia-artificial">Transparencia — uso de inteligencia artificial</h2>
-<p>El reporte se elaboró con asistencia de IA generativa bajo un marco de gobernanza explícito, declarado conforme a la escala <strong>AIAS (AI Assessment Scale)</strong>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nivel AIAS predominante: 3 — Colaboración con IA
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La IA <strong>redactó borradores y co-escribió scripts</strong>; el equipo humano verificó la ejecución, validó las fuentes y asumió la responsabilidad final. Salvaguardas clave:</p>
-<ul>
-<li><strong>Las cifras no las genera la IA.</strong> Todos los valores cuantitativos provienen de scripts determinísticos sobre datos crudos (nivel AIAS 1).</li>
-<li>El <strong>juicio de política</strong> y la interpretación final son exclusivamente humanos.</li>
-<li>Las <strong>citas</strong> se verificaron de forma independiente contra las fuentes.</li>
-</ul>
-<p>Los autores del informe asumen la responsabilidad plena por todo su contenido.</p>
-</div>
-</div>
-</section>
-<section id="reporte-original-antecedente" class="level2">
-<h2 class="anchored" data-anchor-id="reporte-original-antecedente">Reporte original — antecedente</h2>
-<p><a href="downloads/WB_APER_2011_Spanish.pdf" class="download-btn">World Bank (2011) — APER Bolivia 1996-2008 (PDF)</a></p>
-<blockquote class="blockquote">
-<p><strong>World Bank (2011).</strong> <em>Bolivia: Análisis del Gasto Público en el Sector Agropecuario.</em> Informe N.° 59696-BO. Banco Mundial, Oficina Bolivia.</p>
-</blockquote>
-<p>Reporte original que esta actualización extiende. Cubrió el período 1996–2008 con datos del entonces SIGMA, hoy SIGEP. La presente actualización cierra la brecha temporal hasta 2024.</p>
-</section>
-<section id="inventario-y-diccionario-de-datos" class="level2">
-<h2 class="anchored" data-anchor-id="inventario-y-diccionario-de-datos">Inventario y diccionario de datos</h2>
-<p><a href="downloads/Inventario_Datos_APER_Bolivia_2026.xlsx" class="download-btn">Inventario completo de datos (Excel, 5 hojas)</a> <a href="downloads/spending_panel_v12_dictionary.csv" class="download-btn">Diccionario panel maestro v12 (CSV)</a> <a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md" class="download-btn">Estado de datos completo (Markdown)</a></p>
-</section>
-<section id="solicitud-formal-al-mefp" class="level2">
-<h2 class="anchored" data-anchor-id="solicitud-formal-al-mefp">Solicitud formal al MEFP</h2>
-<p>Para acceder a la información de ejecución presupuestaria por entidad agropecuaria 2009–2024, el equipo del Banco Mundial Bolivia gestiona una solicitud formal bajo el Decreto Supremo 28168/2005 (acceso a información pública).</p>
-<p><a href="downloads/Carta_MEFP_Solicitud_Datos_APER2026.docx" class="download-btn">Carta MEFP genérica (Word)</a> <a href="downloads/Anexo_A_Portada_Estudio_Previo.pdf" class="download-btn">Anexo A — Portada APER 2011 (PDF)</a> <a href="downloads/Anexo_B_Listado_Variables_APER2026.xlsx" class="download-btn">Anexo B — Listado técnico de variables (Excel)</a> <a href="downloads/Anexo_C_Acuerdo_Confidencialidad.docx" class="download-btn">Anexo C — Acuerdo de confidencialidad (Word)</a></p>
-</section>
-<section id="línea-de-tiempo-de-política-agropecuaria" class="level2">
-<h2 class="anchored" data-anchor-id="línea-de-tiempo-de-política-agropecuaria">Línea de tiempo de política agropecuaria</h2>
-<p><a href="downloads/timeline.csv" class="download-btn">Timeline 1990–2025 — CSV KnightLab</a> <a href="downloads/timeline_preview.csv" class="download-btn">Vista previa simplificada (CSV)</a></p>
-<p>61 hitos validados con fecha exacta, fuente primaria, contexto y vínculo al panel. Compatible con <a href="https://timeline.knightlab.com">Knight Lab TimelineJS</a>.</p>
-</section>
-<section id="fichas-de-lectura-mdryt" class="level2">
-<h2 class="anchored" data-anchor-id="fichas-de-lectura-mdryt">Fichas de lectura — MDRyT</h2>
-<p>Fichas estructuradas a partir de la documentación oficial del Ministerio de Desarrollo Rural y Tierras y de fuentes secundarias (CIPCA, Fundación TIERRA).</p>
+<section id="requisitos" class="level2">
+<h2 class="anchored" data-anchor-id="requisitos">1 · Requisitos</h2>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 34%">
+<col style="width: 19%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Documento</th>
-<th style="text-align: center;">Año</th>
-<th>Tipo</th>
+<th>Componente</th>
+<th>Versión</th>
+<th>Uso</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Plan Estratégico Institucional MDRyT</td>
-<td style="text-align: center;">2014–2018</td>
-<td>Estratégico</td>
+<td><strong>R</strong></td>
+<td>≥ 4.3</td>
+<td>Pipeline de datos y análisis</td>
 </tr>
 <tr class="even">
-<td>PSARDI Plan Sectorial Agropecuario</td>
-<td style="text-align: center;">2016–2020</td>
-<td>Estratégico</td>
+<td><strong>Quarto</strong></td>
+<td>≥ 1.4</td>
+<td>Render del reporte, el sitio y las slides</td>
 </tr>
 <tr class="odd">
-<td>Memoria Anual INIAF</td>
-<td style="text-align: center;">2019</td>
-<td>Memoria institucional</td>
+<td><strong>renv</strong></td>
+<td>(incluido)</td>
+<td>Entorno de paquetes reproducible (<code>renv.lock</code>)</td>
 </tr>
 <tr class="even">
-<td>RPC Final MDRyT</td>
-<td style="text-align: center;">2019</td>
-<td>Rendición pública de cuentas</td>
-</tr>
-<tr class="odd">
-<td>RPC Final IPD-PACU (Pesca)</td>
-<td style="text-align: center;">2021</td>
-<td>Rendición pública de cuentas</td>
-</tr>
-<tr class="even">
-<td>RPC Final MDRyT</td>
-<td style="text-align: center;">2024</td>
-<td>Rendición pública de cuentas</td>
-</tr>
-<tr class="odd">
-<td>CIPCA — Impacto riego/microriego</td>
-<td style="text-align: center;">2018</td>
-<td>Evaluación externa</td>
+<td><strong>GDAL / sf</strong></td>
+<td>3.6+</td>
+<td>Capas espaciales (mapas municipales)</td>
 </tr>
 </tbody>
 </table>
-<p><a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/tree/main/03_literature/mdryt_fichas" class="download-btn">Ver fichas en GitHub</a></p>
+<p>El sistema de código es <strong>R + Quarto</strong> (no Python). El año base de los deflactores es <strong>2015</strong> (montos en USD/BOB constantes de 2015).</p>
 </section>
-<section id="reportes-complementarios-consultados" class="level2">
-<h2 class="anchored" data-anchor-id="reportes-complementarios-consultados">Reportes complementarios consultados</h2>
+<section id="estructura-del-repositorio" class="level2">
+<h2 class="anchored" data-anchor-id="estructura-del-repositorio">2 · Estructura del repositorio</h2>
+<pre><code>00_admin/      Documentos administrativos, bitácora (RETOMAR.md), estado de datos
+01_data/
+├── raw/        Originales inmutables (no versionados; ~1.3 GB)
+├── processed/  126 datasets limpios (.rds + espejo .csv) — incluye panel v12
+└── external/   Shapefiles, clasificadores, deflactores
+02_code/
+├── 00_setup/          Configuración, constantes, paquetes
+├── 01_data_collection/  39 scripts — descarga y parseo de fuentes
+├── 02_cleaning/         24 scripts — integración y panel maestro
+├── 03_analysis/         11 scripts — PSE, DEA, regresiones, MAFAP
+└── 04_visualization/    33 scripts — figuras con el tema World Bank
+04_report/     Quarto Book (6 capítulos + 9 apéndices)
+05_outputs/    Figuras (PNG) y tablas
+www/           Este sitio público
+slides/        Presentaciones (Reveal.js)</code></pre>
+</section>
+<section id="reproducción-paso-a-paso" class="level2">
+<h2 class="anchored" data-anchor-id="reproducción-paso-a-paso">3 · Reproducción paso a paso</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 · Clonar el repositorio</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/jcmunozmora/bolivia-wb-aper-2026.git</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bolivia-wb-aper-2026</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 · Restaurar el entorno de paquetes R (renv)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'renv::restore()'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 · (Opcional) Descargar datos crudos no versionados (~400 MB)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/00_download_raw.sh</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 · Ejecutar el pipeline de construcción del panel maestro v12</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/01_run_all.R</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="el-pipeline-analítico-panel-v12-resultados" class="level3">
+<h3 class="anchored" data-anchor-id="el-pipeline-analítico-panel-v12-resultados">3.1 · El pipeline analítico (panel v12 → resultados)</h3>
+<p>Una vez construido el panel maestro <code>01_data/processed/spending_panel_v12.rds</code>, los bloques analíticos se derivan de él:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bloque</th>
+<th>Script</th>
+<th>Salida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Composición MAFAP</strong></td>
+<td><code>02_code/02_cleaning/17_mafap_classification.R</code>, <code>18_mafap_programatico.R</code></td>
+<td><code>mafap_bolivia.rds</code>, <code>gasto_agro_mafap_prog_serie.rds</code></td>
+</tr>
+<tr class="even">
+<td><strong>Eficiencia DEA Simar-Wilson</strong></td>
+<td><code>02_code/03_analysis/03_dea_efficiency.R</code></td>
+<td><code>dea_simar_wilson_results.rds</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Regresiones panel</strong></td>
+<td><code>02_code/03_analysis/08_extended_regressions.R</code></td>
+<td><code>extended_regression_results.rds</code></td>
+</tr>
+<tr class="even">
+<td><strong>Gasto municipal programático</strong></td>
+<td><code>01_data_collection/49_download_mefp_muni_programatico.R</code> → <code>02_cleaning/51_parse_mefp_muni_programatico.R</code></td>
+<td><code>gasto_agro_prog_muni_2016_2024.rds</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Focalización pobreza (NBI)</strong></td>
+<td><code>02_code/02_cleaning/52_prep_pobreza_municipal_nbi.R</code></td>
+<td><code>pobreza_municipal_nbi.rds</code>, <code>focalizacion_gasto_pobreza.rds</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="render-del-reporte-el-sitio-y-las-slides" class="level3">
+<h3 class="anchored" data-anchor-id="render-del-reporte-el-sitio-y-las-slides">3.2 · Render del reporte, el sitio y las slides</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reporte técnico (Quarto Book → HTML/PDF/DOCX)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render 04_report/</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sitio público (→ docs/, GitHub Pages)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> www <span class="kw">&amp;&amp;</span> <span class="ex">quarto</span> render <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ..</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Slides</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> slides <span class="kw">&amp;&amp;</span> <span class="ex">quarto</span> render <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> ..</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="qué-datos-son-públicos-y-cuáles-requieren-gestión" class="level2">
+<h2 class="anchored" data-anchor-id="qué-datos-son-públicos-y-cuáles-requieren-gestión">4 · Qué datos son públicos y cuáles requieren gestión</h2>
+<p>No es necesario tener todos los datos para reproducir el grueso del análisis. El estado de cada fuente está documentado en <a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md"><code>00_admin/ESTADO_DE_DATOS.md</code></a>:</p>
 <ul>
-<li><strong>World Bank (2021).</strong> <em>Tapping the Potential — Bolivia.</em> Análisis sectorial del Banco Mundial sobre el potencial de crecimiento agropecuario.</li>
-<li><strong>World Bank.</strong> <em>Systematic Country Diagnostic Update — Bolivia.</em> Diagnóstico estructural de la economía boliviana.</li>
+<li><strong>Públicos y procesados:</strong> la mayoría de las fuentes (VIPFE, BOOST, MEFP Presupuesto Abierto, IDB AgriMonitor, INE, FAOSTAT, USDA, BCB, MapBiomas, CHIRPS, WDI).</li>
+<li><strong>Requieren gestión institucional:</strong> ejecución por entidad de los ministerios sectoriales 2009–2024 (carta formal al MEFP bajo DS 28168, lista en el repositorio).</li>
+<li><strong>En construcción / próximas fases:</strong> ver la sección de gaps abajo.</li>
 </ul>
-<p><a href="downloads/WB_Tapping_Potential_2021.pdf" class="download-btn">World Bank Tapping Potential 2021 (PDF)</a> <a href="downloads/WB_Bolivia_SCD_Update.pdf" class="download-btn">World Bank SCD Update Bolivia (PDF)</a></p>
 </section>
-<section id="repositorio-de-código" class="level2">
-<h2 class="anchored" data-anchor-id="repositorio-de-código">Repositorio de código</h2>
-<p>Todo el código de análisis es público y reproducible:</p>
+<section id="trazabilidad" class="level2">
+<h2 class="anchored" data-anchor-id="trazabilidad">5 · Trazabilidad</h2>
+<p>Cada cifra publicada es trazable en menos de dos minutos:</p>
+<ol type="1">
+<li><strong>Panel v12</strong> (<code>01_data/processed/spending_panel_v12.rds</code>) es la fuente cuantitativa única.</li>
+<li>El <a href="./datos.html">diccionario del panel</a> documenta las 176 variables y sus 17 grupos temáticos.</li>
+<li>Los hallazgos canónicos <strong>F01–F08</strong> están especificados en <a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/tree/main/.agent"><code>.agent/04_HALLAZGOS.md</code></a>, con su contrato (cifra, evidencia, script, fuente).</li>
+<li>El inventario de fuentes y licencias vive en el Apéndice A del reporte técnico.</li>
+</ol>
+</section>
+<section id="gaps-de-reproducibilidad-declarados" class="level2">
+<h2 class="anchored" data-anchor-id="gaps-de-reproducibilidad-declarados">6 · Gaps de reproducibilidad declarados</h2>
+<p>Por transparencia, los siguientes puntos están abiertos al cierre de esta versión:</p>
 <ul>
-<li><strong>39 scripts</strong> de recolección (<code>02_code/01_data_collection/</code>) y <strong>24</strong> de limpieza/integración (<code>02_code/02_cleaning/</code>).</li>
-<li><strong>11 scripts</strong> de análisis econométrico (<code>02_code/03_analysis/</code>) — incluye el DEA Simar-Wilson y las regresiones panel.</li>
-<li><strong>33 scripts</strong> de visualización con el tema World Bank (<code>02_code/04_visualization/</code>).</li>
-<li>El panel maestro <strong>v12</strong> se construye de forma incremental con scripts numerados; la composición MAFAP, el DEA y las regresiones se derivan de él.</li>
+<li><strong>Snapshot de <code>renv</code> pendiente:</strong> los paquetes del DEA (<code>Benchmarking</code>, <code>truncreg</code>, <code>ggrepel</code>) aún no están congelados en <code>renv.lock</code>; deben instalarse manualmente para re-correr <code>03_dea_efficiency.R</code> hasta el próximo <code>renv::snapshot()</code>.</li>
+<li><strong>Serie nacional de pobreza/FIES:</strong> la figura de pobreza/FIES usa los valores de anclaje canónicos del hallazgo F06; la serie continua <code>eh_nacional_anual.rds</code> está pendiente de construcción desde la Encuesta de Hogares cruda.</li>
+<li><strong>Orquestador único:</strong> existe el blueprint de un <code>rebuild_everything.sh</code> y un <code>Makefile</code> en <a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/tree/main/.agent"><code>.agent/12_REPRODUCIBILIDAD.md</code></a>; por ahora la reproducción usa <code>scripts/01_run_all.R</code> más los scripts analíticos de la tabla 3.1.</li>
 </ul>
-<p>Para la secuencia completa de reproducción, ver <strong><a href="./replicacion.html">Cómo reproducir</a></strong>.</p>
-<p><a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026" class="download-btn primary">Repositorio GitHub</a> <a href="./replicacion.html" class="download-btn">Cómo reproducir el estudio</a></p>
-</section>
-<section id="cita-sugerida" class="level2">
-<h2 class="anchored" data-anchor-id="cita-sugerida">Cita sugerida</h2>
-<p>Para citar este trabajo:</p>
-<blockquote class="blockquote">
-<p>Banco Mundial / Universidad EAFIT (2026). <em>Bolivia Agricultural Public Expenditure Review — Actualización 2026.</em> Documento de trabajo. Disponible en: [URL del sitio]</p>
-</blockquote>
-</section>
-<section id="licencia" class="level2">
-<h2 class="anchored" data-anchor-id="licencia">Licencia</h2>
-<p>Los datos primarios provienen de fuentes oficiales con sus propias licencias. El análisis derivado y la documentación se distribuyen bajo <strong>Creative Commons Attribution 4.0 (CC-BY 4.0)</strong>, salvo indicación contraria.</p>
-<p>Imágenes de la línea de tiempo bajo licencias CC-BY o CC-BY-SA de Wikimedia Commons (atribuciones registradas en el CSV correspondiente).</p>
+<p><a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026" class="download-btn primary">Repositorio GitHub</a> <a href="https://github.com/jcmunozmora/bolivia-wb-aper-2026/blob/main/00_admin/ESTADO_DE_DATOS.md" class="download-btn">Estado de datos completo</a> <a href="./datos.html" class="download-btn">Datos y diccionario</a></p>
 
 
 </section>

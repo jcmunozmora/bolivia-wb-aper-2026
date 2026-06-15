@@ -8,14 +8,16 @@ subtitle: "Productividad, estructura y transformación territorial 1990-2024"
 suppressPackageStartupMessages({
   library(data.table); library(ggplot2); library(scales); library(gt)
 })
+here::i_am("www/sector.qmd")   # ancla la raíz del proyecto (repo root) sin depender del cwd
 source(here::here("02_code", "00_setup", "01_constants.R"))
 source(here::here("02_code", "04_visualization", "00_wb_theme.R"))
 
 panel   <- as.data.table(readRDS(here::here("01_data/processed/spending_panel_v12.rds")))
 ena_cmp <- as.data.table(readRDS(here::here("01_data/processed/ena_comparacion_2008_2015.rds")))
 mb      <- as.data.table(readRDS(here::here("01_data/processed/mapbiomas_national_annual.rds")))
-eh_nac  <- as.data.table(readRDS(here::here("01_data/processed/eh_nacional_anual.rds")))
 
+# Paleta World Bank
+wb_navy <- "#002244"; wb_blue <- "#009FDA"; wb_teal <- "#00B3A2"; wb_orange <- "#F05023"
 fig <- function(name) paste0("figures/", name, ".png")
 ```
 
@@ -47,7 +49,7 @@ panel[year %in% c(2000, 2005, 2010, 2015, 2020, 2023),
   cols_align(align = "right", columns = -1)
 ```
 
-En 2020, Bolivia ocupó el **sexto lugar en LAC** en participación del valor agregado agropecuario en el PIB (9.1 %), por encima de Chile (4.0 %) y México (3.7 %). El empleo agropecuario ha caído gradualmente de 30 % (2010) a 25 % (2023), reflejando una diversificación más lenta que el promedio regional.
+En 2020, Bolivia ocupó el **sexto lugar en LAC** en participación del valor agregado agropecuario en el PIB (9,1 %), por encima de Chile (4,0 %) y México (3,7 %). El empleo agropecuario ha caído gradualmente de 30 % (2010) a 25 % (2023), reflejando una diversificación más lenta que el promedio regional.
 
 ![PIB agropecuario como porcentaje del PIB total, Bolivia 1990–2023](`r fig("fig01_agr_value_added_pct_gdp")`)
 
@@ -76,8 +78,8 @@ El crecimiento agropecuario boliviano es predominantemente **extensivo**: la exp
 #| fig-cap: "Inversión pública agropecuaria (USD MM) frente a índice TFP, Bolivia 1990-2023. La inversión se multiplicó ×10 mientras la TFP creció apenas 30%."
 panel[!is.na(inv_agro_usd_mm) & !is.na(tfp_index)] |>
   ggplot(aes(x = year)) +
-  geom_col(aes(y = inv_agro_usd_mm), fill = "#14213D", alpha = 0.45) +
-  geom_line(aes(y = tfp_index * 3),  color = "#C2410C", linewidth = 1.3) +
+  geom_col(aes(y = inv_agro_usd_mm), fill = wb_navy, alpha = 0.5) +
+  geom_line(aes(y = tfp_index * 3),  color = wb_orange, linewidth = 1.3) +
   scale_y_continuous(
     name = "Inversión agropecuaria (USD millones)",
     sec.axis = sec_axis(~ . / 3, name = "Índice TFP (1961=100)")
@@ -86,11 +88,11 @@ panel[!is.na(inv_agro_usd_mm) & !is.na(tfp_index)] |>
        caption = "Fuente: VIPFE / MEFP Informe Fiscal 2024 + USDA ERS.") +
   theme_minimal(base_family = "Inter") +
   theme(
-    plot.background = element_rect(fill = "#FAFAF9", color = NA),
-    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    plot.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.background = element_rect(fill = "#FFFFFF", color = NA),
     panel.grid.minor = element_blank(),
-    axis.title.y.left = element_text(color = "#14213D"),
-    axis.title.y.right = element_text(color = "#C2410C"),
+    axis.title.y.left = element_text(color = wb_navy),
+    axis.title.y.right = element_text(color = wb_orange),
     plot.caption = element_text(color = "#6B7280", hjust = 0)
   )
 ```
@@ -117,7 +119,7 @@ ena_cmp[, .(
   tab_header(title = md("**Cambio estructural por departamento, 2008–2015**")) |>
   tab_source_note(md("*Fuente: ENA 2008 + ENA 2015 (INE Bolivia). Microdatos procesados.*")) |>
   data_color(columns = c(`Δ UPAs (%)`, `Δ Bovinos (%)`),
-             palette = c("#C2410C", "white", "#14213D"),
+             palette = c("#F05023", "white", "#002244"),
              domain = c(-50, 0, 100)) |>
   opt_table_outline(style = "none")
 ```
@@ -160,7 +162,7 @@ data.table(
 
 ![Series temporales de uso antrópico del suelo por departamento](`r fig("fig36_lineas_antropico_dept")`)
 
-Bolivia perdió aproximadamente **9.4 millones de hectáreas de cobertura natural** en cuarenta años. **Santa Cruz concentra el 64 %** de la expansión agrícola del país. Esta huella ambiental es central para el análisis de sostenibilidad y para el debate sobre los costos no monetarios del modelo agroexportador.
+Bolivia perdió aproximadamente **9,4 millones de hectáreas de cobertura natural** entre 1985 y 2024. **Santa Cruz concentra el 64 %** de la expansión antrópica del país. Esta huella ambiental es central para el análisis de sostenibilidad y para el debate sobre los costos no monetarios del modelo agroexportador.
 
 ### Geografía municipal de la expansión
 
@@ -185,26 +187,32 @@ La transformación del paisaje boliviano no es difusa, es **concentrada**: 6 mun
 
 ```{r}
 #| label: fig-pov
-#| fig-cap: "Pobreza rural y prevalencia de inseguridad alimentaria (FIES) en hogares rurales, Bolivia 2012-2024."
-eh_rural <- eh_nac[area == "rural"]
-eh_long <- melt(eh_rural[, .(year,
-                              `Pobreza rural` = pov_rate,
-                              `Pobreza extrema rural` = extpov_rate,
-                              `Inseguridad alimentaria (FIES ≥1)` = fies_insecure_pct)],
-                id.vars = "year",
-                variable.name = "indicator", value.name = "value")
+#| fig-cap: "Pobreza rural e inseguridad alimentaria (FIES) en población rural, Bolivia 2012-2024 (puntos de anclaje canónicos, hallazgo F06)."
+# Valores canónicos del hallazgo F06 (reporte final). Encuesta de Hogares INE
+# (pobreza) y escala FIES de FAOSTAT (inseguridad alimentaria).
+eh_long <- rbindlist(list(
+  data.table(year = c(2012, 2021, 2024), value = c(55, 40, 45),
+             indicator = "Pobreza rural"),
+  data.table(year = c(2012, 2021, 2024), value = c(36, 17, 22),
+             indicator = "Pobreza extrema rural"),
+  data.table(year = c(2019, 2024), value = c(49, 74),
+             indicator = "Inseguridad alimentaria (FIES ≥1)")
+))
+eh_long[, indicator := factor(indicator, levels = c(
+  "Pobreza rural", "Pobreza extrema rural", "Inseguridad alimentaria (FIES ≥1)"))]
 
-ggplot(eh_long[!is.na(value)], aes(x = year, y = value, color = indicator)) +
+ggplot(eh_long, aes(x = year, y = value, color = indicator)) +
   geom_line(linewidth = 1.2) +
-  geom_point(size = 2.2) +
-  scale_color_manual(values = c("#14213D", "#C2410C", "#1F3057")) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = c(wb_navy, wb_teal, wb_orange)) +
   scale_y_continuous(labels = label_number(suffix = "%"), limits = c(0, 80)) +
+  scale_x_continuous(breaks = c(2012, 2015, 2019, 2021, 2024)) +
   labs(x = NULL, y = NULL, color = NULL,
-       caption = "Fuente: Encuesta de Hogares INE Bolivia 2012-2024. FIES disponible 2019, 2021-2024.") +
+       caption = "Fuente: Encuesta de Hogares INE Bolivia (pobreza) y FIES FAOSTAT. Hallazgo F06.") +
   theme_minimal(base_family = "Inter", base_size = 11) +
   theme(
-    plot.background = element_rect(fill = "#FAFAF9", color = NA),
-    panel.background = element_rect(fill = "#FAFAF9", color = NA),
+    plot.background = element_rect(fill = "#FFFFFF", color = NA),
+    panel.background = element_rect(fill = "#FFFFFF", color = NA),
     panel.grid.minor = element_blank(),
     legend.position = "top",
     legend.justification = "left",
@@ -214,23 +222,23 @@ ggplot(eh_long[!is.na(value)], aes(x = year, y = value, color = indicator)) +
 ```
 
 ::: {.callout-warning}
-## Tendencia preocupante
+## Tendencia preocupante (hallazgo F06)
 - **Pobreza rural** 2012→2021→2024: 55 % → 40 % → 45 % (reversión).
 - **Pobreza extrema rural** 2012→2021→2024: 36 % → 17 % → 22 %.
 - **FIES inseguridad alimentaria** 2019→2024: 49 % → 74 %.
 
-Después de una década de mejora sostenida, los indicadores rurales se han revertido. Los departamentos más afectados en 2024 son Chuquisaca (64 %), Oruro y Potosí (54 %).
+Después de una década de mejora sostenida, los indicadores rurales se han revertido. Los departamentos del altiplano y los valles concentran las mayores prevalencias; el desglose departamental aparece en [Eficiencia y equidad](eficiencia.qmd).
 :::
 
 ## Síntesis
 
 | Dimensión | Hallazgo | Implicación para el APER |
 |-----------|----------|--------------------------|
-| Macroeconómica | PIB agrop. 9.1 % del PIB (2020) — alto en LAC | Sector relevante para la política fiscal |
-| Productividad | Inversión ×10, TFP ×1.3 | Problema de eficiencia del gasto |
-| Estructural | Soya +131 % superficie 2008–2015 | Driver de uso de suelo y exportaciones |
-| Estructural | UPAs altiplano −22 % a −38 % | Migración rural y consolidación |
-| Ambiental | −9.4 M ha cobertura natural en 40 años | 64 % en Santa Cruz |
+| Macroeconómica | PIB agrop. 9,1 % del PIB (2020) — alto en LAC | Sector relevante para la política fiscal |
+| Productividad | Inversión ×10, TFP +30 % (2000–2015) | Problema de eficiencia del gasto |
+| Estructural | Soya ×2,4 superficie 2000–2020 (rend. +9,6 %) | Crecimiento extensivo, no intensivo |
+| Estructural | UPAs altiplano −22 % a −38 % (ENA 2008–2015) | Migración rural y consolidación |
+| Ambiental | −9,4 M ha cobertura natural (1985–2024) | 64 % en Santa Cruz |
 | Social | Pobreza rural 45 % (2024) | Reorientar gasto a equidad |
 | Social | FIES ≥1 = 74 % (2024) | Crisis de acceso alimentario |
 

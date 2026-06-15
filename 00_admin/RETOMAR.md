@@ -1,7 +1,150 @@
 # Cómo retomar el proyecto — APER Bolivia 2026
 
-**Última sesión:** 2026-06-13 (sesión 20 cerrada — 4 rondas de revisión profunda writer/manuscript-WB/policy/comité-WB; 106 ediciones seguras aplicadas a los 7 archivos del cuerpo; dossier maestro P0–P3 con 146 ítems)
-**Estado global:** ✅ Datos consolidados · ✅ Sitio público live · ✅ Gobernanza centralizada · ✅ MAFAP ejecutado · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **6 caps auditados (verdicts P0–P3)** · ✅ **Caps 1–6 + RE pasados por 4 lentes (sesión 20): prosa/neutralidad/anti-IA saneadas** · 🔴 13 P0 abiertos (datasets fantasma, cifras huérfanas, drift F01–F08, citas a auditar) · 🔴 Caps no promovibles a `reviewed` aún · 🟡 Render local pendiente
+**Última sesión:** 2026-06-14 (sesión 24 — **rediseño World Bank institucional + realineación completa del sitio público `www/` al reporte final**; sitio renderizado end-to-end)
+**Estado global:** ✅ Datos consolidados · ✅ **Sitio público rediseñado (identidad BM) y alineado al reporte final** · ✅ Gobernanza centralizada · ✅ **MAFAP programático real (sesión 22, caso base 50/50) — pendiente firma TTL + decisión split EMAPA** · ✅ Corpus literatura integrado · ✅ Reporte v0.1 escrito (Caps 1–6 + RE) · ✅ Bib sincronizado (373 únicas) · ✅ Apéndices D–H · ✅ **HALLAZGOS.md v0.2.0** · ✅ **DEA Simar-Wilson real (sesión 21, ADR-0016)** · 🟡 **Composición municipal MEFP 2016–2024 en descarga (robot nocturno)** · 🔴 13 P0 abiertos · 🔴 Caps no promovibles a `reviewed` aún · 🟡 renv sin snapshot (paquetes DEA)
+
+---
+
+## Sesión 24 (2026-06-14) — Rediseño World Bank del sitio `www/` + alineación al reporte final
+
+**Resumen del cambio:** se rediseñó el sitio público con la **identidad institucional del Banco Mundial** (paleta `#002244`/`#009FDA`, navbar navy, hero navy→azul, tarjetas-estadística, footer institucional — armonizado con `wb_report.scss`/`wb_slides.scss`) y, en la misma ronda, se **realineó todo el contenido a la versión final** del estudio (`06_Final_Report/APER2026_Bolivia_20260614.docx`). El sitio estaba congelado en ~2026-04 y contradecía al reporte (DEA proxy, panel FE sobre-afirmado, MAFAP ausente, PSE 2023, crédito ×11,7) y además leía 2 RDS inexistentes que rompían el render. Se creó la página **Cómo reproducir** y se reescribió el README al pipeline v12 real. **La línea de tiempo NO se rediseñó** (solo recibió el ancla `here::i_am`, 1 línea, para que el sitio renderice consistente).
+**Tipo de cambio:** 🟡 AMARILLO (rediseño visual + realineación de prosa/cifras del sitio a cifras ya canónicas del reporte y de los RDS; no cambia metodología ni introduce cifras nuevas).
+**Decisiones del usuario:** dirección de diseño = *Reporte digital BM institucional*; rediseño + alineación juntos; timeline intacto; reporte final como **placeholder** (no se sube el docx, pendiente firma TTL) + se surfaceó la **Declaración de uso de IA (AIAS nivel 3)**.
+**Archivos modificados:**
+- Diseño: `www/styles/custom.scss` (reescritura a paleta WB), `www/_quarto.yml` (navbar navy + menú "Datos y código" con replicación + footer institucional + fecha 2026-06), `www/index.qmd` (hero full-bleed + tarjetas).
+- Alineación: `www/eficiencia.qmd` (DEA proxy → **Simar-Wilson real**: media 0,60, Pando 0,846→Potosí 0,271, 2ª etapa truncada/precipitación 0,35; PSE 2018; regresiones no-robusto ADR-0017; **sección focalización NBI**; `fig-incidencia` desde `ine_pobreza_departamental.rds`), `www/gasto.qmd` (**bloque MAFAP A–E** desde `gasto_agro_mafap_prog_serie.rds`; crédito ×7,1 real; BOOST desde panel v12), `www/sector.qmd` (pobreza/FIES F06 estático; recolor WB), `www/proyecto.qmd`, `www/avances.qmd`, `www/datos.qmd`, `www/recursos.qmd` (placeholder reporte final + Declaración IA).
+- Nuevo: `www/replicacion.qmd`. Robustez: `here::i_am` en eficiencia/gasto/sector/datos/timeline. `README.md` reescrito. Figuras DEA copiadas a `www/figures/`.
+**RDS fantasma resueltos:** `eh_nacional_anual.rds` (→ valores F06 estáticos; gap compartido con el reporte), `eh_dept_anual.rds` (→ `ine_pobreza_departamental.rds`), `boost_agro_panel.rds` (→ columnas `boost_*` del panel v12).
+**Cifras tocadas (verificadas contra reporte/RDS):** PSE 5,8% **2018**; crédito **×7,1 real** (×11,7 nominal); MAFAP D **56,1%** acum. (64%→45%); DEA media **0,60**; soya **×2,4**; conteos 126 RDS / 107 scripts / ~73 figs.
+**Hallazgos afectados:** ninguno en contrato; el sitio ahora refleja F01–F08 + MAFAP/DEA reales.
+**Tests ejecutados:** anti-fantasma RDS (0 faltantes); validación de chunks vía Rscript; **`quarto render` de las 11 páginas → EXIT 0** (entorno: ds R + `RENV_CONFIG_AUTOLOADER_ENABLED=FALSE` + `here::i_am`); verificación de diseño/contenido en `docs/`.
+**Tests no ejecutados:** `renv::snapshot()`; build de `eh_nacional_anual.rds`.
+**Impacto en panel/metodología:** ninguno (panel v12 intacto).
+**Impacto en MEFP handoff:** sitio público consistente con el reporte final + guía de replicación; docx final en placeholder hasta firma TTL.
+**Riesgos pendientes:** firma TTL del reporte final; `renv::snapshot()` con `Benchmarking`/`truncreg`/`ggrepel`; construir `eh_nacional_anual.rds`; el render local requiere desactivar el autoloader de renv hasta el snapshot.
+**ADR requerido:** no.
+**Siguientes pasos:** (1) firmar TTL y publicar el docx en `recursos.qmd`; (2) `renv::snapshot()`; (3) construir la serie nacional pobreza/FIES; (4) traducción EN del sitio si se requiere paridad bilingüe.
+
+---
+
+## Sesión 23 (2026-06-14) — Gasto agro municipal por actividad/programa hasta 2024 (MEFP)
+
+**Objetivo:** el usuario pidió extender el gasto agro municipal **por programa** más allá de 2021 (límite de Fundación Jubileo). Se descartaron las opciones A (contactar Jubileo) y B (scraping Jubileo 2022–2024: **imposible**, su portal `pre.jubileobolivia.org.bo` está congelado en 2021 — verificado en el HTML del formulario). Se resolvió por **Opción C (MEFP Presupuesto Abierto)**.
+
+**Hallazgo técnico (validado en vivo):** el endpoint `acteco-treemap?gestion=YYYY&entidad=<id>` acepta el id de cada Gobierno Autónomo Municipal y devuelve su gasto agro **descompuesto por actividad** (`acteco`=2.Y.Z), 2016–2024, ~329 municipios/año. Las hojas reconcilian **0,000%** con `mefp_agro_entidades_YYYY.json` (Sucre 2024 = Bs 15 483 436,97 exacto). Es **mejor que Jubileo**: oficial, devengado SIGEP, agro-específico, llega a 2024. Cierra la limitación declarada en **ADR-0015 punto 5** (la composición municipal por instrumento se quedaba en 2021).
+
+**Productos:**
+- `02_code/01_data_collection/49_download_mefp_muni_programatico.R` — descarga árbol acteco por municipio×año (API en vivo, cache reanudable).
+- `02_code/01_data_collection/49b_wait_and_download.sh` — wrapper nocturno: espera recuperación del endpoint, descarga (4 pasadas) y parsea. **Corriendo con nohup (log: `00_admin/auditorias/descarga_muni_nocturna.log`).**
+- `02_code/02_cleaning/51_parse_mefp_muni_programatico.R` — aplana → deflacta USD 2015 → crosswalk acteco→MAFAP → panel. **Validado (QA 0,000% en muestra parcial).**
+- Salida: `01_data/processed/gasto_agro_prog_muni_2016_2024.{rds,csv}` (+ agregados grupo/MAFAP).
+- `00_admin/PLAN_URGENTE_2024_datos_municipales.md` — bitácora completa.
+
+**Estado al cierre:** 230/2940 JSON bajados. **El endpoint por-entidad se degradó temporalmente** (timeout) tras intentar acelerar con descargas paralelas — error de estrategia: el servidor MEFP no tolera concurrencia (~50% fallos) y las queries pesadas colgadas saturaron su BD. Confirmado que NO es ban de IP (el dominio y endpoints livianos/nacional responden); es la query por-entidad municipal, degradada. El robot nocturno la completará cuando el servidor reviva (probable en horas de bajo tráfico).
+
+**Provenance:** API MEFP → 49_download → 51_parse → `gasto_agro_prog_muni_2016_2024.rds` → Cap. 4. Decisión: ADR-0015.
+
+**Siguientes pasos:**
+1. Revisar `00_admin/auditorias/descarga_muni_nocturna.log` — si completó, los datos están en `gasto_agro_prog_muni_2016_2024.rds`.
+2. Si quedó parcial: re-correr `Rscript 02_code/01_data_collection/49_download_mefp_muni_programatico.R` (salta cache) hasta completar, luego `51_parse`.
+3. Construir figura de **composición municipal por propósito/MAFAP 2016–2024** para el Cap. 4 (extiende la de Jubileo 2012–2021).
+4. Caveat a declarar: taxonomía acteco (actividad económica) ≠ programa presupuestario del POA; convergen vía MAFAP. Gasto del GAM, no del nivel central.
+5. Firma TTL del ADR-0015.
+
+---
+
+## Sesión 22 (2026-06-14) — MAFAP reconstruido desde el presupuesto programático MEFP real + Excel de soporte + figuras Cap 2–3
+
+**Resumen del cambio:** se reemplazó el proxy IDB AgriMonitor (PSE/GSSE/CSE, m0.2.0) por la **descomposición programática real del MEFP** (Presupuesto Abierto, `acteco-treemap`): 36 actividades presupuestarias del sector agropecuario, devengado real 2016–2024, clasificadas una a una a categorías MAFAP A–E (cobertura 100%). Se construyó el pipeline de clasificación, 4 figuras MAFAP nuevas (recomposición A↔D, sensibilidad EMAPA, desglose de D, matriz 2×2 + panorama), el **Excel de soporte metodológico** (4 hojas) y el documento de auditoría. En paralelo: inteligencia del TTL (Katie Kennedy Freeman + co-TTLs Mariángela Ramírez / Héctor Peña), figuras de cultivos/exportaciones (Pareto en USD constantes 2015), TFP/desacople, arquitectura institucional, ejecutores y crédito; e integración de datos de gasto externo (IMF-COFOG + MEFP funcional/entidades) con su ADR.
+**Tipo de cambio:** 🔴 ROJO (reemplazo metodológico de la clasificación MAFAP: de proxy modelado a devengado real). **No publicar sin firma TTL (invariante 9) ni sin decisión del split EMAPA en mesa MEFP/EMAPA.**
+**Archivos modificados / nuevos:**
+- Datos: `gasto_agro_programatico_mefp.rds`, `gasto_agro_mafap_prog.rds`, `gasto_agro_mafap_prog_serie.rds`, `gasto_agro_programatico{,_mefp}.{rds,csv}`, 6× `gasto_agro_externo_*.rds`, `gasto_sectorial_mefp.rds`, `mafap_bolivia.{rds,csv}` (+17 cols externas), `faostat_bolivia_exports.rds`, `andinos_wdi_panel.rds`, `territorial_{dept,muni}.rds`.
+- Código: `02_code/02_cleaning/18_mafap_programatico.R` (clasificación) · `46_integrate_gasto_externo.R` · viz `07_pareto_cultivos.R`, `08_pareto_exportaciones.R`, `12_fig_tfp_lac_comparison.R`, `13_fig_desacople_inversion_tfp.R`, `14_fig_muni_expansion_antropica.R`, `15_fig_arquitectura_institucional.R`, `17_fig_presupuesto_ratios_entidades.R`, `18_fig_gasto_ejecutores_total.R`, `19_fig_gasto_pct_pib.R`, `20_fig_credito_profundizacion.R`, `22_fig_gasto_sectorial_total.R`, `23_fig_mafap_programatico.R`, `24_fig_mafap_panorama.R`, `25_fig_mafap_matriz.R` · `05_outputs/30_excel_mafap_soporte.R`.
+- Salidas: `05_outputs/tables/MAFAP_clasificacion_programas.xlsx` (4 hojas, color por categoría) + ~14 figuras PNG/SVG nuevas.
+- Gobernanza: `.agent/22_PERFIL_TTL.md`; ADR-0011 (finding IDs canónicos), ADR-0012 (gasto externo empalme MEFP), ADR-0013 (Zotero fuente canónica bib), ADR-0014 (descomposición programática acteco); `00_admin/auditorias/2026-06-14_mafap_reclasificacion_programatica.md`; updates a `11_EQUIPO.md`, `04_HALLAZGOS.md`, `20_CONTENIDO_REPORTE.md`, `21_COORDINACION_STC.md`, ADR-0009/0010. Memoria: `ttl-perfil-kennedy-freeman`, `equipo-autores-wb`, `convencion-valores-reales`, `gap-gasto-agro-2009-2015`, `mefp-api-programatica`.
+**Cifras tocadas (con trazabilidad):**
+- **Composición MAFAP acumulada 2016–2024 (caso base conservador EMAPA 50/50):** D 56,1% · A 27,5% · B 16,3% · C 0,1% · E 0%. Traza: `gasto_agro_mafap_prog_serie.rds` ← `18_mafap_programatico.R` ← `gasto_agro_programatico_mefp.rds` (MEFP acteco-treemap, devengado).
+- **EMAPA (2.10.2/2.10.3) = 32,6% del gasto**; split 50/50 → +16,3 pp A y +16,3 pp B (supuesto, no observado; sensibilidad A1-puro como cota superior).
+- **Desglose de D:** riego/hidroagrícola 34,5% (riego puro 27,1%), administración 9,8%, investigación 7,7%, sanidad 2,2%, extensión 1,9%.
+- **Dinámica:** D 64% (2016) → 45% (2024); A+B 36% → 55%, cruce en 2022.
+- Cartera agro BCB ×7,1 **real** (no ×11,7 nominal); participación 5,1%→11,7% (invariante a deflación). Pareto cultivos/exportaciones en **USD constantes 2015**.
+**Hallazgos afectados:** la clasificación MAFAP que respalda F-cand de composición (Cap 3/6) cambia de base (proxy→devengado real); **no se promovió ningún F a definitivo** (pendiente firma TTL). Drift previo F05 (cartera) aclarado: ×7,1 real vs ×11,7 nominal.
+**Capítulos del book afectados:** Cap 2 (cultivos/export/TFP — figuras), Cap 3 (`03_budget_institutions.qmd` — MAFAP, arquitectura institucional, ejecutores, crédito, gasto %PIB). **Las correcciones verificadas de Cap 3 (Maputo 2,04%; fragmentación 2024; INIAF 2019=Bs 82,3M y SENASAG no es ejecutor MEFP separado; crédito ×8; F05 ×7,1) están identificadas pero NO aplicadas al qmd todavía.**
+**Slides / web actualizadas:** ninguna.
+**Tests ejecutados:** ejecución limpia de `18_mafap_programatico.R`, `23/24/25_fig_*.R`, `30_excel_mafap_soporte.R` (Excel 18 KB, 4 hojas, Σ%=100 verificada, 36 actividades). Workflow multi-agente de auditoría MAFAP (3 lentes + verificación adversarial).
+**Tests no ejecutados:** `quarto render` (quarto no está en PATH); validación cruzada del split EMAPA contra estados financieros de EMAPA (no disponibles).
+**Impacto en panel:** ninguno directo (panel v12 intacto); se añadieron RDS programáticos y externos paralelos.
+**Impacto en metodología:** **alto** — MAFAP pasa de proxy AgriMonitor a devengado programático real. Bump propuesto m0.2.0 → m0.3.0 (pendiente firma TTL para promover). Ver ADR-0014.
+**Impacto en hallazgos:** la base cuantitativa de la composición del gasto (Cap 3/6) se fortalece; reconciliación EMAPA-vs-bienes-públicos resuelta (lente institucional/programa vs funcional/MAFAP).
+**Impacto en MEFP handoff:** el Excel de soporte y la descomposición programática mejoran la trazabilidad para la mesa técnica, pero el split EMAPA es el punto que **requiere decisión MEFP/EMAPA** antes de fijar A/B.
+
+# --- Pre-flight anti-IA ---
+Pre-flight anti-IA corrido: parcial (prosa MAFAP/apéndice revisada; figuras y Excel no son prosa)
+Idioma de la prosa producida: ES
+AI-likelihood score promedio: ~3/10
+Banderas anti-IA activadas y resueltas: ninguna nueva relevante
+/quijote-writer invocado: no (sesión cuantitativa/figuras, no redacción EN)
+
+# --- Auditoría A2 ---
+A2 firmada por revisor par: pendiente (cambio ROJO — requiere firma TTL antes de publicar)
+
+# --- Cierre ---
+Riesgos pendientes: split EMAPA sin decidir (mesa MEFP/EMAPA); firma TTL del cambio ROJO MAFAP; bugs ADR-0010 (opex EMAPA D9 vs D8; D6→GSSE D vs I); 5 RDS de gasto externo necesitan traza antes de citar en qmd; correcciones Cap 3 sin aplicar.
+ADR requerido: sí — ADR-0014 (descomposición programática acteco) creado; ADR-0011/0012/0013 nuevos.
+Bump de versión: metodología m0.2.0 → m0.3.0 (MAFAP programático) — propuesto, pendiente firma TTL. Panel sin cambio (v12).
+RETOMAR.md actualizado: sí
+Siguientes pasos:
+1. **Firma TTL** del reemplazo metodológico MAFAP + decisión del split EMAPA (mesa MEFP/EMAPA).
+2. Insertar el texto del apéndice metodológico MAFAP en el qmd de apéndice (ubicación a decidir por el usuario).
+3. Aplicar al `03_budget_institutions.qmd` las correcciones verificadas (Maputo 2,04%; fragmentación 2024; INIAF/SENASAG; crédito ×8; F05 ×7,1).
+4. Registrar las ~14 figuras nuevas en `20_CONTENIDO_REPORTE.md`.
+5. Resolver bugs de ADR-0010 (opex EMAPA D9; D6→D) y dar traza a los 5 RDS de gasto externo antes de citarlos.
+6. Continuar Cap 4 (`04_spending_organization.qmd`).
+
+---
+
+## Sesión 21 (2026-06-14) — DEA Simar-Wilson: de proxy a frontera real
+
+**Tipo de cambio:** 🔴 ROJO (operacionaliza un análisis central del Cap 5, reemplaza un proxy por la frontera real, cambia la 2ª etapa Tobit→truncada, genera cifra publicada) — respaldado por **ADR-0016**
+**Archivos modificados:** 3 editados (`03_dea_efficiency.R`, `11_build_dea_dataset.R`, `05_spending_analysis.qmd`) + 9 nuevos (ADR-0016, 2 RDS, 2 scripts figura, Apéndice F, 2 PNG, exports Word)
+**Tests ejecutados:** `aper-trace-verifier` (20/20 cifras DEA PASS); pipeline DEA (exit 0); render figuras + docx (exit 0)
+**ADR requerido:** sí — **ADR-0016** (propuesto, pendiente firma TTL)
+
+### Qué se hizo
+1. Diagnóstico: el "DEA Simar-Wilson" era un proxy ratio PIB/gasto (`08_extended_regressions.R:250`), nunca corrió; script desconectado del dato; paquetes DEA no instalados.
+2. ADR-0016: VRS pooled intertemporal, **ambas orientaciones**, outputs físicos (81 DMU), bootstrap SW1998 (B=2000), 2ª etapa SW2007 **truncada** (reemplaza Tobit).
+3. `03_dea_efficiency.R` reescrito sobre `dea_dataset.rds` → `dea_simar_wilson_results.rds` (+ `dea_efficiency_scores.rds` compat).
+4. Apéndice F reescrito (proxy→DEA real, 0 TODO_TRACE); Cap 5 §5.3 con cifras reales; fix path hardcodeado en `11_build_dea_dataset.R`.
+5. Figuras: heatmap `fig24_dea_heatmap_simar_wilson.png` (script 30) + intuición nivel/composición 3 paneles `fig25_dea_gasto_intuicion.png` (script 31). Fuente: "cálculos propios del Banco Mundial".
+6. Exports Word practitioner: `05_outputs/word_exports/` (Apéndice F + §5.3 simplificada).
+
+### Cifras tocadas (con trazabilidad)
+- Todas desde `dea_simar_wilson_results.rds`: eficiencia media corregida 0,60 (rango 0,22–0,89); gradiente dept (Pando 0,85 … Potosí 0,27); Spearman robustez 0,94 / 0,92 / 0,96; precip coef 0,35 IC [0,26;0,45]. Trace 20/20 PASS.
+
+### Hallazgos afectados
+- Ninguno editado en `04_HALLAZGOS.md`; el DEA refuerza **F01** (gasto↑ ≠ eficiencia↑) narrativamente.
+
+### Capítulos del book afectados
+- `04_report/05_spending_analysis.qmd` §5.3 + síntesis/trazabilidad
+- `04_report/appendix/F_dea_simar_wilson.qmd` (reescrito)
+
+### Slides / web actualizadas
+- ninguna
+
+### Impacto en panel / metodología
+- panel_version: v12 (sin cambio)
+- methodology_version: sin bump (pendiente evaluar — ADR-0016 podría justificarlo al firmar TTL)
+
+### Impacto en MEFP handoff
+- §5.3 deja de ser placeholder → listo para mesa técnica una vez firmado ADR-0016.
+
+### Riesgos pendientes
+- ADR-0016 sin firma TTL; **renv sin snapshot** (`Benchmarking`/`truncreg`/`ggrepel` fuera del lockfile → brecha reproducibilidad invariante 7); `fig23_dea_inputs_outputs` desactualizada (comentada en §5.3.2).
+
+### Siguientes pasos
+1. Firma TTL ADR-0016 + `renv::snapshot()` (tras restaurar entorno).
+2. Evaluar bump `methodology_version`.
+3. Índice Malmquist (cambio técnico) como extensión; regenerar diagrama de especificación fig23.
 
 ---
 
