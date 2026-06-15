@@ -11,6 +11,7 @@
 1. [`.agent/00_MASTER_PROMPT.md`](.agent/00_MASTER_PROMPT.md) — **fuente única** de identidad, invariantes, arquitectura, plan sección × sección, contratos, gates.
 2. [`00_admin/RETOMAR.md`](00_admin/RETOMAR.md) — estado actual y próximos pasos.
 3. [`.agent/README.md`](.agent/README.md) — mapa de todos los documentos de gobernanza.
+4. [`.codex/instructions.md`](.codex/instructions.md) — adaptador runtime para Codex; no reemplaza a `.agent/`.
 
 Si vas a redactar, suma:
 - [`.agent/05_ESTILO_NARRATIVO.md`](.agent/05_ESTILO_NARRATIVO.md) (TEEL + superestructura WB + Standard 0 anti-IA)
