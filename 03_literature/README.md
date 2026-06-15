@@ -176,13 +176,16 @@ La participación de transferencias en el gasto agrícola público alcanzó 62% 
 
 ```
 1. Identificar referencia (búsqueda sistemática o snowballing)
-2. Verificar acceso (DOI, URL público, repositorio institucional)
-3. Descargar PDF → pdfs/<carpeta>/<citekey>.pdf
-4. Crear ficha → <carpeta>/<citekey>.md (usar _template_external.md)
-5. Agregar entrada a references_master.bib
-6. Si genera hallazgo nuevo → registrar en .agent/04_HALLAZGOS.md
-7. Si cambia método → registrar ADR en .agent/decisions/
+2. Añadir el ítem al grupo Zotero WB-APER-Bolivia (group 6586554) ← fuente upstream de metadata
+3. Verificar acceso (DOI, URL público, repositorio institucional)
+4. Descargar PDF → pdfs/<carpeta>/<citekey>.pdf
+5. Crear ficha → <carpeta>/<citekey>.md (usar _template_external.md) ← aquí vive audit_status
+6. Materializar entrada en references_master.bib (export desde Zotero; citekey = llave de empalme)
+7. Si genera hallazgo nuevo → registrar en .agent/04_HALLAZGOS.md
+8. Si cambia método → registrar ADR en .agent/decisions/
 ```
+
+> **Zotero ↔ bib (ver [`ADR-0013`](../.agent/decisions/ADR-0013_zotero_fuente_canonica_bibliografia.md)).** El grupo Zotero `WB-APER-Bolivia` (group ID `6586554`) es la **fuente upstream canónica** de la metadata bibliográfica; `references_master.bib` es su export versionado. Los agentes lo consultan vía MCP (`.mcp.json` en la raíz, API local, sin API key). **Zotero aporta metadata, no auditoría:** el `audit_status` (verde/amarillo/rojo) vive en la ficha `.md` y es lo que rige el gate de citación §13B — un ítem en Zotero sin ficha auditada **no es citable**.
 
 ---
 

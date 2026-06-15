@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "zotero": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["zotero-mcp"],
+      "env": {
+        "ZOTERO_LOCAL": "true",
+        "ZOTERO_LIBRARY_TYPE": "group",
+        "ZOTERO_LIBRARY_ID": "6586554"
+      }
+    }
+  }
+}
