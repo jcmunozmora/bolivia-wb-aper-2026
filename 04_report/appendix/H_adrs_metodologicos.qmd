@@ -1,0 +1,35 @@
+---
+title: "Apéndice H — Decisiones metodológicas"
+subtitle: "ADRs referenciados por el reporte"
+lang: es
+bibliography: ../references.bib
+crossref:
+  appendix-title: "Apéndice"
+  appendix-delim: "·"
+---
+
+::: {.callout-note appearance="simple"}
+**Alcance de este apéndice.** En esta copia del repositorio, los únicos ADRs materializados como archivos separados en `.agent/decisions/` son `ADR-0008`, `ADR-0009` y `ADR-0010`. Las referencias a decisiones anteriores quedaron absorbidas en el Master Prompt y no se duplican aquí.
+:::
+
+| ADR | Tema | Estado | Color | Archivo |
+|---|---|---|---|---|
+| ADR-0008 | Master Prompt v0.4.0 y coordinación del bloque D | aceptado | rojo | [ADR-0008_master_prompt_v0_4_0.md](../../.agent/decisions/ADR-0008_master_prompt_v0_4_0.md) |
+| ADR-0009 | Adopción de MAFAP narrow + full como clasificación dual | aceptado | rojo | [ADR-0009_mafap_narrow_full.md](../../.agent/decisions/ADR-0009_mafap_narrow_full.md) |
+| ADR-0010 | Crosswalk MAFAP ↔ OECD-PSE ↔ COFOG ↔ MEFP | aceptado | rojo | [ADR-0010_crosswalk_clasificaciones.md](../../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md) |
+
+## H.1 ADR-0008
+
+El Master Prompt v0.4.0 fija la arquitectura de gobernanza del book y conecta el trabajo de los capítulos con la coordinación inter-consultor. Su efecto práctico es ordenar el alcance, la secuencia y el cierre de sesión.
+
+## H.2 ADR-0009
+
+La decisión sobre MAFAP narrow + full evita forzar una sola cifra del gasto agrícola público. En capítulos 3 y 4 se reportan ambas definiciones en paralelo; en el capítulo 5 se reserva OECD-PSE para benchmarking regional.
+
+## H.3 ADR-0010
+
+El crosswalk operativo vuelve auditable el paso entre MAFAP, OECD-PSE, COFOG y MEFP funcional. Sin esta tabla no se podría sostener la trazabilidad de las cifras ni el empalme con BOOST/VIPFE.
+
+## H.4 Consecuencia operativa
+
+Estas tres decisiones sostienen la comparabilidad entre capítulos 3, 4 y 5 sin cambiar de definición en medio del análisis. También delimitan qué piezas del book son gobernanza y cuáles son cálculo sustantivo.

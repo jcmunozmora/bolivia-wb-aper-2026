@@ -1,0 +1,79 @@
+---
+title: "Apéndice I — Declaración de uso de Inteligencia Artificial"
+subtitle: "Aplicación de la AI Assessment Scale (AIAS) al APER Bolivia 2026"
+lang: es
+bibliography: ../references.bib
+crossref:
+  appendix-title: "Apéndice"
+  appendix-delim: "·"
+---
+
+::: {.callout-note appearance="simple"}
+**Alcance.** Este apéndice declara cómo se utilizaron herramientas de inteligencia artificial (IA) generativa en la elaboración del APER Bolivia 2026, clasificando cada componente del trabajo según la *AI Assessment Scale* (AIAS). Corresponde al **"Anexo I"** de la capa de revisión MS Word del Banco (ver [`.agent/23_WORD_ROUNDTRIP.md`](../../.agent/23_WORD_ROUNDTRIP.md)).
+
+**Sobre la cita de la escala.** La AIAS fue propuesta por Perkins, Furze, Roe y MacVaugh (2024) en su versión revisada de cinco niveles. **[VERIFICAR la referencia bibliográfica exacta y la versión contra el material del Seminario de Investigación antes de publicar: la cita no se ha cotejado contra el documento original y por ello no se incorpora aún a `references.bib`.]**
+:::
+
+## I.1 · Propósito de la declaración
+
+El presente informe se elaboró con asistencia de herramientas de IA generativa bajo un marco de gobernanza explícito. Esta declaración documenta dónde, cómo y con qué límites se empleó esa asistencia, en coherencia con los principios de reproducibilidad, trazabilidad y transparencia que rigen el estudio (ver [`.agent/00_MASTER_PROMPT.md`](../../.agent/00_MASTER_PROMPT.md)). El objetivo es que un tercero pueda distinguir, para cada componente, qué fue trabajo humano, qué fue asistencia de IA, y quién asume la responsabilidad técnica del resultado.
+
+La declaración no es retórica: el repositorio del proyecto registra el rol de la IA de forma auditable —en decisiones de arquitectura (ADRs), en bitácoras de sesión y en el historial de versiones—, lo que permite contrastar lo declarado aquí con la evidencia operativa (sección I.6).
+
+## I.2 · La escala AIAS
+
+La AIAS ordena el uso de IA en cinco niveles crecientes, desde su ausencia total hasta la co-creación. La escala se diseñó originalmente para evaluación educativa; aquí se aplica como vocabulario común para describir el grado de intervención de la IA en cada parte de un producto de investigación.
+
+| Nivel | Denominación | Descripción operativa |
+|:-:|---|---|
+| **1** | Sin IA · *No AI* | El producto se elabora íntegramente sin asistencia de IA. |
+| **2** | IA para planificación · *AI Planning* | La IA asiste en actividades previas (estructura, lluvia de ideas, búsqueda inicial); el contenido final no es generado por IA. |
+| **3** | Colaboración con IA · *AI Collaboration* | La IA ayuda a producir el trabajo (borradores, retroalimentación, refinamiento); la persona evalúa críticamente, edita y asume la responsabilidad del resultado. |
+| **4** | IA plena · *Full AI* | La IA puede generar cualquier elemento del producto; la persona dirige y evalúa, pero la IA produce contenido final. |
+| **5** | Exploración con IA · *AI Exploration* | La IA se usa de forma creativa para extender la capacidad humana y co-diseñar nuevos enfoques. |
+
+::: {.callout-warning appearance="simple"}
+Las denominaciones y definiciones de los niveles se reproducen de memoria del marco AIAS y deben cotejarse con la fuente oficial antes de la publicación. La asignación de niveles de la sección I.3 es independiente de la redacción exacta de cada definición.
+:::
+
+## I.3 · Mapeo del informe a la escala
+
+La tabla siguiente asigna un nivel AIAS a cada componente del estudio. El nivel predominante del informe es el **3 (Colaboración)**: la IA redactó borradores y construyó scripts, mientras que la evaluación crítica, la edición y la responsabilidad final fueron humanas. Dos componentes operan deliberadamente en el **Nivel 1**: los valores numéricos —que no se generan con IA sino con código determinista sobre datos crudos— y el juicio de política, reservado al equipo y a la validación institucional.
+
+| Componente del informe | Rol de la IA | Nivel AIAS |
+|---|---|:-:|
+| Diseño conceptual, preguntas e índice | El equipo definió el alcance; la IA propuso estructura de capítulos y secciones | **2** |
+| Recolección de datos y scripts R (descarga, *parsing*, limpieza) | La IA co-escribió los scripts; el equipo verificó ejecución, fuentes y resultados | **3** |
+| Cifras y resultados cuantitativos (panel, regresiones, PSE, TFP) | La IA **no** generó cifras: todo valor proviene de scripts deterministas sobre los datos crudos | **1** |
+| Construcción de figuras | La IA escribió el código de graficación; los datos provienen del panel; el equipo validó cada figura | **3** |
+| Redacción de prosa (capítulos, resumen ejecutivo, anexos) | La IA produjo borradores en voz Banco Mundial; el equipo editó y validó | **3** |
+| Revisión de consistencia, paridad bilingüe y detección de contradicciones | La IA auditó coherencia interna y trazabilidad; el equipo resolvió | **3** |
+| Revisión de literatura y verificación de citas | La IA asistió el fichado y el cotejo; la auditoría anti-alucinación fue supervisada por humanos | **3** |
+| Interpretación de política y recomendaciones | Liderazgo humano; la IA propuso opciones técnicas; validación con el MEFP | **1–2** |
+| Juicio técnico y responsabilidad final | Exclusivamente humano (autores del Banco Mundial y EAFIT) | **1** |
+
+## I.4 · Herramientas utilizadas
+
+La asistencia se obtuvo de modelos de lenguaje de gran escala (familia Claude, de Anthropic), operados a través de Claude Code dentro del repositorio del proyecto. El entorno de trabajo incorpora una capa de gobernanza propia (directorio [`.agent/`](../../.agent/)) que fija la identidad operativa de la IA, los invariantes editoriales y los controles automáticos descritos en la sección I.5. La reproducibilidad del pipeline cuantitativo se sostiene en R con gestión de dependencias (`renv`), de modo que las cifras del informe son re-ejecutables con independencia de la herramienta de IA.
+
+## I.5 · Salvaguardas — qué la IA no hizo
+
+El uso de IA operó bajo límites explícitos y verificables, no como discreción del modelo:
+
+- **Cifras deterministas.** La IA tiene prohibido inventar o "estimar" valores. Toda cifra del informe se lee de los datos procesados y es trazable a su fuente cruda (invariante de trazabilidad, [`.agent/00_MASTER_PROMPT.md`](../../.agent/00_MASTER_PROMPT.md)).
+- **La IA redacta, no calcula.** El cálculo lo realizan los scripts; la IA sintetiza y redacta a partir de resultados ya calculados.
+- **Juicio de política reservado al humano.** Las recomendaciones se formulan como opciones técnicas para consideración del MEFP; la IA no emite opiniones sobre gobiernos, autoridades ni decisiones políticas.
+- **Validación institucional irreemplazable.** La asistencia de IA no sustituye la validación de cifras y conclusiones con el MEFP y el MDRyT.
+- **Controles automáticos.** Las ediciones a los capítulos se filtran por verificadores que bloquean *advocacy*, lenguaje imperativo y citas a literatura no auditada; las afirmaciones cuantitativas y las citas se someten a auditoría adversarial antes de marcarse como revisadas.
+
+## I.6 · Trazabilidad del uso de IA
+
+El rol de la IA es auditable a través de tres registros del repositorio: las decisiones de arquitectura (`ADR-*` en [`.agent/decisions/`](../../.agent/decisions/)), las bitácoras de cierre de sesión ([`00_admin/RETOMAR.md`](../../00_admin/RETOMAR.md)) y el historial de control de versiones. Esta arquitectura permite reconstruir, para cada capítulo o figura, qué se produjo con asistencia de IA, bajo qué decisión metodológica y con qué validación humana posterior.
+
+## I.7 · Declaración de responsabilidad
+
+Los autores del informe asumen la responsabilidad plena por todo su contenido —datos, análisis, redacción e interpretaciones—. La asistencia de IA documentada en este apéndice se utilizó como herramienta de productividad y consistencia bajo supervisión humana, y no sustituyó el juicio técnico de los autores ni la validación institucional con las contrapartes del Estado boliviano. Cualquier error u omisión es responsabilidad de los autores.
+
+---
+
+*Apéndice elaborado el 2026-06-14. La clasificación AIAS se revisará si cambia el alcance del uso de IA en versiones posteriores del informe.*

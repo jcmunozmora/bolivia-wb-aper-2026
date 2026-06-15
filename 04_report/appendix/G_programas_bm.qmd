@@ -1,0 +1,87 @@
+---
+title: "Apéndice G — Programas del Banco Mundial activos"
+subtitle: "Portafolio agropecuario y rural reciente en Bolivia"
+lang: es
+bibliography: ../references.bib
+crossref:
+  appendix-title: "Apéndice"
+  appendix-delim: "·"
+---
+
+::: {.callout-note appearance="simple"}
+**Estado del inventario.** El repo contiene evidencia suficiente para verificar PAR III, PAR II y PICAR. Las filas de MIAGRA y otras operaciones tempranas siguen pendientes de confirmación contra el Operations Portal o la documentación interna equivalente; por eso se marcan explícitamente como `TODO_TRACE`.
+:::
+
+## G.1 Cartera verificada
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(data.table)
+  library(gt)
+})
+
+portfolio <- data.table(
+  Programa = c(
+    "PAR III",
+    "PAR II",
+    "PICAR",
+    "MIAGRA",
+    "INIAF strengthening"
+  ),
+  Código = c(
+    "P175672",
+    "P127743",
+    "P107137",
+    "[TODO_TRACE]",
+    "[TODO_TRACE]"
+  ),
+  Período = c(
+    "2022–2028",
+    "2013–2023",
+    "2013–2021",
+    "[TODO_TRACE]",
+    "[TODO_TRACE]"
+  ),
+  Estado = c(
+    "En ejecución",
+    "Cerrado (ICR satisfactorio)",
+    "Cerrado",
+    "Por verificar",
+    "Por verificar"
+  ),
+  Monto = c(
+    "USD 351 M",
+    "[TODO_TRACE]",
+    "[TODO_TRACE]",
+    "[TODO_TRACE]",
+    "[TODO_TRACE]"
+  ),
+  Ejecutor = c(
+    "EMPODERAR / MDRyT",
+    "EMPODERAR / MDRyT",
+    "EMPODERAR / MDRyT",
+    "MDRyT",
+    "INIAF"
+  ),
+  Evidencia = c(
+    "[@PARIII_WorldBank2022_InnovationFoodSystems]",
+    "[@PAR_WorldBank2024_ICR]",
+    "[@PICAR_WorldBank2021_ICR]",
+    "[TODO_TRACE: Operations Portal]",
+    "[TODO_TRACE: Operations Portal]"
+  )
+)
+```
+
+```{r}
+#| label: tab-g-portfolio
+#| tbl-cap: "Inventario selectivo del portafolio BM agropecuario y rural en Bolivia"
+gt(portfolio) |>
+  tab_source_note("Fuente: fichas de literatura del repo, ICRs del Banco Mundial y cronología interna. Las filas marcadas con TODO_TRACE requieren confirmación documental adicional.") |>
+  tab_options(table.font.size = px(9), data_row.padding = px(2))
+```
+
+## G.2 Lectura operativa
+
+PAR III es la operación vigente que concentra la atención del capítulo 4. PAR II y PICAR funcionan como benchmark histórico porque ya cerraron y permiten leer continuidad institucional, curva de aprendizaje y sensibilidad del desempeño a la capacidad de ejecución de EMPODERAR. Las filas pendientes no cambian la lectura del capítulo, pero sí señalan la necesidad de un export del portafolio desde el portal operacional para completar el inventario.

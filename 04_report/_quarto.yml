@@ -6,8 +6,14 @@ book:
   title: "Gasto Público en el Sector Agropecuario de Bolivia"
   subtitle: "Análisis de Nivel, Composición y Eficiencia 2000–2023"
   author:
-    - name: "Equipo World Bank Bolivia"
-      affiliation: "Banco Mundial"
+    - name: "Katie Kennedy Freeman"
+      affiliation: "World Bank"
+    - name: "Mariángela Ramírez Díaz"
+      affiliation: "World Bank"
+    - name: "Héctor Peña"
+      affiliation: "World Bank"
+    - name: "Juan Carlos Muñoz-Mora"
+      affiliation: "Centro Valor Público at Universidad EAFIT (Colombia)"
   date: "2026"
   language: es
 
@@ -30,6 +36,7 @@ book:
     - appendix/F_dea_simar_wilson.qmd
     - appendix/G_programas_bm.qmd
     - appendix/H_adrs_metodologicos.qmd
+    - appendix/I_declaracion_ia.qmd
 
 bibliography: references.bib
 csl: style/world-development.csl

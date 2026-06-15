@@ -1,0 +1,146 @@
+---
+title: "Apéndice F — Resultados DEA Simar-Wilson"
+subtitle: "Frontera de eficiencia técnica del gasto agropecuario departamental, 2012–2020"
+lang: es
+bibliography: ../references.bib
+crossref:
+  appendix-title: "Apéndice"
+  appendix-delim: "·"
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(data.table)
+  library(gt)
+})
+
+res <- readRDS(here::here("01_data", "processed", "dea_simar_wilson_results.rds"))
+m   <- as.data.table(res$scores_main)
+
+# Resumen departamental ordenado por eficiencia corregida (orientación input)
+dept_tbl <- as.data.table(res$dept_summary)[order(-eff_in_bc_mean)]
+dept_tbl <- merge(
+  dept_tbl,
+  m[, .(ci_lo = mean(ci_lo_in, na.rm = TRUE),
+        ci_hi = mean(ci_hi_in, na.rm = TRUE)), by = dept_upper],
+  by = "dept_upper", all.x = TRUE)[order(-eff_in_bc_mean)]
+
+# Etapa 2 Simar-Wilson (2007)
+s2 <- as.data.table(res$stage2_sw2007)
+s2_lab <- c(`(Intercept)` = "Constante",
+            precip_k = "Precipitación (CHIRPS, miles mm)",
+            defor_k  = "Deforestación (miles ha/año)")
+s2[, Determinante := s2_lab[term]]
+```
+
+::: {.callout-note appearance="simple"}
+**Estado del cálculo.** La frontera DEA Simar-Wilson está **computada** sobre el dataset canónico `dea_dataset.rds` (81 DMU-años, 9 departamentos × 9 años, 2012–2020). La especificación —orientación, conjunto de outputs, retornos a escala y segunda etapa— está fijada en [ADR-0016](../../.agent/decisions/ADR-0016_dea_simar_wilson_especificacion.md). Los scores, las bandas de confianza al 95 % y la regresión truncada de segunda etapa provienen de `dea_simar_wilson_results.rds` (semilla fija, 2000 réplicas bootstrap). Pendiente: firma TTL del ADR-0016 e índice Malmquist como extensión futura.
+:::
+
+## F.1 Especificación
+
+La frontera principal usa retornos variables a escala (VRS) y se estima como una sola envolvente *pooled* sobre los 81 pares departamento-año (satisface la regla de discriminación $n \geq 3(m+s)$). Se reportan **ambas orientaciones**: la orientación *input* responde la pregunta de policy "¿se obtendría el mismo producto con menos gasto?"; la *output*, "¿cuánto producto adicional con el mismo gasto?". El bootstrap homogéneo de @SimarWilson1998 corrige el sesgo de los scores deterministas y genera bandas de confianza; la segunda etapa de @SimarWilson2007 estima los determinantes ambientales de la (in)eficiencia mediante regresión truncada con bootstrap, no Tobit.
+
+| Componente | Especificación principal |
+|---|---|
+| Insumos (X) | Gasto agropecuario estricto (BOB const. 2015); superficie cultivada total (ha) |
+| Outputs (Y) | Producción total (ton); rendimiento de cereales (kg/ha) |
+| Unidades (DMU) | 81 pares departamento-año (9 dptos × 2012–2020) |
+| Retornos a escala | Variables (VRS / BCC) |
+| Orientación | Input y output (reportadas en paralelo) |
+| Bootstrap | Simar-Wilson (1998), 2000 réplicas, IC 95 % |
+| Segunda etapa | Regresión truncada Simar-Wilson (2007) + bootstrap |
+
+: Estructura de la frontera DEA principal {#tbl-f-spec}
+
+## F.2 Scores de eficiencia por departamento
+
+La tabla @tbl-f-dept ordena los departamentos por eficiencia técnica corregida por sesgo en orientación input (promedio del panel 2012–2020). Los scores se interpretan como distancia a la frontera: un valor de 0,60 indica que el departamento podría, en promedio, obtener el mismo producto con cerca de 40 % menos insumos si replicara las prácticas de las unidades frontera. La columna "DMU frontera" cuenta los años en que el departamento define la frontera (score = 1).
+
+```{r}
+#| label: tbl-f-dept
+#| tbl-cap: "Eficiencia técnica media por departamento (frontera principal VRS, 2012–2020)"
+gt(dept_tbl[, .(
+  Departamento = dept_upper,
+  `Score input (sin corregir)` = eff_in_mean,
+  `Score input (corregido)`    = eff_in_bc_mean,
+  `IC 95 % inf.` = ci_lo,
+  `IC 95 % sup.` = ci_hi,
+  `Score output (corregido)`   = eff_out_mean,
+  `Años en frontera`           = n_frontier_in
+)]) |>
+  fmt_number(columns = 2:6, decimals = 3) |>
+  tab_source_note("Fuente: dea_simar_wilson_results.rds (res$dept_summary). Scores corregidos por bootstrap Simar-Wilson 1998, B=2000.") |>
+  tab_options(table.font.size = px(9), data_row.padding = px(2))
+```
+
+El ordenamiento reproduce un gradiente geográfico nítido: los departamentos de tierras bajas y valles (Pando, Tarija, Santa Cruz, Beni, Cochabamba) operan cerca de la frontera, mientras que el altiplano (La Paz, Oruro, Potosí) y Chuquisaca registran las brechas mayores. Ningún departamento altiplánico define la frontera en ningún año del panel. La eficiencia de Pando debe leerse con cautela: bajo VRS, las unidades de menor escala tienden a auto-identificarse como eficientes (Pando tiene la menor superficie y el menor gasto agropecuario del país), efecto que la corrección de sesgo atenúa pero no elimina.
+
+## F.3 Panel completo departamento × año
+
+```{r}
+#| label: tbl-f-panel
+#| tbl-cap: "Scores DEA corregidos (orientación input) y bandas de confianza al 95 %, por departamento-año"
+panel <- m[order(dept_upper, year),
+           .(Departamento = dept_upper, Año = year,
+             `Score (corregido)` = eff_bc_in,
+             `IC inf.` = ci_lo_in, `IC sup.` = ci_hi_in,
+             `Score output` = eff_out)]
+gt(panel) |>
+  fmt_number(columns = 3:6, decimals = 3) |>
+  tab_source_note("Las 81 DMU-años de la frontera principal. Score=1 ⇒ unidad frontera (orientación input).") |>
+  tab_options(table.font.size = px(8), data_row.padding = px(1))
+```
+
+## F.4 Determinantes ambientales (segunda etapa Simar-Wilson 2007)
+
+La regresión truncada de segunda etapa explica el score corregido en orientación input mediante variables de contexto no controlables por el gasto. La precipitación (CHIRPS) presenta una asociación positiva y significativa: parte de la brecha de eficiencia del altiplano refleja una desventaja agroclimática estructural, no únicamente gestión. El coeficiente de deforestación es positivo y significativo pero de magnitud reducida.
+
+```{r}
+#| label: tbl-f-stage2
+#| tbl-cap: "Segunda etapa Simar-Wilson (2007): regresión truncada del score corregido sobre covariables ambientales"
+gt(s2[, .(Determinante,
+          Coeficiente = coef,
+          `IC 95 % inf.` = ci_lo,
+          `IC 95 % sup.` = ci_hi,
+          `Sig. 95 %` = ifelse(sig95, "sí", "no"))]) |>
+  fmt_number(columns = 2:4, decimals = 4) |>
+  tab_source_note("Fuente: res$stage2_sw2007. Variable dependiente: score corregido orientación input. Bootstrap de coeficientes, 2000 réplicas; IC por percentiles.") |>
+  tab_options(table.font.size = px(9), data_row.padding = px(2))
+```
+
+## F.5 Robustez
+
+El ordenamiento de eficiencia es estable frente a las tres decisiones de especificación: la elección de orientación, el conjunto de outputs y la definición del insumo fiscal. Las correlaciones de Spearman entre rankings se reportan en @tbl-f-robust.
+
+```{r}
+#| label: tbl-f-robust
+#| tbl-cap: "Estabilidad del ranking de eficiencia (correlación de Spearman entre especificaciones)"
+rob <- data.table(
+  Comparación = c(
+    "Input vs output (scores)",
+    "Input vs output (corregidos)",
+    "Principal vs PIB valor agregado (36 DMU)",
+    "Principal vs gasto rural amplio (81 DMU)"),
+  Spearman = c(
+    res$spearman$scores,
+    res$spearman$bias_corrected,
+    {pib <- as.data.table(res$robust_pib)
+     mm <- merge(m[,.(dmu,eff_bc_in)], pib[,.(dmu,e=eff_bc_in)], by="dmu")
+     suppressWarnings(cor(mm$eff_bc_in, mm$e, method="spearman"))},
+    {rur <- as.data.table(res$robust_rural)
+     mr <- merge(m[,.(dmu,eff_bc_in)], rur[,.(dmu,e=eff_bc_in)], by="dmu")
+     suppressWarnings(cor(mr$eff_bc_in, mr$e, method="spearman"))})
+)
+gt(rob) |>
+  fmt_number(columns = "Spearman", decimals = 3) |>
+  tab_source_note("Fuente: dea_simar_wilson_results.rds. Todas las correlaciones ≥ 0,83 ⇒ ranking robusto a la especificación.") |>
+  tab_options(table.font.size = px(9), data_row.padding = px(2))
+```
+
+## F.6 Próximos pasos
+
+- Firma TTL del [ADR-0016](../../.agent/decisions/ADR-0016_dea_simar_wilson_especificacion.md) y `renv::snapshot()` para fijar `Benchmarking` y `truncreg` en el lockfile.
+- Índice de productividad Malmquist (cambio técnico year-over-year) como extensión, si la mesa técnica lo requiere.
+- Cross-check con stochastic frontier (Box 11 PER Sub-Sahariana [@FAO2021_PEFoodAgricultureSSA]) como contraste metodológico referencial.

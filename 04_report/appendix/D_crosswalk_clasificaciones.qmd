@@ -1,0 +1,82 @@
+---
+title: "Apéndice D — Crosswalk de clasificaciones"
+subtitle: "MAFAP, OECD-PSE, COFOG y MEFP"
+lang: es
+bibliography: ../references.bib
+crossref:
+  appendix-title: "Apéndice"
+  appendix-delim: "·"
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(data.table)
+  library(gt)
+})
+
+cw <- as.data.table(
+  read.csv(here::here("01_data", "processed", "crosswalk_mafap_oecd_cofog.csv"),
+           stringsAsFactors = FALSE,
+           na.strings = c("", "NA"))
+)
+setorder(cw, mafap_code)
+cw[, mafap_family := substr(mafap_code, 1, 1)]
+
+family_counts <- cw[, .N, by = mafap_family][order(mafap_family)]
+setnames(family_counts, c("mafap_family", "N"), c("Familia MAFAP", "Filas"))
+
+mapping_counts <- cw[, .N, by = mapping_type][order(mapping_type)]
+setnames(mapping_counts, c("mapping_type", "N"), c("Tipo de mapeo", "Filas"))
+```
+
+::: {.callout-note appearance="simple"}
+**Estado.** Este apéndice ya es renderizable porque el crosswalk maestro existe en `01_data/processed/crosswalk_mafap_oecd_cofog.csv`. La tabla resume 41 filas: 24 mapeos directos 1:1, 2 casos 1:N, 3 casos N:1, 5 casos ambiguos y 7 entradas sin equivalente OECD-PSE directo.
+:::
+
+## D.1 Las cuatro clasificaciones
+
+**MAFAP** organiza el gasto por beneficiario y separa `narrow` de `full`. **OECD-PSE** resume apoyo al productor, al consumidor y a servicios generales del sector para benchmarking internacional. **COFOG 04.2** captura la función agrícola del gobierno a un nivel más agregado. **MEFP** aporta la codificación presupuestaria boliviana que permite empalmar BOOST/VIPFE con la clasificación funcional local.
+
+## D.2 Tabla maestra del crosswalk
+
+```{r}
+#| label: tab-d-crosswalk
+#| tbl-cap: "Crosswalk maestro entre MAFAP, OECD-PSE, COFOG y MEFP funcional"
+cw_display <- cw[, .(
+  `Código MAFAP` = mafap_code,
+  Nivel = mafap_level,
+  `Categoría MAFAP` = mafap_name_es,
+  `Equivalente OECD-PSE` = oecd_pse_equivalent,
+  `Código COFOG` = cofog_code,
+  `Rango MEFP` = mefp_functional_range,
+  `Tipo de mapeo` = mapping_type,
+  `Ejemplo Bolivia` = bolivia_examples,
+  Nota = notes
+)]
+
+gt(cw_display) |>
+  fmt_missing(everything(), missing_text = "—") |>
+  tab_source_note("Fuente: `01_data/processed/crosswalk_mafap_oecd_cofog.csv`, construido a partir de ADR-0010 y de la taxonomía MAFAP del Apéndice C.") |>
+  tab_options(table.font.size = px(9), data_row.padding = px(2))
+```
+
+## D.3 Implicaciones cuantitativas
+
+```{r}
+#| label: tab-d-summary
+#| tbl-cap: "Resumen de cobertura y tipo de mapeo"
+gt(family_counts) |>
+  tab_source_note("Cobertura por familia MAFAP A–E en el crosswalk maestro.") |>
+  opt_stylize(style = 1)
+```
+
+```{r}
+#| label: tab-d-mapping
+#| tbl-cap: "Tipos de mapeo presentes en el crosswalk"
+gt(mapping_counts) |>
+  tab_source_note("La categoría `n/a` se usa cuando la equivalencia OECD-PSE no existe o no es pertinente.") |>
+  opt_stylize(style = 1)
+```
+
+La lectura operativa es simple: **MAFAP D** es el puente más cercano a **OECD GSSE**, pero no es una igualdad perfecta; **MAFAP E** no tiene equivalente OECD-PSE directo y por eso se mantiene solo dentro de la definición `full`. El crosswalk resuelve esa asimetría sin forzar equivalencias artificiales.

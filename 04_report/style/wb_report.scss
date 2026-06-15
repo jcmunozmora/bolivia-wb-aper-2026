@@ -1,6 +1,7 @@
 /*-- World Bank Visual Identity: Quarto HTML Theme --*/
 
-/*-- Variables de color WB --*/
+/*-- scss:defaults --*/
+
 $wb-blue:    #009FDA;
 $wb-navy:    #002244;
 $wb-teal:    #00B3A2;
@@ -8,15 +9,14 @@ $wb-orange:  #F05023;
 $wb-grey:    #9EA4A8;
 $wb-grey-lt: #F5F5F5;
 
-/*-- Typography --*/
 $font-family-base: "Arial", "Helvetica Neue", sans-serif;
 $headings-color: $wb-navy;
 
-/*-- Navbar --*/
 $navbar-bg: $wb-navy;
 $navbar-fg: white;
 
-/*-- Body --*/
+/*-- scss:rules --*/
+
 body {
   font-family: $font-family-base;
   color: #333333;

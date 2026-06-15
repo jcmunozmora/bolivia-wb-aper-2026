@@ -8,6 +8,24 @@ source(here::here("02_code", "00_setup", "01_constants.R"))
 library(tidyverse)
 ```
 
+::: {.content-block}
+
+**Autores:**
+
+Katie Kennedy Freeman, World Bank
+
+Mariángela Ramírez Díaz, World Bank
+
+Héctor Peña, World Bank
+
+Juan Carlos Muñoz-Mora, Centro Valor Público at Universidad EAFIT (Colombia)
+
+<!-- TODO_TRACE: coautores EAFIT adicionales (equipo core) con consentimiento explícito -->
+
+**Cita sugerida:** Kennedy Freeman, K., Ramírez Díaz, M., Peña, H., & Muñoz-Mora, J. C. (2026). *Gasto Público en el Sector Agropecuario de Bolivia: Análisis de Nivel, Composición y Eficiencia 2000–2023*. Washington, DC: World Bank; Universidad EAFIT.
+
+:::
+
 ## Contexto
 
 Bolivia incrementó su inversión pública en el sector agropecuario por un factor cercano a diez entre 1990 y 2024, en línea con el Plan de Desarrollo Económico y Social y con la expansión general del gasto público que acompañó el ciclo de altos precios de los hidrocarburos. La inversión, en dólares constantes de 2015, pasó de niveles del orden de USD 35 millones a principios de los noventa a un máximo de USD 320 millones en 2015, y descendió a USD 261 millones en 2024 en un contexto de ajuste fiscal generalizado. Pese a esa expansión, los indicadores agregados de productividad, seguridad alimentaria y cobertura del suelo muestran trayectorias que evolucionan de forma desacoplada respecto al gasto.

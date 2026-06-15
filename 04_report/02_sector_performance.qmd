@@ -109,13 +109,13 @@ Bolivia se ubica por debajo del promedio de crecimiento de TFP de la región and
 
 ```{r}
 #| label: fig-tfp-lac
-#| fig-cap: "Comparación de la TFP agropecuaria: Bolivia frente a comparadores andinos (Perú, Colombia, Ecuador), 1961–2023. Fuente: USDA-ERS 2024."
+#| fig-cap: "Productividad total de factores (TFP) agropecuaria: Bolivia frente a comparadores de América Latina, índice 2000 = 100, 2000–2023. Bolivia resaltada; pares andinos (Perú, Colombia, Ecuador) en gris oscuro. Fuente: USDA-ERS 2024."
 knitr::include_graphics(fig("fig07_tfp_latam_comparison"))
 ```
 
 ### 2.2.4 Inversión y TFP: hipótesis sobre el desacople
 
-El desacople entre inversión sectorial y TFP es la pregunta motivadora del reporte. La figura 2.6 superpone la inversión pública agropecuaria (eje izquierdo, USD millones VIPFE) y el índice TFP (eje derecho, USDA-ERS): la inversión crece de manera sostenida desde 2006 mientras la TFP se mueve en una banda estrecha. El capítulo 3 documenta la composición de ese gasto bajo la clasificación MAFAP [@MAFAP2013_MethodGuideVolI]. La proposición técnica del reporte es que la composición (no el nivel) del gasto es consistente con el desacople observado, hipótesis que el capítulo 3 contrasta con la descomposición MAFAP y el capítulo 5 con OECD-PSE: el peso de las transferencias genéricas y los apoyos a empresas estatales en el agregado convive con una participación baja de los bienes públicos sectoriales (I+D vía INIAF, sanidad vía SENASAG, extensión, riego). La literatura comparada sobre retornos del gasto agrícola público estima retornos sociales del I+D y la extensión consistentemente superiores a los de las transferencias [@Mogues2012; @Alston2000; @GoyalNash2017].
+El desacople entre inversión sectorial y TFP es la pregunta motivadora del reporte. La figura 2.6 indexa ambas series a 1990 = 100 sobre un mismo eje: hacia 2015 la inversión pública agropecuaria era cercana a nueve veces su nivel de 1990, mientras que el índice de TFP apenas se ubicaba 31% por encima de ese año base. La brecha creciente entre ambas trayectorias —sombreada en la figura— es la expresión gráfica del desacople entre el gasto y los resultados de productividad. El capítulo 3 documenta la composición de ese gasto bajo la clasificación MAFAP [@MAFAP2013_MethodGuideVolI]. La proposición técnica del reporte es que la composición (no el nivel) del gasto es consistente con el desacople observado, hipótesis que el capítulo 3 contrasta con la descomposición MAFAP y el capítulo 5 con OECD-PSE: el peso de las transferencias genéricas y los apoyos a empresas estatales en el agregado convive con una participación baja de los bienes públicos sectoriales (I+D vía INIAF, sanidad vía SENASAG, extensión, riego). La literatura comparada sobre retornos del gasto agrícola público estima retornos sociales del I+D y la extensión consistentemente superiores a los de las transferencias [@Mogues2012; @Alston2000; @GoyalNash2017].
 
 Otros mecanismos no excluyentes complementan la lectura compositiva. El primero es de asignación temporal: una proporción del incremento de la inversión 2006–2014 corresponde a infraestructura de riego, electrificación rural y caminos, cuyo efecto sobre la TFP opera con rezagos de varios años y depende del nivel de mantenimiento posterior; el Banco Mundial [-@WorldBank2021_TappingBolivia] documenta brechas de mantenimiento en infraestructura productiva rural y desafíos de operación post-construcción. A este se suman dos mecanismos adicionales:
 
@@ -126,7 +126,7 @@ Goyal y Nash [-@GoyalNash2017] estiman, para América Latina, una elasticidad de
 
 ```{r}
 #| label: fig-tfp-vs-inv
-#| fig-cap: "Inversión pública agropecuaria (USD millones, VIPFE) e índice TFP (USDA-ERS), Bolivia 1990–2023."
+#| fig-cap: "El desacople: inversión pública agropecuaria y productividad total de factores (TFP), ambas indexadas a 1990 = 100, Bolivia 1990–2023. La brecha sombreada ilustra la divergencia entre gasto y productividad. Fuente: VIPFE y USDA-ERS 2024."
 knitr::include_graphics(fig("fig12_inversion_vs_tfp"))
 ```
 

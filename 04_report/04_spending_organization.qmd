@@ -22,7 +22,8 @@ subnac   <- as.data.table(readRDS(here::here("01_data", "processed", "subnaciona
 muni     <- as.data.table(readRDS(here::here("01_data", "processed", "municipal_panel.rds")))
 
 FIG_DIR <- here::here("05_outputs", "figures")
-fig <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
+fig  <- function(name) file.path(FIG_DIR, paste0(name, ".png"))
+figp <- function(name) file.path(FIG_DIR, "png", paste0(name, ".png"))  # figuras territoriales nuevas (ADR-0015)
 ```
 
 ## Pregunta de política
@@ -113,112 +114,45 @@ La elección entre narrow y full no es neutra para el diagnóstico subnacional. 
 
 ---
 
-## Heterogeneidad subnacional: foco Santa Cruz / La Paz / Cochabamba
+## Distribución territorial del gasto agropecuario
 
-### Mapa departamental del gasto agropecuario per cápita rural
+El análisis territorial combina dos lecturas complementarias del gasto municipal: la magnitud y la concentración recientes por municipio (MEFP Presupuesto Abierto, gasto agropecuario total devengado, 2016–2024) y su composición por instrumento (clasificador programático municipal de Fundación Jubileo, 2012–2021), que aporta el detalle por programa hasta 2021.
 
-El gasto agropecuario per cápita rural varía entre departamentos. La figura @fig-cap4-22 lo mapea para 2020.
+El gasto agropecuario municipal está concentrado en un grupo reducido de municipios, y esa concentración se mantiene estable. En 2024, los diez municipios con mayor gasto ejecutan cerca del 24% del gasto agropecuario municipal total, con un coeficiente de Gini de 0,59 —prácticamente idéntico al de 2016 (0,63)— (@fig-cap4-concentracion). La distribución es moderadamente concentrada y persistente en la última década: una larga cola de municipios con gasto reducido y un grupo pequeño con montos mayores. Es una concentración de la organización del gasto subnacional —no de la necesidad—, y enmarca el hallazgo F07 sobre la heterogeneidad en la ejecución concurrente del gasto.
 
-![Mapa departamental del gasto agropecuario per cápita rural, Bolivia 2020 (BOB constantes 2015)](`r fig("fig22_mapa_gasto_agro_2020")`){#fig-cap4-22 fig-alt="Mapa de Bolivia con sus nueve departamentos sombreados según el nivel de gasto agropecuario per cápita rural en 2020; los tonos más intensos identifican departamentos con mayor inversión por habitante rural."}
+![El gasto agropecuario municipal se mantiene moderadamente concentrado (Gini ≈ 0,6; diez municipios ≈ 24%) entre 2016 y 2024.](`r figp("fig_concentracion_gasto_muni")`){#fig-cap4-concentracion fig-alt="Curva de Lorenz del gasto agropecuario municipal total en 2016 y 2024: el coeficiente de Gini se mantiene cerca de 0,6 y los diez municipios mayores ejecutan alrededor del 24% del gasto en ambos años."}
 
-```{r}
-#| label: tbl-cap4-dept-2020
-#| tbl-cap: "Gasto agropecuario consolidado por departamento, 2020 (BOB millones constantes 2015)"
-tbl_dept_2020 <- subnac[year == 2020, .(
-  Departamento = dept_upper,
-  `Agropecuario estricto (BOB MM 2015)` = round(agro_strict_bob_mm_2015, 1),
-  `Rural infraestructura (BOB MM 2015)` = round(rural_infra_bob_mm_2015, 1),
-  `Rural total (BOB MM 2015)`           = round(rural_total_bob_mm_2015, 1)
-)][order(-`Rural total (BOB MM 2015)`)]
-gt(tbl_dept_2020) |>
-  tab_source_note("Fuente: panel subnacional v2 (`01_data/processed/subnacional_panel_v2.rds`), año 2020. Variables: `agro_strict_bob_mm_2015`, `rural_infra_bob_mm_2015`, `rural_total_bob_mm_2015`.") |>
-  opt_stylize(style = 1)
-```
+El gasto agropecuario municipal no sigue el mapa de la producción. En 2024, Santa Cruz reúne el 64,7% de la superficie cultivada del país (Encuesta Agropecuaria 2015) pero solo el 9,3% del gasto agropecuario municipal, una brecha cercana a 55 puntos por debajo de la paridad; en el extremo opuesto, La Paz (4,3% de la superficie, 17,3% del gasto) y Cochabamba (1,1% y 25,6%) reciben gasto municipal muy por encima de su peso productivo (@fig-cap4-dept-produccion). El indicador mide el gasto devengado de los gobiernos municipales, no la ejecución del nivel central, de modo que el bajo registro cruceño es compatible con una agricultura comercial financiada por crédito y recursos privados antes que por gasto público municipal. Este patrón conecta con la dualidad oriente–occidente (§2.2) y con la sustitución gasto público → crédito documentada en F05.
 
-::: {.callout-tip appearance="minimal"}
-[TODO_FIGURE: Lorenz curve y coeficiente de Gini territorial del gasto agropecuario per cápita rural por departamento, 2012–2021. Requiere `02_code/03_analysis/06_lorenz_territorial.R` y variable `gini_territorial` no presente en panel subnacional v2 actual.]
-:::
+![La cuota departamental del gasto agropecuario no sigue la base productiva: Santa Cruz concentra 65% de la superficie cultivada y 9% del gasto municipal, 2024.](`r figp("fig_gasto_dept_produccion")`){#fig-cap4-dept-produccion fig-alt="Diagrama de dispersión de nueve departamentos que cruza su participación en la superficie cultivada nacional con su participación en el gasto agropecuario municipal en 2024. Santa Cruz aparece muy por debajo de la diagonal (65% de la superficie, 9% del gasto); los departamentos andinos, encabezados por Cochabamba, reciben más gasto que su peso productivo."}
 
-### Santa Cruz: 70.5% del área cultivada nacional
+El gasto agropecuario municipal viró del riego hacia el apoyo directo a la producción entre 2016 y 2024. La participación del apoyo a la producción —categoría A de la taxonomía MAFAP— pasó de 33% a 53% del gasto agropecuario municipal y cruzó por primera vez a los bienes públicos (categoría D, de 67% a 47%) en 2024 (@fig-cap4-mafap-evol). El riego, que concentró cerca del 58% del gasto en 2019, retrocedió a 28% en 2024; los servicios técnicos —investigación, extensión y sanidad— se mantuvieron por debajo del 17% en toda la serie. El giro reorienta el gasto que ejecutan los gobiernos municipales desde un bien público sectorial, el riego, hacia el apoyo a productores. La serie proviene del gasto municipal devengado clasificado por actividad económica del MEFP y mapeado a MAFAP (ADR-0015).
 
-Santa Cruz concentra el **70.5% del área cultivada nacional** según el Censo Nacional Agropecuario 2013 [TODO_TRACE: verificar cifra exacta contra INE-CNA 2013, cuadro de superficie cultivada por departamento]. Esta concentración productiva contrasta con la cuota departamental del gasto agropecuario consolidado, que es menor en proporción. La tabla anterior (`tbl-cap4-dept-2020`) muestra que Santa Cruz lidera en niveles absolutos de gasto rural, pero no en proporción al área cultivada que opera.
+![El gasto agropecuario municipal viró del riego hacia el apoyo directo a la producción, 2016–2024.](`r figp("fig_mafap_muni_evolucion")`){#fig-cap4-mafap-evol fig-alt="Gráfico de área apilada que muestra la composición del gasto agropecuario municipal por propósito MAFAP entre 2016 y 2024. El apoyo a la producción sube de 33% a 53% y cruza a los bienes públicos en 2024; el riego, dominante hasta 2021, retrocede a 28%. Fuente: cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto; crosswalk actividad económica a MAFAP (ADR-0015)."}
 
-![Distribución del gasto agropecuario municipal en Santa Cruz, 2020](`r fig("fig25_dist_muni_agro_2020")`){#fig-cap4-25 fig-alt="Histograma de la distribución del gasto agropecuario por municipio en Santa Cruz para 2020, donde la mayoría de municipios se ubican en el tramo bajo de gasto y un pequeño grupo concentra los niveles altos."}
+La composición del instrumento varía entre departamentos siguiendo la geografía agroclimática del país. Entre 2016 y 2024, el riego concentra el grueso del gasto agropecuario municipal en los Andes y los valles —64% en Potosí, 63% en Chuquisaca, 58% en Cochabamba y 58% en Oruro—, mientras el apoyo directo a la producción se ubica entre 28% y 37% en esos departamentos (@fig-cap4-mafap-dept). El patrón se invierte en las tierras bajas: el apoyo a la producción llega a 61% en Pando y 47% en Santa Cruz, con el riego en 9% y 13%, respectivamente. La Paz se mantiene en equilibrio (44% apoyo, 42% riego), y Beni es el caso atípico, con 61% en servicios técnicos, 32% en apoyo y solo 6% en riego. En la taxonomía MAFAP del capítulo, esta lectura separa dos vocaciones: el riego es un bien público sectorial (D6) que pesa donde la agricultura andina depende del secano, y el apoyo a la producción (A) pesa donde hay agricultura comercial y frontera agrícola. La cifra capta el gasto del gobierno municipal (POA, devengado SIGEP), no la ejecución del nivel central ni departamental, y clasifica el gasto por actividad económica del MEFP mapeada a MAFAP (ADR-0015).
 
-```{r}
-#| label: tbl-cap4-santacruz
-#| tbl-cap: "Santa Cruz — gasto agropecuario consolidado y productivo, 2012–2021 (BOB millones constantes 2015)"
-sc <- subnac[dept_upper == "SANTA CRUZ", .(
-  Año = year,
-  `Agropecuario estricto` = round(agro_strict_bob_mm_2015, 1),
-  `Rural infraestructura` = round(rural_infra_bob_mm_2015, 1),
-  `Rural total`           = round(rural_total_bob_mm_2015, 1)
-)][order(Año)]
-gt(sc) |>
-  tab_source_note("Fuente: panel subnacional v2; filtro `dept_upper == 'SANTA CRUZ'`. Período 2012–2021. Cobertura limitada por trazabilidad SIGEP departamental.") |>
-  opt_stylize(style = 1)
-```
+![El instrumento del gasto agropecuario municipal sigue la vocación del territorio: riego en los Andes y valles, apoyo a la producción en las tierras bajas, 2016–2024.](`r figp("fig_mafap_muni_departamento")`){#fig-cap4-mafap-dept fig-alt="Barras apiladas horizontales con la composición del gasto agropecuario municipal por propósito MAFAP en nueve departamentos, acumulado 2016–2024. El riego e infraestructura domina en Potosí, Chuquisaca, Cochabamba y Oruro (58–64%); el apoyo a la producción domina en Pando y Santa Cruz; Beni concentra el gasto en servicios técnicos. Fuente: cálculo propio (Banco Mundial) sobre MEFP Presupuesto Abierto; crosswalk actividad económica a MAFAP (ADR-0015)."}
 
-La relación gasto–producción en Santa Cruz revela un patrón de baja intensidad fiscal por hectárea cultivada: el gasto agropecuario público departamental por hectárea cultivada en Santa Cruz se ubica por debajo del promedio nacional [TODO_TRACE: cálculo `gasto_dept_2020 / ha_cultivada_CNA2013` por departamento, requerido para fig25 ampliado]. Este patrón es consistente con la estructura productiva de Santa Cruz — agricultura comercial de soya, sorgo, maíz y caña con financiamiento privado y crédito BDP — y conecta con el hallazgo F05 del Capítulo 3 sobre la sustitución gasto público → crédito post-Ley 393.
+Esa lectura departamental por propósito MAFAP (2016–2024) se complementa con el detalle por instrumento que aporta el clasificador programático municipal de Fundación Jubileo, que cubre 2012–2021 y permite leer el gasto por zona agroproductiva del Censo 2013. Bajo esa fuente, el microriego pesa solo en los Valles, donde representa el 21% del gasto rural de la zona; el gasto productivo predomina en la frontera oriental —67% en la Amazonía, 63% en el Chaco, 55% en Yungas y Chapare, 53% en las Llanuras—; y los caminos vecinales son el instrumento principal en la Chiquitania y el Pantanal (86%), el Altiplano (61%) y los Valles (59%) (@fig-cap4-prod-instrumento). En el agregado, los Valles concentran el mayor gasto rural total, cerca de USD 69 millones anuales, frente a USD 4 millones en las Llanuras. En la taxonomía MAFAP del capítulo, esto separa el gasto orientado al productor (≈ A+D) de un gasto rural-soporte (caminos ≈ E) que pesa más en las zonas andinas y de frontera ganadera, donde la base agropecuaria estricta es menor. La sanidad y la extensión no aparecen en el clasificador municipal: la primera es competencia central del SENASAG y la segunda está fragmentada entre el SEDAG, el INIAF y técnicos municipales.
 
-### La Paz: capital política, altiplano productivo
+![El instrumento del gasto rural sigue la vocación del territorio: microriego en los valles, gasto productivo en la frontera oriental, promedio 2012–2021.](`r figp("fig_produccion_instrumento_zona")`){#fig-cap4-prod-instrumento fig-alt="Barras apiladas que muestran la composición del gasto rural municipal por instrumento en siete zonas agroproductivas. El microriego se concentra en los valles, los caminos vecinales dominan en valles, Chiquitania y altiplano, y el gasto productivo predomina en el Chaco, la Amazonía y las llanuras."}
 
-La Paz aporta el **7.5% del área cultivada nacional** [TODO_TRACE: INE-CNA 2013] pero alberga la sede de gobierno y, por tanto, una parte sustancial del gasto agropecuario nacional ejecutado por entidades de nivel central (MDRyT, INIAF, SENASAG sede central) se registra contablemente en el departamento. Esta dualidad de capital política y altiplano productivo distorsiona la lectura del gasto departamental como proxy de inversión territorial.
+El ranking de municipios por gasto agropecuario total combina capitales departamentales, el Chaco tarijeño y los valles cochabambinos. En 2024 lo encabezan Sucre (USD 1,8 millones), Caraparí (1,6), Quillacollo (1,5), Santa Cruz de la Sierra (1,5) y Villamontes (1,3) (@fig-cap4-top-munis). Las capitales —Sucre, Santa Cruz de la Sierra, La Paz, Potosí— figuran por su tamaño presupuestario; el Chaco tarijeño —Caraparí, Villamontes, Yacuiba— por sus regalías de hidrocarburos; y los valles cochabambinos —Quillacollo, Sacaba, Tapacarí— por su densidad de municipios de base hortícola. El gasto agropecuario municipal se ancla en la disponibilidad fiscal local —regalías, coparticipación, tamaño del POA— más que en la escala de la actividad agropecuaria del municipio; los municipios soyeros de Santa Cruz no figuran entre los de mayor gasto público municipal.
 
-![Distribución del gasto agropecuario en La Paz: capital + altiplano](`r fig("fig26_lorenz_muni_2020")`){#fig-cap4-26 fig-alt="Curva de Lorenz del gasto agropecuario municipal en La Paz para 2020, que evidencia la concentración del gasto en un grupo reducido de municipios frente al resto del departamento."}
+![El top municipal del gasto agropecuario combina capitales, el Chaco tarijeño y los valles cochabambinos, 2024.](`r figp("fig_top20_municipios_agro")`){#fig-cap4-top-munis fig-alt="Barras horizontales con los 20 municipios de mayor gasto agropecuario total en 2024. Encabezan Sucre, Caraparí, Quillacollo, Santa Cruz de la Sierra y Villamontes; conviven capitales departamentales, el Chaco tarijeño y los valles cochabambinos."}
 
-El gasto municipal agropecuario en La Paz se distribuye entre municipios con perfiles productivos distintos: zona del altiplano (papa, quinua, ganadería camélida), valles paceños (frutales, hortalizas) y yungas (café, cítricos, hoja de coca). Para evitar la distorsión introducida por la presencia del nivel central, el análisis se concentra en el gasto **subnacional puro** (gobierno autónomo departamental + 87 municipios). El panel subnacional v2 actual no separa esta dimensión [TODO_TRACE: requiere desagregación por entidad ejecutora en `subnacional_panel_v2`, variable `entidad_nivel` pendiente].
+El gasto agropecuario municipal total es pequeño y está fragmentado en el territorio. El mapa de 2024 a nivel de los 339 municipios muestra montos bajos y dispersos: el municipio con mayor gasto —Sucre— no alcanza los USD 2 millones y la mediana municipal se sitúa por debajo de USD 0,1 millón (@fig-cap4-mapa-muni). La ausencia de polos de gasto de gran escala es coherente con la estructura de financiamiento municipal por fórmula y con la asignación atomizada que se refleja en el coeficiente de Gini cercano a 0,6: muchos municipios con gasto reducido y unos pocos con gasto algo mayor, pero sin masa crítica en ningún punto. Esta atomización limita la trazabilidad de retornos a nivel municipal y será una restricción para el diseño de cualquier reasignación territorial.
 
-### Cochabamba: valles y ciudades intermedias
+![El gasto agropecuario municipal total es pequeño y fragmentado; el municipio mayor (Sucre) no alcanza los USD 2 millones, 2024.](`r figp("fig_mapa_muni_gasto_agro_2024")`){#fig-cap4-mapa-muni fig-alt="Mapa coroplético de los 339 municipios de Bolivia que muestra el gasto agropecuario total municipal devengado (MEFP, acteco=2) en 2024 en quintiles. El gasto es bajo y disperso; los municipios en gris no tienen registro en MEFP 2024 o son homónimos sin código INE. El mapa representa el 98% del gasto agropecuario municipal 2024."}
 
-Cochabamba representa el **5.6% del área cultivada nacional** [TODO_TRACE: INE-CNA 2013] y combina valles productivos densamente poblados con ciudades intermedias (Cochabamba, Quillacollo, Sacaba). La gestión del gasto agropecuario municipal en Cochabamba muestra una participación relativa más alta de programas de extensión y micro-riego en el total municipal que en otros departamentos.
+En conjunto, la organización territorial del gasto agropecuario muestra tres regularidades que conviven: concentración municipal moderada y estable (Gini ≈ 0,6; diez municipios ≈ 24% del gasto, 2016–2024), desacople respecto de la producción (Santa Cruz con 65% de la superficie cultivada y 9% del gasto municipal en 2024) y especialización del instrumento por zona (microriego en los Valles, gasto productivo en la frontera oriental, caminos en los Andes y la Chiquitania). Las tres operan sobre el gasto del gobierno municipal, que capta una parte de la cadena —no la ejecución del nivel central ni la departamental—, por lo que las cifras describen la geografía del POA municipal y no el gasto agropecuario consolidado del país. Sobre esa base, una opción técnica para consideración del MEFP sería incorporar al diseño de los programas verticales una lectura territorial del gasto concurrente bajo taxonomía MAFAP, con línea base 2024 a partir del panel territorial del APER 2026 (la capacidad de ejecución se retoma más adelante en este capítulo).
 
-![Concentración del gasto agropecuario municipal: relación entre tamaño del municipio y participación en el gasto](`r fig("fig27_muni_share_vs_size")`){#fig-cap4-27 fig-alt="Diagrama de dispersión que cruza el tamaño del municipio (eje x, por población) con su participación en el gasto agropecuario municipal del departamento (eje y); identifica visualmente la concentración del gasto en municipios grandes."}
+### Focalización y necesidad: gasto y pobreza rural (NBI)
 
-### Top-20 municipios: concentración
+La focalización territorial del gasto agropecuario puede evaluarse cruzando el gasto agropecuario per cápita rural con la pobreza rural municipal medida por necesidades básicas insatisfechas (NBI, INE, Censo 2024) —el único indicador de pobreza con desagregación municipal disponible en Bolivia, ya que las encuestas de hogares solo son representativas a nivel departamental. En la sección cruzada de 2024, la correlación entre el gasto agropecuario municipal por habitante rural y la tasa de NBI rural es **débil y no robusta** —correlación de Pearson ≈ 0,13 y de Spearman ≈ 0,06 (no significativa), sobre 298 municipios (@fig-cap4-focalizacion)—, es decir, prácticamente nula: los municipios con mayor pobreza rural no reciben sistemáticamente más gasto agropecuario por habitante. Este patrón es consistente con una asignación basada en transferencias por fórmula (coparticipación tributaria, IDH, regalías) y co-financiamiento de programas verticales —más que en priorización en función de necesidad rural—. La evidencia regional sugiere que esquemas de transferencia condicionada bien diseñados pueden mejorar la focalización sin incrementar el techo fiscal [@FAO2021_PEFoodAgricultureSSA].
 
-A nivel municipal, el gasto agropecuario y rural total se concentra en un grupo reducido de municipios (@fig-cap4-28).
-
-![Top-20 municipios por gasto agropecuario, 2020 (BOB millones constantes 2015)](`r fig("fig28_top20_muni_agro")`){#fig-cap4-28 fig-alt="Gráfico de barras horizontales con los 20 municipios bolivianos de mayor gasto agropecuario en 2020, ordenados de mayor a menor en BOB millones constantes 2015."}
-
-```{r}
-#| label: tbl-cap4-top10-2020
-#| tbl-cap: "Top-10 municipios por gasto agropecuario estricto, 2020 (BOB millones constantes 2015)"
-top10 <- muni[year == 2020 & !is.na(agro_strict_bob_mm), .(
-  Municipio   = muni_name,
-  Departamento = dept,
-  `Agropecuario estricto (BOB MM)` = round(agro_strict_bob_mm, 2),
-  `Total presupuesto (BOB MM)`     = round(total_presupuesto_bob_mm, 1),
-  `Share agropecuario (%)`         = round(agro_share_pct, 1)
-)][order(-`Agropecuario estricto (BOB MM)`)][1:10]
-gt(top10) |>
-  tab_source_note("Fuente: panel municipal v3 (`01_data/processed/municipal_panel.rds`), año 2020. Variable `agro_strict_bob_mm` (programa 10 del clasificador municipal). Cifras nominales 2020 — para conversión a constantes 2015 ver tabla 4.2.") |>
-  opt_stylize(style = 1)
-```
-
-La concentración en el top-20 refleja tres factores combinados: tamaño poblacional (municipios capitales y ciudades intermedias), base productiva agropecuaria (municipios soyeros en Santa Cruz, municipios quinueros en Oruro/Potosí) y co-financiamiento de programas verticales (PAR II, PICAR, MIAGUA, PROAGRO). El hecho de que un mismo municipio acumule gasto por varios canales — propio + transferencia condicionada + ejecución delegada — complica el análisis de retornos y plantea un riesgo de doble conteo en la consolidación [TODO_TRACE: verificar tratamiento de transferencias intergubernamentales en `municipal_panel`, variable `total_presupuesto_bob` puede o no incluir co-ejecución; revisar metodología Apéndice B §B.3].
-
-### Heterogeneidad por categoría MAFAP: riego (D), sanidad (D5), extensión (D2)
-
-La heterogeneidad subnacional se acentúa al desagregar por sub-categoría MAFAP. Los micro-riegos (programa municipal 12, MAFAP D4) se concentran en valles cochabambinos y altiplano paceño; los caminos vecinales (programa 18, MAFAP E) en municipios amazónicos y chaqueños; los recursos hídricos (programa 32, MAFAP D4) en municipios con planes departamentales de riego.
-
-::: {.callout-tip appearance="minimal"}
-[TODO_FIGURE: small multiples por sub-categoría MAFAP (D2 extensión, D4 riego, D5 sanidad) — 4 mapas departamentales, 2020. Requiere generación nueva con `02_code/04_visualization/06_mafap_small_multiples.R`. Datos disponibles en `municipal_panel.rds` (variables `p12_microriegos_bob_mm`, `p18_caminos_vecinales_bob_mm`, `p32_recursos_hidricos_bob_mm`).]
-:::
-
-![Mapa municipal del gasto agropecuario, 2020](`r fig("fig29_mapa_muni_agro_2020")`){#fig-cap4-29 fig-alt="Mapa coroplético de Bolivia a nivel municipal (339 municipios) que muestra el gasto agropecuario estricto en 2020; los tonos más intensos marcan los municipios con mayor ejecución."}
-
-La sanidad (D5, competencia central de SENASAG) no aparece en el clasificador municipal: el gasto departamental en sanidad agropecuaria es marginal y la consolidación nacional se hace vía SENASAG sede central. La extensión (D2) está fragmentada entre los Servicios Departamentales Agropecuarios (SEDAG), INIAF (extensión técnica) y los técnicos agropecuarios municipales — sin sistema único de M&E del servicio.
-
-### Correlación con necesidad: pobreza rural y FIES
-
-La focalización territorial del gasto agropecuario puede evaluarse cruzando el gasto per cápita rural con indicadores de necesidad: pobreza rural multidimensional (INE 2024) y prevalencia de inseguridad alimentaria moderada-severa (FIES, FAO 2022).
-
-![Mapa de share del gasto agropecuario sobre presupuesto municipal, 2020](`r fig("fig31_mapa_share_agro_2020")`){#fig-cap4-31 fig-alt="Mapa municipal de Bolivia que reporta el cociente entre gasto agropecuario y presupuesto municipal total para 2020; los tonos más intensos identifican municipios con mayor priorización relativa del sector."}
-
-![Mapa del gasto en el programa 10 (agropecuario estricto), 2020](`r fig("fig32_mapa_p10_agropecuario")`){#fig-cap4-32 fig-alt="Mapa municipal del programa 10 (agropecuario estricto) para 2020, base para el análisis de focalización territorial del gasto."}
-
-La correlación entre gasto agropecuario per cápita rural municipal y la tasa de pobreza rural municipal es **débil** en la sección cruzada 2020 [TODO_TRACE: coeficiente de correlación y test, requerido en `02_code/03_analysis/07_focalizacion_pobreza.R` cruzando `municipal_panel` con `pobreza_municipal_INE2024`]. Este patrón es consistente con una asignación basada en transferencias por fórmula (coparticipación tributaria, IDH, regalías) y co-financiamiento de programas verticales — más que en priorización en función de necesidad rural. La evidencia regional sugiere que esquemas de transferencia condicionada bien diseñados pueden mejorar la focalización sin incrementar el techo fiscal [@FAO2021_PEFoodAgricultureSSA].
+![El gasto agropecuario por habitante rural no se alinea con la pobreza rural municipal, 2024.](`r figp("fig_focalizacion_gasto_pobreza")`){#fig-cap4-focalizacion fig-alt="Diagrama de dispersión de 298 municipios que cruza la pobreza rural por necesidades básicas insatisfechas (eje horizontal) con el gasto agropecuario municipal por habitante rural en escala logarítmica (eje vertical) en 2024. La nube no muestra tendencia y la recta ajustada es casi plana: el gasto por habitante rural no aumenta con la pobreza rural. Fuente: MEFP (gasto agropecuario municipal devengado 2024) e INE (NBI, Censo 2024)."}
 
 ::: {.callout-note}
 ## Conexión con Capítulo 2 y Capítulo 5
@@ -307,32 +241,30 @@ El Cap 5 aplica metodología **DEA Simar-Wilson** [@SimarWilson1998; @SimarWilso
 
 ### Tasa de ejecución por entidad
 
-La capacidad de ejecución del gasto agropecuario varía entre entidades, con rangos reportados que pueden ir de 60% a 95% según fuente y año [TODO_TRACE: tabla de rangos por entidad, panel v12 variable `boost_tasa_ejecucion`]. La medida estándar es la tasa de ejecución financiera (devengado sobre presupuesto vigente). Para el MDRyT y entidades dependientes, esta tasa se calcula a partir del clasificador BOOST/SIGEP.
+El MDRyT consolidado ejecutó el 74 por ciento de su presupuesto vigente en términos financieros y el 54 por ciento de sus metas físicas al cierre de 2024 [@MDRyT_RPC2024]. La medida estándar es la tasa de ejecución financiera, definida como el devengado sobre el presupuesto vigente; la tasa física compara metas físicas cumplidas sobre programadas. Para el MDRyT y sus entidades dependientes, ambas tasas se construyen a partir de los reportes de Rendición Pública de Cuentas y del registro SIGEP/SISEGER, con corte al 31 de diciembre. La dispersión entre entidades ejecutoras es marcada, lo que justifica el desglose presentado a continuación.
 
 ```{r}
 #| label: tbl-cap4-ejecucion-entidades
-#| tbl-cap: "Tasa de ejecución financiera por entidad agropecuaria, último año disponible (%)"
+#| tbl-cap: "Tasa de ejecución por entidad agropecuaria, año más reciente disponible por fuente (%)"
 ejecucion_tbl <- data.table(
-  Entidad = c("MDRyT (sede central)", "INIAF", "SENASAG", "EMAPA",
-              "INRA", "BDP-SAM (cartera)", "Promedio subnacional (depts.)",
-              "Promedio municipal (programa 10)"),
-  `Tasa ejecución financiera (%)` = c("[TODO_TRACE: BOOST 2024 MDRyT]",
-                                       "[TODO_TRACE]", "[TODO_TRACE]",
-                                       "[TODO_TRACE]", "[TODO_TRACE]",
-                                       "n/a (cartera)", "[TODO_TRACE]",
-                                       "[TODO_TRACE]"),
-  `Año referencia` = c("2024", "2024", "2024", "2024", "2024", "2024",
-                       "2021", "2021"),
-  Fuente = c("`boost_tasa_ejecucion` v12", "BOOST", "BOOST + ingresos propios",
-             "Reporte EMAPA", "BOOST", "BCB Cartera",
-             "`subnacional_panel_v2`", "`municipal_panel`")
+  Entidad = c("MDRyT consolidado", "Administración Central", "SENASAG",
+              "INRA (saneamiento)", "IPD-PACU", "PAR III (EMPODERAR)",
+              "INIAF", "EMAPA", "BDP-SAM (cartera)", "Nacional, fase BOOST"),
+  `Ejec. financiera (%)` = c("74", "87", "87", "77", "58", "16",
+                             "83,7", "n/a", "n/a", "≈89 (rango 74–101)"),
+  `Ejec. física (%)` = c("54", "—", "—", "81", "—", "60",
+                         "82,7", "n/a", "n/a", "—"),
+  `Año` = c("2024", "2024", "2024", "2024", "2024", "2024",
+            "2019", "—", "—", "1996–2008"),
+  Fuente = c("RPC 2024", "RPC 2024", "RPC 2024", "RPC 2024", "RPC 2024",
+             "RPC 2024 / F07", "Memoria INIAF", "—", "—", "panel v12")
 )
 gt(ejecucion_tbl) |>
-  tab_source_note("Fuente: panel v12 (variable `boost_tasa_ejecucion`); paneles subnacional v2 y municipal v3. Cifras pendientes de cálculo en `02_code/03_analysis/08_ejecucion_por_entidad.R`. Para EMAPA y BDP-SAM, las métricas estándar de tasa de ejecución no aplican directamente (gestión empresarial y cartera de crédito respectivamente).") |>
+  tab_source_note("Fuente: MDRyT, Rendición Pública de Cuentas Final 2024, Tabla A (p. 6) y avance físico-financiero por programa (p. 11) [@MDRyT_RPC2024]; PAR III enmarcado en F07 y en el diseño del programa [@PARIII_WorldBank2022_InnovationFoodSystems]; INIAF, Memoria Institucional 2019 [@INIAF_Memoria2019]; serie nacional de la fase BOOST a partir del panel v12 (variable `boost_tasa_ejecucion`). Para EMAPA y BDP-SAM la métrica estándar de tasa de ejecución no aplica directamente (empresa con subsidio de precios y cartera de crédito, respectivamente). Caveat metodológico: las tasas por entidad son auto-reportes institucionales (RPC, memorias) de años distintos (2019, 2024) y no un extracto SIGEP harmonizado; una serie comparable entre entidades para 2009–2024 queda pendiente del requerimiento formal de datos al MEFP (DS 28168).") |>
   opt_stylize(style = 1)
 ```
 
-La tasa de ejecución financiera no captura totalmente la **calidad de la ejecución**. Una entidad puede ejecutar 95% del presupuesto vía gasto corriente (planilla + bienes y servicios) pero subejecutar inversión productiva. El Apéndice E presenta la descomposición ejecución corriente vs ejecución de inversión por entidad y año.
+La tasa de ejecución financiera agregada no captura la **calidad de la ejecución**, que depende de la composición del gasto efectivamente devengado. El INIAF ejecutó el 83,7 por ciento de su presupuesto total en 2019 pero solo el 47,3 por ciento del rubro Activos Reales, con el componente capitalizable del Proyecto Café (Centro de Innovación en Caranavi) en 0 por ciento de ejecución [@INIAF_Memoria2019]. En el MDRyT consolidado de 2024 la ejecución financiera (74 por ciento) superó a la física (54 por ciento) [@MDRyT_RPC2024]. Ambos patrones son consistentes con una mayor ejecución del gasto corriente que de las metas de inversión, de modo que el agregado financiero puede mantenerse alto mientras la inversión productiva queda rezagada. El Apéndice E presenta la descomposición de ejecución corriente frente a ejecución de inversión por entidad y año.
 
 ### Comparación regional: PER Sub-Sahariana (FAO MAFAP 2021)
 
@@ -398,13 +330,13 @@ Las opciones técnicas que emergen — para consideración del MEFP en mesa téc
 - El panel municipal v3 (339 municipios × 2012–2021) usa el clasificador municipal programático boliviano. El crosswalk MAFAP × clasificador municipal está en `01_data/processed/crosswalk_mafap_oecd_cofog.csv` pero no resuelve totalmente la asignación de la categoría D entre nivel central, departamental y municipal.
 - La cifra del 16% de ejecución financiera PAR III 2024 proviene del plan APER `20_CONTENIDO_REPORTE.md §8` y requiere verificación contra el Implementation Status Report (ISR) más reciente del proyecto.
 - Los benchmarks Filipinas (85–92% DA) y SSA (21% no ejecutado) son comparables sólo aproximadamente dada la diferencia estructural de composición productiva y arquitectura institucional.
-- El coeficiente de Gini territorial y la curva de Lorenz están pendientes (`TODO_FIGURE` en 3.2.1).
+- El mapa municipal de gasto agropecuario (@fig-cap4-mapa-muni) usa el gasto agropecuario total devengado de MEFP 2024 sobre límites geoBoundaries ADM3. El cruce nombre-municipio cubre el 98% del gasto agropecuario municipal 2024; el residual (≈1,6%) corresponde a municipios homónimos entre departamentos que la geometría no distingue sin código INE (p. ej., tres "Santa Rosa" y dos "San Ignacio"). Cerrar la brecha al 100% requiere un shapefile municipal con código INE.
 
 ```{=html}
 <!--
 draft_status: v0.1
 written_by: aper-writer (sesión 13)
 date: 2026-05-24
-pending: mapas dept + Lorenz/Gini territorial + correlación pobreza×gasto
+pending: mapas dept (Lorenz/Gini territorial y correlación gasto×pobreza NBI ya integrados, sesión 21)
 -->
 ```

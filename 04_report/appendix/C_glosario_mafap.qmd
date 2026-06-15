@@ -9,11 +9,11 @@ crossref:
 ---
 
 ::: {.callout-note appearance="simple"}
-**Fuente canónica:** FAO MAFAP — *Monitoring and Analysing Food and Agricultural Policies* Programme. Manual Volumen II: *Methodology for monitoring food and agricultural policies* [@ghins2013mafap].
+**Fuente canónica:** FAO MAFAP — *Monitoring and Analysing Food and Agricultural Policies* Programme. La taxonomía de **gasto público** A–E se aplica siguiendo la práctica MAFAP de análisis de gasto público en alimentación y agricultura [@PernecheleEtAl2018_MAFAP]. (El manual metodológico dedicado al gasto público —MAFAP *Public Expenditure*, Vol. II— está pendiente de re-verificación documental en el corpus de literatura y no se cita hasta entonces; ver auditoría 2026-06-14.)
 
 **Operacionalización Bolivia:** este apéndice formaliza la taxonomía aplicada en los capítulos 3 y 4 del APER 2026 ([ADR-0009](../../.agent/decisions/ADR-0009_mafap_narrow_full.md)) y se acompaña del crosswalk a OECD-PSE, COFOG y clasificación funcional MEFP del Apéndice D ([ADR-0010](../../.agent/decisions/ADR-0010_crosswalk_clasificaciones.md)).
 
-**Diccionario CSV autoritativo:** [`01_data/processed/mafap_categories.csv`](../../01_data/processed/mafap_categories.csv) — 33 códigos × definiciones ES/EN. Esta versión `.qmd` se mantiene sincronizada con el CSV.
+**Diccionario CSV autoritativo:** [`01_data/processed/mafap_categories.csv`](../../01_data/processed/mafap_categories.csv) — 41 códigos × definiciones ES/EN. Esta versión `.qmd` se mantiene sincronizada con el CSV.
 :::
 
 ## C.1 · Conceptos previos
@@ -162,10 +162,10 @@ Cuando un capítulo del APER 2026 cita una categoría MAFAP, debe usar el format
 
 Para citas externas:
 
-> Ghins, L., Ilicic-Komorowska, J., & Mas Aparisi, A. (2013). *Methodology for monitoring food and agricultural policies* (MAFAP Methodological Implementation Guide, Volume II). FAO. [@ghins2013mafap]
+> Ghins, L., Ilicic-Komorowska, J., & Mas Aparisi, A. (2013). *Methodology for monitoring food and agricultural policies* (MAFAP Methodological Implementation Guide, Volume II). FAO. [@MAFAP2013_MethodGuideVolI]
 
 ---
 
 ::: {.callout-note appearance="minimal"}
-**Mantenimiento.** Este glosario se actualiza en sincronía con [`01_data/processed/mafap_categories.csv`](../../01_data/processed/mafap_categories.csv). Cambios en taxonomía requieren bump del CSV y del script `02_code/02_classification/11_mafap_classification.R`, además de actualización del Apéndice D crosswalk. Ver protocolo en [`.agent/08_CONTROL.md §4`](../../.agent/08_CONTROL.md).
+**Mantenimiento.** Este glosario se actualiza en sincronía con [`01_data/processed/mafap_categories.csv`](../../01_data/processed/mafap_categories.csv). Cambios en taxonomía requieren bump del CSV y del script `02_code/02_cleaning/17_mafap_classification.R`, además de actualización del Apéndice D crosswalk. Ver protocolo en [`.agent/08_CONTROL.md §4`](../../.agent/08_CONTROL.md).
 :::
