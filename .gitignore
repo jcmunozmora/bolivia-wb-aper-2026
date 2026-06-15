@@ -35,6 +35,11 @@ www/*_cache/
 www/*_files/
 www/.quarto/
 **/.quarto/
+04_report/*_cache/
+
+# ── Backups y locks de Office (Word genera ~$ al abrir) ─────────────────────
+*.legacy_backup
+~$*
 
 # ── Archivos de sistema ─────────────────────────────────────────────────────
 .DS_Store
@@ -116,6 +121,7 @@ tmp/
 01_data/processed/eh_panel_2012_2024.*
 01_data/processed/jubileo_municipal_full_*.csv
 01_data/processed/adm3_muni_con_datos_*.rds
+01_data/processed/adm3_muni_gasto_agro_*.rds
 
 # Excepción: panel maestro v12 y diccionario, derivados MAFAP y PSE
 !01_data/processed/spending_panel_v12.rds
