@@ -137,3 +137,7 @@ tmp/
 !01_data/processed/dea_dataset.rds
 !01_data/processed/panel_subnacional_v2.rds
 !01_data/processed/panel_municipal_v3.rds
+
+# Regenerable knitr/Quarto cache (kept on disk)
+**/*_cache/
+**/_freeze/
